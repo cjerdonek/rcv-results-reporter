@@ -6,6 +6,33 @@ import openpyxl
 _log = logging.getLogger(__name__)
 
 
+def parse_sheet_1(wb):
+    ws = wb['Sheet1']
+    # The first cell of the first five rows has the following form:
+    # 1: "Page: 1 / 2"
+    # 2: None
+    # 3: None
+    # 4: "Final RCV Short Report\nCity and County of San Francisco\n"
+    #    "November 8, 2022, Consolidated General Election"
+    # 5: "PUBLIC DEFENDER"
+    indexed_rows = enumerate(ws.iter_rows(values_only=True), start=1)
+    for i, row in indexed_rows:
+        cell = row[0]
+        if cell is None:
+            continue
+        if 'Short Report' in cell:
+            break
+
+    for i, row in indexed_rows:
+        contest_name = row[0]
+        break
+
+    results = {
+        'contest_name': contest_name,
+    }
+    return results
+
+
 def iter_rows(ws):
     indexed_rows = enumerate(ws.iter_rows(values_only=True), start=1)
     for i, row in indexed_rows:
@@ -49,7 +76,7 @@ def parse_sheet_2(wb):
     return results
 
 
-def parse_workbook(path):
+def parse_excel_file(path):
     """
     Parse a workbook, and return a dict of results.
     """
@@ -57,7 +84,7 @@ def parse_workbook(path):
     wb = openpyxl.load_workbook(filename=path)
     _log.info(f'loaded workbook with sheets: {wb.sheetnames}')
     results = {}
-    # TODO: parse the contest name from Sheet 1.
+    results = parse_sheet_1(wb)
     sheet_2_results = parse_sheet_2(wb)
     results.update(sheet_2_results)
     return results

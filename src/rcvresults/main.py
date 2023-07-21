@@ -41,9 +41,10 @@ def make_rcv_snippets(data_dir, output_dir):
             continue
 
         _log.info(f'parsing: {path}')
-        results = excel_parsing.parse_workbook(path)
+        results = excel_parsing.parse_excel_file(path)
+        contest_name = results['contest_name']
         candidates = results['candidates']
-        _log.info(f'found: {len(candidates)} candidates')
+        _log.info(f'parsed contest: {contest_name!r} ({len(candidates)} candidates)')
 
         output_path = output_dir / f'{path.stem}.html'
         _log.info(f'writing to: {output_path}')
