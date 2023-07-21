@@ -12,7 +12,7 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 from markupsafe import Markup
 
-import rcvresults.parsing as parsing
+import rcvresults.parsers.xslx as excel_parsing
 import rcvresults.rendering as rendering
 
 
@@ -41,7 +41,7 @@ def make_rcv_snippets(data_dir, output_dir):
             continue
 
         _log.info(f'parsing: {path}')
-        results = parsing.parse_workbook(path)
+        results = excel_parsing.parse_workbook(path)
         candidates = results['candidates']
         _log.info(f'found: {len(candidates)} candidates')
 
