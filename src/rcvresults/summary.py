@@ -36,3 +36,10 @@ def add_summary(results):
         )
 
     results['candidate_summaries'] = candidate_summaries
+
+    def sort_key(name):
+        return candidate_summaries[name]['highest_vote']
+
+    # Sort candidates from highest to lowest vote total.
+    candidates = sorted(candidates, key=sort_key, reverse=True)
+    results['candidates'] = candidates
