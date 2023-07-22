@@ -26,7 +26,23 @@ DATA_DIR_PARSED = Path('data-parsed')
 # Directory containing copies of real past html results summary pages.
 HTML_DIR = Path('html')
 
+DIR_NAME_2020_NOV = '2020-11-03'
 DIR_NAME_2022_NOV = '2022-11-08'
+
+# Mapping saying what kinds of results reports (file extension) are stored
+# in each election directory.
+REPORT_DIR_EXTENSIONS = {
+    DIR_NAME_2020_NOV: 'xml',
+    DIR_NAME_2022_NOV: 'xlsx',
+}
+
+
+def get_xml_paths(dir_path):
+    glob_path = dir_path / '*.xml'
+    raw_paths = glob.glob(str(glob_path))
+    paths = [Path(raw_path) for raw_path in sorted(raw_paths)]
+
+    return paths
 
 
 def get_excel_paths(dir_path):
@@ -57,7 +73,13 @@ def make_environment():
 
 def make_rcv_json(path, parsed_dir):
     _log.info(f'parsing: {path}')
-    results = excel_parsing.parse_excel_file(path)
+    suffix = path.suffix
+    if suffix == '.xlsx':
+        results = excel_parsing.parse_excel_file(path)
+    else:
+        assert suffix == '.xml'
+        raise NotImplementedError('xml not implemented yet')
+
     metadata = results['_metadata']
     contest_name = metadata['contest_name']
     candidates = results['candidates']
@@ -86,25 +108,44 @@ def process_rcv_contest(path, template, parsed_dir, html_dir):
     rendering.render_contest(template, results, path=output_path)
 
 
-def make_rcv_snippets(data_dir, parsed_dir, html_dir):
+def make_rcv_snippets(
+    parent_reports_dir, parent_parsed_dir, parent_snippets_dir, dir_name,
+):
+    data_dir, parsed_dir, html_dir = (
+        parent_dir / dir_name for parent_dir in
+        (parent_reports_dir, parent_parsed_dir, parent_snippets_dir)
+    )
+
+    # Make sure the intermediate output directories exist.
+    if not parsed_dir.exists():
+        parsed_dir.mkdir(parents=True)
+    if not html_dir.exists():
+        html_dir.mkdir(parents=True)
+
     env = make_environment()
     template = env.get_template('rcv-summary.html')
 
-    paths = get_excel_paths(data_dir)
+    extension = REPORT_DIR_EXTENSIONS[dir_name]
+    if extension == 'xlsx':
+        paths = get_excel_paths(data_dir)
+    else:
+        assert extension == 'xml'
+        paths = get_xml_paths(data_dir)
+
     for path in paths:
         process_rcv_contest(
             path, template=template, parsed_dir=parsed_dir, html_dir=html_dir,
         )
 
 
-def make_index_html(output_path, rcv_html_dir, js_dir):
+def make_index_html(output_path, snippets_dir, js_dir):
     """
     Args:
       js_dir: the path to the directory containing the js files, relative
         to the location of the output path.
     """
-    def insert_html(file_name):
-        path = rcv_html_dir / file_name
+    def insert_html(rel_path):
+        path = snippets_dir / rel_path
         html = path.read_text()
         return Markup(html)
 
@@ -123,30 +164,29 @@ def main():
     log_format = '[{levelname}] {name}: {message}'
     logging.basicConfig(format=log_format, style='{', level=logging.INFO)
 
-    dir_name = DIR_NAME_2022_NOV
-    data_dir = DATA_DIR_REPORTS / dir_name
+    output_dir = Path('output')
+    # Start with the parent ("..") to get from output_dir back to the
+    # repo root.
+    js_dir = Path('..') / HTML_DIR / DIR_NAME_2022_NOV / 'js'
 
     # First generate the RCV summary snippets.
-    parsed_dir = DATA_DIR_PARSED / dir_name
-    # TODO: incorporate dir_name into the output directory?
-    output_dir = Path('output')
-    # Start with the parent ("..") to get back to the repo root.
-    js_dir = Path('..') / HTML_DIR / dir_name / 'js'
-    rcv_html_dir = output_dir / 'rcv-html'
+    # This is the parent directory to which to write the intermediate
+    # HTML snippets.
+    snippets_dir = output_dir / 'rcv-snippets'
 
-    if not parsed_dir.exists():
-        parsed_dir.mkdir(parents=True)
-    if not rcv_html_dir.exists():
-        rcv_html_dir.mkdir(parents=True)
-
-    make_rcv_snippets(
-        data_dir=data_dir, parsed_dir=parsed_dir, html_dir=rcv_html_dir,
-    )
+    # TODO: uncomment this.
+    # dir_names = [DIR_NAME_2020_NOV, DIR_NAME_2022_NOV]
+    dir_names = [DIR_NAME_2022_NOV]
+    for dir_name in dir_names:
+        make_rcv_snippets(
+            parent_reports_dir=DATA_DIR_REPORTS, parent_parsed_dir=DATA_DIR_PARSED,
+            parent_snippets_dir=snippets_dir, dir_name=dir_name,
+        )
 
     # Then generate the overall page.
     output_path = output_dir / 'index.html'
     _log.info(f'writing: {output_path}')
-    make_index_html(output_path, rcv_html_dir=rcv_html_dir, js_dir=js_dir)
+    make_index_html(output_path, snippets_dir=snippets_dir, js_dir=js_dir)
 
 
 if __name__ == '__main__':
