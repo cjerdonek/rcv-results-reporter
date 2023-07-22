@@ -30,6 +30,8 @@ def make_environment():
         loader=FileSystemLoader('templates'),
         # TODO: pass the autoescape argument?
     )
+    env.filters['format_int'] = rendering.format_int
+
     return env
 
 
