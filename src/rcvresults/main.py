@@ -23,6 +23,8 @@ _log = logging.getLogger(__name__)
 
 DATA_DIR_REPORTS = Path('data-reports')
 DATA_DIR_PARSED = Path('data-parsed')
+# Directory containing copies of real past html results summary pages.
+HTML_DIR = Path('html')
 
 DIR_NAME_2022_NOV = '2022-11-08'
 
@@ -95,7 +97,12 @@ def make_rcv_snippets(data_dir, parsed_dir, html_dir):
         )
 
 
-def make_index_html(output_path, rcv_html_dir):
+def make_index_html(output_path, rcv_html_dir, js_dir):
+    """
+    Args:
+      js_dir: the path to the directory containing the js files, relative
+        to the location of the output path.
+    """
     def insert_html(file_name):
         path = rcv_html_dir / file_name
         html = path.read_text()
@@ -105,7 +112,10 @@ def make_index_html(output_path, rcv_html_dir):
     env.globals['insert_html'] = insert_html
     template = env.get_template('index-test.html')
 
-    html = template.render()
+    context = {
+        'js_dir': str(js_dir),
+    }
+    html = template.render(context)
     output_path.write_text(html)
 
 
@@ -120,6 +130,8 @@ def main():
     parsed_dir = DATA_DIR_PARSED / dir_name
     # TODO: incorporate dir_name into the output directory?
     output_dir = Path('output')
+    # Start with the parent ("..") to get back to the repo root.
+    js_dir = Path('..') / HTML_DIR / dir_name / 'js'
     rcv_html_dir = output_dir / 'rcv-html'
 
     if not parsed_dir.exists():
@@ -132,9 +144,9 @@ def main():
     )
 
     # Then generate the overall page.
-    output_dir = Path('html') / dir_name
-    output_path = output_dir / 'index-generated.html'
-    make_index_html(output_path, rcv_html_dir=rcv_html_dir)
+    output_path = output_dir / 'index.html'
+    _log.info(f'writing: {output_path}')
+    make_index_html(output_path, rcv_html_dir=rcv_html_dir, js_dir=js_dir)
 
 
 if __name__ == '__main__':
