@@ -159,7 +159,10 @@ def parse_excel_file(path):
     # TODO: change this to raise a better error.
     assert wb.sheetnames == ['Sheet1', 'Sheet2']
     results = {}
-    results = parse_sheet_1(wb)
+    metadata = {}
+    results['_metadata'] = metadata
+    # Add the contest name to the metadata dict.
+    metadata.update(parse_sheet_1(wb))
     sheet_2_results = parse_sheet2(wb)
     results.update(sheet_2_results)
     return results
