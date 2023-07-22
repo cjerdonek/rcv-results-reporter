@@ -2,6 +2,16 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 8"
     },
+    "candidate_summaries": {
+        "KATE STOIA": {
+            "highest_round": 1,
+            "highest_vote": 7975.0
+        },
+        "RAFAEL MANDELMAN": {
+            "highest_round": 1,
+            "highest_vote": 27395.0
+        }
+    },
     "candidates": [
         "KATE STOIA",
         "RAFAEL MANDELMAN"

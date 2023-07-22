@@ -36,6 +36,17 @@ def make_environment():
     return env
 
 
+# TODO: move this to a better module.
+def get_winning_candidates(totals):
+    """
+    Return the names of the winning candidates, given the candidate totals.
+    """
+    highest_total = max(totals.values())
+    candidates = [
+        name for name, total in totals.items() if total == highest_total
+    ]
+
+
 def process_rcv_contest(path, template, parsed_dir, html_dir):
     """
     Args:
