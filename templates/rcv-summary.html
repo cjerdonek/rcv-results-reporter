@@ -5,7 +5,7 @@
 <th class='col-xs-6 col-md-6' align='left'></th>
 <th class='col-xs-3 col-md-3' align='center'>Round 1</th>
 <th class='col-xs-3 col-md-3' align='center' data-defaultsort=
-'disabled'>Percentage</th>
+'disabled'>Final Round</th>
 </tr>
 </thead>
 <tbody>
@@ -13,7 +13,7 @@
 {% set round1 = rounds[candidate][0] %}
 <tr>
 <td id='candidate'>{{ candidate }}</td>
-<td id='votes' align='right' data-value="">{{ round1['votes']|format_int }}</td>
+<td id='votes' align='right' data-value="">({{ round1['percent']|format_percent }}) {{ round1['votes']|format_int }}</td>
 <td id='pct' align='right'></td>
 </tr>
 {% endfor %}

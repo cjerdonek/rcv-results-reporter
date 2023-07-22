@@ -31,6 +31,7 @@ def make_environment():
         # TODO: pass the autoescape argument?
     )
     env.filters['format_int'] = rendering.format_int
+    env.filters['format_percent'] = rendering.format_percent
 
     return env
 
