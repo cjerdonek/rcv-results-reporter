@@ -37,17 +37,6 @@ def make_environment():
     return env
 
 
-# TODO: move this to a better module.
-def get_winning_candidates(totals):
-    """
-    Return the names of the winning candidates, given the candidate totals.
-    """
-    highest_total = max(totals.values())
-    candidates = [
-        name for name, total in totals.items() if total == highest_total
-    ]
-
-
 def process_rcv_contest(path, template, parsed_dir, html_dir):
     """
     Args:
@@ -125,7 +114,7 @@ def main():
     )
 
     # Then generate the overall page.
-    output_dir = Path('html/2022-11-08')
+    output_dir = Path('html') / dir_name
     output_path = output_dir / 'index-generated.html'
     make_index_html(output_path, rcv_html_dir=rcv_html_dir)
 
