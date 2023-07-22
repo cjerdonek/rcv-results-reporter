@@ -13,9 +13,8 @@ $ python -m unittest discover rcvresults
 
 ## TODO
 
-* Hide final round if only one round.
 * Add subtotals.
+* Add end-to-end tests (json and/or html).
 * Make test HTML viewable on GitHub.
 * Support parsing XML.
-* Add end-to-end tests (json and/or html).
 * Add intermediate rounds? (expand / collapse)
