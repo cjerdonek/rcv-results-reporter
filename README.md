@@ -40,6 +40,15 @@ To run tests:
 $ python -m unittest discover rcvresults
 ```
 
+"Tidied" versions of the HTML files in the `html` directory were generated
+using HTML [Tidy](https://www.html-tidy.org/).
+
+For example:
+
+```
+$ tidy -output html/2020-11-03/index-tidied.html -utf8 html/2020-11-03/index-original.html
+```
+
 ## TODO
 
 * Support parsing XML.
