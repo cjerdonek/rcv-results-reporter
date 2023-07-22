@@ -15,6 +15,7 @@ from markupsafe import Markup
 
 import rcvresults.parsers.xslx as excel_parsing
 import rcvresults.rendering as rendering
+import rcvresults.summary as summary
 
 
 _log = logging.getLogger(__name__)
@@ -60,6 +61,7 @@ def process_rcv_contest(path, template, parsed_dir, html_dir):
     contest_name = metadata['contest_name']
     candidates = results['candidates']
     _log.info(f'parsed contest: {contest_name!r} ({len(candidates)} candidates)')
+    summary.add_summary(results)
 
     parsed_path = parsed_dir / f'{path.stem}.json'
     write_json(results, path=parsed_path)

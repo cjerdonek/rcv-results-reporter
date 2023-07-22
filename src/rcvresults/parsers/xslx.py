@@ -27,6 +27,7 @@ def _iter_triples(iterator):
         values = new_values
 
 
+# TODO: move this to an utils.py module?
 def iter_triples(iterator):
     """
     Yield the items in the given iterator as triples, padding the last item
@@ -113,20 +114,8 @@ def iter_row_rounds(row):
 
 def parse_sheet2_row(row, name, is_candidate):
     rounds = []
-    highest_round = 0
-    highest_vote = 0
-    for round_number, data in enumerate(iter_row_rounds(row), start=1):
+    for data in iter_row_rounds(row):
         votes, percent, transfer = data
-        if is_candidate and votes is not None and votes > 0:
-            highest_round = round_number
-            # The vote totals should only stay the same or increase.
-            if votes < highest_vote:
-                raise AssertionError(
-                    f'votes decreased in round {round_number} for {name!r}: '
-                    f'{votes} < {highest_vote}'
-                )
-            highest_vote = votes
-
         round_data = {
             'votes': votes,
             'percent': percent,
@@ -134,15 +123,7 @@ def parse_sheet2_row(row, name, is_candidate):
         }
         rounds.append(round_data)
 
-    summary = {
-        'highest_round': highest_round,
-        'highest_vote': highest_vote,
-    }
-    data = {
-        'summary': summary,
-        'rounds': rounds,
-    }
-    return data
+    return rounds
 
 
 def parse_sheet2(wb):
@@ -152,24 +133,19 @@ def parse_sheet2(wb):
     subtotals = []
     non_candidate_subtotals = []
     rounds = {}
-    candidate_summaries = {}
-    total_highest_round = 1
     for i, name, row, is_candidate in iter_sheet2_rows(ws):
         if is_candidate:
             candidates.append(name)
         else:
             non_candidate_subtotals.append(name)
         subtotals.append(name)
-        row_data = parse_sheet2_row(row, name=name, is_candidate=is_candidate)
-        rounds[name] = row_data['rounds']
-        if is_candidate:
-            candidate_summaries[name] = row_data['summary']
+        row_rounds = parse_sheet2_row(row, name=name, is_candidate=is_candidate)
+        rounds[name] = row_rounds
 
     results = {
         'candidates': candidates,
         'non_candidate_subtotals': non_candidate_subtotals,
         'subtotals': subtotals,
-        'candidate_summaries': candidate_summaries,
         'rounds': rounds,
     }
     return results
