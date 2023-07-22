@@ -15,23 +15,38 @@ Round 1 {% if only_one_round %}(Final Round){% endif %}
 </thead>
 <tbody>
 {% for candidate in candidates %}
-{% set round1 = rounds[candidate][0] %}
-{# Subtract 1 to get a 0-based index. #}
-{% set last_round = rounds[candidate][highest_round - 1] %}
+  {% set round_1 = rounds[candidate][0] %}
+  {# Subtract 1 to get a 0-based index. #}
+  {% set round_last = rounds[candidate][highest_round - 1] %}
 <tr>
 <td id='candidate'>{% if candidate in leading_candidates %}
 <span style='color:green;'>{{ candidate }}</span>
 {% else %}
 {{ candidate }}
 {% endif %}</td>
-<td id='votes' align='right' data-value="">({{ round1['percent']|format_percent }}) {{ round1['votes']|format_int }}</td>
+<td id='votes' align='right' data-value="{{ round_1['votes'] }}">({{ round_1['percent']|format_percent }}) {{ round_1['votes']|format_int }}</td>
 {% if not only_one_round %}
-<td id='pct' align='right'>
-{% if last_round['votes'] != 0 %}({{ last_round['percent']|format_percent }}){% endif %}
-{{ last_round['votes']|format_int }}
+<td align='right'>
+{% if round_last['votes'] != 0 %}({{ round_last['percent']|format_percent }}){% endif %}
+{{ round_last['votes']|format_int }}
 </td>
 {% endif %}
 </tr>
 {% endfor %}
 </tbody>
+{# Display the non-candidate totals after the candidate totals. #}
+<tfoot>
+{% for subtotal_name in non_candidate_subtotals %}
+  {% set round_1 = rounds[subtotal_name][0] %}
+  {# Subtract 1 to get a 0-based index. #}
+  {% set round_last = rounds[subtotal_name][highest_round - 1] %}
+<tr>
+<td id='candidate'>{{ subtotal_name }}</td>
+<td align='right'>{{ round_1['votes']|format_int }}</td>
+{% if not only_one_round %}
+<td align='right'>{{ round_last['votes']|format_int }}</td>
+{% endif %}
+</tr>
+{% endfor %}
+</tfoot>
 </table>

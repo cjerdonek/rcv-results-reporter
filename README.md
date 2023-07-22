@@ -13,7 +13,6 @@ $ python -m unittest discover rcvresults
 
 ## TODO
 
-* Add subtotals.
 * Add end-to-end tests (json and/or html).
 * Make test HTML viewable on GitHub.
 * Support parsing XML.
