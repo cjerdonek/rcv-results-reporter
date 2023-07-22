@@ -42,7 +42,7 @@ $ python -m unittest discover rcvresults
 
 ## TODO
 
-* Make test HTML viewable on GitHub.
 * Support parsing XML.
+* Make test HTML viewable on GitHub.
 * Add end-to-end tests of the html.
 * Add intermediate rounds? (expand / collapse)
