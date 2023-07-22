@@ -37,9 +37,20 @@ def add_summary(results):
 
     results['candidate_summaries'] = candidate_summaries
 
+    vote_totals = {
+        name: summary['highest_vote'] for name, summary in
+        candidate_summaries.items()
+    }
     def sort_key(name):
-        return candidate_summaries[name]['highest_vote']
+        return vote_totals[name]
 
     # Sort candidates from highest to lowest vote total.
     candidates = sorted(candidates, key=sort_key, reverse=True)
     results['candidates'] = candidates
+
+    highest_vote = max(vote_totals.values())
+    # Use a list in case more than one candidate is tied.
+    leading_candidates = [
+        name for name, total in vote_totals.items() if total == highest_vote
+    ]
+    results['leading_candidates'] = leading_candidates
