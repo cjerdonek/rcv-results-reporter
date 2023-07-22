@@ -16,3 +16,4 @@ $ python -m unittest discover rcvresults
 * Add subtotals.
 * Add intermediate rounds? (expand / collapse)
 * Hide final round if only one round.
+* Make test HTML viewable on GitHub.
