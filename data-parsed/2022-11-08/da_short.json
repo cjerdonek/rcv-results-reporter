@@ -1,0 +1,184 @@
+{
+    "_metadata": {
+        "contest_name": "DISTRICT ATTORNEY"
+    },
+    "candidates": [
+        "JOE ALIOTO VERONESE",
+        "MAURICE CHENIER",
+        "JOHN HAMASAKI",
+        "BROOKE JENKINS"
+    ],
+    "non_candidate_subtotals": [
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ],
+    "rounds": {
+        "BROOKE JENKINS": [
+            {
+                "percent": 0.45846606579181026,
+                "transfer": 3710.0,
+                "votes": 126505.0
+            },
+            {
+                "percent": 0.47642481075088633,
+                "transfer": 12197.0,
+                "votes": 130215.0
+            },
+            {
+                "percent": 0.5367596619905171,
+                "transfer": 0,
+                "votes": 142412.0
+            }
+        ],
+        "Blanks": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 31130.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 31130.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 31130.0
+            }
+        ],
+        "Continuing Ballots Total": [
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 275931.0
+            },
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 273317.0
+            },
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 265318.0
+            }
+        ],
+        "Exhausted": [
+            {
+                "percent": "",
+                "transfer": 2524.0,
+                "votes": 0.0
+            },
+            {
+                "percent": "",
+                "transfer": 7805.0,
+                "votes": 2524.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 10329.0
+            }
+        ],
+        "JOE ALIOTO VERONESE": [
+            {
+                "percent": 0.12540453954068226,
+                "transfer": 2729.0,
+                "votes": 34603.0
+            },
+            {
+                "percent": 0.13658864980956179,
+                "transfer": -37332.0,
+                "votes": 37332.0
+            },
+            {
+                "percent": 0,
+                "transfer": 0,
+                "votes": 0.0
+            }
+        ],
+        "JOHN HAMASAKI": [
+            {
+                "percent": 0.3718755775900497,
+                "transfer": 3158.0,
+                "votes": 102612.0
+            },
+            {
+                "percent": 0.38698653943955186,
+                "transfer": 17136.0,
+                "votes": 105770.0
+            },
+            {
+                "percent": 0.46324033800948294,
+                "transfer": 0,
+                "votes": 122906.0
+            }
+        ],
+        "MAURICE CHENIER": [
+            {
+                "percent": 0.04425381707745777,
+                "transfer": -12211.0,
+                "votes": 12211.0
+            },
+            {
+                "percent": 0,
+                "transfer": 0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0,
+                "transfer": 0,
+                "votes": 0.0
+            }
+        ],
+        "Non Transferable Total": [
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 32409.0
+            },
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 35023.0
+            },
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 43022.0
+            }
+        ],
+        "Overvotes": [
+            {
+                "percent": "",
+                "transfer": 90.0,
+                "votes": 1279.0
+            },
+            {
+                "percent": "",
+                "transfer": 194.0,
+                "votes": 1369.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 1563.0
+            }
+        ]
+    },
+    "subtotals": [
+        "JOE ALIOTO VERONESE",
+        "MAURICE CHENIER",
+        "JOHN HAMASAKI",
+        "BROOKE JENKINS",
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ]
+}

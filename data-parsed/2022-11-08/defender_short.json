@@ -1,0 +1,111 @@
+{
+    "_metadata": {
+        "contest_name": "PUBLIC DEFENDER"
+    },
+    "candidates": [
+        "REBECCA SUSAN FENG YOUNG",
+        "MANO RAJU"
+    ],
+    "non_candidate_subtotals": [
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ],
+    "rounds": {
+        "Blanks": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 52554.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "Continuing Ballots Total": [
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 255300.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "Exhausted": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 0.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "MANO RAJU": [
+            {
+                "percent": 0.7182843713278496,
+                "transfer": 0,
+                "votes": 183378.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "Non Transferable Total": [
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 53040.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "Overvotes": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 486.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "REBECCA SUSAN FENG YOUNG": [
+            {
+                "percent": 0.2817156286721504,
+                "transfer": 0,
+                "votes": 71922.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ]
+    },
+    "subtotals": [
+        "REBECCA SUSAN FENG YOUNG",
+        "MANO RAJU",
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ]
+}

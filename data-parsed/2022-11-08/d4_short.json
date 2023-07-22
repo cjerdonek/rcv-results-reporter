@@ -1,0 +1,111 @@
+{
+    "_metadata": {
+        "contest_name": "BOARD OF SUPERVISORS DISTRICT 4"
+    },
+    "candidates": [
+        "JOEL ENGARDIO",
+        "GORDON MAR"
+    ],
+    "non_candidate_subtotals": [
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ],
+    "rounds": {
+        "Blanks": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 3003.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "Continuing Ballots Total": [
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 27029.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "Exhausted": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 0.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "GORDON MAR": [
+            {
+                "percent": 0.4913241333382663,
+                "transfer": 0,
+                "votes": 13280.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "JOEL ENGARDIO": [
+            {
+                "percent": 0.5086758666617337,
+                "transfer": 0,
+                "votes": 13749.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "Non Transferable Total": [
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 3056.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "Overvotes": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 53.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ]
+    },
+    "subtotals": [
+        "JOEL ENGARDIO",
+        "GORDON MAR",
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ]
+}

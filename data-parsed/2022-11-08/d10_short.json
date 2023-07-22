@@ -1,0 +1,111 @@
+{
+    "_metadata": {
+        "contest_name": "BOARD OF SUPERVISORS DISTRICT 10"
+    },
+    "candidates": [
+        "BRIAN SAM ADAM",
+        "SHAMANN WALTON"
+    ],
+    "non_candidate_subtotals": [
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ],
+    "rounds": {
+        "BRIAN SAM ADAM": [
+            {
+                "percent": 0.2736998514115899,
+                "transfer": 0,
+                "votes": 4605.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "Blanks": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 3783.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "Continuing Ballots Total": [
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 16825.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "Exhausted": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 0.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "Non Transferable Total": [
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 3849.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "Overvotes": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 66.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "SHAMANN WALTON": [
+            {
+                "percent": 0.7263001485884101,
+                "transfer": 0,
+                "votes": 12220.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ]
+    },
+    "subtotals": [
+        "BRIAN SAM ADAM",
+        "SHAMANN WALTON",
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ]
+}

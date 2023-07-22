@@ -1,0 +1,184 @@
+{
+    "_metadata": {
+        "contest_name": "BOARD OF SUPERVISORS DISTRICT 6"
+    },
+    "candidates": [
+        "MATT DORSEY",
+        "MS BILLIE COOPER",
+        "HONEY MAHOGANY",
+        "CHERELLE JACKSON"
+    ],
+    "non_candidate_subtotals": [
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ],
+    "rounds": {
+        "Blanks": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 2299.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 2299.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 2299.0
+            }
+        ],
+        "CHERELLE JACKSON": [
+            {
+                "percent": 0.03318176232026546,
+                "transfer": 75.0,
+                "votes": 540.0
+            },
+            {
+                "percent": 0.03789979663523757,
+                "transfer": -615.0,
+                "votes": 615.0
+            },
+            {
+                "percent": 0,
+                "transfer": 0,
+                "votes": 0.0
+            }
+        ],
+        "Continuing Ballots Total": [
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 16274.0
+            },
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 16227.0
+            },
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 16094.0
+            }
+        ],
+        "Exhausted": [
+            {
+                "percent": "",
+                "transfer": 45.0,
+                "votes": 0.0
+            },
+            {
+                "percent": "",
+                "transfer": 127.0,
+                "votes": 45.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 172.0
+            }
+        ],
+        "HONEY MAHOGANY": [
+            {
+                "percent": 0.4363401745114907,
+                "transfer": 153.0,
+                "votes": 7101.0
+            },
+            {
+                "percent": 0.447032723239046,
+                "transfer": 294.0,
+                "votes": 7254.0
+            },
+            {
+                "percent": 0.4689946563936871,
+                "transfer": 0,
+                "votes": 7548.0
+            }
+        ],
+        "MATT DORSEY": [
+            {
+                "percent": 0.5079882020400639,
+                "transfer": 91.0,
+                "votes": 8267.0
+            },
+            {
+                "percent": 0.5150674801257163,
+                "transfer": 188.0,
+                "votes": 8358.0
+            },
+            {
+                "percent": 0.5310053436063129,
+                "transfer": 0,
+                "votes": 8546.0
+            }
+        ],
+        "MS BILLIE COOPER": [
+            {
+                "percent": 0.022489861128179918,
+                "transfer": -366.0,
+                "votes": 366.0
+            },
+            {
+                "percent": 0,
+                "transfer": 0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0,
+                "transfer": 0,
+                "votes": 0.0
+            }
+        ],
+        "Non Transferable Total": [
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 2389.0
+            },
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 2436.0
+            },
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 2569.0
+            }
+        ],
+        "Overvotes": [
+            {
+                "percent": "",
+                "transfer": 2.0,
+                "votes": 90.0
+            },
+            {
+                "percent": "",
+                "transfer": 6.0,
+                "votes": 92.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 98.0
+            }
+        ]
+    },
+    "subtotals": [
+        "MATT DORSEY",
+        "MS BILLIE COOPER",
+        "HONEY MAHOGANY",
+        "CHERELLE JACKSON",
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ]
+}
