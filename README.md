@@ -10,3 +10,9 @@ To run tests:
 ```
 $ python -m unittest discover rcvresults
 ```
+
+## TODO
+
+* Add subtotals.
+* Add intermediate rounds? (expand / collapse)
+* Hide final round if only one round.
