@@ -13,6 +13,7 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 from markupsafe import Markup
 
+import rcvresults.parsers.xml as xml_parsing
 import rcvresults.parsers.xslx as excel_parsing
 import rcvresults.rendering as rendering
 import rcvresults.summary as summary
@@ -78,7 +79,7 @@ def make_rcv_json(path, parsed_dir):
         results = excel_parsing.parse_excel_file(path)
     else:
         assert suffix == '.xml'
-        raise NotImplementedError('xml not implemented yet')
+        results = xml_parsing.parse_xml_file(path)
 
     metadata = results['_metadata']
     contest_name = metadata['contest_name']

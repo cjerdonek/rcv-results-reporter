@@ -1,3 +1,7 @@
+"""
+Supports parsing Dominion Excel (.xlsx) RCV result reports.
+"""
+
 import itertools
 import logging
 
