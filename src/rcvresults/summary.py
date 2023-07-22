@@ -37,6 +37,11 @@ def add_summary(results):
 
     results['candidate_summaries'] = candidate_summaries
 
+    highest_round = max(
+        summary['highest_round'] for summary in candidate_summaries.values()
+    )
+    results['highest_round'] = highest_round
+
     vote_totals = {
         name: summary['highest_vote'] for name, summary in
         candidate_summaries.items()

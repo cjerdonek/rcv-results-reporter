@@ -5,16 +5,23 @@
 <th class='col-xs-6 col-md-6' align='left'></th>
 <th class='col-xs-3 col-md-3' align='center'>Round 1</th>
 <th class='col-xs-3 col-md-3' align='center' data-defaultsort=
-'disabled'>Final Round</th>
+'disabled'>Round {{ highest_round }} (Final Round)</th>
 </tr>
 </thead>
 <tbody>
 {% for candidate in candidates %}
 {% set round1 = rounds[candidate][0] %}
+{% set last_round = rounds[candidate][highest_round - 1] %}
 <tr>
-<td id='candidate'>{{ candidate }}</td>
+<td id='candidate'>{% if candidate in leading_candidates %}
+<span style='color:green;'>{{ candidate }}</span>
+{% else %}
+{{ candidate }}
+{% endif %}</td>
 <td id='votes' align='right' data-value="">({{ round1['percent']|format_percent }}) {{ round1['votes']|format_int }}</td>
-<td id='pct' align='right'></td>
+<td id='pct' align='right'>
+{% if last_round['votes'] != 0 %}({{ last_round['percent']|format_percent }}){% endif %}
+{{ last_round['votes']|format_int }}</td>
 </tr>
 {% endfor %}
 </tbody>
