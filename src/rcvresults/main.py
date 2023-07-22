@@ -75,7 +75,7 @@ def main():
     if not rcv_html_dir.exists():
         rcv_html_dir.mkdir(parents=True)
 
-    data_dir = Path('data/2022-11-08')
+    data_dir = Path('data-reports/2022-11-08')
     make_rcv_snippets(data_dir=data_dir, output_dir=rcv_html_dir)
 
     # Then generate the overall page.
