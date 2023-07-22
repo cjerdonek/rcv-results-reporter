@@ -47,7 +47,7 @@ def make_rcv_snippets(data_dir, output_dir):
         _log.info(f'parsed contest: {contest_name!r} ({len(candidates)} candidates)')
 
         output_path = output_dir / f'{path.stem}.html'
-        _log.info(f'writing to: {output_path}')
+        _log.info(f'writing: {output_path}')
         rendering.render_contest(template, results, path=output_path)
 
 
