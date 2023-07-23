@@ -2,45 +2,75 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 9"
     },
+    "candidate_summaries": {
+        "BUD RYERSON": {
+            "highest_round": 1,
+            "highest_vote": 63.0
+        },
+        "HILLARY RONEN": {
+            "highest_round": 1,
+            "highest_vote": 29212.0
+        }
+    },
     "candidates": [
         "HILLARY RONEN",
         "BUD RYERSON"
     ],
+    "highest_round": 1,
+    "leading_candidates": [
+        "HILLARY RONEN"
+    ],
+    "non_candidate_subtotals": [
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ],
     "rounds": {
         "BUD RYERSON": [
             {
-                "percent": "0.0021520068317677198975234842",
-                "transfer": "0",
-                "votes": "63.00000000000"
+                "percent": 0.00215200683176772,
+                "transfer": 0.0,
+                "votes": 63.0
             }
         ],
         "Blanks": [
             {
-                "percent": "0.2627497865072587532023911187",
-                "transfer": "0",
-                "votes": "7692.00000000000"
+                "percent": 0.2627497865072588,
+                "transfer": 0.0,
+                "votes": 7692.0
             }
         ],
         "Exhausted": [
             {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
             }
         ],
         "HILLARY RONEN": [
             {
-                "percent": "0.9978479931682322801024765158",
-                "transfer": "0",
-                "votes": "29212.00000000000"
+                "percent": 0.9978479931682323,
+                "transfer": 0.0,
+                "votes": 29212.0
             }
         ],
         "Overvotes": [
             {
-                "percent": "0.0000683176771989752348420154",
-                "transfer": "0",
-                "votes": "2.00000000000"
+                "percent": 6.831767719897523e-05,
+                "transfer": 0.0,
+                "votes": 2.0
             }
         ]
-    }
+    },
+    "subtotals": [
+        "HILLARY RONEN",
+        "BUD RYERSON",
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ]
 }

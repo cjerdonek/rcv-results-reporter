@@ -25,13 +25,13 @@ Report: Title, RcvStaticData, Tablix1
 
           roundGroup_Collection_2: each child is a roundGroup containing
             the majority threshold in that round.
-
-
--> precinctGroup -> Tablix5
 """
 
 import logging
 import xml.etree.ElementTree as ET
+
+import rcvresults.utils as utils
+from rcvresults.utils import NonCandidateNames
 
 
 _log = logging.getLogger(__name__)
@@ -39,18 +39,10 @@ _log = logging.getLogger(__name__)
 NAMESPACE = '{RcvShortReport}'
 
 NON_CANDIDATE_CHOICE_NAMES = [
-    'Blanks',
-    'Exhausted',
-    'Overvotes',
-    'Remainder Points',
-]
-
-NON_CANDIDATE_SUBTOTALS = [
-    'Continuing Ballots Total',
-    'Blanks',
-    'Exhausted',
-    'Overvotes',
-    'Non Transferable Total'
+    NonCandidateNames.BLANK,
+    NonCandidateNames.EXHAUSTED,
+    NonCandidateNames.OVERVOTE,
+    NonCandidateNames.REMAINDER,
 ]
 
 
@@ -124,9 +116,9 @@ def _get_choice_rounds(choice_group):
             round_group, tag='transferType', attr_name='voteTransfer',
         )
         round = {
-            'percent': percent,
-            'transfer': transfer,
-            'votes': votes,
+            'percent': float(percent),
+            'transfer': float(transfer),
+            'votes': float(votes),
         }
         choice_rounds.append(round)
 
@@ -159,6 +151,7 @@ def _get_results(root, get_descendant):
         'choiceGroup_Collection',
     ])
     candidates = _get_candidate_names(choice_group_collection)
+    results = utils.initialize_results(candidates)
 
     rounds = {}
     for choice_group in choice_group_collection:
@@ -172,10 +165,7 @@ def _get_results(root, get_descendant):
         choice_rounds = _get_choice_rounds(choice_group)
         rounds[name] = choice_rounds
 
-    results = {
-        'candidates': candidates,
-        'rounds': rounds,
-    }
+    results['rounds'] = rounds
     return results
 
 

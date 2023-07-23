@@ -2,131 +2,171 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 11"
     },
+    "candidate_summaries": {
+        "AHSHA SAFAI": {
+            "highest_round": 3,
+            "highest_vote": 16367.0
+        },
+        "JASON CHUYUAN ZENG": {
+            "highest_round": 1,
+            "highest_vote": 15.0
+        },
+        "JOHN AVALOS": {
+            "highest_round": 3,
+            "highest_vote": 14470.0
+        },
+        "MARCELO COLUSSI": {
+            "highest_round": 2,
+            "highest_vote": 2794.0
+        }
+    },
     "candidates": [
-        "JOHN AVALOS",
         "AHSHA SAFAI",
+        "JOHN AVALOS",
         "MARCELO COLUSSI",
         "JASON CHUYUAN ZENG"
+    ],
+    "highest_round": 3,
+    "leading_candidates": [
+        "AHSHA SAFAI"
+    ],
+    "non_candidate_subtotals": [
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
     ],
     "rounds": {
         "AHSHA SAFAI": [
             {
-                "percent": "0.4827751196172248803827751196",
-                "transfer": "7.00000000000",
-                "votes": "15135.00000000000"
+                "percent": 0.48277511961722486,
+                "transfer": 7.0,
+                "votes": 15135.0
             },
             {
-                "percent": "0.4830138122428147628313502823",
-                "transfer": "1225.00000000000",
-                "votes": "15142.00000000000"
+                "percent": 0.48301381224281476,
+                "transfer": 1225.0,
+                "votes": 15142.0
             },
             {
-                "percent": "0.5307585043940720562960080423",
-                "transfer": "0",
-                "votes": "16367.00000000000"
+                "percent": 0.530758504394072,
+                "transfer": 0.0,
+                "votes": 16367.0
             }
         ],
         "Blanks": [
             {
-                "percent": "0.0891547049441786283891547049",
-                "transfer": "0",
-                "votes": "2795.00000000000"
+                "percent": 0.08915470494417863,
+                "transfer": 0.0,
+                "votes": 2795.0
             },
             {
-                "percent": "0.0891575488851319021340393633",
-                "transfer": "0",
-                "votes": "2795.00000000000"
+                "percent": 0.0891575488851319,
+                "transfer": 0.0,
+                "votes": 2795.0
             },
             {
-                "percent": "0.090637870091124298732042676",
-                "transfer": "0",
-                "votes": "2795.00000000000"
+                "percent": 0.0906378700911243,
+                "transfer": 0.0,
+                "votes": 2795.0
             }
         ],
         "Exhausted": [
             {
-                "percent": "0",
-                "transfer": "1.00000000000",
-                "votes": "0.00000000000"
+                "percent": 0.0,
+                "transfer": 1.0,
+                "votes": 0.0
             },
             {
-                "percent": "0.0000318989441449488021946474",
-                "transfer": "502.00000000000",
-                "votes": "1.00000000000"
+                "percent": 3.1898944144948805e-05,
+                "transfer": 502.0,
+                "votes": 1.0
             },
             {
-                "percent": "0.0163115737587962512566073224",
-                "transfer": "0",
-                "votes": "503.00000000000"
+                "percent": 0.01631157375879625,
+                "transfer": 0.0,
+                "votes": 503.0
             }
         ],
         "JASON CHUYUAN ZENG": [
             {
-                "percent": "0.0004784688995215311004784689",
-                "transfer": "-15.00000000000",
-                "votes": "15.00000000000"
+                "percent": 0.0004784688995215311,
+                "transfer": -15.0,
+                "votes": 15.0
             },
             {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
             },
             {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
             }
         ],
         "JOHN AVALOS": [
             {
-                "percent": "0.427814992025518341307814992",
-                "transfer": "1.00000000000",
-                "votes": "13412.00000000000"
+                "percent": 0.4278149920255183,
+                "transfer": 1.0,
+                "votes": 13412.0
             },
             {
-                "percent": "0.4278605378161982838368050018",
-                "transfer": "1057.00000000000",
-                "votes": "13413.00000000000"
+                "percent": 0.42786053781619826,
+                "transfer": 1057.0,
+                "votes": 13413.0
             },
             {
-                "percent": "0.4692414956059279437039919577",
-                "transfer": "0",
-                "votes": "14470.00000000000"
+                "percent": 0.4692414956059279,
+                "transfer": 0.0,
+                "votes": 14470.0
             }
         ],
         "MARCELO COLUSSI": [
             {
-                "percent": "0.0889314194577352472089314195",
-                "transfer": "6.00000000000",
-                "votes": "2788.00000000000"
+                "percent": 0.08893141945773525,
+                "transfer": 6.0,
+                "votes": 2788.0
             },
             {
-                "percent": "0.0891256499409869533318447159",
-                "transfer": "-2794.00000000000",
-                "votes": "2794.00000000000"
+                "percent": 0.08912564994098696,
+                "transfer": -2794.0,
+                "votes": 2794.0
             },
             {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
             }
         ],
         "Overvotes": [
             {
-                "percent": "0.0037320574162679425837320574",
-                "transfer": "0",
-                "votes": "117.00000000000"
+                "percent": 0.0037320574162679424,
+                "transfer": 0.0,
+                "votes": 117.0
             },
             {
-                "percent": "0.0037321764649590098567737408",
-                "transfer": "10.00000000000",
-                "votes": "117.00000000000"
+                "percent": 0.00373217646495901,
+                "transfer": 10.0,
+                "votes": 117.0
             },
             {
-                "percent": "0.004118429159775594253656322",
-                "transfer": "0",
-                "votes": "127.00000000000"
+                "percent": 0.0041184291597755945,
+                "transfer": 0.0,
+                "votes": 127.0
             }
         ]
-    }
+    },
+    "subtotals": [
+        "JOHN AVALOS",
+        "AHSHA SAFAI",
+        "MARCELO COLUSSI",
+        "JASON CHUYUAN ZENG",
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ]
 }

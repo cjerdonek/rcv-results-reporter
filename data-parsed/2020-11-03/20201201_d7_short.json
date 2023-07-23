@@ -2,335 +2,390 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 7"
     },
+    "candidate_summaries": {
+        "BEN MATRANGA": {
+            "highest_round": 2,
+            "highest_vote": 3581.0
+        },
+        "EMILY MURASE": {
+            "highest_round": 3,
+            "highest_vote": 5500.0
+        },
+        "JOEL ENGARDIO": {
+            "highest_round": 6,
+            "highest_vote": 16370.0
+        },
+        "KEN PIPER": {
+            "highest_round": 1,
+            "highest_vote": 969.0
+        },
+        "MYRNA MELGAR": {
+            "highest_round": 6,
+            "highest_vote": 18561.0
+        },
+        "STEPHEN W. MARTIN-PINTO": {
+            "highest_round": 4,
+            "highest_vote": 6147.0
+        },
+        "VILASKA NGUYEN": {
+            "highest_round": 5,
+            "highest_vote": 10855.0
+        }
+    },
     "candidates": [
+        "MYRNA MELGAR",
+        "JOEL ENGARDIO",
+        "VILASKA NGUYEN",
+        "STEPHEN W. MARTIN-PINTO",
+        "EMILY MURASE",
+        "BEN MATRANGA",
+        "KEN PIPER"
+    ],
+    "highest_round": 6,
+    "leading_candidates": [
+        "MYRNA MELGAR"
+    ],
+    "non_candidate_subtotals": [
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ],
+    "rounds": {
+        "BEN MATRANGA": [
+            {
+                "percent": 0.08679955252720431,
+                "transfer": 167.0,
+                "votes": 3414.0
+            },
+            {
+                "percent": 0.09124961777596576,
+                "transfer": -3581.0,
+                "votes": 3581.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            }
+        ],
+        "Blanks": [
+            {
+                "percent": 0.10093562493643853,
+                "transfer": 0.0,
+                "votes": 3970.0
+            },
+            {
+                "percent": 0.10116196106411171,
+                "transfer": 0.0,
+                "votes": 3970.0
+            },
+            {
+                "percent": 0.10206967476539401,
+                "transfer": 0.0,
+                "votes": 3970.0
+            },
+            {
+                "percent": 0.10407382163267447,
+                "transfer": 0.0,
+                "votes": 3970.0
+            },
+            {
+                "percent": 0.10839294490252827,
+                "transfer": 0.0,
+                "votes": 3970.0
+            },
+            {
+                "percent": 0.11365262946952563,
+                "transfer": 0.0,
+                "votes": 3970.0
+            }
+        ],
+        "EMILY MURASE": [
+            {
+                "percent": 0.12544493033662157,
+                "transfer": 77.0,
+                "votes": 4934.0
+            },
+            {
+                "percent": 0.1276883090408725,
+                "transfer": 489.0,
+                "votes": 5011.0
+            },
+            {
+                "percent": 0.14140635043064662,
+                "transfer": -5500.0,
+                "votes": 5500.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            }
+        ],
+        "Exhausted": [
+            {
+                "percent": 0.0,
+                "transfer": 87.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.002216899398634186,
+                "transfer": 347.0,
+                "votes": 87.0
+            },
+            {
+                "percent": 0.01115824656125466,
+                "transfer": 743.0,
+                "votes": 434.0
+            },
+            {
+                "percent": 0.03085513553190374,
+                "transfer": 1507.0,
+                "votes": 1177.0
+            },
+            {
+                "percent": 0.07328127559657074,
+                "transfer": 1682.0,
+                "votes": 2684.0
+            },
+            {
+                "percent": 0.12498926455011308,
+                "transfer": 0.0,
+                "votes": 4366.0
+            }
+        ],
+        "JOEL ENGARDIO": [
+            {
+                "percent": 0.23573680463744534,
+                "transfer": 151.0,
+                "votes": 9272.0
+            },
+            {
+                "percent": 0.2401131383141372,
+                "transfer": 968.0,
+                "votes": 9423.0
+            },
+            {
+                "percent": 0.26715516133179074,
+                "transfer": 1170.0,
+                "votes": 10391.0
+            },
+            {
+                "percent": 0.3030724060189797,
+                "transfer": 2558.0,
+                "votes": 11561.0
+            },
+            {
+                "percent": 0.38549118112816033,
+                "transfer": 2251.0,
+                "votes": 14119.0
+            },
+            {
+                "percent": 0.4686381723970113,
+                "transfer": 0.0,
+                "votes": 16370.0
+            }
+        ],
+        "KEN PIPER": [
+            {
+                "percent": 0.02463642835350351,
+                "transfer": -969.0,
+                "votes": 969.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            }
+        ],
+        "MYRNA MELGAR": [
+            {
+                "percent": 0.2003711990236957,
+                "transfer": 114.0,
+                "votes": 7881.0
+            },
+            {
+                "percent": 0.20372541025379676,
+                "transfer": 672.0,
+                "votes": 7995.0
+            },
+            {
+                "percent": 0.2228306980331662,
+                "transfer": 1961.0,
+                "votes": 8667.0
+            },
+            {
+                "percent": 0.27861374718188014,
+                "transfer": 1024.0,
+                "votes": 10628.0
+            },
+            {
+                "percent": 0.31813465843936,
+                "transfer": 6909.0,
+                "votes": 11652.0
+            },
+            {
+                "percent": 0.5313618276029888,
+                "transfer": 0.0,
+                "votes": 18561.0
+            }
+        ],
+        "Overvotes": [
+            {
+                "percent": 0.0031526492423471983,
+                "transfer": 1.0,
+                "votes": 124.0
+            },
+            {
+                "percent": 0.0031852002853939455,
+                "transfer": 2.0,
+                "votes": 125.0
+            },
+            {
+                "percent": 0.0032652011826712945,
+                "transfer": 6.0,
+                "votes": 127.0
+            },
+            {
+                "percent": 0.003486604100036701,
+                "transfer": 13.0,
+                "votes": 133.0
+            },
+            {
+                "percent": 0.003986239283569049,
+                "transfer": 13.0,
+                "votes": 146.0
+            },
+            {
+                "percent": 0.004551830752054049,
+                "transfer": 0.0,
+                "votes": 159.0
+            }
+        ],
+        "STEPHEN W. MARTIN-PINTO": [
+            {
+                "percent": 0.11692769246415133,
+                "transfer": 231.0,
+                "votes": 4599.0
+            },
+            {
+                "percent": 0.12307613902762206,
+                "transfer": 767.0,
+                "votes": 4830.0
+            },
+            {
+                "percent": 0.14390024424733255,
+                "transfer": 550.0,
+                "votes": 5597.0
+            },
+            {
+                "percent": 0.1611440255859068,
+                "transfer": -6147.0,
+                "votes": 6147.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            }
+        ],
+        "VILASKA NGUYEN": [
+            {
+                "percent": 0.21008339265737822,
+                "transfer": 141.0,
+                "votes": 8263.0
+            },
+            {
+                "percent": 0.21414738558760574,
+                "transfer": 336.0,
+                "votes": 8404.0
+            },
+            {
+                "percent": 0.22470754595706388,
+                "transfer": 1070.0,
+                "votes": 8740.0
+            },
+            {
+                "percent": 0.25716982121323334,
+                "transfer": 1045.0,
+                "votes": 9810.0
+            },
+            {
+                "percent": 0.29637416043247966,
+                "transfer": -10855.0,
+                "votes": 10855.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            }
+        ]
+    },
+    "subtotals": [
         "JOEL ENGARDIO",
         "KEN PIPER",
         "VILASKA NGUYEN",
         "BEN MATRANGA",
         "STEPHEN W. MARTIN-PINTO",
         "MYRNA MELGAR",
-        "EMILY MURASE"
-    ],
-    "rounds": {
-        "BEN MATRANGA": [
-            {
-                "percent": "0.0867995525272043120105766297",
-                "transfer": "167.00000000000",
-                "votes": "3414.00000000000"
-            },
-            {
-                "percent": "0.0912496177759657527265314443",
-                "transfer": "-3581.00000000000",
-                "votes": "3581.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            }
-        ],
-        "Blanks": [
-            {
-                "percent": "0.1009356249364385233397742296",
-                "transfer": "0",
-                "votes": "3970.00000000000"
-            },
-            {
-                "percent": "0.1011619610641117113444093365",
-                "transfer": "0",
-                "votes": "3970.00000000000"
-            },
-            {
-                "percent": "0.1020696747653940095127908472",
-                "transfer": "0",
-                "votes": "3970.00000000000"
-            },
-            {
-                "percent": "0.1040738216326744612803439417",
-                "transfer": "0",
-                "votes": "3970.00000000000"
-            },
-            {
-                "percent": "0.1083929449025282586140992737",
-                "transfer": "0",
-                "votes": "3970.00000000000"
-            },
-            {
-                "percent": "0.1136526294695256362543299648",
-                "transfer": "0",
-                "votes": "3970.00000000000"
-            }
-        ],
-        "EMILY MURASE": [
-            {
-                "percent": "0.1254449303366215803925556799",
-                "transfer": "77.00000000000",
-                "votes": "4934.00000000000"
-            },
-            {
-                "percent": "0.1276883090408724900621751096",
-                "transfer": "489.00000000000",
-                "votes": "5011.00000000000"
-            },
-            {
-                "percent": "0.1414063504306466126751510477",
-                "transfer": "-5500.00000000000",
-                "votes": "5500.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            }
-        ],
-        "Exhausted": [
-            {
-                "percent": "0",
-                "transfer": "87.00000000000",
-                "votes": "0.00000000000"
-            },
-            {
-                "percent": "0.0022168993986341861176230761",
-                "transfer": "347.00000000000",
-                "votes": "87.00000000000"
-            },
-            {
-                "percent": "0.0111582465612546599820028281",
-                "transfer": "743.00000000000",
-                "votes": "434.00000000000"
-            },
-            {
-                "percent": "0.0308551355319037382687568815",
-                "transfer": "1507.00000000000",
-                "votes": "1177.00000000000"
-            },
-            {
-                "percent": "0.0732812755965707420957789548",
-                "transfer": "1682.00000000000",
-                "votes": "2684.00000000000"
-            },
-            {
-                "percent": "0.1249892645501130800721422232",
-                "transfer": "0",
-                "votes": "4366.00000000000"
-            }
-        ],
-        "JOEL ENGARDIO": [
-            {
-                "percent": "0.2357368046374453371300722058",
-                "transfer": "151.00000000000",
-                "votes": "9272.00000000000"
-            },
-            {
-                "percent": "0.240113138314137192946692488",
-                "transfer": "968.00000000000",
-                "votes": "9423.00000000000"
-            },
-            {
-                "percent": "0.267155161331790718601362643",
-                "transfer": "1170.00000000000",
-                "votes": "10391.00000000000"
-            },
-            {
-                "percent": "0.3030724060189797095370418917",
-                "transfer": "2558.00000000000",
-                "votes": "11561.00000000000"
-            },
-            {
-                "percent": "0.3854911811281603232676240922",
-                "transfer": "2251.00000000000",
-                "votes": "14119.00000000000"
-            },
-            {
-                "percent": "0.4686381723970112507514814921",
-                "transfer": "0",
-                "votes": "16370.00000000000"
-            }
-        ],
-        "KEN PIPER": [
-            {
-                "percent": "0.0246364283535035085935116445",
-                "transfer": "-969.00000000000",
-                "votes": "969.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            }
-        ],
-        "MYRNA MELGAR": [
-            {
-                "percent": "0.2003711990236957184989321672",
-                "transfer": "114.00000000000",
-                "votes": "7881.00000000000"
-            },
-            {
-                "percent": "0.2037254102537967587401895831",
-                "transfer": "672.00000000000",
-                "votes": "7995.00000000000"
-            },
-            {
-                "percent": "0.2228306980331662167373698419",
-                "transfer": "1961.00000000000",
-                "votes": "8667.00000000000"
-            },
-            {
-                "percent": "0.2786137471818801447071776857",
-                "transfer": "1024.00000000000",
-                "votes": "10628.00000000000"
-            },
-            {
-                "percent": "0.3181346584393600174739256266",
-                "transfer": "6909.00000000000",
-                "votes": "11652.00000000000"
-            },
-            {
-                "percent": "0.5313618276029887492485185079",
-                "transfer": "0",
-                "votes": "18561.00000000000"
-            }
-        ],
-        "Overvotes": [
-            {
-                "percent": "0.0031526492423471982101088172",
-                "transfer": "1.00000000000",
-                "votes": "124.00000000000"
-            },
-            {
-                "percent": "0.0031852002853939455712975232",
-                "transfer": "2.00000000000",
-                "votes": "125.00000000000"
-            },
-            {
-                "percent": "0.0032652011826712945108625787",
-                "transfer": "6.00000000000",
-                "votes": "127.00000000000"
-            },
-            {
-                "percent": "0.00348660410003670109578986",
-                "transfer": "13.00000000000",
-                "votes": "133.00000000000"
-            },
-            {
-                "percent": "0.0039862392835690493092338776",
-                "transfer": "13.00000000000",
-                "votes": "146.00000000000"
-            },
-            {
-                "percent": "0.0045518307520540494116973462",
-                "transfer": "0",
-                "votes": "159.00000000000"
-            }
-        ],
-        "STEPHEN W. MARTIN-PINTO": [
-            {
-                "percent": "0.1169276924641513271636326655",
-                "transfer": "231.00000000000",
-                "votes": "4599.00000000000"
-            },
-            {
-                "percent": "0.123076139027622056874936296",
-                "transfer": "767.00000000000",
-                "votes": "4830.00000000000"
-            },
-            {
-                "percent": "0.143900244247332562025967348",
-                "transfer": "550.00000000000",
-                "votes": "5597.00000000000"
-            },
-            {
-                "percent": "0.1611440255859067792166937556",
-                "transfer": "-6147.00000000000",
-                "votes": "6147.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            }
-        ],
-        "VILASKA NGUYEN": [
-            {
-                "percent": "0.2100833926573782162107190074",
-                "transfer": "141.00000000000",
-                "votes": "8263.00000000000"
-            },
-            {
-                "percent": "0.214147385587605748649475079",
-                "transfer": "336.00000000000",
-                "votes": "8404.00000000000"
-            },
-            {
-                "percent": "0.2247075459570638899601491194",
-                "transfer": "1070.00000000000",
-                "votes": "8740.00000000000"
-            },
-            {
-                "percent": "0.257169821213233366539086667",
-                "transfer": "1045.00000000000",
-                "votes": "9810.00000000000"
-            },
-            {
-                "percent": "0.2963741604324796592584502812",
-                "transfer": "-10855.00000000000",
-                "votes": "10855.00000000000"
-            },
-            {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
-            }
-        ]
-    }
+        "EMILY MURASE",
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ]
 }

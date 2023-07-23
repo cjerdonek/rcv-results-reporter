@@ -2,131 +2,171 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 3"
     },
+    "candidate_summaries": {
+        "AARON PESKIN": {
+            "highest_round": 3,
+            "highest_vote": 16199.0
+        },
+        "DANNY SAUTER": {
+            "highest_round": 3,
+            "highest_vote": 12468.0
+        },
+        "SPENCER SIMONSEN": {
+            "highest_round": 2,
+            "highest_vote": 1989.0
+        },
+        "STEPHEN (LULU) SCHWARTZ": {
+            "highest_round": 1,
+            "highest_vote": 1438.0
+        }
+    },
     "candidates": [
         "AARON PESKIN",
         "DANNY SAUTER",
         "SPENCER SIMONSEN",
         "STEPHEN (LULU) SCHWARTZ"
     ],
+    "highest_round": 3,
+    "leading_candidates": [
+        "AARON PESKIN"
+    ],
+    "non_candidate_subtotals": [
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ],
     "rounds": {
         "AARON PESKIN": [
             {
-                "percent": "0.5334163984356072405080815422",
-                "transfer": "278.00000000000",
-                "votes": "15412.00000000000"
+                "percent": 0.5334163984356073,
+                "transfer": 278.0,
+                "votes": 15412.0
             },
             {
-                "percent": "0.5443758240233155228644785234",
-                "transfer": "509.00000000000",
-                "votes": "15690.00000000000"
+                "percent": 0.5443758240233155,
+                "transfer": 509.0,
+                "votes": 15690.0
             },
             {
-                "percent": "0.5650748247113405658073743329",
-                "transfer": "0",
-                "votes": "16199.00000000000"
+                "percent": 0.5650748247113405,
+                "transfer": 0.0,
+                "votes": 16199.0
             }
         ],
         "Blanks": [
             {
-                "percent": "0.1351192330322223375904198249",
-                "transfer": "0",
-                "votes": "3904.00000000000"
+                "percent": 0.13511923303222234,
+                "transfer": 0.0,
+                "votes": 3904.0
             },
             {
-                "percent": "0.1354520852126847547012698633",
-                "transfer": "0",
-                "votes": "3904.00000000000"
+                "percent": 0.13545208521268476,
+                "transfer": 0.0,
+                "votes": 3904.0
             },
             {
-                "percent": "0.1361844629713607981302542994",
-                "transfer": "0",
-                "votes": "3904.00000000000"
+                "percent": 0.1361844629713608,
+                "transfer": 0.0,
+                "votes": 3904.0
             }
         ],
         "DANNY SAUTER": [
             {
-                "percent": "0.3652441767902260062991035891",
-                "transfer": "590.00000000000",
-                "votes": "10553.00000000000"
+                "percent": 0.365244176790226,
+                "transfer": 590.0,
+                "votes": 10553.0
             },
             {
-                "percent": "0.3866143917840538477551870099",
-                "transfer": "1325.00000000000",
-                "votes": "11143.00000000000"
+                "percent": 0.3866143917840538,
+                "transfer": 1325.0,
+                "votes": 11143.0
             },
             {
-                "percent": "0.4349251752886594341926256671",
-                "transfer": "0",
-                "votes": "12468.00000000000"
+                "percent": 0.4349251752886594,
+                "transfer": 0.0,
+                "votes": 12468.0
             }
         ],
         "Exhausted": [
             {
-                "percent": "0",
-                "transfer": "68.00000000000",
-                "votes": "0.00000000000"
+                "percent": 0.0,
+                "transfer": 68.0,
+                "votes": 0.0
             },
             {
-                "percent": "0.0023593088612865172437721185",
-                "transfer": "144.00000000000",
-                "votes": "68.00000000000"
+                "percent": 0.0023593088612865174,
+                "transfer": 144.0,
+                "votes": 68.0
             },
             {
-                "percent": "0.0073952628457808630132207765",
-                "transfer": "0",
-                "votes": "212.00000000000"
+                "percent": 0.007395262845780863,
+                "transfer": 0.0,
+                "votes": 212.0
             }
         ],
         "Overvotes": [
             {
-                "percent": "0.0031841622538331083653480082",
-                "transfer": "3.00000000000",
-                "votes": "92.00000000000"
+                "percent": 0.0031841622538331085,
+                "transfer": 3.0,
+                "votes": 92.0
             },
             {
-                "percent": "0.0032960932620914579140934009",
-                "transfer": "11.00000000000",
-                "votes": "95.00000000000"
+                "percent": 0.003296093262091458,
+                "transfer": 11.0,
+                "votes": 95.0
             },
             {
-                "percent": "0.0036976314228904315066103883",
-                "transfer": "0",
-                "votes": "106.00000000000"
+                "percent": 0.0036976314228904317,
+                "transfer": 0.0,
+                "votes": 106.0
             }
         ],
         "SPENCER SIMONSEN": [
             {
-                "percent": "0.0515695843283840376561796975",
-                "transfer": "499.00000000000",
-                "votes": "1490.00000000000"
+                "percent": 0.05156958432838404,
+                "transfer": 499.0,
+                "votes": 1490.0
             },
             {
-                "percent": "0.0690097841926306293803344667",
-                "transfer": "-1989.00000000000",
-                "votes": "1989.00000000000"
+                "percent": 0.06900978419263062,
+                "transfer": -1989.0,
+                "votes": 1989.0
             },
             {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
             }
         ],
         "STEPHEN (LULU) SCHWARTZ": [
             {
-                "percent": "0.0497698404457827155366351711",
-                "transfer": "-1438.00000000000",
-                "votes": "1438.00000000000"
+                "percent": 0.04976984044578272,
+                "transfer": -1438.0,
+                "votes": 1438.0
             },
             {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
             },
             {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
             }
         ]
-    }
+    },
+    "subtotals": [
+        "AARON PESKIN",
+        "DANNY SAUTER",
+        "SPENCER SIMONSEN",
+        "STEPHEN (LULU) SCHWARTZ",
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ]
 }

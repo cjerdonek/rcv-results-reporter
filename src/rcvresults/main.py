@@ -81,13 +81,11 @@ def make_rcv_json(path, parsed_dir):
         assert suffix == '.xml'
         results = xml_parsing.parse_xml_file(path)
 
-    # TODO: remove this if condition.
-    if suffix == '.xlsx':
-        metadata = results['_metadata']
-        contest_name = metadata['contest_name']
-        candidates = results['candidates']
-        _log.info(f'parsed contest: {contest_name!r} ({len(candidates)} candidates)')
-        summary.add_summary(results)
+    metadata = results['_metadata']
+    contest_name = metadata['contest_name']
+    candidates = results['candidates']
+    _log.info(f'parsed contest: {contest_name!r} ({len(candidates)} candidates)')
+    summary.add_summary(results)
 
     parsed_path = parsed_dir / f'{path.stem}.json'
     utils.write_json(results, path=parsed_path)
@@ -105,10 +103,6 @@ def process_rcv_contest(path, template, parsed_dir, html_dir):
     parsed_path = make_rcv_json(path, parsed_dir=parsed_dir)
     with parsed_path.open() as f:
         results = json.load(f)
-
-    # TODO: remove this.
-    if path.suffix != '.xlsx':
-        return
 
     output_path = html_dir / f'{path.stem}.html'
     _log.info(f'writing: {output_path}')

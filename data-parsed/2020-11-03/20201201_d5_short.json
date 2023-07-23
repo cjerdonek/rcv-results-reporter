@@ -2,131 +2,171 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 5"
     },
+    "candidate_summaries": {
+        "DANIEL LANDRY": {
+            "highest_round": 2,
+            "highest_vote": 2846.0
+        },
+        "DEAN PRESTON": {
+            "highest_round": 3,
+            "highest_vote": 22853.0
+        },
+        "NOMVULA O'MEARA": {
+            "highest_round": 1,
+            "highest_vote": 1113.0
+        },
+        "VALLIE BROWN": {
+            "highest_round": 3,
+            "highest_vote": 18520.0
+        }
+    },
     "candidates": [
+        "DEAN PRESTON",
         "VALLIE BROWN",
         "DANIEL LANDRY",
-        "DEAN PRESTON",
         "NOMVULA O'MEARA"
+    ],
+    "highest_round": 3,
+    "leading_candidates": [
+        "DEAN PRESTON"
+    ],
+    "non_candidate_subtotals": [
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
     ],
     "rounds": {
         "Blanks": [
             {
-                "percent": "0.1090652236375826070299779715",
-                "transfer": "0",
-                "votes": "4555.00000000000"
+                "percent": 0.1090652236375826,
+                "transfer": 0.0,
+                "votes": 4555.0
             },
             {
-                "percent": "0.1092299944845447351382460852",
-                "transfer": "0",
-                "votes": "4555.00000000000"
+                "percent": 0.10922999448454473,
+                "transfer": 0.0,
+                "votes": 4555.0
             },
             {
-                "percent": "0.1100959563000024170352645445",
-                "transfer": "0",
-                "votes": "4555.00000000000"
+                "percent": 0.11009595630000242,
+                "transfer": 0.0,
+                "votes": 4555.0
             }
         ],
         "DANIEL LANDRY": [
             {
-                "percent": "0.0572263193180729815151805383",
-                "transfer": "456.00000000000",
-                "votes": "2390.00000000000"
+                "percent": 0.05722631931807298,
+                "transfer": 456.0,
+                "votes": 2390.0
             },
             {
-                "percent": "0.0682477638425937027889019448",
-                "transfer": "-2846.00000000000",
-                "votes": "2846.00000000000"
+                "percent": 0.0682477638425937,
+                "transfer": -2846.0,
+                "votes": 2846.0
             },
             {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
             }
         ],
         "DEAN PRESTON": [
             {
-                "percent": "0.5144143281294895124988027967",
-                "transfer": "299.00000000000",
-                "votes": "21484.00000000000"
+                "percent": 0.5144143281294895,
+                "transfer": 299.0,
+                "votes": 21484.0
             },
             {
-                "percent": "0.5223615740629721109805520251",
-                "transfer": "1070.00000000000",
-                "votes": "21783.00000000000"
+                "percent": 0.5223615740629721,
+                "transfer": 1070.0,
+                "votes": 21783.0
             },
             {
-                "percent": "0.5523650690063568027457520605",
-                "transfer": "0",
-                "votes": "22853.00000000000"
+                "percent": 0.5523650690063568,
+                "transfer": 0.0,
+                "votes": 22853.0
             }
         ],
         "Exhausted": [
             {
-                "percent": "0",
-                "transfer": "59.00000000000",
-                "votes": "0.00000000000"
+                "percent": 0.0,
+                "transfer": 59.0,
+                "votes": 0.0
             },
             {
-                "percent": "0.001414834176638449917268171",
-                "transfer": "316.00000000000",
-                "votes": "59.00000000000"
+                "percent": 0.00141483417663845,
+                "transfer": 316.0,
+                "votes": 59.0
             },
             {
-                "percent": "0.0090638822420419113914872018",
-                "transfer": "0",
-                "votes": "375.00000000000"
+                "percent": 0.009063882242041911,
+                "transfer": 0.0,
+                "votes": 375.0
             }
         ],
         "NOMVULA O'MEARA": [
             {
-                "percent": "0.0266497461928934010152284264",
-                "transfer": "-1113.00000000000",
-                "votes": "1113.00000000000"
+                "percent": 0.0266497461928934,
+                "transfer": -1113.0,
+                "votes": 1113.0
             },
             {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
             },
             {
-                "percent": "0",
-                "transfer": "0",
-                "votes": "0.00000000000"
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
             }
         ],
         "Overvotes": [
             {
-                "percent": "0.0023465185327075950579446413",
-                "transfer": "4.00000000000",
-                "votes": "98.00000000000"
+                "percent": 0.002346518532707595,
+                "transfer": 4.0,
+                "votes": 98.0
             },
             {
-                "percent": "0.0024459845087647778230737872",
-                "transfer": "12.00000000000",
-                "votes": "102.00000000000"
+                "percent": 0.0024459845087647777,
+                "transfer": 12.0,
+                "votes": 102.0
             },
             {
-                "percent": "0.0027554202015807410630121093",
-                "transfer": "0",
-                "votes": "114.00000000000"
+                "percent": 0.002755420201580741,
+                "transfer": 0.0,
+                "votes": 114.0
             }
         ],
         "VALLIE BROWN": [
             {
-                "percent": "0.4017096063595441049707882387",
-                "transfer": "295.00000000000",
-                "votes": "16777.00000000000"
+                "percent": 0.4017096063595441,
+                "transfer": 295.0,
+                "votes": 16777.0
             },
             {
-                "percent": "0.4093906620944341862305460301",
-                "transfer": "1448.00000000000",
-                "votes": "17072.00000000000"
+                "percent": 0.4093906620944342,
+                "transfer": 1448.0,
+                "votes": 17072.0
             },
             {
-                "percent": "0.4476349309936431972542479395",
-                "transfer": "0",
-                "votes": "18520.00000000000"
+                "percent": 0.4476349309936432,
+                "transfer": 0.0,
+                "votes": 18520.0
             }
         ]
-    }
+    },
+    "subtotals": [
+        "VALLIE BROWN",
+        "DANIEL LANDRY",
+        "DEAN PRESTON",
+        "NOMVULA O'MEARA",
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ]
 }
