@@ -56,8 +56,17 @@ def _get_contest_name(root, get_descendant):
     return contest_name
 
 
-# TODO: rename this to get more than just the rounds.
-def _get_rounds(root, get_descendant):
+def _get_choice_rounds(choice_group):
+    # TODO: Obtain: percent, transfer, and votes.
+    round_group_collection = _get_descendant(choice_group, [
+        'roundGroup_Collection'
+    ])
+    print(list(round_group_collection))
+    choice_rounds = {}
+    return choice_rounds
+
+
+def _get_results(root, get_descendant):
     """
     Extract and return the contest rounds data.
     """
@@ -67,12 +76,19 @@ def _get_rounds(root, get_descendant):
     choice_group_collection = get_descendant(tablix_5, [
         'choiceGroup_Collection',
     ])
+    rounds = {}
     for choice_group in choice_group_collection:
         text_box = _get_descendant(choice_group, ['Textbox70'])
         name = text_box.attrib['choiceName']
-        print(f'name: {name}')
+        if name == 'Remainder Points':
+            continue
+        choice_rounds = _get_choice_rounds(choice_group)
+        rounds[name] = choice_rounds
 
-    return rounds
+    results = {
+        'rounds': rounds,
+    }
+    return results
 
 
 def parse_xml_file(path, debug=True):
@@ -88,13 +104,10 @@ def parse_xml_file(path, debug=True):
     root = tree.getroot()
 
     contest_name = _get_contest_name(root, get_descendant=get_descendant)
-    rounds = _get_rounds(root, get_descendant)
-
     metadata = {
         'contest_name': contest_name,
     }
-    results = {
-        '_metadata': metadata,
-        'rounds': rounds,
-    }
+    results = _get_results(root, get_descendant)
+    results['_metadata'] = metadata
+
     return results
