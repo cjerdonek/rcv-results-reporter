@@ -71,6 +71,7 @@ $ tidy -output html/2020-11-03/index-tidied.html -utf8 html/2020-11-03/index-ori
 
 ## TODO
 
+* Add a test page showing all RCV contests across all elections.
 * Start adding other languages?
 * Make test HTML viewable on GitHub.
 * Add end-to-end tests of the html.

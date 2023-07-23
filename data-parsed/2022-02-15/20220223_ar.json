@@ -1,0 +1,90 @@
+{
+    "_metadata": {
+        "contest_name": "ASSESSOR-RECORDER"
+    },
+    "candidate_summaries": {
+        "JOAQU\u00cdN TORRES": {
+            "highest_round": 1,
+            "highest_vote": 124486.0
+        },
+        "MICHAEL PETRELIS": {
+            "highest_round": 1,
+            "highest_vote": 111.0
+        }
+    },
+    "candidates": [
+        "JOAQU\u00cdN TORRES",
+        "MICHAEL PETRELIS"
+    ],
+    "highest_round": 1,
+    "leading_candidates": [
+        "JOAQU\u00cdN TORRES"
+    ],
+    "non_candidate_subtotals": [
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ],
+    "rounds": {
+        "Blanks": [
+            {
+                "percent": 0.4425547966644462,
+                "transfer": 0.0,
+                "votes": 55141.0
+            }
+        ],
+        "Continuing Ballots Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 124597.0
+            }
+        ],
+        "Exhausted": [
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            }
+        ],
+        "JOAQU\u00cdN TORRES": [
+            {
+                "percent": 0.9991091278281179,
+                "transfer": 0.0,
+                "votes": 124486.0
+            }
+        ],
+        "MICHAEL PETRELIS": [
+            {
+                "percent": 0.0008908721718821481,
+                "transfer": 0.0,
+                "votes": 111.0
+            }
+        ],
+        "Non Transferable Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 55142.0
+            }
+        ],
+        "Overvotes": [
+            {
+                "percent": 8.025875422361694e-06,
+                "transfer": 0.0,
+                "votes": 1.0
+            }
+        ]
+    },
+    "subtotals": [
+        "JOAQU\u00cdN TORRES",
+        "MICHAEL PETRELIS",
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ]
+}
