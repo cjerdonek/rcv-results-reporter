@@ -1,5 +1,33 @@
 """
 Supports parsing Dominion XML (.xml) RCV result reports.
+
+Here is some information about the XML structure:
+
+Report: Title, RcvStaticData, Tablix1
+
+  Tablix1: precinctGroup_Collection
+
+    precinctGroup_Collection: precinctGroup
+
+      precinctGroup: Tablix5
+
+        Tablix5: choiceGroup_Collection, Textbox70, roundGroup_Collection,
+          nonTransferableGroup_Collection, Textbox70_1,
+          roundGroup_Collection_1, Textbox70_2, roundGroup_Collection_2,
+          Textbox70_3, roundGroup_Collection_3
+
+          nonTransferableGroup_Collection: each child is a
+            nonTransferableGroup element
+
+          roundGroup_Collection_1: each child is a roundGroup containing
+            the "Non Transferable Total" in that round, i.e. the sum of
+            Blanks, Exhausted, and Overvotes.
+
+          roundGroup_Collection_2: each child is a roundGroup containing
+            the majority threshold in that round.
+
+
+-> precinctGroup -> Tablix5
 """
 
 import logging
@@ -9,6 +37,21 @@ import xml.etree.ElementTree as ET
 _log = logging.getLogger(__name__)
 
 NAMESPACE = '{RcvShortReport}'
+
+NON_CANDIDATE_CHOICE_NAMES = [
+    'Blanks',
+    'Exhausted',
+    'Overvotes',
+    'Remainder Points',
+]
+
+NON_CANDIDATE_SUBTOTALS = [
+    'Continuing Ballots Total',
+    'Blanks',
+    'Exhausted',
+    'Overvotes',
+    'Non Transferable Total'
+]
 
 
 def _get_child(element, tag):
@@ -90,6 +133,21 @@ def _get_choice_rounds(choice_group):
     return choice_rounds
 
 
+def _get_candidate_names(choice_group_collection):
+    choice_names = []
+    for choice_group in choice_group_collection:
+        text_box = _get_descendant(choice_group, ['Textbox70'])
+        name = text_box.attrib['choiceName']
+        choice_names.append(name)
+
+    if choice_names[-4:] != NON_CANDIDATE_CHOICE_NAMES:
+        raise RuntimeError(
+            f'last four choice names not as expected: {choice_names}'
+        )
+
+    return choice_names[:-4]
+
+
 def _get_results(root, get_descendant):
     """
     Extract and return the contest rounds data.
@@ -100,10 +158,13 @@ def _get_results(root, get_descendant):
     choice_group_collection = get_descendant(tablix_5, [
         'choiceGroup_Collection',
     ])
+    candidates = _get_candidate_names(choice_group_collection)
+
     rounds = {}
     for choice_group in choice_group_collection:
         text_box = _get_descendant(choice_group, ['Textbox70'])
         name = text_box.attrib['choiceName']
+        _log.info(f'processing choiceName: {name}')
         # The "Remainder Points" subtotal isn't applicable.
         if name == 'Remainder Points':
             continue
@@ -112,6 +173,7 @@ def _get_results(root, get_descendant):
         rounds[name] = choice_rounds
 
     results = {
+        'candidates': candidates,
         'rounds': rounds,
     }
     return results
