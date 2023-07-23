@@ -3,10 +3,40 @@
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 9"
     },
     "rounds": {
-        "BUD RYERSON": {},
-        "Blanks": {},
-        "Exhausted": {},
-        "HILLARY RONEN": {},
-        "Overvotes": {}
+        "BUD RYERSON": [
+            {
+                "percent": "0.0021520068317677198975234842",
+                "transfer": "0",
+                "votes": "63.00000000000"
+            }
+        ],
+        "Blanks": [
+            {
+                "percent": "0.2627497865072587532023911187",
+                "transfer": "0",
+                "votes": "7692.00000000000"
+            }
+        ],
+        "Exhausted": [
+            {
+                "percent": "0",
+                "transfer": "0",
+                "votes": "0.00000000000"
+            }
+        ],
+        "HILLARY RONEN": [
+            {
+                "percent": "0.9978479931682322801024765158",
+                "transfer": "0",
+                "votes": "29212.00000000000"
+            }
+        ],
+        "Overvotes": [
+            {
+                "percent": "0.0000683176771989752348420154",
+                "transfer": "0",
+                "votes": "2.00000000000"
+            }
+        ]
     }
 }

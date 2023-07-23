@@ -11,6 +11,16 @@ _log = logging.getLogger(__name__)
 NAMESPACE = '{RcvShortReport}'
 
 
+def _get_child(element, tag):
+    tag = f'{{RcvShortReport}}{tag}'
+    return element.find(tag)
+
+
+def _get_child_value(element, tag, attr_name):
+    element = _get_child(element, tag=tag)
+    return element.attrib[attr_name]
+
+
 def _get_descendant(element, tags):
     parts = ['.']
     parts.extend(f'{{RcvShortReport}}{tag}' for tag in tags)
@@ -39,8 +49,7 @@ def _debug_get_descendant(element, tags):
         _log.info(
             f'children: {current_element:>30}: {child_list}'
         )
-        tag = f'{{RcvShortReport}}{tag}'
-        element = element.find(tag)
+        element = _get_child(element, tag=tag)
 
     return element
 
@@ -57,12 +66,27 @@ def _get_contest_name(root, get_descendant):
 
 
 def _get_choice_rounds(choice_group):
-    # TODO: Obtain: percent, transfer, and votes.
     round_group_collection = _get_descendant(choice_group, [
         'roundGroup_Collection'
     ])
-    print(list(round_group_collection))
-    choice_rounds = {}
+    choice_rounds = []
+    for round_group in round_group_collection:
+        votes = _get_child_value(
+            round_group, tag='Textbox9', attr_name='votes',
+        )
+        percent = _get_child_value(
+            round_group, tag='Textbox16', attr_name='Textbox17',
+        )
+        transfer = _get_child_value(
+            round_group, tag='transferType', attr_name='voteTransfer',
+        )
+        round = {
+            'percent': percent,
+            'transfer': transfer,
+            'votes': votes,
+        }
+        choice_rounds.append(round)
+
     return choice_rounds
 
 
@@ -80,8 +104,10 @@ def _get_results(root, get_descendant):
     for choice_group in choice_group_collection:
         text_box = _get_descendant(choice_group, ['Textbox70'])
         name = text_box.attrib['choiceName']
+        # The "Remainder Points" subtotal isn't applicable.
         if name == 'Remainder Points':
             continue
+
         choice_rounds = _get_choice_rounds(choice_group)
         rounds[name] = choice_rounds
 

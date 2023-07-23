@@ -182,8 +182,8 @@ def main():
     snippets_dir = output_dir / 'rcv-snippets'
 
     # TODO: uncomment this.
-    # dir_names = [DIR_NAME_2020_NOV, DIR_NAME_2022_NOV]
-    dir_names = [DIR_NAME_2022_NOV]
+    dir_names = [DIR_NAME_2020_NOV, DIR_NAME_2022_NOV]
+    # dir_names = [DIR_NAME_2022_NOV]
     for dir_name in dir_names:
         make_rcv_snippets(
             parent_reports_dir=DATA_DIR_REPORTS, parent_parsed_dir=DATA_DIR_PARSED,
