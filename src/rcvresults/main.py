@@ -5,8 +5,6 @@ $ python src/rcvresults/main.py
 
 """
 
-import glob
-import json
 import logging
 from pathlib import Path
 
@@ -43,19 +41,13 @@ REPORT_DIR_EXTENSIONS = {
 
 
 def get_xml_paths(dir_path):
-    glob_path = dir_path / '*.xml'
-    raw_paths = glob.glob(str(glob_path))
-    paths = [Path(raw_path) for raw_path in sorted(raw_paths)]
-
-    return paths
+    return utils.get_paths(dir_path, suffix='xml')
 
 
 def get_excel_paths(dir_path):
-    glob_path = dir_path / '*.xlsx'
-    raw_paths = glob.glob(str(glob_path))
-    paths = []
-    for raw_path in sorted(raw_paths):
-        path = Path(raw_path)
+    original_paths = utils.get_paths(dir_path, suffix='xlsx')
+    paths = []  # the return value
+    for path in original_paths:
         file_name = path.name
         if file_name.startswith('~'):
             _log.warning(f'skipping temp file: {path}')
@@ -99,14 +91,24 @@ def _make_index_jinja_env(snippets_dir):
     config = utils.read_yaml(CONFIG_PATH)
     elections = config['elections']
 
+    # TODO: don't use a nested function definition here?
+    def iter_contests(dir_name):
+        json_dir = DATA_DIR_PARSED / dir_name
+        json_paths = utils.get_paths(json_dir, suffix='json')
+        for json_path in json_paths:
+            contest_data = utils.read_json(json_path)
+            # TODO: also yield the rel_path?
+            yield contest_data
+
     def insert_html(rel_path):
         path = snippets_dir / rel_path
         html = path.read_text()
         return Markup(html)
 
     env.globals.update({
-        'insert_html': insert_html,
         'elections': elections,
+        'iter_contests': iter_contests,
+        'insert_html': insert_html,
     })
 
     return env
@@ -147,8 +149,7 @@ def process_rcv_contest(path, template, parsed_dir, html_dir):
       html_dir: the directory to which to write the rendered html files.
     """
     parsed_path = make_rcv_json(path, parsed_dir=parsed_dir)
-    with parsed_path.open() as f:
-        results = json.load(f)
+    results = utils.read_json(parsed_path)
 
     output_path = html_dir / f'{path.stem}.html'
     _log.info(f'writing: {output_path}')
