@@ -16,6 +16,13 @@ Report: Title, RcvStaticData, Tablix1
           roundGroup_Collection_1, Textbox70_2, roundGroup_Collection_2,
           Textbox70_3, roundGroup_Collection_3
 
+          choiceGroup_Collection: each child is a choiceGroup element
+            containing a roundGroup_Collection that contains rounds
+            containing votes, percentage, and transfer total.
+
+          roundGroup_Collection: each child is a roundGroup containing
+            the "Continuing Ballots Total" in that round.
+
           nonTransferableGroup_Collection: each child is a
             nonTransferableGroup element
 
@@ -100,11 +107,51 @@ def _get_contest_name(root, get_descendant):
     return contest_name
 
 
-def _get_choice_rounds(choice_group):
-    round_group_collection = _get_descendant(choice_group, [
-        'roundGroup_Collection'
-    ])
-    choice_rounds = []
+def _iter_choice_groups(tablix_5):
+    """
+    Yield the choiceGroup elements in the choiceGroup_Collection.
+    """
+    choice_group_collection = _get_child(
+        tablix_5, tag='choiceGroup_Collection',
+    )
+    for choice_group in choice_group_collection:
+        text_box = _get_child(choice_group, tag='Textbox70')
+        name = text_box.attrib['choiceName']
+        yield (name, choice_group)
+
+
+def _get_candidate_names(tablix_5):
+    choice_names = [
+        name for name, _choice_group in _iter_choice_groups(tablix_5)
+    ]
+    if choice_names[-4:] != NON_CANDIDATE_CHOICE_NAMES:
+        raise RuntimeError(
+            f'last four choice names not as expected: {choice_names}'
+        )
+    # Remove the non-candidate choices before returning.
+    return choice_names[:-4]
+
+
+def _make_round_dict(votes, percent=None, transfer=None):
+    return {
+        'percent': None if percent is None else float(percent),
+        'transfer': None if transfer is None else float(transfer),
+        'votes': float(votes),
+    }
+
+
+def _iter_choice_rounds(choice_group):
+    """
+    Yield the rounds data for all choices except "Continuing Ballots Total"
+    and "Non Transferable Total".
+
+    Args:
+      choice_group: a choiceGroup inside choiceGroup_Collection, which is
+        the first child of the Tablix5 element.
+    """
+    round_group_collection = _get_child(
+        choice_group, tag='roundGroup_Collection',
+    )
     for round_group in round_group_collection:
         votes = _get_child_value(
             round_group, tag='Textbox9', attr_name='votes',
@@ -115,29 +162,56 @@ def _get_choice_rounds(choice_group):
         transfer = _get_child_value(
             round_group, tag='transferType', attr_name='voteTransfer',
         )
-        round = {
-            'percent': float(percent),
-            'transfer': float(transfer),
-            'votes': float(votes),
-        }
-        choice_rounds.append(round)
-
-    return choice_rounds
+        yield _make_round_dict(votes, percent=percent, transfer=transfer)
 
 
-def _get_candidate_names(choice_group_collection):
-    choice_names = []
-    for choice_group in choice_group_collection:
-        text_box = _get_descendant(choice_group, ['Textbox70'])
-        name = text_box.attrib['choiceName']
-        choice_names.append(name)
-
-    if choice_names[-4:] != NON_CANDIDATE_CHOICE_NAMES:
-        raise RuntimeError(
-            f'last four choice names not as expected: {choice_names}'
+def _iter_continuing_totals(tablix_5):
+    """
+    Yield the rounds data for the "Continuing Ballots Total".
+    """
+    round_group_collection = _get_child(tablix_5, tag='roundGroup_Collection')
+    for round_group in round_group_collection:
+        votes = _get_child_value(
+            round_group, tag='Textbox9', attr_name='continuingVotes',
         )
+        yield _make_round_dict(votes)
 
-    return choice_names[:-4]
+
+def _iter_non_tranferable_totals(tablix_5):
+    """
+    Yield the rounds data for the "Non Transferable Total".
+    """
+    round_group_collection = _get_child(
+        tablix_5, tag='roundGroup_Collection_1',
+    )
+    for round_group in round_group_collection:
+        votes = _get_child_value(
+            round_group, tag='Textbox9', attr_name='nonTransferableVotes',
+        )
+        yield _make_round_dict(votes)
+
+
+def _get_rounds(tablix_5):
+    """
+    Create a return the "rounds" dict.
+    """
+    rounds = {}
+    for name, choice_group in _iter_choice_groups(tablix_5):
+        _log.info(f'processing choice: {name}')
+        # The "Remainder Points" subtotal isn't applicable.
+        if name == NonCandidateNames.REMAINDER:
+            continue
+
+        choice_rounds = list(_iter_choice_rounds(choice_group))
+        rounds[name] = choice_rounds
+
+    continuing_rounds = list(_iter_continuing_totals(tablix_5))
+    rounds[NonCandidateNames.CONTINUING] = continuing_rounds
+
+    non_tranferable_rounds = list(_iter_non_tranferable_totals(tablix_5))
+    rounds[NonCandidateNames.NON_TRANSFERABLE] = non_tranferable_rounds
+
+    return rounds
 
 
 def _get_results(root, get_descendant):
@@ -147,25 +221,12 @@ def _get_results(root, get_descendant):
     tablix_5 = get_descendant(root, [
         'Tablix1', 'precinctGroup_Collection', 'precinctGroup', 'Tablix5',
     ])
-    choice_group_collection = get_descendant(tablix_5, [
-        'choiceGroup_Collection',
-    ])
-    candidates = _get_candidate_names(choice_group_collection)
+    candidates = _get_candidate_names(tablix_5)
     results = utils.initialize_results(candidates)
 
-    rounds = {}
-    for choice_group in choice_group_collection:
-        text_box = _get_descendant(choice_group, ['Textbox70'])
-        name = text_box.attrib['choiceName']
-        _log.info(f'processing choiceName: {name}')
-        # The "Remainder Points" subtotal isn't applicable.
-        if name == 'Remainder Points':
-            continue
-
-        choice_rounds = _get_choice_rounds(choice_group)
-        rounds[name] = choice_rounds
-
+    rounds = _get_rounds(tablix_5)
     results['rounds'] = rounds
+
     return results
 
 

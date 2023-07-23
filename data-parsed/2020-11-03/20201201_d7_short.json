@@ -117,6 +117,38 @@
                 "votes": 3970.0
             }
         ],
+        "Continuing Ballots Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 39332.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 39244.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 38895.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 38146.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 36626.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 34931.0
+            }
+        ],
         "EMILY MURASE": [
             {
                 "percent": 0.12544493033662157,
@@ -275,6 +307,38 @@
                 "percent": 0.5313618276029888,
                 "transfer": 0.0,
                 "votes": 18561.0
+            }
+        ],
+        "Non Transferable Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4094.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4182.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4531.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 5280.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 6800.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 8495.0
             }
         ],
         "Overvotes": [

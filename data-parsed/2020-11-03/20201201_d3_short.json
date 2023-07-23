@@ -72,6 +72,23 @@
                 "votes": 3904.0
             }
         ],
+        "Continuing Ballots Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 28893.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 28822.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 28667.0
+            }
+        ],
         "DANNY SAUTER": [
             {
                 "percent": 0.365244176790226,
@@ -104,6 +121,23 @@
                 "percent": 0.007395262845780863,
                 "transfer": 0.0,
                 "votes": 212.0
+            }
+        ],
+        "Non Transferable Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 3996.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4067.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4222.0
             }
         ],
         "Overvotes": [

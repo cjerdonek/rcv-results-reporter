@@ -71,7 +71,6 @@ $ tidy -output html/2020-11-03/index-tidied.html -utf8 html/2020-11-03/index-ori
 
 ## TODO
 
-* Support parsing XML.
 * Start adding other languages?
 * Make test HTML viewable on GitHub.
 * Add end-to-end tests of the html.

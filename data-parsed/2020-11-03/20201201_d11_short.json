@@ -72,6 +72,23 @@
                 "votes": 2795.0
             }
         ],
+        "Continuing Ballots Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 31350.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 31349.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 30837.0
+            }
+        ],
         "Exhausted": [
             {
                 "percent": 0.0,
@@ -138,6 +155,23 @@
                 "percent": 0.0,
                 "transfer": 0.0,
                 "votes": 0.0
+            }
+        ],
+        "Non Transferable Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 2912.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 2913.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 3425.0
             }
         ],
         "Overvotes": [

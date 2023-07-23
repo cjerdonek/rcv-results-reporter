@@ -42,6 +42,13 @@
                 "votes": 7692.0
             }
         ],
+        "Continuing Ballots Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 29275.0
+            }
+        ],
         "Exhausted": [
             {
                 "percent": 0.0,
@@ -54,6 +61,13 @@
                 "percent": 0.9978479931682323,
                 "transfer": 0.0,
                 "votes": 29212.0
+            }
+        ],
+        "Non Transferable Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 7694.0
             }
         ],
         "Overvotes": [

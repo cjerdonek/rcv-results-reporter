@@ -181,6 +181,38 @@
                 "votes": 17142.0
             }
         ],
+        "Continuing Ballots Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 36076.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 36045.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 35992.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 35786.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 35335.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 34159.0
+            }
+        ],
         "DAVID E. LEE": [
             {
                 "percent": 0.17443729903536978,
@@ -275,6 +307,38 @@
                 "percent": 0.4981703211452326,
                 "transfer": 0.0,
                 "votes": 17017.0
+            }
+        ],
+        "Non Transferable Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 3833.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 3864.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 3917.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4123.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4574.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 5750.0
             }
         ],
         "Overvotes": [

@@ -55,6 +55,23 @@
                 "votes": 4555.0
             }
         ],
+        "Continuing Ballots Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 41764.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 41701.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 41373.0
+            }
+        ],
         "DANIEL LANDRY": [
             {
                 "percent": 0.05722631931807298,
@@ -121,6 +138,23 @@
                 "percent": 0.0,
                 "transfer": 0.0,
                 "votes": 0.0
+            }
+        ],
+        "Non Transferable Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4653.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4716.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 5044.0
             }
         ],
         "Overvotes": [
