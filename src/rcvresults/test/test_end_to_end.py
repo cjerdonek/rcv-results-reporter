@@ -8,7 +8,7 @@ from unittest import TestCase
 
 import rcvresults.main as main
 from rcvresults.main import (
-    DATA_DIR_PARSED, DATA_DIR_REPORTS, DIR_NAME_2022_NOV,
+    DATA_DIR_PARSED, DATA_DIR_REPORTS, DIR_NAME_2020_NOV, DIR_NAME_2022_NOV,
 )
 
 
@@ -18,13 +18,11 @@ class EndToEndTestCase(TestCase):
     End-to-end test case using the real Excel and XML result reports.
     """
 
-    def test_json_outputs(self):
-        data_dir, reference_dir = (
-            dir_path / DIR_NAME_2022_NOV for dir_path in (DATA_DIR_REPORTS, DATA_DIR_PARSED)
-        )
-        paths = main.get_excel_paths(data_dir)
+    def _test_json_outputs(self, dir_name, expected_count):
+        reference_dir = DATA_DIR_PARSED / dir_name
+        paths = main.get_report_paths(DATA_DIR_REPORTS, dir_name=dir_name)
         # Make sure we got all the paths
-        self.assertEqual(len(paths), 6)
+        self.assertEqual(len(paths), expected_count)
 
         for path in paths:
             with self.subTest(path=path):
@@ -36,3 +34,13 @@ class EndToEndTestCase(TestCase):
                         path.read_text() for path in (output_path, reference_path)
                     )
                     self.assertEqual(actual_text, expected_text)
+
+    def test_json_outputs_2020_november(self):
+        # This directory has: 20201201_d1_short.xml on up to
+        # 20201201_d11_short.xml.
+        self._test_json_outputs(dir_name=DIR_NAME_2020_NOV, expected_count=6)
+
+    def test_json_outputs_2022_november(self):
+        # This directory has: d4_short.xlsx on up to d10_short.xlsx,
+        # as well as da_short.xlsx and defender_short.xlsx.
+        self._test_json_outputs(dir_name=DIR_NAME_2022_NOV, expected_count=6)

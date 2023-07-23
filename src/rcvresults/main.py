@@ -61,6 +61,19 @@ def get_excel_paths(dir_path):
     return paths
 
 
+def get_report_paths(parent_reports_dir, dir_name):
+    data_dir = parent_reports_dir / dir_name
+
+    extension = REPORT_DIR_EXTENSIONS[dir_name]
+    if extension == 'xlsx':
+        paths = get_excel_paths(data_dir)
+    else:
+        assert extension == 'xml'
+        paths = get_xml_paths(data_dir)
+
+    return paths
+
+
 def make_environment():
     env = Environment(
         loader=FileSystemLoader('templates'),
@@ -76,10 +89,16 @@ def make_rcv_json(path, parsed_dir):
     _log.info(f'parsing: {path}')
     suffix = path.suffix
     if suffix == '.xlsx':
+        parse_report_file = excel_parsing.parse_excel_file
         results = excel_parsing.parse_excel_file(path)
     else:
         assert suffix == '.xml'
-        results = xml_parsing.parse_xml_file(path)
+        parse_report_file = xml_parsing.parse_xml_file
+
+    try:
+        results = parse_report_file(path)
+    except Exception:
+        raise RuntimeError(f'error parsing report file: {path}')
 
     metadata = results['_metadata']
     contest_name = metadata['contest_name']
@@ -112,9 +131,9 @@ def process_rcv_contest(path, template, parsed_dir, html_dir):
 def make_rcv_snippets(
     parent_reports_dir, parent_parsed_dir, parent_snippets_dir, dir_name,
 ):
-    data_dir, parsed_dir, html_dir = (
+    parsed_dir, html_dir = (
         parent_dir / dir_name for parent_dir in
-        (parent_reports_dir, parent_parsed_dir, parent_snippets_dir)
+        (parent_parsed_dir, parent_snippets_dir)
     )
 
     # Make sure the intermediate output directories exist.
@@ -126,12 +145,7 @@ def make_rcv_snippets(
     env = make_environment()
     template = env.get_template('rcv-summary.html')
 
-    extension = REPORT_DIR_EXTENSIONS[dir_name]
-    if extension == 'xlsx':
-        paths = get_excel_paths(data_dir)
-    else:
-        assert extension == 'xml'
-        paths = get_xml_paths(data_dir)
+    paths = get_report_paths(parent_reports_dir, dir_name=dir_name)
 
     for path in paths:
         process_rcv_contest(
