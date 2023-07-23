@@ -1,3 +1,4 @@
 # Abstract requirements
-openpyxl
 Jinja2
+openpyxl
+PyYAML
