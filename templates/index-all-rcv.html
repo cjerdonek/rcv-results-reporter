@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta name="generator" content=
+"HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 5458), see www.w3.org">
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta http-equiv='Cache-Control' content="must-revalidate">
+<meta http-equiv='Cache-Control' content="max-age=31535999">
+<meta http-equiv='ETag' content="00000002">
+<meta name='viewport' content=
+'width=device-width, initial-scale=1'>
+<meta name='description' content=''>
+<meta name='author' content=''>
+<title>SFDOE Results</title>
+<!-- Latest compiled and minified CSS-->
+<link rel='stylesheet' href=
+'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'
+media='all' integrity=
+'sha384-Tfj13fqQQqqzQFuaZ81WDzmmOU610WeS08VMuHmElK5oI2f7NwojuL6VupYXR/jK'
+crossorigin='anonymous' type="text/css">
+<link rel='stylesheet' href=
+'{{ js_dir }}/doe.min.css' type="text/css">
+<link rel='stylesheet' href=
+'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'
+integrity=
+'sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=='
+crossorigin='anonymous' referrerpolicy='no-referrer' type=
+"text/css">
+<link href='https://fonts.googleapis.com/css?family=Rubik' rel=
+'stylesheet' type="text/css">
+<script src=
+'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.1.1/iframeResizer.contentWindow.min.js'
+type="text/javascript">
+</script>
+<style type="text/css">
+                        body{
+                                padding:20px;
+                                font-family: "Rubik", sans-serif;
+                        }
+                        .square_success {
+                                width: 1em;
+                                height: 1em;
+                                background: #5cb85c;
+                        }
+                        .square_primary {
+                                width: 1em;
+                                height: 1em;
+                                background: #337ab7;
+                        }
+                        .legend {
+                                display: flex;
+                                gap: 1em;
+                                margin-top: 0.2em;
+                                margin-bottom: 1em;
+                                margin-left: 3%;
+                        }
+</style>
+</head>
+<body>
+<div class='container-fluid'>
+<div class='row'><strong>Voter Turnout:</strong> 62.32%<a class=
+'btn btn-default pull-right' href='data/summary.xml' role='button'
+download="">XML </a><br>
+<strong>Number of Ballots Cast:</strong> 310,071<br>
+<strong>Voter Registration:</strong> 497,561<br>
+<strong>Final Update:</strong> December 01, 2022 3:56 PM<br>
+<div class='row'>
+<div class='col-xs-12 col-md-12'>
+<table class='table table-striped table-bordered table-condensed'
+style='margin-bottom:2px'>
+<thead>
+<tr>
+<th class='col-xs-6 col-md-6' align='left'></th>
+<th class='col-xs-3 col-md-3' align='center'>Ballots Counted</th>
+<th class='col-xs-3 col-md-3' align='center' data-defaultsort=
+'disabled'>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In-person ballots cast on Election Day</td>
+<td align='right'>35,595</td>
+<td align='right'>7.15%</td>
+</tr>
+<tr>
+<td>Vote-by-mail ballots</td>
+<td align='right'>274,476</td>
+<td align='right'>55.16%</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td id='candidate'><b>Total</b></td>
+<td id='votes' align='right'>310,071</td>
+<td id='pct' align='right'>62.32%</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<a href='https://sfelections.sfgov.org/historical-voter-turnout'
+target='_blank'>Compare turnout to previous elections</a><br>
+<br></div>
+</div>
+<select class='form-control' style='width:100%' onchange=
+'window.location.hash=this.options[this.selectedIndex].value'>
+<option>Select a contest to jump to</option>
+<option value='#a_english_1'>GOVERNOR</option>
+<option value='#a_english_2'>LIEUTENANT GOVERNOR</option>
+<option value='#a_english_3'>SECRETARY OF STATE</option>
+<option value='#a_english_4'>CONTROLLER</option>
+<option value='#a_english_5'>TREASURER</option>
+<option value='#a_english_6'>ATTORNEY GENERAL</option>
+<option value='#a_english_7'>INSURANCE COMMISSIONER</option>
+<option value='#a_english_8'>BOARD OF EQUALIZATION MEMBER, DISTRICT
+2</option>
+<option value='#a_english_9'>UNITED STATES SENATOR (term ending
+January 3, 2029)</option>
+<option value='#a_english_10'>UNITED STATES SENATOR (remainder of
+the current term ending January 3, 2023)</option>
+<option value='#a_english_11'>UNITED STATES REPRESENTATIVE,
+DISTRICT 2</option>
+<option value='#a_english_12'>UNITED STATES REPRESENTATIVE,
+DISTRICT 11</option>
+<option value='#a_english_13'>UNITED STATES REPRESENTATIVE,
+DISTRICT 12</option>
+<option value='#a_english_14'>UNITED STATES REPRESENTATIVE,
+DISTRICT 15</option>
+<option value='#a_english_15'>STATE SENATOR, DISTRICT 2</option>
+<option value='#a_english_16'>STATE ASSEMBLY MEMBER, DISTRICT
+12</option>
+<option value='#a_english_17'>STATE ASSEMBLY MEMBER, DISTRICT
+17</option>
+<option value='#a_english_18'>STATE ASSEMBLY MEMBER, DISTRICT
+18</option>
+<option value='#a_english_19'>STATE ASSEMBLY MEMBER, DISTRICT
+19</option>
+<option value='#a_english_20'>FOR CHIEF JUSTICE OF CALIFORNIA
+(PATRICIA GUERRERO)</option>
+<option value='#a_english_21'>FOR ASSOCIATE JUSTICE OF THE SUPREME
+COURT (GOODWIN LIU)</option>
+<option value='#a_english_22'>FOR ASSOCIATE JUSTICE OF THE SUPREME
+COURT (MARTIN J. JENKINS)</option>
+<option value='#a_english_23'>FOR ASSOCIATE JUSTICE OF THE SUPREME
+COURT (JOSHUA P. GROBAN)</option>
+<option value='#a_english_24'>FOR ASSOCIATE JUSTICE, COURT OF
+APPEAL, DISTRICT 1, DIVISION 2 (THERESE M. STEWART)</option>
+<option value='#a_english_25'>FOR PRESIDING JUSTICE, COURT OF
+APPEAL, DISTRICT 1, DIVISION 3 (ALISON M. TUCHER)</option>
+<option value='#a_english_26'>FOR ASSOCIATE JUSTICE, COURT OF
+APPEAL, DISTRICT 1, DIVISION 3 (VICTOR A. RODRIGUEZ)</option>
+<option value='#a_english_27'>FOR ASSOCIATE JUSTICE, COURT OF
+APPEAL, DISTRICT 1, DIVISION 3 (IOANA PETROU)</option>
+<option value='#a_english_28'>FOR ASSOCIATE JUSTICE, COURT OF
+APPEAL, DISTRICT 1, DIVISION 3 (CARIN T. FUJISAKI)</option>
+<option value='#a_english_29'>FOR ASSOCIATE JUSTICE, COURT OF
+APPEAL, DISTRICT 1, DIVISION 4 (TRACIE L. BROWN)</option>
+<option value='#a_english_30'>FOR ASSOCIATE JUSTICE, COURT OF
+APPEAL, DISTRICT 1, DIVISION 4 (JEREMY M. GOLDMAN)</option>
+<option value='#a_english_31'>FOR PRESIDING JUSTICE, COURT OF
+APPEAL, DISTRICT 1, DIVISION 5 (TERI L. JACKSON)</option>
+<option value='#a_english_32'>FOR ASSOCIATE JUSTICE, COURT OF
+APPEAL, DISTRICT 1, DIVISION 5 (GORDON B. BURNS)</option>
+<option value='#a_english_33'>SUPERINTENDENT OF PUBLIC
+INSTRUCTION</option>
+<option value='#a_english_34'>MEMBER, BOARD OF EDUCATION</option>
+<option value='#a_english_35'>BART DIRECTOR, DISTRICT 8</option>
+<option value='#a_english_36'>MEMBER, COMMUNITY COLLEGE BOARD (term
+ending January 8, 2027)</option>
+<option value='#a_english_37'>MEMBER, COMMUNITY COLLEGE BOARD
+(remainder of the current term ending January 8, 2025)</option>
+<option value='#a_english_38'>ASSESSOR-RECORDER (Ranked-Choice
+Voting Contest)</option>
+<option value='#a_english_39'>DISTRICT ATTORNEY (Ranked-Choice
+Voting Contest)</option>
+<option value='#a_english_40'>PUBLIC DEFENDER (Ranked-Choice Voting
+Contest)</option>
+<option value='#a_english_41'>BOARD OF SUPERVISORS, DISTRICT 2
+(Ranked-Choice Voting Contest)</option>
+<option value='#a_english_42'>BOARD OF SUPERVISORS, DISTRICT 4
+(Ranked-Choice Voting Contest)</option>
+<option value='#a_english_43'>BOARD OF SUPERVISORS, DISTRICT 6
+(Ranked-Choice Voting Contest)</option>
+<option value='#a_english_44'>BOARD OF SUPERVISORS, DISTRICT 8
+(Ranked-Choice Voting Contest)</option>
+<option value='#a_english_45'>BOARD OF SUPERVISORS, DISTRICT 10
+(Ranked-Choice Voting Contest)</option>
+<option value='#a_english_46'>Proposition 1 - CONSTITUTIONAL RIGHT
+TO REPRODUCTIVE FREEDOM. LEGISLATIVE CONSTITUTIONAL
+AMENDMENT.</option>
+<option value='#a_english_47'>Proposition 26 - ALLOWS IN-PERSON
+ROULETTE, DICE GAMES, SPORTS WAGERING ON TRIBAL LANDS. INITIATIVE
+CONSTITUTIONAL AMENDMENT AND STATUTE.</option>
+<option value='#a_english_48'>Proposition 27 - ALLOWS ONLINE AND
+MOBILE SPORTS WAGERING OUTSIDE TRIBAL LANDS. INITIATIVE
+CONSTITUTIONAL AMENDMENT AND STATUTE.</option>
+<option value='#a_english_49'>Proposition 28 - PROVIDES ADDITIONAL
+FUNDING FOR ARTS AND MUSIC EDUCATION IN PUBLIC SCHOOLS. INITIATIVE
+STATUTE.</option>
+<option value='#a_english_50'>Proposition 29 - REQUIRES ON-SITE
+LICENSED MEDICAL PROFESSIONAL AT KIDNEY DIALYSIS CLINICS AND
+ESTABLISHES OTHER STATE REQUIREMENTS. INITIATIVE STATUTE.</option>
+<option value='#a_english_51'>Proposition 30 - PROVIDES FUNDING FOR
+PROGRAMS TO REDUCE AIR POLLUTION AND PREVENT WILDFIRES BY
+INCREASING TAX ON PERSONAL INCOME OVER $2 MILLION. INITIATIVE
+STATUTE.</option>
+<option value='#a_english_52'>Proposition 31 - REFERENDUM ON 2020
+LAW THAT WOULD PROHIBIT THE RETAIL SALE OF CERTAIN FLAVORED TOBACCO
+PRODUCTS.</option>
+<option value='#a_english_53'>Proposition A - Retiree Supplemental
+Cost of Living Adjustment; Retirement Board Contract with Executive
+Director</option>
+<option value='#a_english_54'>Proposition B - Public Works
+Department and Commission, Sanitation and Streets Department and
+Commission</option>
+<option value='#a_english_55'>Proposition C - Homelessness
+Oversight Commission</option>
+<option value='#a_english_56'>Proposition D - Affordable Housing –
+Initiative Petition</option>
+<option value='#a_english_57'>Proposition E - Affordable Housing –
+Board of Supervisors</option>
+<option value='#a_english_58'>Proposition F - Library Preservation
+Fund</option>
+<option value='#a_english_59'>Proposition G - Student Success Fund
+– Grants to the San Francisco Unified School District</option>
+<option value='#a_english_60'>Proposition H - City Elections in
+Even-Numbered Years</option>
+<option value='#a_english_61'>Proposition I - Vehicles on JFK Drive
+in Golden Gate Park and the Great Highway</option>
+<option value='#a_english_62'>Proposition J - Recreational Use of
+JFK Drive in Golden Gate Park</option>
+<option value='#a_english_63'>Proposition L - Sales Tax for
+Transportation Projects</option>
+<option value='#a_english_64'>Proposition M - Tax on Keeping
+Residential Units Vacant</option>
+<option value='#a_english_65'>Proposition N - Golden Gate Park
+Underground Parking Facility; Golden Gate Park Concourse
+Authority</option>
+<option value='#a_english_66'>Proposition O - Additional Parcel Tax
+for City College</option>
+</select><br>
+<p>If a candidate is listed in bold, it means this candidate
+received the most votes.</p>
+<div class='row'>
+<div class='col-xs-12 col-md-12'>
+<h4 id='a_english_39'>DISTRICT ATTORNEY (Ranked-Choice Voting
+Contest)</h4>
+<p>A candidate must receive 50%+1 votes to be elected. The table
+below shows <strong>only first-choice votes.</strong> The candidate
+shaded in green on the <a href=
+"https://www.sfelections.org/results/20221108/data/20221201/da/da_short.pdf"
+target="_blank">RCV Results Report for District Attorney</a> has
+the most votes based on the total number of ballots counted.
+<a href="https://youtu.be/EF7BomAGch4" target="_blank">Learn how
+RCV works.</a></p>
+<table class='table table-striped table-bordered table-condensed'>
+<thead>
+<tr>
+<th class='col-xs-6 col-md-6' align='left'></th>
+<th class='col-xs-3 col-md-3' align='center'>Ballots Counted</th>
+<th class='col-xs-3 col-md-3' align='center' data-defaultsort=
+'disabled'>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td id='candidate'>BROOKE JENKINS</td>
+<td id='votes' align='right' data-value="125576">125,576</td>
+<td id='pct' align='right'>46.01%</td>
+</tr>
+<tr>
+<td id='candidate'>JOHN HAMASAKI</td>
+<td id='votes' align='right' data-value="101924">101,924</td>
+<td id='pct' align='right'>37.34%</td>
+</tr>
+<tr>
+<td id='candidate'>JOE ALIOTO VERONESE</td>
+<td id='votes' align='right' data-value="33633">33,633</td>
+<td id='pct' align='right'>12.32%</td>
+</tr>
+<tr>
+<td id='candidate'>MAURICE CHENIER</td>
+<td id='votes' align='right' data-value="11820">11,820</td>
+<td id='pct' align='right'>4.33%</td>
+</tr>
+<tr>
+<td id='candidate'>Write-in</td>
+<td id='votes' align='right' data-value="0">0</td>
+<td id='pct' align='right'>0%</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td id='candidate'><b>Total</b></td>
+<td id='votes' align='right'>272,953</td>
+<td id='pct' align='right'>100%</td>
+</tr>
+<tr>
+<td>Under Votes</td>
+<td align='right'>34,326</td>
+<td></td>
+</tr>
+<tr>
+<td>Over Votes</td>
+<td align='right'>1,061</td>
+<td></td>
+</tr>
+</tfoot>
+</table>
+{{ insert_html('2022-11-08/da_short.html') }}
+</div>
+</div>
+<br>
+<div class='row'>
+<div class='col-xs-12 col-md-12'>
+<h4 id='a_english_40'>PUBLIC DEFENDER (Ranked-Choice Voting
+Contest)</h4>
+<p>A candidate must receive 50%+1 votes to be elected. The table
+below shows <strong>only first-choice votes.</strong> The candidate
+shaded in green on the <a href=
+"https://www.sfelections.org/results/20221108/data/20221201/defender/defender_short.pdf"
+target="_blank">RCV Results Report for Public Defender</a> has the
+most votes based on the total number of ballots counted. <a href=
+"https://youtu.be/EF7BomAGch4" target="_blank">Learn how RCV
+works.</a></p>
+<table class='table table-striped table-bordered table-condensed'>
+<thead>
+<tr>
+<th class='col-xs-6 col-md-6' align='left'></th>
+<th class='col-xs-3 col-md-3' align='center'>Ballots Counted</th>
+<th class='col-xs-3 col-md-3' align='center' data-defaultsort=
+'disabled'>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td id='candidate'>MANO RAJU</td>
+<td id='votes' align='right' data-value="182361">182,361</td>
+<td id='pct' align='right'>72.11%</td>
+</tr>
+<tr>
+<td id='candidate'>REBECCA SUSAN FENG YOUNG</td>
+<td id='votes' align='right' data-value="70541">70,541</td>
+<td id='pct' align='right'>27.89%</td>
+</tr>
+<tr>
+<td id='candidate'>Write-in</td>
+<td id='votes' align='right' data-value="0">0</td>
+<td id='pct' align='right'>0%</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td id='candidate'><b>Total</b></td>
+<td id='votes' align='right'>252,902</td>
+<td id='pct' align='right'>100%</td>
+</tr>
+<tr>
+<td>Under Votes</td>
+<td align='right'>55,123</td>
+<td></td>
+</tr>
+<tr>
+<td>Over Votes</td>
+<td align='right'>315</td>
+<td></td>
+</tr>
+</tfoot>
+</table>
+{{ insert_html('2022-11-08/defender_short.html') }}
+</div>
+</div>
+<br>
+<div class='row'>
+<div class='col-xs-12 col-md-12'>
+<h4 id='a_english_12'>BOARD OF SUPERVISORS DISTRICT 1 - RCV first
+choice totals</h4>
+<a id="displayText12" href=
+"https://sfelections.sfgov.org/november-3-2020-election-results-detailed-reports"
+target="_top">Complete RCV results</a>
+<table class=
+'table table-striped table-bordered table-condensed sortable'>
+<thead>
+<tr>
+<th class='col-xs-6 col-md-6' align='left'></th>
+<th class='col-xs-3 col-md-3' align='center'>Ballots cast</th>
+<th class='col-xs-3 col-md-3' align='center'>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td id='candidate'>CONNIE CHAN</td>
+<td id='votes' align='right'>13,422</td>
+<td id='pct' align='right'>37.79%</td>
+</tr>
+<tr>
+<td id='candidate'>MARJAN PHILHOUR</td>
+<td id='votes' align='right'>12,197</td>
+<td id='pct' align='right'>34.34%</td>
+</tr>
+<tr>
+<td id='candidate'>DAVID E. LEE</td>
+<td id='votes' align='right'>6,071</td>
+<td id='pct' align='right'>17.09%</td>
+</tr>
+<tr>
+<td id='candidate'>SHERMAN R. D'SILVA</td>
+<td id='votes' align='right'>1,542</td>
+<td id='pct' align='right'>4.34%</td>
+</tr>
+<tr>
+<td id='candidate'>VERONICA SHINZATO</td>
+<td id='votes' align='right'>1,287</td>
+<td id='pct' align='right'>3.62%</td>
+</tr>
+<tr>
+<td id='candidate'>AMANDA INOCENCIO</td>
+<td id='votes' align='right'>689</td>
+<td id='pct' align='right'>1.94%</td>
+</tr>
+<tr>
+<td id='candidate'>ANDREW N. MAJALYA</td>
+<td id='votes' align='right'>306</td>
+<td id='pct' align='right'>0.86%</td>
+</tr>
+<tr>
+<td id='candidate'>Write-in</td>
+<td id='votes' align='right'>0</td>
+<td id='pct' align='right'>0%</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td id='candidate'><b>Total</b></td>
+<td id='votes' align='right'>35,514</td>
+<td id='pct' align='right'>100%</td>
+</tr>
+<tr>
+<td>Under Votes</td>
+<td align='right'>4,299</td>
+<td></td>
+</tr>
+<tr>
+<td>Over Votes</td>
+<td align='right'>96</td>
+<td></td>
+</tr>
+</tfoot>
+</table>
+{{ insert_html('2020-11-03/20201201_d1_short.html') }}
+</div>
+</div>
+<br>
+<div class='row'>
+<div class='col-xs-12 col-md-12'>
+<h4 id='a_english_46'>Proposition 1 - CONSTITUTIONAL RIGHT TO
+REPRODUCTIVE FREEDOM. LEGISLATIVE CONSTITUTIONAL AMENDMENT.</h4>
+<a id="displayText46" href=
+"javascript:toggle('toggleText46','displayText46','%E2%96%BA%20View%20the%20measure%20text','%E2%96%BC%20View%20the%20measure%20text');">►
+View the measure text</a><span id="toggleText46" style=
+"display:none">Amends California Constitution to expressly include
+an individual’s fundamental right to reproductive freedom, which
+includes the fundamental right to choose to have an abortion and
+the fundamental right to choose or refuse contraceptives. This
+amendment does not narrow or limit the existing rights to privacy
+and equal protection under the California Constitution. Fiscal
+Impact: No direct fiscal effect because reproductive rights already
+are protected by state law.</span><br>
+This measure requires 50%+1 affirmative votes statewide to
+pass.<br>
+<table class='table table-striped table-bordered table-condensed'>
+<thead>
+<tr>
+<th class='col-xs-6 col-md-6' align='left'></th>
+<th class='col-xs-3 col-md-3' align='center'>Ballots Counted</th>
+<th class='col-xs-3 col-md-3' align='center' data-defaultsort=
+'disabled'>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td id='candidate'><b><span style=
+'color:green;'>Yes</span></b></td>
+<td id='votes' align='right' data-value="270509">270,509</td>
+<td id='pct' align='right'>89.52%</td>
+</tr>
+<tr>
+<td id='candidate'>No</td>
+<td id='votes' align='right' data-value="31657">31,657</td>
+<td id='pct' align='right'>10.48%</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td id='candidate'><b>Total</b></td>
+<td id='votes' align='right'>302,166</td>
+<td id='pct' align='right'>100%</td>
+</tr>
+<tr>
+<td>Under Votes</td>
+<td align='right'>7,825</td>
+<td></td>
+</tr>
+<tr>
+<td>Over Votes</td>
+<td align='right'>65</td>
+<td></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<br>
+<!--.col-md-8-->
+<!-- end .row-->
+ <!-- end .container-->
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins)-->
+ <script type='text/javascript' src=
+'https://code.jquery.com/jquery-1.11.2.min.js' integrity=
+'sha384-Pn+PczAsODRZ2PiGg0IheRROpP7lXO1NTIjiPo6cca8TliBvaeil42fobhzvZd74'
+crossorigin='anonymous'>
+</script><!-- Latest compiled and minified JavaScript-->
+<script type='text/javascript' src=
+'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'
+integrity=
+'sha384-4Kp4aQ6UNeqsJ/ithPcxYnnIGt/QJJ64J9QtfDAJZUTaePAIPm9aaBdu7Gw84oGs'
+crossorigin='anonymous'>
+</script><script type='text/javascript' src=
+'{{ js_dir }}/jquery.stickytabs.min.js'>
+</script><script type="text/javascript">
+$(function(){ $('.nav-tabs').stickyTabs();})
+</script><script type='text/javascript' src='{{ js_dir }}/text_hide.min.js'>
+</script><script src=
+'https://cdn.jsdelivr.net/bootstrap-sortable/2.0.0/bootstrap-sortable.min.js'
+integrity=
+'sha384-6bSnHWrusEoP6ciW0Dqcvk3MsAe52gsEfD1Ghgx5+01V8ukRwrhJQrUrkqOYP6uH'
+crossorigin='anonymous' type="text/javascript">
+</script><!-- Google Analytics-->
+<script type="text/javascript">
+                                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+                                ga('create', 'UA-60044249-1', 'auto');
+                                ga('send', 'pageview');
+</script><script type="text/javascript">
+$('#popover1').popover();
+</script><script type="text/javascript">
+$('#popover2').popover();
+</script>
+</body>
+</html>
