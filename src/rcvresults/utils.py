@@ -1,5 +1,7 @@
 import json
 
+import yaml
+
 
 class NonCandidateNames:
 
@@ -19,6 +21,13 @@ NON_CANDIDATE_SUBTOTALS = [
     NonCandidateNames.OVERVOTE,
     NonCandidateNames.NON_TRANSFERABLE,
 ]
+
+
+def read_yaml(path):
+    with path.open() as f:
+        data = yaml.safe_load(f)
+
+    return data
 
 
 def write_json(data, path):

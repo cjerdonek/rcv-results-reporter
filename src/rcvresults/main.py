@@ -22,6 +22,8 @@ import rcvresults.utils as utils
 
 _log = logging.getLogger(__name__)
 
+CONFIG_PATH = Path('config.yml')
+
 DATA_DIR_REPORTS = Path('data-reports')
 DATA_DIR_PARSED = Path('data-parsed')
 # Directory containing copies of real past html results summary pages.
@@ -84,6 +86,28 @@ def make_environment():
     )
     env.filters['format_int'] = rendering.format_int
     env.filters['format_percent'] = rendering.format_percent
+
+    return env
+
+
+def _make_index_jinja_env(snippets_dir):
+    """
+    Create and return a Jinja2 Environment object to use when rendering
+    one of the index.html templates.
+    """
+    env = make_environment()
+    config = utils.read_yaml(CONFIG_PATH)
+    elections = config['elections']
+
+    def insert_html(rel_path):
+        path = snippets_dir / rel_path
+        html = path.read_text()
+        return Markup(html)
+
+    env.globals.update({
+        'insert_html': insert_html,
+        'elections': elections,
+    })
 
     return env
 
@@ -155,20 +179,16 @@ def make_rcv_snippets(
         )
 
 
-def make_index_html(output_path, snippets_dir, js_dir):
+def make_index_html(output_dir, template_name, snippets_dir, js_dir, env):
     """
     Args:
       js_dir: the path to the directory containing the js files, relative
         to the location of the output path.
     """
-    def insert_html(rel_path):
-        path = snippets_dir / rel_path
-        html = path.read_text()
-        return Markup(html)
+    output_path = output_dir / template_name
+    _log.info(f'writing: {output_path}')
 
-    env = make_environment()
-    env.globals['insert_html'] = insert_html
-    template = env.get_template('index-test.html')
+    template = env.get_template(template_name)
 
     context = {
         'js_dir': str(js_dir),
@@ -198,10 +218,14 @@ def main():
             parent_snippets_dir=snippets_dir, dir_name=dir_name,
         )
 
-    # Then generate the overall page.
-    output_path = output_dir / 'index.html'
-    _log.info(f'writing: {output_path}')
-    make_index_html(output_path, snippets_dir=snippets_dir, js_dir=js_dir)
+    # Then generate the overall pages.
+    env = _make_index_jinja_env(snippets_dir=snippets_dir)
+    template_names = ['index-test.html', 'index-all-rcv.html']
+    for template_name in template_names:
+        make_index_html(
+            output_dir, template_name=template_name,
+            snippets_dir=snippets_dir, js_dir=js_dir, env=env,
+        )
 
 
 if __name__ == '__main__':
