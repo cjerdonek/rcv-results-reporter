@@ -42,8 +42,11 @@ def iter_triples(iterator):
     yield from itertools.islice(iterator, 1, None)
 
 
-def parse_sheet_1(wb):
-    ws = wb['Sheet1']
+def parse_sheet_1(wb, sheet_name):
+    """
+    Return a dict containing the contest name.
+    """
+    ws = wb[sheet_name]
     # The first cell of the first five rows has the following form:
     # 1: "Page: 1 / 2"
     # 2: None
@@ -74,6 +77,7 @@ def iter_sheet2_rows(ws):
     Yield the vote-total rows in "Sheet2" of the workbook.
     """
     indexed_rows = enumerate(ws.iter_rows(), start=1)
+    # First, skip to the rows containing the candidates.
     for i, row in indexed_rows:
         cell = row[0]
         value = cell.value
@@ -130,8 +134,8 @@ def parse_sheet2_row(row, name, is_candidate):
     return rounds
 
 
-def parse_sheet2(wb):
-    ws = wb['Sheet2']
+def parse_sheet2(wb, sheet_name):
+    ws = wb[sheet_name]
 
     candidates = []
     subtotals = []
@@ -162,15 +166,23 @@ def parse_excel_file(path):
     results = {}
     wb = openpyxl.load_workbook(filename=path)
     sheet_names = wb.sheetnames
-    if sheet_names != ['Sheet1', 'Sheet2']:
+    if sheet_names == ['Sheet1', 'Sheet2']:
+        sheet_name_1, sheet_name_2 = sheet_names
+
+    # In the 2019 election, the Excel files contained a single sheet that
+    # was essentially the "Sheet1" above followed by "Sheet2" (so the same
+    # formats of each, but combined into a single sheet).
+    # These can be seen in the data-reports/2019-11-05 directory.
+    elif sheet_names == ['RcvShortReport']:
+        # Otherwise, use the same sheet for both.
+        sheet_name_1, = sheet_names
+        sheet_name_2 = sheet_name_1
+    else:
         raise AssertionError(
             f'unexpected sheet names: {sheet_names}'
         )
-    results = {}
-    metadata = {}
+    # Initialize the metadata dict with the contest name.
+    metadata = parse_sheet_1(wb, sheet_name=sheet_name_1)
+    results = parse_sheet2(wb, sheet_name=sheet_name_2)
     results['_metadata'] = metadata
-    # Add the contest name to the metadata dict.
-    metadata.update(parse_sheet_1(wb))
-    sheet_2_results = parse_sheet2(wb)
-    results.update(sheet_2_results)
     return results
