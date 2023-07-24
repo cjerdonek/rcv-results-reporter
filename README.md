@@ -65,6 +65,10 @@ $ pip install -e .
 
 ## Usage
 
+```
+$ python src/rcvresults/main.py
+```
+
 TODO
 
 ## Developing
