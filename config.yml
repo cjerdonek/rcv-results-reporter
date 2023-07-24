@@ -4,15 +4,47 @@ elections:
   dir_name: "2022-11-08"  # use quotes to prevent conversion to a date.
   name: November 8, 2022 Consolidated General Election
   url: https://sfelections.sfgov.org/november-8-2022-election-results-summary
-  # TODO: include the contests and their URL's.
+  # TODO: include the contest URL's.
+  contests:
+  -
+    file: da_short
+  -
+    file: defender_short
+  -
+    file: d4_short
+  -
+    file: d6_short
+  -
+    file: d8_short
+  -
+    file: d10_short
 -
   dir_name: "2022-02-15"  # use quotes to prevent conversion to a date.
   name: February 15, 2022 Consolidated Special Municipal Election
   url: https://sfelections.sfgov.org/february-15-2022-election-results-summary
+  # TODO: include the contest URL's.
+  contests:
+  -
+    file: 20220223_ar
 -
   dir_name: "2020-11-03"  # use quotes to prevent conversion to a date.
   name: November 3, 2020 Consolidated General Election
   url: https://sfelections.sfgov.org/november-3-2020-election-results-summary
+  # TODO: include the contest URL's.
+  contests:
+  -
+    file: 20201201_d1_short
+  -
+    file: 20201201_d3_short
+  -
+    file: 20201201_d5_short
+  -
+    file: 20201201_d7_short
+  -
+    file: 20201201_d9_short
+  -
+    file: 20201201_d11_short
+
 # TODO: uncomment this.
 # -
 #   dir_name: 2019-11-05

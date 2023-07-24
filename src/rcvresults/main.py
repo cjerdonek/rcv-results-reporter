@@ -92,10 +92,13 @@ def _make_index_jinja_env(snippets_dir):
     elections = config['elections']
 
     # TODO: don't use a nested function definition here?
-    def iter_contests(dir_name):
+    def iter_contests(election):
+        dir_name = election['dir_name']
         json_dir = DATA_DIR_PARSED / dir_name
-        json_paths = utils.get_paths(json_dir, suffix='json')
-        for json_path in json_paths:
+        contests = election['contests']
+        for contest in contests:
+            file_stem = contest['file']
+            json_path = json_dir / f'{file_stem}.json'
             contest_data = utils.read_json(json_path)
             # TODO: also yield the rel_path?
             yield contest_data

@@ -105,7 +105,7 @@ style='margin-bottom:2px'>
 {% for election in elections %}
 <h3>{{ election['name'] }}</h3>
   {# TODO: loop in our preferred order. #}
-  {% for contest in iter_contests(election['dir_name']) %}
+  {% for contest in iter_contests(election) %}
     <h4>{{ contest['_metadata']['contest_name'] }}</h4>
       {# TODO: show the contest. #}
   {% endfor %}
