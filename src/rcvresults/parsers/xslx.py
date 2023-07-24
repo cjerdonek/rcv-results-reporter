@@ -161,8 +161,11 @@ def parse_excel_file(path):
     """
     results = {}
     wb = openpyxl.load_workbook(filename=path)
-    # TODO: change this to raise a better error.
-    assert wb.sheetnames == ['Sheet1', 'Sheet2']
+    sheet_names = wb.sheetnames
+    if sheet_names != ['Sheet1', 'Sheet2']:
+        raise AssertionError(
+            f'unexpected sheet names: {sheet_names}'
+        )
     results = {}
     metadata = {}
     results['_metadata'] = metadata

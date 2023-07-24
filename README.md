@@ -96,7 +96,7 @@ GNU General Public License version 3
 
 * Start adding other languages?
 * Make test HTML viewable on GitHub.
-* Add Excel files from 2019 election and compare.
+* Get Excel files working from 2019 election.
 * Add end-to-end tests of the html.
 * Make sure all elections are covered in the tests.
 * Add intermediate rounds? (expand / collapse)

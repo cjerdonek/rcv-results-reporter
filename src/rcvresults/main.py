@@ -125,7 +125,6 @@ def make_rcv_json(path, parsed_dir):
     suffix = path.suffix
     if suffix == '.xlsx':
         parse_report_file = excel_parsing.parse_excel_file
-        results = excel_parsing.parse_excel_file(path)
     else:
         assert suffix == '.xml'
         parse_report_file = xml_parsing.parse_xml_file
