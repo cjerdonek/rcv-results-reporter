@@ -98,10 +98,11 @@ def _make_index_jinja_env(snippets_dir):
         contests = election['contests']
         for contest in contests:
             file_stem = contest['file']
+            contest_url = contest['url']
             json_path = json_dir / f'{file_stem}.json'
             html_path = f'{dir_name}/{file_stem}.html'
             contest_data = utils.read_json(json_path)
-            yield (html_path, contest_data)
+            yield (html_path, contest_data, contest_url)
 
     def insert_html(rel_path):
         path = snippets_dir / rel_path

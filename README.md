@@ -89,7 +89,6 @@ GNU General Public License version 3
 
 ## TODO
 
-* Add a test page showing all RCV contests across all elections.
 * Try adding the November 2019 election?
 * Start adding other languages?
 * Make test HTML viewable on GitHub.
