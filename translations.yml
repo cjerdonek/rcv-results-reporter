@@ -1,0 +1,19 @@
+# Languages:
+# * en: English
+# * es: Spanish
+# * tl: Filipino
+# * zh: Chinese
+phrases:
+  continuing_total:
+    en: Continuing Ballots Total
+  blanks_total:
+    en: Blanks
+  exhausted_total:
+    en: Exhausted
+  overvotes_total:
+    en: Overvotes
+    es: Sobrevotos
+    tl: Mga sobrang boto
+    zh: 過度投票
+  non_transferable_total:
+    en: Non Transferable Total
