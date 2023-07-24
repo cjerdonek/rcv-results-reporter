@@ -58,6 +58,7 @@ type="text/javascript">
 </style>
 </head>
 <body>
+<h1>RCV Results Demo</h1>
 <div class='container-fluid'>
 <div class='row'><strong>Voter Turnout:</strong> 62.32%<a class=
 'btn btn-default pull-right' href='data/summary.xml' role='button'
@@ -101,9 +102,18 @@ style='margin-bottom:2px'>
 </div>
 <br></div>
 </div>
+<h2>Election Index</h2>
+<p>
+  The RCV contests for the past four elections are shown below.
+<p>
+<ul>
+{% for election in elections %}
+  <li><a href="#{{ election['dir_name'] }}">{{ election['name'] }}</a></li>
+{% endfor %}
+</ul>
 <br>
 {% for election in elections %}
-<h3>{{ election['name'] }}</h3>
+<h3>{{ election['name'] }} <a id="{{ election['dir_name'] }}" href="#{{ election['dir_name'] }}">&para;</a></h3>
 <a href="{{ election['url'] }}" target="_blank">[Original results page]</a>
   {% for rel_path, contest, contest_url in iter_contests(election) %}
     {% set contest_name = contest['_metadata']['contest_name'] %}

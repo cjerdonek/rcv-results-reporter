@@ -1,0 +1,455 @@
+{
+    "_metadata": {
+        "contest_name": "MAYOR"
+    },
+    "candidate_summaries": {
+        "ELLEN LEE ZHOU": {
+            "highest_round": 6,
+            "highest_vote": 35706.0
+        },
+        "JOEL VENTRESCA": {
+            "highest_round": 5,
+            "highest_vote": 17425.0
+        },
+        "LONDON N. BREED": {
+            "highest_round": 6,
+            "highest_vote": 134345.0
+        },
+        "MARC ROTH": {
+            "highest_round": 1,
+            "highest_vote": 7.0
+        },
+        "PAUL YBARRA ROBERTSON": {
+            "highest_round": 4,
+            "highest_vote": 9312.0
+        },
+        "ROBERT L. JORDAN, JR.": {
+            "highest_round": 2,
+            "highest_vote": 2459.0
+        },
+        "WILMA PANG": {
+            "highest_round": 3,
+            "highest_vote": 5297.0
+        }
+    },
+    "candidates": [
+        "LONDON N. BREED",
+        "ELLEN LEE ZHOU",
+        "JOEL VENTRESCA",
+        "PAUL YBARRA ROBERTSON",
+        "WILMA PANG",
+        "ROBERT L. JORDAN, JR.",
+        "MARC ROTH"
+    ],
+    "highest_round": 6,
+    "leading_candidates": [
+        "LONDON N. BREED"
+    ],
+    "non_candidate_subtotals": [
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ],
+    "rounds": {
+        "Blanks": [
+            {
+                "percent": 0.14437013815031155,
+                "transfer": 0.0,
+                "votes": 25927.0
+            },
+            {
+                "percent": 0.14437094205561682,
+                "transfer": 0.0,
+                "votes": 25927.0
+            },
+            {
+                "percent": 0.14477482759583438,
+                "transfer": 0.0,
+                "votes": 25927.0
+            },
+            {
+                "percent": 0.1456327585238443,
+                "transfer": 0.0,
+                "votes": 25927.0
+            },
+            {
+                "percent": 0.1472547694369821,
+                "transfer": 0.0,
+                "votes": 25927.0
+            },
+            {
+                "percent": 0.15246602489841282,
+                "transfer": 0.0,
+                "votes": 25927.0
+            }
+        ],
+        "Continuing Ballots Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 179587.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 179586.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 179085.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 178030.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 176069.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 170051.0
+            }
+        ],
+        "ELLEN LEE ZHOU": [
+            {
+                "percent": 0.13924170457772556,
+                "transfer": 0.0,
+                "votes": 25006.0
+            },
+            {
+                "percent": 0.13924247992605215,
+                "transfer": 301.0,
+                "votes": 25006.0
+            },
+            {
+                "percent": 0.14131278443197365,
+                "transfer": 1637.0,
+                "votes": 25307.0
+            },
+            {
+                "percent": 0.15134527888558108,
+                "transfer": 2959.0,
+                "votes": 26944.0
+            },
+            {
+                "percent": 0.16983682533552186,
+                "transfer": 5803.0,
+                "votes": 29903.0
+            },
+            {
+                "percent": 0.20997230242691897,
+                "transfer": 0.0,
+                "votes": 35706.0
+            }
+        ],
+        "Exhausted": [
+            {
+                "percent": 0.0,
+                "transfer": 1.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 5.5683627899724924e-06,
+                "transfer": 485.0,
+                "votes": 1.0
+            },
+            {
+                "percent": 0.0027137951252198676,
+                "transfer": 1041.0,
+                "votes": 486.0
+            },
+            {
+                "percent": 0.008577206088861427,
+                "transfer": 1914.0,
+                "votes": 1527.0
+            },
+            {
+                "percent": 0.019543474433318754,
+                "transfer": 5942.0,
+                "votes": 3441.0
+            },
+            {
+                "percent": 0.0551775643777455,
+                "transfer": 0.0,
+                "votes": 9383.0
+            }
+        ],
+        "JOEL VENTRESCA": [
+            {
+                "percent": 0.07396415107997795,
+                "transfer": 3.0,
+                "votes": 13283.0
+            },
+            {
+                "percent": 0.07398126802757453,
+                "transfer": 328.0,
+                "votes": 13286.0
+            },
+            {
+                "percent": 0.07601976714967752,
+                "transfer": 917.0,
+                "votes": 13614.0
+            },
+            {
+                "percent": 0.0816210750997023,
+                "transfer": 2894.0,
+                "votes": 14531.0
+            },
+            {
+                "percent": 0.09896688230182485,
+                "transfer": -17425.0,
+                "votes": 17425.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            }
+        ],
+        "LONDON N. BREED": [
+            {
+                "percent": 0.7028404060427537,
+                "transfer": 1.0,
+                "votes": 126221.0
+            },
+            {
+                "percent": 0.7028498880759079,
+                "transfer": 341.0,
+                "votes": 126222.0
+            },
+            {
+                "percent": 0.7067202724963006,
+                "transfer": 680.0,
+                "votes": 126563.0
+            },
+            {
+                "percent": 0.7147278548559232,
+                "transfer": 1498.0,
+                "votes": 127243.0
+            },
+            {
+                "percent": 0.7311962923626533,
+                "transfer": 5604.0,
+                "votes": 128741.0
+            },
+            {
+                "percent": 0.790027697573081,
+                "transfer": 0.0,
+                "votes": 134345.0
+            }
+        ],
+        "MARC ROTH": [
+            {
+                "percent": 3.8978322484366907e-05,
+                "transfer": -7.0,
+                "votes": 7.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            }
+        ],
+        "Non Transferable Total": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 26530.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 26531.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 27032.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 28087.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 30048.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 36066.0
+            }
+        ],
+        "Overvotes": [
+            {
+                "percent": 0.0033577040654390353,
+                "transfer": 0.0,
+                "votes": 603.0
+            },
+            {
+                "percent": 0.0033577227623534127,
+                "transfer": 16.0,
+                "votes": 603.0
+            },
+            {
+                "percent": 0.0034564592232738645,
+                "transfer": 14.0,
+                "votes": 619.0
+            },
+            {
+                "percent": 0.0035555805201370554,
+                "transfer": 47.0,
+                "votes": 633.0
+            },
+            {
+                "percent": 0.0038621222361687746,
+                "transfer": 76.0,
+                "votes": 680.0
+            },
+            {
+                "percent": 0.004445725105997613,
+                "transfer": 0.0,
+                "votes": 756.0
+            }
+        ],
+        "PAUL YBARRA ROBERTSON": [
+            {
+                "percent": 0.04259216981184607,
+                "transfer": 0.0,
+                "votes": 7649.0
+            },
+            {
+                "percent": 0.04259240698049959,
+                "transfer": 655.0,
+                "votes": 7649.0
+            },
+            {
+                "percent": 0.046369042633386384,
+                "transfer": 1008.0,
+                "votes": 8304.0
+            },
+            {
+                "percent": 0.05230579115879346,
+                "transfer": -9312.0,
+                "votes": 9312.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            }
+        ],
+        "ROBERT L. JORDAN, JR.": [
+            {
+                "percent": 0.013686959523796265,
+                "transfer": 1.0,
+                "votes": 2458.0
+            },
+            {
+                "percent": 0.013692604100542358,
+                "transfer": -2459.0,
+                "votes": 2459.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            }
+        ],
+        "WILMA PANG": [
+            {
+                "percent": 0.027635630641416137,
+                "transfer": 1.0,
+                "votes": 4963.0
+            },
+            {
+                "percent": 0.027641352889423453,
+                "transfer": 333.0,
+                "votes": 4964.0
+            },
+            {
+                "percent": 0.02957813328866181,
+                "transfer": -5297.0,
+                "votes": 5297.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            }
+        ]
+    },
+    "subtotals": [
+        "JOEL VENTRESCA",
+        "WILMA PANG",
+        "ROBERT L. JORDAN, JR.",
+        "PAUL YBARRA ROBERTSON",
+        "ELLEN LEE ZHOU",
+        "LONDON N. BREED",
+        "MARC ROTH",
+        "Continuing Ballots Total",
+        "Blanks",
+        "Exhausted",
+        "Overvotes",
+        "Non Transferable Total"
+    ]
+}

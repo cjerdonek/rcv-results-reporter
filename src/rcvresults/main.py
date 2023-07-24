@@ -27,6 +27,7 @@ DATA_DIR_PARSED = Path('data-parsed')
 # Directory containing copies of real past html results summary pages.
 HTML_DIR = Path('html')
 
+DIR_NAME_2019_NOV = '2019-11-05'
 DIR_NAME_2020_NOV = '2020-11-03'
 DIR_NAME_2022_FEB = '2022-02-15'
 DIR_NAME_2022_NOV = '2022-11-08'
@@ -34,6 +35,7 @@ DIR_NAME_2022_NOV = '2022-11-08'
 # Mapping saying what kinds of results reports (file extension) are stored
 # in each election directory.
 REPORT_DIR_EXTENSIONS = {
+    DIR_NAME_2019_NOV: 'xml',
     DIR_NAME_2020_NOV: 'xml',
     DIR_NAME_2022_FEB: 'xml',
     DIR_NAME_2022_NOV: 'xlsx',
@@ -216,7 +218,12 @@ def main():
     # HTML snippets.
     snippets_dir = output_dir / 'rcv-snippets'
 
-    dir_names = [DIR_NAME_2020_NOV, DIR_NAME_2022_FEB, DIR_NAME_2022_NOV]
+    dir_names = [
+        DIR_NAME_2019_NOV,
+        DIR_NAME_2020_NOV,
+        DIR_NAME_2022_FEB,
+        DIR_NAME_2022_NOV,
+    ]
     for dir_name in dir_names:
         make_rcv_snippets(
             parent_reports_dir=DATA_DIR_REPORTS, parent_parsed_dir=DATA_DIR_PARSED,
