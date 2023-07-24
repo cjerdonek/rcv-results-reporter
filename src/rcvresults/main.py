@@ -99,9 +99,9 @@ def _make_index_jinja_env(snippets_dir):
         for contest in contests:
             file_stem = contest['file']
             json_path = json_dir / f'{file_stem}.json'
+            html_path = f'{dir_name}/{file_stem}.html'
             contest_data = utils.read_json(json_path)
-            # TODO: also yield the rel_path?
-            yield contest_data
+            yield (html_path, contest_data)
 
     def insert_html(rel_path):
         path = snippets_dir / rel_path
