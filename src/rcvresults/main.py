@@ -20,6 +20,15 @@ import rcvresults.utils as utils
 
 _log = logging.getLogger(__name__)
 
+LANG_CODES = [
+    'en',  # English
+    'es',  # Spanish
+    'tl',  # Filipino
+    'zh',  # Chinese
+]
+
+TEMPLATE_NAME_RCV_DEMO = 'index-all-rcv.html'
+
 CONFIG_PATH = Path('config.yml')
 
 DATA_DIR_REPORTS = Path('data-reports')
@@ -185,34 +194,7 @@ def make_rcv_snippets(
         )
 
 
-def make_index_html(output_dir, template_name, snippets_dir, js_dir, env):
-    """
-    Args:
-      js_dir: the path to the directory containing the js files, relative
-        to the location of the output path.
-    """
-    output_path = output_dir / template_name
-    _log.info(f'writing: {output_path}')
-
-    template = env.get_template(template_name)
-
-    context = {
-        'js_dir': str(js_dir),
-    }
-    html = template.render(context)
-    output_path.write_text(html)
-
-
-def main():
-    log_format = '[{levelname}] {name}: {message}'
-    logging.basicConfig(format=log_format, style='{', level=logging.INFO)
-
-    output_dir = Path('output')
-    # Start with the parent ("..") to get from output_dir back to the
-    # repo root.
-    js_dir = Path('..') / HTML_DIR / DIR_NAME_2022_NOV / 'js'
-
-    # First generate the RCV summary snippets.
+def make_all_rcv_snippets(output_dir):
     # This is the parent directory to which to write the intermediate
     # HTML snippets.
     snippets_dir = output_dir / 'rcv-snippets'
@@ -229,14 +211,70 @@ def main():
             parent_snippets_dir=snippets_dir, dir_name=dir_name,
         )
 
+    return snippets_dir
+
+
+def make_index_html(
+    output_dir, template_name, snippets_dir, js_dir, env, output_name=None,
+    context=None
+):
+    """
+    Args:
+      js_dir: the path to the directory containing the js files, relative
+        to the location of the output path.
+    """
+    if output_name is None:
+        output_name = template_name
+    if context is None:
+        context = {}
+
+    output_path = output_dir / output_name
+    _log.info(f'writing: {output_path}')
+
+    template = env.get_template(template_name)
+
+    context['js_dir'] = str(js_dir)
+    html = template.render(context)
+    output_path.write_text(html)
+
+
+def make_rcv_demo(output_dir, snippets_dir, js_dir, env):
+    template_name = 'index-all-rcv.html'
+    for lang_code in LANG_CODES:
+        if lang_code == 'en':
+            output_name = 'index.html'
+        else:
+            output_name = f'index-{lang_code}.html'
+
+        context = {'lang': lang_code}
+        make_index_html(
+            output_dir, template_name=TEMPLATE_NAME_RCV_DEMO,
+            snippets_dir=snippets_dir, js_dir=js_dir, env=env,
+            output_name=output_name, context=context,
+        )
+
+
+def main():
+    log_format = '[{levelname}] {name}: {message}'
+    logging.basicConfig(format=log_format, style='{', level=logging.INFO)
+
+    output_dir = Path('output')
+    # Start with the parent ("..") to get from output_dir back to the
+    # repo root.
+    js_dir = Path('..') / HTML_DIR / DIR_NAME_2022_NOV / 'js'
+
+    # First generate the RCV summary snippets.
+    snippets_dir = make_all_rcv_snippets(output_dir)
+
     # Then generate the overall pages.
     env = _make_index_jinja_env(snippets_dir=snippets_dir)
-    template_names = ['index-test.html', 'index-all-rcv.html']
-    for template_name in template_names:
-        make_index_html(
-            output_dir, template_name=template_name,
-            snippets_dir=snippets_dir, js_dir=js_dir, env=env,
-        )
+    make_index_html(
+        output_dir, template_name='index-test.html',
+        snippets_dir=snippets_dir, js_dir=js_dir, env=env,
+    )
+    make_rcv_demo(
+        output_dir, snippets_dir=snippets_dir, js_dir=js_dir, env=env,
+    )
 
 
 if __name__ == '__main__':
