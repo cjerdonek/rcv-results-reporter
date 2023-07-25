@@ -4,16 +4,41 @@
 # * tl: Filipino
 # * zh: Chinese
 phrases:
-  continuing_total:
-    en: Continuing Ballots Total
-  blanks_total:
+  language_chinese:
+    en: Chinese
+    es: Chino
+    tl: Tsino
+    zh: 中文
+  language_english:
+    en: English
+    es: Inglés
+    tl: Ingles
+    zh: 英文
+  language_filipino:
+    en: Filipino
+    es: Filipino
+    tl: Pilipino
+    zh: 菲律宾语
+  language_spanish:
+    en: Spanish
+    es: Español
+    tl: Espanyol
+    zh: 西班牙文
+  ranked_choice_voting_contest:
+    en: Ranked-Choice Voting Contest
+    es: Contienda utilizando votación por orden de preferencia
+    tl: Labanang Ranked-Choice Voting
+    zh: 優先選擇投票競選項目
+  total_blanks:
     en: Blanks
-  exhausted_total:
+  total_continuing:
+    en: Continuing Ballots Total
+  total_exhausted:
     en: Exhausted
-  overvotes_total:
+  total_non_transferable:
+    en: Non Transferable Total
+  total_overvotes:
     en: Overvotes
     es: Sobrevotos
     tl: Mga sobrang boto
     zh: 過度投票
-  non_transferable_total:
-    en: Non Transferable Total
