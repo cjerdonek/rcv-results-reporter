@@ -5,6 +5,8 @@ from pathlib import Path
 import yaml
 
 
+ENGLISH_LANG = 'en'
+
 class NonCandidateNames:
 
     CONTINUING = 'Continuing Ballots Total'

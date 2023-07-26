@@ -3,7 +3,7 @@
 # * es: Spanish
 # * tl: Filipino
 # * zh: Chinese
-phrases:
+labels:
   language_chinese:
     en: Chinese
     es: Chino

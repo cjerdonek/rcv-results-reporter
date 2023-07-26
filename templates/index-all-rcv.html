@@ -117,7 +117,7 @@ style='margin-bottom:2px'>
 <a href="{{ election['url'] }}" target="_blank">[Original results page]</a>
   {% for rel_path, contest, contest_url in iter_contests(election) %}
     {%- set contest_name = contest['_metadata']['contest_name'] %}
-    <h4>{{ contest_name }} (Ranked-Choice Voting Contest)</h4>
+    <h4>{{ contest_name }} ({{ 'ranked_choice_voting_contest'|TL }})</h4>
     <p>A candidate must receive 50%+1 votes to be elected.
     The candidate shaded in green has the most votes based on the total
     ballots counted.

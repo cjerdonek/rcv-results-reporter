@@ -5,9 +5,11 @@ $ python src/rcvresults/main.py
 
 """
 
+import functools
 import logging
 from pathlib import Path
 
+import jinja2
 from jinja2 import Environment, FileSystemLoader
 from markupsafe import Markup
 
@@ -30,6 +32,7 @@ LANG_CODES = [
 TEMPLATE_NAME_RCV_DEMO = 'index-all-rcv.html'
 
 CONFIG_PATH = Path('config.yml')
+TRANSLATIONS_PATH = Path('translations.yml')
 
 DATA_DIR_REPORTS = Path('data-reports')
 DATA_DIR_PARSED = Path('data-parsed')
@@ -82,14 +85,29 @@ def get_report_paths(parent_reports_dir, dir_name):
     return paths
 
 
+def load_label_translations():
+    data = utils.read_yaml(TRANSLATIONS_PATH)
+    labels = data['labels']
+    return labels
+
+
 def make_environment():
     env = Environment(
         loader=FileSystemLoader('templates'),
         # TODO: pass the autoescape argument?
     )
-    env.filters['format_int'] = rendering.format_int
-    env.filters['format_percent'] = rendering.format_percent
 
+    label_translations = load_label_translations()
+    translate_label = functools.partial(
+        rendering.translate_label, translations=label_translations,
+    )
+
+    env.filters.update({
+        'format_int': rendering.format_int,
+        'format_percent': rendering.format_percent,
+        'TL': jinja2.pass_context(translate_label),
+        'TP': rendering.translate_phrase,
+    })
     return env
 
 
