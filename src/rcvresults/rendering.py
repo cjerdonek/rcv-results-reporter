@@ -26,7 +26,7 @@ def _get_language(context):
 
 
 # We apply jinja2.pass_context() to this function elsewhere in our code.
-def translate_label(context, label, lang=None, translations=None):
+def translate_label(context, label, lang=None, translated_labels=None):
     """
     Translate the given label into the language set in the given Jinja2
     context.
@@ -34,7 +34,8 @@ def translate_label(context, label, lang=None, translations=None):
     Args:
       lang: an optional 2-letter language code.  Defaults to the context's
         current language.
-      translations: the dict of translations, where the keys are the labels.
+      translated_labels: the dict of translations, where the keys are the
+        labels.
     """
     if lang is None:
         lang = _get_language(context)
@@ -45,9 +46,9 @@ def translate_label(context, label, lang=None, translations=None):
             'Make sure to pass a string as the label.'
         )
 
-    phrases = translations[label]
+    translations = translated_labels[label]
     try:
-        translation = phrases[lang]
+        translation = translations[lang]
     except KeyError:
         if lang == ENGLISH_LANG:
             raise RuntimeError(
@@ -56,7 +57,7 @@ def translate_label(context, label, lang=None, translations=None):
             ) from None
 
         try:
-            translation = phrases[ENGLISH_LANG]
+            translation = translations[ENGLISH_LANG]
         except KeyError:
             raise RuntimeError(
                 f'label {label!r} is missing a default english '
@@ -66,12 +67,23 @@ def translate_label(context, label, lang=None, translations=None):
     return translation
 
 
-# TODO: implement this.
-def translate_phrase():
-    raise NotImplementedError()
+# We apply jinja2.pass_context() to this function elsewhere in our code.
+def translate_phrase(
+    context, phrase, lang=None, translated_labels=None, phrases=None,
+):
+    """
+    Translate the given phrase into the language set in the given Jinja2
+    context.
 
-
-def render_contest(template, results, path):
-    candidates = results['candidates']
-    html = template.render(results)
-    path.write_text(html)
+    Args:
+      lang: an optional 2-letter language code.  Defaults to the context's
+        current language.
+      translated_labels: the dict of translations, where the keys are the
+        labels.
+      phrases: a dict of all phrases, mapping phrase to label.
+    """
+    label = phrases[phrase]
+    translation = translate_label(
+        context, label=label, lang=lang, translated_labels=translated_labels,
+    )
+    return translation

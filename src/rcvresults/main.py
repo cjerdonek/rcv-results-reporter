@@ -18,12 +18,13 @@ import rcvresults.parsers.xslx as excel_parsing
 import rcvresults.rendering as rendering
 import rcvresults.summary as summary
 import rcvresults.utils as utils
+from rcvresults.utils import ENGLISH_LANG
 
 
 _log = logging.getLogger(__name__)
 
 LANG_CODES = [
-    'en',  # English
+    ENGLISH_LANG,
     'es',  # Spanish
     'tl',  # Filipino
     'zh',  # Chinese
@@ -91,22 +92,38 @@ def load_label_translations():
     return labels
 
 
+def load_phrases():
+    data = utils.read_yaml(TRANSLATIONS_PATH)
+    labels = data['labels']
+    phrases = {}
+    for label, translations in labels.items():
+        phrase = translations[ENGLISH_LANG]
+        phrases[phrase] = label
+
+    return phrases
+
+
 def make_environment():
     env = Environment(
         loader=FileSystemLoader('templates'),
         # TODO: pass the autoescape argument?
     )
 
-    label_translations = load_label_translations()
+    translated_labels = load_label_translations()
     translate_label = functools.partial(
-        rendering.translate_label, translations=label_translations,
+        rendering.translate_label, translated_labels=translated_labels,
+    )
+    phrases = load_phrases()
+    translate_phrase = functools.partial(
+        rendering.translate_phrase, translated_labels=translated_labels,
+        phrases=phrases,
     )
 
     env.filters.update({
         'format_int': rendering.format_int,
         'format_percent': rendering.format_percent,
         'TL': jinja2.pass_context(translate_label),
-        'TP': rendering.translate_phrase,
+        'TP': jinja2.pass_context(translate_phrase),
     })
     return env
 
@@ -184,8 +201,10 @@ def process_rcv_contest(path, template, parsed_dir, html_dir):
     results = utils.read_json(parsed_path)
 
     output_path = html_dir / f'{path.stem}.html'
+    # TODO: DRY up with the other call to template.render()?
     _log.info(f'writing: {output_path}')
-    rendering.render_contest(template, results, path=output_path)
+    html = template.render(results)
+    output_path.write_text(html)
 
 
 def make_rcv_snippets(
@@ -247,11 +266,11 @@ def make_index_html(
         context = {}
 
     output_path = output_dir / output_name
-    _log.info(f'writing: {output_path}')
-
     template = env.get_template(template_name)
-
     context['js_dir'] = str(js_dir)
+
+    # TODO: DRY up with the other call to template.render()?
+    _log.info(f'rendering template to: {output_path}')
     html = template.render(context)
     output_path.write_text(html)
 
