@@ -138,7 +138,8 @@ def _make_index_jinja_env(snippets_dir):
     elections = config['elections']
 
     # TODO: don't use a nested function definition here?
-    def iter_contests(election):
+    def iter_contests(context, election):
+        lang_code = context['lang']
         dir_name = election['dir_name']
         json_dir = DATA_DIR_JSON / dir_name
         contests = election['contests']
@@ -146,7 +147,7 @@ def _make_index_jinja_env(snippets_dir):
             file_stem = contest['file']
             contest_url = contest['url']
             json_path = json_dir / f'{file_stem}.json'
-            html_path = f'{dir_name}/{file_stem}.html'
+            html_path = f'{dir_name}/{file_stem}-{lang_code}.html'
             contest_data = utils.read_json(json_path)
             yield (html_path, contest_data, contest_url)
 
@@ -157,7 +158,7 @@ def _make_index_jinja_env(snippets_dir):
 
     env.globals.update({
         'elections': elections,
-        'iter_contests': iter_contests,
+        'iter_contests': jinja2.pass_context(iter_contests),
         'insert_html': insert_html,
     })
 
@@ -203,21 +204,42 @@ def make_rcv_json_files(dir_names, parent_reports_dir, parent_json_dir):
             make_rcv_json(report_path, json_dir=json_dir)
 
 
+def render_template(template, output_path, context=None, lang_code=None):
+    """
+    Note: This function modifies the given context by adding a "lang" key!
+    """
+    if context is None:
+        context = {}
+    if lang_code is not None:
+        context['lang'] = lang_code
+
+    _log.info(f'rendering template to: {output_path}')
+    html = template.render(context)
+    output_path.write_text(html)
+
+
 def make_rcv_contest_html(json_path, template, html_dir):
     """
-    Create the html snippet for an RCV contest.
+    Create the html snippets for an RCV contest, one for each language.
 
     Args:
       json_path: the path to the json file containing the data parsed
         from the result report for the contest.
       html_dir: the directory to which to write the rendered html files.
     """
+    _log.info(f'making RCV html from: {json_path}')
     results = utils.read_json(json_path)
-    output_path = html_dir / f'{json_path.stem}.html'
-    # TODO: DRY up with the other call to template.render()?
-    _log.info(f'writing: {output_path}')
-    html = template.render(results)
-    output_path.write_text(html)
+    base_name = json_path.stem
+
+    for lang_code in LANG_CODES:
+        file_name = f'{base_name}-{lang_code}.html'
+        output_path = html_dir / file_name
+        # Make a copy since render_template() adds to the context.
+        context = results.copy()
+        render_template(
+            template, output_path=output_path, context=context,
+            lang_code=lang_code,
+        )
 
 
 def make_rcv_snippets(parent_json_dir, parent_snippets_dir, dir_name):
@@ -254,7 +276,7 @@ def make_all_rcv_snippets(output_dir, dir_names, parent_json_dir):
 
 def make_index_html(
     output_dir, template_name, snippets_dir, js_dir, env, output_name=None,
-    context=None
+    lang_code=None,
 ):
     """
     Args:
@@ -263,32 +285,29 @@ def make_index_html(
     """
     if output_name is None:
         output_name = template_name
-    if context is None:
-        context = {}
 
     output_path = output_dir / output_name
     template = env.get_template(template_name)
-    context['js_dir'] = str(js_dir)
 
-    # TODO: DRY up with the other call to template.render()?
-    _log.info(f'rendering template to: {output_path}')
-    html = template.render(context)
-    output_path.write_text(html)
+    context = {'js_dir': str(js_dir)}
+    render_template(
+        template, output_path=output_path, context=context,
+        lang_code=lang_code,
+    )
 
 
 def make_rcv_demo(output_dir, snippets_dir, js_dir, env):
     template_name = 'index-all-rcv.html'
     for lang_code in LANG_CODES:
-        if lang_code == 'en':
+        if lang_code == ENGLISH_LANG:
             output_name = 'index.html'
         else:
             output_name = f'index-{lang_code}.html'
 
-        context = {'lang': lang_code}
         make_index_html(
             output_dir, template_name=TEMPLATE_NAME_RCV_DEMO,
             snippets_dir=snippets_dir, js_dir=js_dir, env=env,
-            output_name=output_name, context=context,
+            output_name=output_name, lang_code=lang_code,
         )
 
 
