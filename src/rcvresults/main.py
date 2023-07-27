@@ -128,43 +128,6 @@ def make_environment():
     return env
 
 
-def _make_index_jinja_env(snippets_dir):
-    """
-    Create and return a Jinja2 Environment object to use when rendering
-    one of the index.html templates.
-    """
-    env = make_environment()
-    config = utils.read_yaml(CONFIG_PATH)
-    elections = config['elections']
-
-    # TODO: don't use a nested function definition here?
-    def iter_contests(context, election):
-        lang_code = context['lang']
-        dir_name = election['dir_name']
-        json_dir = DATA_DIR_JSON / dir_name
-        contests = election['contests']
-        for contest in contests:
-            file_stem = contest['file']
-            contest_url = contest['url']
-            json_path = json_dir / f'{file_stem}.json'
-            html_path = f'{dir_name}/{file_stem}-{lang_code}.html'
-            contest_data = utils.read_json(json_path)
-            yield (html_path, contest_data, contest_url)
-
-    def insert_html(rel_path):
-        path = snippets_dir / rel_path
-        html = path.read_text()
-        return Markup(html)
-
-    env.globals.update({
-        'elections': elections,
-        'iter_contests': jinja2.pass_context(iter_contests),
-        'insert_html': insert_html,
-    })
-
-    return env
-
-
 def make_rcv_json(path, json_dir):
     _log.info(f'parsing: {path}')
     suffix = path.suffix
@@ -213,7 +176,7 @@ def render_template(template, output_path, context=None, lang_code=None):
     if lang_code is not None:
         context['lang'] = lang_code
 
-    _log.info(f'rendering template to: {output_path}')
+    _log.info(f'rendering template to (lang={lang_code!r}): {output_path}')
     html = template.render(context)
     output_path.write_text(html)
 
@@ -274,8 +237,25 @@ def make_all_rcv_snippets(output_dir, dir_names, parent_json_dir):
     return snippets_dir
 
 
+def _make_index_jinja_env(snippets_dir):
+    """
+    Create and return a Jinja2 Environment object to use when rendering
+    one of the index.html templates.
+    """
+    env = make_environment()
+
+    def insert_html(rel_path):
+        path = snippets_dir / rel_path
+        html = path.read_text()
+        return Markup(html)
+
+    env.globals['insert_html'] = insert_html
+
+    return env
+
+
 def make_index_html(
-    output_dir, template_name, snippets_dir, js_dir, env, output_name=None,
+    output_dir, template, snippets_dir, js_dir, env, output_name=None,
     lang_code=None,
 ):
     """
@@ -284,10 +264,9 @@ def make_index_html(
         to the location of the output path.
     """
     if output_name is None:
-        output_name = template_name
+        output_name = template.name
 
     output_path = output_dir / output_name
-    template = env.get_template(template_name)
 
     context = {'js_dir': str(js_dir)}
     render_template(
@@ -296,8 +275,44 @@ def make_index_html(
     )
 
 
-def make_rcv_demo(output_dir, snippets_dir, js_dir, env):
-    template_name = 'index-all-rcv.html'
+def make_test_index_html(output_dir, snippets_dir, js_dir):
+    _log.info(f'creating: test index html')
+    env = _make_index_jinja_env(snippets_dir=snippets_dir)
+    template = env.get_template('index-test.html')
+
+    make_index_html(
+        output_dir, template=template, snippets_dir=snippets_dir,
+        js_dir=js_dir, env=env,
+    )
+
+
+def make_rcv_demo(output_dir, snippets_dir, js_dir):
+    _log.info(f'creating: RCV demo index html')
+    # TODO: don't use a nested function definition here?
+    def iter_contests(context, election):
+        lang_code = context['lang']
+        dir_name = election['dir_name']
+        json_dir = DATA_DIR_JSON / dir_name
+        contests = election['contests']
+        for contest in contests:
+            file_stem = contest['file']
+            contest_url = contest['url']
+            json_path = json_dir / f'{file_stem}.json'
+            html_path = f'{dir_name}/{file_stem}-{lang_code}.html'
+            contest_data = utils.read_json(json_path)
+            yield (html_path, contest_data, contest_url)
+
+    env = _make_index_jinja_env(snippets_dir=snippets_dir)
+
+    config = utils.read_yaml(CONFIG_PATH)
+    elections = config['elections']
+    env.globals.update({
+        'elections': elections,
+        'iter_contests': jinja2.pass_context(iter_contests),
+    })
+
+    template = env.get_template(TEMPLATE_NAME_RCV_DEMO)
+
     for lang_code in LANG_CODES:
         if lang_code == ENGLISH_LANG:
             output_name = 'index.html'
@@ -305,9 +320,9 @@ def make_rcv_demo(output_dir, snippets_dir, js_dir, env):
             output_name = f'index-{lang_code}.html'
 
         make_index_html(
-            output_dir, template_name=TEMPLATE_NAME_RCV_DEMO,
-            snippets_dir=snippets_dir, js_dir=js_dir, env=env,
-            output_name=output_name, lang_code=lang_code,
+            output_dir, template=template, snippets_dir=snippets_dir,
+            js_dir=js_dir, env=env, output_name=output_name,
+            lang_code=lang_code,
         )
 
 
@@ -336,15 +351,9 @@ def main():
         output_dir, dir_names=dir_names, parent_json_dir=DATA_DIR_JSON,
     )
 
-    # Finally, generate the overall pages.
-    env = _make_index_jinja_env(snippets_dir=snippets_dir)
-    make_index_html(
-        output_dir, template_name='index-test.html',
-        snippets_dir=snippets_dir, js_dir=js_dir, env=env,
-    )
-    make_rcv_demo(
-        output_dir, snippets_dir=snippets_dir, js_dir=js_dir, env=env,
-    )
+    # Finally, generate the index pages.
+    make_test_index_html(output_dir, snippets_dir=snippets_dir, js_dir=js_dir)
+    make_rcv_demo(output_dir, snippets_dir=snippets_dir, js_dir=js_dir)
 
 
 if __name__ == '__main__':
