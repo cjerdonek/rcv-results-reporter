@@ -36,7 +36,7 @@ CONFIG_PATH = Path('config.yml')
 TRANSLATIONS_PATH = Path('translations.yml')
 
 DATA_DIR_REPORTS = Path('data-reports')
-DATA_DIR_PARSED = Path('data-parsed')
+DATA_DIR_JSON = Path('data-parsed')
 # Directory containing copies of real past html results summary pages.
 HTML_DIR = Path('html')
 
@@ -75,7 +75,7 @@ def get_excel_paths(dir_path):
 def get_report_paths(parent_reports_dir, dir_name):
     data_dir = parent_reports_dir / dir_name
     extension = REPORT_DIR_EXTENSIONS[dir_name]
-    _log.info(f'gathering {extension} paths from: {data_dir}')
+    _log.info(f'gathering {extension} reports in: {data_dir}')
 
     if extension == 'xlsx':
         paths = get_excel_paths(data_dir)
@@ -140,7 +140,7 @@ def _make_index_jinja_env(snippets_dir):
     # TODO: don't use a nested function definition here?
     def iter_contests(election):
         dir_name = election['dir_name']
-        json_dir = DATA_DIR_PARSED / dir_name
+        json_dir = DATA_DIR_JSON / dir_name
         contests = election['contests']
         for contest in contests:
             file_stem = contest['file']
@@ -164,7 +164,7 @@ def _make_index_jinja_env(snippets_dir):
     return env
 
 
-def make_rcv_json(path, parsed_dir):
+def make_rcv_json(path, json_dir):
     _log.info(f'parsing: {path}')
     suffix = path.suffix
     if suffix == '.xlsx':
@@ -184,67 +184,68 @@ def make_rcv_json(path, parsed_dir):
     _log.info(f'parsed contest: {contest_name!r} ({len(candidates)} candidates)')
     summary.add_summary(results)
 
-    parsed_path = parsed_dir / f'{path.stem}.json'
-    utils.write_json(results, path=parsed_path)
+    json_path = json_dir / f'{path.stem}.json'
+    _log.info(f'writing: {json_path}')
+    utils.write_json(results, path=json_path)
 
-    return parsed_path
+    return json_path
 
 
-def process_rcv_contest(path, template, parsed_dir, html_dir):
+def make_rcv_json_files(dir_names, parent_reports_dir, parent_json_dir):
+    _log.info('starting RCV json file creation')
+    for dir_name in dir_names:
+        json_dir = parent_json_dir / dir_name
+        if not json_dir.exists():
+            json_dir.mkdir(parents=True)
+
+        report_paths = get_report_paths(parent_reports_dir, dir_name=dir_name)
+        for report_path in report_paths:
+            make_rcv_json(report_path, json_dir=json_dir)
+
+
+def make_rcv_contest_html(json_path, template, html_dir):
     """
+    Create the html snippet for an RCV contest.
+
     Args:
-      parsed_dir: the directory to which to write the data parsed from the
-        results reports.
+      json_path: the path to the json file containing the data parsed
+        from the result report for the contest.
       html_dir: the directory to which to write the rendered html files.
     """
-    parsed_path = make_rcv_json(path, parsed_dir=parsed_dir)
-    results = utils.read_json(parsed_path)
-
-    output_path = html_dir / f'{path.stem}.html'
+    results = utils.read_json(json_path)
+    output_path = html_dir / f'{json_path.stem}.html'
     # TODO: DRY up with the other call to template.render()?
     _log.info(f'writing: {output_path}')
     html = template.render(results)
     output_path.write_text(html)
 
 
-def make_rcv_snippets(
-    parent_reports_dir, parent_parsed_dir, parent_snippets_dir, dir_name,
-):
-    parsed_dir, html_dir = (
+def make_rcv_snippets(parent_json_dir, parent_snippets_dir, dir_name):
+    json_dir, html_dir = (
         parent_dir / dir_name for parent_dir in
-        (parent_parsed_dir, parent_snippets_dir)
+        (parent_json_dir, parent_snippets_dir)
     )
-
-    # Make sure the intermediate output directories exist.
-    if not parsed_dir.exists():
-        parsed_dir.mkdir(parents=True)
+    # Make sure the html output directory exists.
     if not html_dir.exists():
         html_dir.mkdir(parents=True)
 
     env = make_environment()
     template = env.get_template('rcv-summary.html')
 
-    paths = get_report_paths(parent_reports_dir, dir_name=dir_name)
-    for path in paths:
-        process_rcv_contest(
-            path, template=template, parsed_dir=parsed_dir, html_dir=html_dir,
-        )
+    json_paths = utils.get_paths(json_dir, suffix='json')
+    for json_path in json_paths:
+        make_rcv_contest_html(json_path, template=template, html_dir=html_dir)
 
 
-def make_all_rcv_snippets(output_dir):
+def make_all_rcv_snippets(output_dir, dir_names, parent_json_dir):
+    _log.info('starting RCV html snippet creation')
     # This is the parent directory to which to write the intermediate
     # HTML snippets.
     snippets_dir = output_dir / 'rcv-snippets'
 
-    dir_names = [
-        DIR_NAME_2019_NOV,
-        DIR_NAME_2020_NOV,
-        DIR_NAME_2022_FEB,
-        DIR_NAME_2022_NOV,
-    ]
     for dir_name in dir_names:
         make_rcv_snippets(
-            parent_reports_dir=DATA_DIR_REPORTS, parent_parsed_dir=DATA_DIR_PARSED,
+            parent_json_dir=parent_json_dir,
             parent_snippets_dir=snippets_dir, dir_name=dir_name,
         )
 
@@ -300,10 +301,23 @@ def main():
     # repo root.
     js_dir = Path('..') / HTML_DIR / DIR_NAME_2022_NOV / 'js'
 
-    # First generate the RCV summary snippets.
-    snippets_dir = make_all_rcv_snippets(output_dir)
+    dir_names = [
+        DIR_NAME_2019_NOV,
+        DIR_NAME_2020_NOV,
+        DIR_NAME_2022_FEB,
+        DIR_NAME_2022_NOV,
+    ]
+    # First generate the RCV json files.
+    make_rcv_json_files(
+        dir_names=dir_names, parent_reports_dir=DATA_DIR_REPORTS,
+        parent_json_dir=DATA_DIR_JSON,
+    )
+    # Next, generate the RCV summary html snippets.
+    snippets_dir = make_all_rcv_snippets(
+        output_dir, dir_names=dir_names, parent_json_dir=DATA_DIR_JSON,
+    )
 
-    # Then generate the overall pages.
+    # Finally, generate the overall pages.
     env = _make_index_jinja_env(snippets_dir=snippets_dir)
     make_index_html(
         output_dir, template_name='index-test.html',

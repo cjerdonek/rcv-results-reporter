@@ -8,7 +8,7 @@ from unittest import TestCase
 
 import rcvresults.main as main
 from rcvresults.main import (
-    DATA_DIR_PARSED, DATA_DIR_REPORTS, DIR_NAME_2020_NOV, DIR_NAME_2022_NOV,
+    DATA_DIR_JSON, DATA_DIR_REPORTS, DIR_NAME_2020_NOV, DIR_NAME_2022_NOV,
 )
 
 
@@ -19,7 +19,7 @@ class EndToEndTestCase(TestCase):
     """
 
     def _test_json_outputs(self, dir_name, expected_count):
-        reference_dir = DATA_DIR_PARSED / dir_name
+        reference_dir = DATA_DIR_JSON / dir_name
         paths = main.get_report_paths(DATA_DIR_REPORTS, dir_name=dir_name)
         # Make sure we got all the paths
         self.assertEqual(len(paths), expected_count)
