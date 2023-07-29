@@ -8,7 +8,7 @@ import yaml
 # The key to use in the template context for the current language.
 CURRENT_LANG_KEY = 'current_lang'
 
-LANG_ENGLISH = 'en'
+LANG_CODE_ENGLISH = 'en'
 
 # A dict of the languages that should appear in the language toggle
 # at the top of the html, in the order they should appear.
@@ -16,7 +16,7 @@ LANG_ENGLISH = 'en'
 # The dict maps the language's 2-letter language code to the label for
 # the language in the translations.yml file.
 LANGUAGES = {
-    LANG_ENGLISH: 'language_english',
+    LANG_CODE_ENGLISH: 'language_english',
     # Spanish
     'es': 'language_spanish',
     # Filipino

@@ -18,7 +18,7 @@ import rcvresults.parsers.xslx as excel_parsing
 import rcvresults.rendering as rendering
 import rcvresults.summary as summary
 import rcvresults.utils as utils
-from rcvresults.utils import CURRENT_LANG_KEY, LANG_ENGLISH, LANGUAGES
+from rcvresults.utils import CURRENT_LANG_KEY, LANG_CODE_ENGLISH, LANGUAGES
 
 
 _log = logging.getLogger(__name__)
@@ -90,7 +90,7 @@ def load_phrases():
     labels = data['labels']
     phrases = {}
     for label, translations in labels.items():
-        phrase = translations[LANG_ENGLISH]
+        phrase = translations[LANG_CODE_ENGLISH]
         phrases[phrase] = label
 
     return phrases
@@ -312,7 +312,7 @@ def make_rcv_demo(output_dir, snippets_dir, js_dir):
     template = env.get_template(TEMPLATE_NAME_RCV_DEMO)
 
     for lang_code in LANGUAGES:
-        if lang_code == LANG_ENGLISH:
+        if lang_code == LANG_CODE_ENGLISH:
             output_name = 'index.html'
         else:
             output_name = f'index-{lang_code}.html'

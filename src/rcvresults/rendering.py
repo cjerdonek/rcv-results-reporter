@@ -3,7 +3,7 @@ Supports rendering Jinja2 templates.
 """
 
 
-from rcvresults.utils import CURRENT_LANG_KEY, LANG_ENGLISH, LANGUAGES
+from rcvresults.utils import CURRENT_LANG_KEY, LANG_CODE_ENGLISH, LANGUAGES
 
 
 def format_int(value):
@@ -22,7 +22,17 @@ def _get_language(context):
     Return the language set in the context, as a 2-letter language code
     (e.g. "en").
     """
-    return context.get(CURRENT_LANG_KEY, LANG_ENGLISH)
+    return context.get(CURRENT_LANG_KEY, LANG_CODE_ENGLISH)
+
+
+def get_index_name(lang_code):
+    """
+    Return the name of the index.html page, for the given language.
+    """
+    if lang_code == LANG_CODE_ENGLISH:
+        return 'index.html'
+
+    return f'index-{lang_code}.html'
 
 
 def iter_languages(context):
@@ -34,6 +44,7 @@ def iter_languages(context):
         lang = {
             'code': lang_code,
             'label': lang_label,
+            'page_name': get_index_name(lang_code),
         }
         yield lang
 
@@ -63,18 +74,18 @@ def translate_label(context, label, lang=None, translated_labels=None):
     try:
         translation = translations[lang]
     except KeyError:
-        if lang == LANG_ENGLISH:
+        if lang == LANG_CODE_ENGLISH:
             raise RuntimeError(
                 f'label {label!r} is missing an english '
-                f'({LANG_ENGLISH!r}) translation'
+                f'({LANG_CODE_ENGLISH!r}) translation'
             ) from None
 
         try:
-            translation = translations[LANG_ENGLISH]
+            translation = translations[LANG_CODE_ENGLISH]
         except KeyError:
             raise RuntimeError(
                 f'label {label!r} is missing a default english '
-                f'({LANG_ENGLISH!r}) translation for {lang!r}'
+                f'({LANG_CODE_ENGLISH!r}) translation for {lang!r}'
             )
 
     return translation

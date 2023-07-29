@@ -94,7 +94,6 @@ GNU General Public License version 3
 
 ## TODO
 
-* Make a language-switcher at the top of `index-all-rcv.html`.
 * Make test HTML viewable on GitHub.
 * Add end-to-end tests of the html.
 * Make sure all elections are covered in the tests.

@@ -58,16 +58,19 @@ type="text/javascript">
 </style>
 </head>
 <body>
-<h1>RCV Results Demo</h1>
-<p>
-{{ 'switch_language'|TL -}}
-{%- if current_lang != "en" %} ({{ 'switch_language'|TL(lang='en') }})
+{{ 'switch_language'|TL(lang='en') -}}
+{%- if current_lang != "en" %} ({{ 'switch_language'|TL }})
 {%- endif -%}:
 {% for lang in iter_languages() %}
-  {{ lang.label|TL(lang=lang.code) }}
-  {%- if lang.code != current_lang %} ({{ lang.label|TL(lang=current_lang) }}){%- endif -%}
+  {%- if lang.code == current_lang -%}
+    {{ lang.label|TL(lang=lang.code) }}
+  {%- else -%}
+    <a href="{{ lang.page_name }}">{{ lang.label|TL(lang=lang.code) }}
+      ({{ lang.label|TL(lang=current_lang) }})</a>
+  {%- endif -%}
   {%- if not loop.last %} |{% endif %}
 {% endfor %}
+<h1>RCV Results Demo</h1>
 <h2>Election Index</h2>
 <p>
   The RCV contests for the past four elections are shown below.
