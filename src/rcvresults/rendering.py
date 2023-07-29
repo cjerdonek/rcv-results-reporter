@@ -3,7 +3,7 @@ Supports rendering Jinja2 templates.
 """
 
 
-from rcvresults.utils import ENGLISH_LANG
+from rcvresults.utils import CURRENT_LANG_KEY, LANG_ENGLISH, LANGUAGES
 
 
 def format_int(value):
@@ -22,7 +22,20 @@ def _get_language(context):
     Return the language set in the context, as a 2-letter language code
     (e.g. "en").
     """
-    return context.get('lang', ENGLISH_LANG)
+    return context.get(CURRENT_LANG_KEY, LANG_ENGLISH)
+
+
+def iter_languages(context):
+    """
+    Yield information about each language, in the order we would like the
+    languages to appear in the toggle at the top of the html page.
+    """
+    for lang_code, lang_label in LANGUAGES.items():
+        lang = {
+            'code': lang_code,
+            'label': lang_label,
+        }
+        yield lang
 
 
 # We apply jinja2.pass_context() to this function elsewhere in our code.
@@ -50,18 +63,18 @@ def translate_label(context, label, lang=None, translated_labels=None):
     try:
         translation = translations[lang]
     except KeyError:
-        if lang == ENGLISH_LANG:
+        if lang == LANG_ENGLISH:
             raise RuntimeError(
                 f'label {label!r} is missing an english '
-                f'({ENGLISH_LANG!r}) translation'
+                f'({LANG_ENGLISH!r}) translation'
             ) from None
 
         try:
-            translation = translations[ENGLISH_LANG]
+            translation = translations[LANG_ENGLISH]
         except KeyError:
             raise RuntimeError(
                 f'label {label!r} is missing a default english '
-                f'({ENGLISH_LANG!r}) translation for {lang!r}'
+                f'({LANG_ENGLISH!r}) translation for {lang!r}'
             )
 
     return translation

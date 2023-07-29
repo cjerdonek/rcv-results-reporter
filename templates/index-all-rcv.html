@@ -59,49 +59,15 @@ type="text/javascript">
 </head>
 <body>
 <h1>RCV Results Demo</h1>
-<div class='container-fluid'>
-<div class='row'><strong>Voter Turnout:</strong> 62.32%<a class=
-'btn btn-default pull-right' href='data/summary.xml' role='button'
-download="">XML </a><br>
-<strong>Number of Ballots Cast:</strong> 310,071<br>
-<strong>Voter Registration:</strong> 497,561<br>
-<strong>Final Update:</strong> December 01, 2022 3:56 PM<br>
-<div class='row'>
-<div class='col-xs-12 col-md-12'>
-<table class='table table-striped table-bordered table-condensed'
-style='margin-bottom:2px'>
-<thead>
-<tr>
-<th class='col-xs-6 col-md-6' align='left'></th>
-<th class='col-xs-3 col-md-3' align='center'>Ballots Counted</th>
-<th class='col-xs-3 col-md-3' align='center' data-defaultsort=
-'disabled'>Percentage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>In-person ballots cast on Election Day</td>
-<td align='right'>35,595</td>
-<td align='right'>7.15%</td>
-</tr>
-<tr>
-<td>Vote-by-mail ballots</td>
-<td align='right'>274,476</td>
-<td align='right'>55.16%</td>
-</tr>
-</tbody>
-<tfoot>
-<tr>
-<td id='candidate'><b>Total</b></td>
-<td id='votes' align='right'>310,071</td>
-<td id='pct' align='right'>62.32%</td>
-</tr>
-</tfoot>
-</table>
-</div>
-</div>
-<br></div>
-</div>
+<p>
+{{ 'switch_language'|TL -}}
+{%- if current_lang != "en" %} ({{ 'switch_language'|TL(lang='en') }})
+{%- endif -%}:
+{% for lang in iter_languages() %}
+  {{ lang.label|TL(lang=lang.code) }}
+  {%- if lang.code != current_lang %} ({{ lang.label|TL(lang=current_lang) }}){%- endif -%}
+  {%- if not loop.last %} |{% endif %}
+{% endfor %}
 <h2>Election Index</h2>
 <p>
   The RCV contests for the past four elections are shown below.

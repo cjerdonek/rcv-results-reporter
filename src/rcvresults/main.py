@@ -18,17 +18,10 @@ import rcvresults.parsers.xslx as excel_parsing
 import rcvresults.rendering as rendering
 import rcvresults.summary as summary
 import rcvresults.utils as utils
-from rcvresults.utils import ENGLISH_LANG
+from rcvresults.utils import CURRENT_LANG_KEY, LANG_ENGLISH, LANGUAGES
 
 
 _log = logging.getLogger(__name__)
-
-LANG_CODES = [
-    ENGLISH_LANG,
-    'es',  # Spanish
-    'tl',  # Filipino
-    'zh',  # Chinese
-]
 
 TEMPLATE_NAME_RCV_DEMO = 'index-all-rcv.html'
 
@@ -97,7 +90,7 @@ def load_phrases():
     labels = data['labels']
     phrases = {}
     for label, translations in labels.items():
-        phrase = translations[ENGLISH_LANG]
+        phrase = translations[LANG_ENGLISH]
         phrases[phrase] = label
 
     return phrases
@@ -174,7 +167,7 @@ def render_template(template, output_path, context=None, lang_code=None):
     if context is None:
         context = {}
     if lang_code is not None:
-        context['lang'] = lang_code
+        context[CURRENT_LANG_KEY] = lang_code
 
     _log.info(f'rendering template to (lang={lang_code!r}): {output_path}')
     html = template.render(context)
@@ -194,7 +187,7 @@ def make_rcv_contest_html(json_path, template, html_dir):
     results = utils.read_json(json_path)
     base_name = json_path.stem
 
-    for lang_code in LANG_CODES:
+    for lang_code in LANGUAGES:
         file_name = f'{base_name}-{lang_code}.html'
         output_path = html_dir / file_name
         # Make a copy since render_template() adds to the context.
@@ -286,21 +279,25 @@ def make_test_index_html(output_dir, snippets_dir, js_dir):
     )
 
 
+def _iter_contests(context, election):
+    """
+    Yield information about each contest in an election.
+    """
+    lang_code = context[CURRENT_LANG_KEY]
+    dir_name = election['dir_name']
+    json_dir = DATA_DIR_JSON / dir_name
+    contests = election['contests']
+    for contest in contests:
+        file_stem = contest['file']
+        contest_url = contest['url']
+        json_path = json_dir / f'{file_stem}.json'
+        html_path = f'{dir_name}/{file_stem}-{lang_code}.html'
+        contest_data = utils.read_json(json_path)
+        yield (html_path, contest_data, contest_url)
+
+
 def make_rcv_demo(output_dir, snippets_dir, js_dir):
     _log.info(f'creating: RCV demo index html')
-    # TODO: don't use a nested function definition here?
-    def iter_contests(context, election):
-        lang_code = context['lang']
-        dir_name = election['dir_name']
-        json_dir = DATA_DIR_JSON / dir_name
-        contests = election['contests']
-        for contest in contests:
-            file_stem = contest['file']
-            contest_url = contest['url']
-            json_path = json_dir / f'{file_stem}.json'
-            html_path = f'{dir_name}/{file_stem}-{lang_code}.html'
-            contest_data = utils.read_json(json_path)
-            yield (html_path, contest_data, contest_url)
 
     env = _make_index_jinja_env(snippets_dir=snippets_dir)
 
@@ -308,13 +305,14 @@ def make_rcv_demo(output_dir, snippets_dir, js_dir):
     elections = config['elections']
     env.globals.update({
         'elections': elections,
-        'iter_contests': jinja2.pass_context(iter_contests),
+        'iter_contests': jinja2.pass_context(_iter_contests),
+        'iter_languages': jinja2.pass_context(rendering.iter_languages),
     })
 
     template = env.get_template(TEMPLATE_NAME_RCV_DEMO)
 
-    for lang_code in LANG_CODES:
-        if lang_code == ENGLISH_LANG:
+    for lang_code in LANGUAGES:
+        if lang_code == LANG_ENGLISH:
             output_name = 'index.html'
         else:
             output_name = f'index-{lang_code}.html'

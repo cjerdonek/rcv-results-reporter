@@ -29,6 +29,12 @@ labels:
     es: Contienda utilizando votación por orden de preferencia
     tl: Labanang Ranked-Choice Voting
     zh: 優先選擇投票競選項目
+  # Text preceding the language toggle at the top of each page.
+  switch_language:
+    en: Change language
+    es: Cambiar de idioma
+    tl: Lumipat wika
+    zh: 切换语言
   total_blanks:
     en: Blanks
   total_continuing:
