@@ -312,11 +312,7 @@ def make_rcv_demo(output_dir, snippets_dir, js_dir):
     template = env.get_template(TEMPLATE_NAME_RCV_DEMO)
 
     for lang_code in LANGUAGES:
-        if lang_code == LANG_CODE_ENGLISH:
-            output_name = 'index.html'
-        else:
-            output_name = f'index-{lang_code}.html'
-
+        output_name = rendering.get_index_name(lang_code)
         make_index_html(
             output_dir, template=template, snippets_dir=snippets_dir,
             js_dir=js_dir, env=env, output_name=output_name,
