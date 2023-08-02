@@ -28,8 +28,10 @@ TEMPLATE_NAME_RCV_DEMO = 'index-all-rcv.html'
 CONFIG_PATH = Path('config.yml')
 TRANSLATIONS_PATH = Path('translations.yml')
 
+DATA_DIR = Path('data')
 DATA_DIR_REPORTS = Path('data-reports')
-DATA_DIR_JSON = Path('data-parsed')
+DATA_DIR_JSON = DATA_DIR / 'output-json'
+
 # Directory containing copies of real past html results summary pages.
 HTML_DIR = Path('html')
 
@@ -279,13 +281,13 @@ def make_test_index_html(output_dir, snippets_dir, js_dir):
     )
 
 
-def _iter_contests(context, election):
+def _iter_contests(context, election, parent_json_dir):
     """
     Yield information about each contest in an election.
     """
     lang_code = context[CURRENT_LANG_KEY]
     dir_name = election['dir_name']
-    json_dir = DATA_DIR_JSON / dir_name
+    json_dir = parent_json_dir / dir_name
     contests = election['contests']
     for contest in contests:
         file_stem = contest['file']
@@ -296,16 +298,20 @@ def _iter_contests(context, election):
         yield (html_path, contest_data, contest_url)
 
 
-def make_rcv_demo(output_dir, snippets_dir, js_dir):
+def make_rcv_demo(output_dir, snippets_dir, js_dir, parent_json_dir):
     _log.info(f'creating: RCV demo index html')
 
     env = _make_index_jinja_env(snippets_dir=snippets_dir)
 
     config = utils.read_yaml(CONFIG_PATH)
     elections = config['elections']
+    iter_contests = functools.partial(
+        _iter_contests, parent_json_dir=parent_json_dir,
+    )
+
     env.globals.update({
         'elections': elections,
-        'iter_contests': jinja2.pass_context(_iter_contests),
+        'iter_contests': jinja2.pass_context(iter_contests),
         'iter_languages': jinja2.pass_context(rendering.iter_languages),
     })
 
@@ -328,6 +334,7 @@ def main():
     # Start with the parent ("..") to get from output_dir back to the
     # repo root.
     js_dir = Path('..') / HTML_DIR / DIR_NAME_2022_NOV / 'js'
+    parent_json_dir = DATA_DIR_JSON
 
     dir_names = [
         DIR_NAME_2019_NOV,
@@ -338,16 +345,19 @@ def main():
     # First generate the RCV json files.
     make_rcv_json_files(
         dir_names=dir_names, parent_reports_dir=DATA_DIR_REPORTS,
-        parent_json_dir=DATA_DIR_JSON,
+        parent_json_dir=parent_json_dir,
     )
     # Next, generate the RCV summary html snippets.
     snippets_dir = make_all_rcv_snippets(
-        output_dir, dir_names=dir_names, parent_json_dir=DATA_DIR_JSON,
+        output_dir, dir_names=dir_names, parent_json_dir=parent_json_dir,
     )
 
     # Finally, generate the index pages.
     make_test_index_html(output_dir, snippets_dir=snippets_dir, js_dir=js_dir)
-    make_rcv_demo(output_dir, snippets_dir=snippets_dir, js_dir=js_dir)
+    make_rcv_demo(
+        output_dir, snippets_dir=snippets_dir, js_dir=js_dir,
+        parent_json_dir=parent_json_dir,
+    )
 
 
 if __name__ == '__main__':
