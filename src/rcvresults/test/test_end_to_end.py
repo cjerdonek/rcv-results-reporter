@@ -28,7 +28,7 @@ class EndToEndTestCase(TestCase):
             with self.subTest(path=path):
                 with TemporaryDirectory() as temp_dir:
                     temp_dir = Path(temp_dir)
-                    output_path = main.make_rcv_json(path, parsed_dir=temp_dir)
+                    output_path = main.make_rcv_json(path, json_dir=temp_dir)
                     reference_path = reference_dir / f'{path.stem}.json'
                     actual_text, expected_text = (
                         path.read_text() for path in (output_path, reference_path)
