@@ -90,7 +90,7 @@ $ tidy -output html/2020-11-03/index-tidied.html -utf8 html/2020-11-03/index-ori
 
 ## License
 
-GNU General Public License version 3
+BSD 3-Clause License
 
 ## TODO
 
