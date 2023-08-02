@@ -334,7 +334,7 @@ def main():
     output_dir = DEFAULT_HTML_OUTPUT_DIR
     # Start with the parent ("..") to get from output_dir back to the
     # repo root.
-    js_dir = Path('..') / HTML_DIR / DIR_NAME_2022_NOV / 'js'
+    js_dir = Path('../..') / HTML_DIR / DIR_NAME_2022_NOV / 'js'
     parent_json_dir = DATA_DIR_JSON
 
     dir_names = [
