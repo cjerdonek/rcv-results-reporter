@@ -29,7 +29,7 @@ CONFIG_PATH = Path('config.yml')
 TRANSLATIONS_PATH = Path('translations.yml')
 
 DATA_DIR = Path('data')
-DATA_DIR_REPORTS = Path('data-reports')
+DATA_DIR_REPORTS = DATA_DIR / 'input-reports'
 DATA_DIR_JSON = DATA_DIR / 'output-json'
 
 # Directory containing copies of real past html results summary pages.
