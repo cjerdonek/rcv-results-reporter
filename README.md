@@ -97,5 +97,4 @@ BSD 3-Clause License
 * Make test HTML viewable on GitHub.
 * Add end-to-end tests of the html.
 * Make sure all elections are covered in the tests.
-* Compare html using Excel files from 2019 election.
 * Add intermediate rounds? (expand / collapse)

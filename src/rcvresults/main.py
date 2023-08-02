@@ -31,6 +31,7 @@ TRANSLATIONS_PATH = Path('translations.yml')
 DATA_DIR = Path('data')
 DATA_DIR_REPORTS = DATA_DIR / 'input-reports'
 DATA_DIR_JSON = DATA_DIR / 'output-json'
+DEFAULT_HTML_OUTPUT_DIR = DATA_DIR / 'output-html'
 
 # Directory containing copies of real past html results summary pages.
 HTML_DIR = Path('sample-html')
@@ -330,7 +331,7 @@ def main():
     log_format = '[{levelname}] {name}: {message}'
     logging.basicConfig(format=log_format, style='{', level=logging.INFO)
 
-    output_dir = Path('output')
+    output_dir = DEFAULT_HTML_OUTPUT_DIR
     # Start with the parent ("..") to get from output_dir back to the
     # repo root.
     js_dir = Path('..') / HTML_DIR / DIR_NAME_2022_NOV / 'js'
