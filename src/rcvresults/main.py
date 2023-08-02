@@ -33,7 +33,7 @@ DATA_DIR_REPORTS = DATA_DIR / 'input-reports'
 DATA_DIR_JSON = DATA_DIR / 'output-json'
 
 # Directory containing copies of real past html results summary pages.
-HTML_DIR = Path('html')
+HTML_DIR = Path('sample-html')
 
 DIR_NAME_2019_NOV = '2019-11-05'
 DIR_NAME_2020_NOV = '2020-11-03'
