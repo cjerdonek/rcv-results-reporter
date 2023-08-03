@@ -10,9 +10,9 @@ and is an open data format.)
 
 ## Overview
 
-This project enables the round-by-round results of RCV contests to be
-displayed in an HTML format, in addition to Dominion's default formats of
-PDF, Excel, and XML.
+This project enables the round-by-round results of Dominion RCV contests
+to be displayed in an HTML format, in addition to Dominion's default
+formats of PDF, Excel, and XML.
 
 The HTML results can also be rendered in an abbreviated form for
 inclusion in an HTML election results summary page of several contests.
@@ -47,6 +47,35 @@ Some advantages:
   election:
   ![Screenshot of Dominion PDF page
   break](docs/images/2022-11-DA-Dominion-PDF.png)
+
+## How it Works
+
+The code works like this:
+
+1. First, the code reads in an XML or Excel report for an RCV contest
+   from the Dominion system and extracts the candidate names and
+   vote subtotals for each round. Optionally, this intermediate
+   information can be saved to a JSON file before proceeding to the
+   next step. [Here](data/output-json/2022-11-08/da_short.json)
+   is an example of what such a JSON file looks like (for the same
+   contest from the screenshots above).
+2. Second, the code takes the candidate names and vote subtotals
+   from the previous steps and generates one or more HTML snippets for
+   the contest (e.g. one for each language).
+   These snippets are then saved to individual files that can then be
+   included in a larger HTML summary page, as they are in the demo page.
+
+   To generate the HTML, the code uses
+   [Jinja](https://jinja.palletsprojects.com/) templates and a
+   [YAML file of translations](translations.yml) of words used in the
+   HTML snippets. Each template can be customized as needed to control
+   exactly how the HTML snippets look, and the YAML file can be expanded
+   to support more languages.
+   [Here](data/output-html/rcv-snippets/2022-11-08/da_short-en.html) is
+   an example of what such an HTML snippet might look like
+   (again for the same contest as above), and
+   [here](data/output-html/rcv-snippets/2022-11-08) is the directory
+   of all HTML snippets used in the demo for the November 2022 election.
 
 ## Requirements
 
