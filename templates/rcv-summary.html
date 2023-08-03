@@ -1,51 +1,44 @@
 <!-- contest: "{{ _metadata['contest_name'] }}" -->
 <table class='table table-striped table-bordered table-condensed'>
 <thead>
-{% set multiple_rounds = highest_round != 1 %}
+{%- set multiple_rounds = highest_round != 1 %}
 <tr>
 <th class='col-xs-6 col-md-6' align='left'></th>
-{% if multiple_rounds %}
+{%- if multiple_rounds %}
 <th class='col-xs-3 col-md-3' align='center'>Round 1</th>
-{% endif %}
-<th class='col-xs-3 col-md-3' align='center' data-defaultsort=
-'disabled'>Round {{ highest_round }} (Final Round)</th>
+{%- endif %}
+<th class='col-xs-3 col-md-3' align='center' data-defaultsort='disabled'>Round {{ highest_round }} (Final Round)</th>
 </tr>
 </thead>
 <tbody>
-{% for candidate in candidates %}
+{%- for candidate in candidates %}
   {%- set round_1 = rounds[candidate][0] %}
   {#- Subtract 1 to get a 0-based index. #}
   {%- set round_last = rounds[candidate][highest_round - 1] %}
   {%- set candidate_style = 'color:green;' if candidate in leading_candidates else '' %}
 <tr>
-<td id='candidate'>
-<span style='{{ candidate_style }}'>{{ candidate }}</span>
-</td>
-{% if multiple_rounds %}
-<td align='right'>
-({{ round_1['percent']|format_percent }}) {{ round_1['votes']|format_int }}
-</td>
-{% endif %}
-<td align='right'>
-<span style='{{ candidate_style }}'>
-{%- if round_last['votes'] != 0 %}({{ round_last['percent']|format_percent }}){% endif %}
-{{ round_last['votes']|format_int }}
-</span>
-</td>
+<td id='candidate'><span style='{{ candidate_style }}'>{{ candidate }}</span></td>
+{%- if multiple_rounds %}
+<td align='right'>({{ round_1['percent']|format_percent }}) {{ round_1['votes']|format_int }}</td>
+{%- endif %}
+<td align='right'><span style='{{ candidate_style }}'>
+{%- if round_last['votes'] != 0 %}({{ round_last['percent']|format_percent }}) {% endif -%}
+{{ round_last['votes']|format_int -}}
+</span></td>
 </tr>
-{% endfor %}
+{%- endfor %}
 </tbody>
-{# Display the non-candidate totals after the candidate totals. #}
+{#- Display the non-candidate totals after the candidate totals. #}
 <tfoot>
-{%- for subtotal_name in non_candidate_subtotals %}
+{% for subtotal_name in non_candidate_subtotals %}
   {%- set round_1 = rounds[subtotal_name][0] %}
   {#- Subtract 1 to get a 0-based index. #}
   {%- set round_last = rounds[subtotal_name][highest_round - 1] -%}
 <tr>
 <td id='candidate'>{{ subtotal_name|TP }}</td>
-{% if multiple_rounds %}
+{%- if multiple_rounds %}
 <td align='right'>{{ round_1['votes']|format_int }}</td>
-{% endif %}
+{%- endif %}
 <td align='right'>{{ round_last['votes']|format_int }}</td>
 </tr>
 {%- endfor %}
