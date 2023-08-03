@@ -98,4 +98,3 @@ BSD 3-Clause License
 * Add end-to-end tests of the html.
 * Make sure all elections are covered in the tests.
 * Add intermediate rounds? (expand / collapse)
-* Try using a symlink for the js directory.

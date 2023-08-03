@@ -300,9 +300,9 @@ def main():
     logging.basicConfig(format=log_format, style='{', level=logging.INFO)
 
     output_dir = DEFAULT_HTML_OUTPUT_DIR
-    # Start with the parent ("..") to get from output_dir back to the
-    # repo root.
-    js_dir = Path('../..') / HTML_DIR / DIR_NAME_2022_NOV / 'js'
+    # We have a symlink at "data/output-html/js" that points to
+    # "sample-html/2022-11-08/js" (as a relative path).
+    js_dir = Path('js')
     parent_json_dir = DATA_DIR_JSON
 
     dir_names = [
