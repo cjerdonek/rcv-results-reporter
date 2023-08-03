@@ -86,7 +86,7 @@ in July 2020 (with approvals of subsequent modifications in 2021 and later).
 
 ## Setup
 
-Install Python.
+Install Python. Any recent version should work, e.g. Python 3.8 or newer.
 
 Install Python requirements and the project itself (preferably within
 a Python virtual environment):
@@ -98,11 +98,13 @@ $ pip install -e .
 
 ## Usage
 
+To run the demo:
+
 ```
 $ python src/rcvresults/main.py
 ```
 
-TODO
+TODO: add a script that can be used in a more general, non-demo context.
 
 ## Developing
 
@@ -123,11 +125,12 @@ $ tidy -output html/2020-11-03/index-tidied.html -utf8 html/2020-11-03/index-ori
 
 ## License
 
-BSD 3-Clause License
+BSD 3-Clause License, Copyright (c) 2023, Chris Jerdonek
 
 ## TODO
 
 * Make test HTML viewable on GitHub.
 * Add end-to-end tests of the html.
 * Make sure all elections are covered in the tests.
+* Add a "production" script for use in a non-demo context.
 * Add intermediate rounds? (expand / collapse)
