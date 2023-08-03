@@ -2,8 +2,25 @@
 Supports rendering Jinja2 templates.
 """
 
+import logging
 
 from rcvresults.utils import CURRENT_LANG_KEY, LANG_CODE_ENGLISH, LANGUAGES
+
+
+_log = logging.getLogger(__name__)
+
+
+def render_template(template, output_path, context=None, lang_code=None):
+    if context is None:
+        context = {}
+    if lang_code is not None:
+        # Copy the context since we are modifying it.
+        context = context.copy()
+        context[CURRENT_LANG_KEY] = lang_code
+
+    _log.info(f'rendering template to (lang={lang_code!r}): {output_path}')
+    html = template.render(context)
+    output_path.write_text(html)
 
 
 def format_int(value):

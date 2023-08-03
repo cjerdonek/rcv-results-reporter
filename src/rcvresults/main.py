@@ -163,20 +163,6 @@ def make_rcv_json_files(dir_names, parent_reports_dir, parent_json_dir):
             make_rcv_json(report_path, json_dir=json_dir)
 
 
-def render_template(template, output_path, context=None, lang_code=None):
-    """
-    Note: This function modifies the given context by adding a "lang" key!
-    """
-    if context is None:
-        context = {}
-    if lang_code is not None:
-        context[CURRENT_LANG_KEY] = lang_code
-
-    _log.info(f'rendering template to (lang={lang_code!r}): {output_path}')
-    html = template.render(context)
-    output_path.write_text(html)
-
-
 def make_rcv_contest_html(json_path, template, html_dir):
     """
     Create the html snippets for an RCV contest, one for each language.
@@ -195,7 +181,7 @@ def make_rcv_contest_html(json_path, template, html_dir):
         output_path = html_dir / file_name
         # Make a copy since render_template() adds to the context.
         context = results.copy()
-        render_template(
+        rendering.render_template(
             template, output_path=output_path, context=context,
             lang_code=lang_code,
         )
@@ -265,7 +251,7 @@ def make_index_html(
     output_path = output_dir / output_name
 
     context = {'js_dir': str(js_dir)}
-    render_template(
+    rendering.render_template(
         template, output_path=output_path, context=context,
         lang_code=lang_code,
     )
