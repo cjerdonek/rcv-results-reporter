@@ -163,30 +163,6 @@ def make_rcv_json_files(dir_names, parent_reports_dir, parent_json_dir):
             make_rcv_json(report_path, json_dir=json_dir)
 
 
-def make_rcv_contest_html(json_path, template, html_dir):
-    """
-    Create the html snippets for an RCV contest, one for each language.
-
-    Args:
-      json_path: the path to the json file containing the data parsed
-        from the result report for the contest.
-      html_dir: the directory to which to write the rendered html files.
-    """
-    _log.info(f'making RCV html from: {json_path}')
-    results = utils.read_json(json_path)
-    base_name = json_path.stem
-
-    for lang_code in LANGUAGES:
-        file_name = f'{base_name}-{lang_code}.html'
-        output_path = html_dir / file_name
-        # Make a copy since render_template() adds to the context.
-        context = results.copy()
-        rendering.render_template(
-            template, output_path=output_path, context=context,
-            lang_code=lang_code,
-        )
-
-
 def make_rcv_snippets(parent_json_dir, parent_snippets_dir, dir_name):
     json_dir, html_dir = (
         parent_dir / dir_name for parent_dir in
@@ -201,7 +177,13 @@ def make_rcv_snippets(parent_json_dir, parent_snippets_dir, dir_name):
 
     json_paths = utils.get_paths(json_dir, suffix='json')
     for json_path in json_paths:
-        make_rcv_contest_html(json_path, template=template, html_dir=html_dir)
+        _log.info(f'making RCV html from: {json_path}')
+        rcv_data = utils.read_json(json_path)
+        base_name = json_path.stem
+        rendering.make_rcv_contest_html(
+            rcv_data, template=template, html_dir=html_dir,
+            base_name=base_name,
+        )
 
 
 def make_all_rcv_snippets(output_dir, dir_names, parent_json_dir):
