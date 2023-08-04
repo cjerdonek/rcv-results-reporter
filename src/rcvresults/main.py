@@ -47,6 +47,7 @@ REPORT_DIR_EXTENSIONS = {
     DIR_NAME_2019_NOV: 'xml',
     DIR_NAME_2020_NOV: 'xml',
     DIR_NAME_2022_FEB: 'xml',
+    # The November 2022 election doesn't have XML files posted -- only Excel.
     DIR_NAME_2022_NOV: 'xlsx',
 }
 
