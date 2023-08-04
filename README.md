@@ -146,7 +146,6 @@ BSD 3-Clause License, Copyright (c) 2023, Chris Jerdonek
   * Blanks
   * Exhausted
   * Non Transferable Total
-  * Round (as well as "Final Round")
 * Make test HTML viewable on GitHub.
 * Add a "production" script for use in a non-demo context.
 * Try adding intermediate rounds? (expand / collapse)
