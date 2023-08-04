@@ -47,6 +47,10 @@ labels:
     zh: 切换语言
   total_blanks:
     en: Blanks
+    # For now, the translations below are the translations of "Under Votes."
+    es: Votos por debajo del límite
+    tl: Mga kulang na boto
+    zh: 投票不足
   total_continuing:
     en: Continuing Ballots Total
   total_exhausted:
