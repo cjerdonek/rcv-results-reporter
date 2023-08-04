@@ -69,11 +69,12 @@ The code works like this:
    can then be included in a larger HTML summary page, like they are in
    the sample demo page.
 
-   To generate the HTML snippets, the code uses
-   [Jinja](https://jinja.palletsprojects.com/) templates and a
-   [YAML file of translations](translations.yml) of words used in the
+   To generate the HTML snippets, the code uses a single
+   [Jinja](https://jinja.palletsprojects.com/) template located
+   [here](templates/rcv-summary.html), and a YAML file located
+   [here](translations.yml) of translations of words used in the
    Dominion's original reports (words like "Overvotes," "Exhausted," and
-   "Continuing Ballots"). Each template can be customized as needed to
+   "Continuing Ballots"). The template can be customized as needed to
    control exactly how the HTML snippets look, and the YAML file can be
    expanded to support more languages.
    [Here](data/output-html/rcv-snippets/2022-11-08/da_short-en.html) is
