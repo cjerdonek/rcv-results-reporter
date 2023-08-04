@@ -29,6 +29,16 @@ labels:
     es: Contienda utilizando votación por orden de preferencia
     tl: Labanang Ranked-Choice Voting
     zh: 優先選擇投票競選項目
+  round:
+    en: Round
+    es: Ronda
+    tl: Raun
+    zh: 輪
+  round_final:
+    en: Final Round
+    es: Ronda Final
+    tl: Huling Raun
+    zh: 最後一輪
   # Text preceding the language toggle at the top of each page.
   switch_language:
     en: Change language

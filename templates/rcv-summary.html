@@ -5,9 +5,9 @@
 <tr>
 <th class='col-xs-6 col-md-6' align='left'></th>
 {%- if multiple_rounds %}
-<th class='col-xs-3 col-md-3' align='center'>Round 1</th>
+<th class='col-xs-3 col-md-3' align='center'>{{ 'round'|TL }} 1</th>
 {%- endif %}
-<th class='col-xs-3 col-md-3' align='center' data-defaultsort='disabled'>Round {{ highest_round }} (Final Round)</th>
+<th class='col-xs-3 col-md-3' align='center' data-defaultsort='disabled'>{{ 'round'|TL }} {{ highest_round }} ({{ 'round_final'|TL }})</th>
 </tr>
 </thead>
 <tbody>
