@@ -1,19 +1,25 @@
 
 
-def get_candidate_summary(rounds, name):
-    highest_round = 0
+def make_candidate_summary(rounds, name):
+    # Initialize highest_round to 1 in case the candidate has zero
+    # votes in the first round.
+    highest_round = 1
     highest_vote = 0
     for round_number, round_data in enumerate(rounds, start=1):
         votes = round_data['votes']
-        if votes is not None and votes > 0:
-            highest_round = round_number
-            # The vote totals should only stay the same or increase.
-            if votes < highest_vote:
-                raise AssertionError(
-                    f'votes decreased in round {round_number} for {name!r}: '
-                    f'{votes} < {highest_vote}'
-                )
-            highest_vote = votes
+        if not votes:
+            # Then the candidate had zero votes in the first round or is
+            # eliminated in this round.
+            break
+
+        highest_round = round_number
+        # The vote totals should only stay the same or increase.
+        if votes < highest_vote:
+            raise AssertionError(
+                f'votes decreased in round {round_number} for {name!r}: '
+                f'{votes} < {highest_vote}'
+            )
+        highest_vote = votes
 
     summary = {
         'highest_round': highest_round,
@@ -31,7 +37,7 @@ def add_summary(results):
     candidate_summaries = {}
     for name in candidates:
         candidate_rounds = rounds[name]
-        candidate_summaries[name] = get_candidate_summary(
+        candidate_summaries[name] = make_candidate_summary(
             candidate_rounds, name=name,
         )
 

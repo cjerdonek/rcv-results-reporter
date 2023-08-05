@@ -4,10 +4,10 @@
 {%- set multiple_rounds = highest_round != 1 %}
 <tr>
 <th class='col-xs-6 col-md-6' align='left'></th>
+<th class='col-xs-3 col-md-3' align='center' data-defaultsort='disabled'>{{ 'round'|TL }} 1{%- if not multiple_rounds %} ({{ 'round_final'|TL }}){%- endif %}</th>
 {%- if multiple_rounds %}
-<th class='col-xs-3 col-md-3' align='center'>{{ 'round'|TL }} 1</th>
+<th class='col-xs-3 col-md-3' align='center'>{{ 'round'|TL }} {{ highest_round }} ({{ 'round_final'|TL }})</th>
 {%- endif %}
-<th class='col-xs-3 col-md-3' align='center' data-defaultsort='disabled'>{{ 'round'|TL }} {{ highest_round }} ({{ 'round_final'|TL }})</th>
 </tr>
 </thead>
 <tbody>
