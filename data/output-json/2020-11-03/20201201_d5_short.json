@@ -4,6 +4,7 @@
     },
     "candidate_summaries": {
         "DANIEL LANDRY": {
+            "elimination_round": 2,
             "highest_round": 2,
             "highest_vote": 2846.0
         },
@@ -12,6 +13,7 @@
             "highest_vote": 22853.0
         },
         "NOMVULA O'MEARA": {
+            "elimination_round": 1,
             "highest_round": 1,
             "highest_vote": 1113.0
         },

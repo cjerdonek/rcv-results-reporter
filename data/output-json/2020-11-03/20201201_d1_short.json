@@ -4,10 +4,12 @@
     },
     "candidate_summaries": {
         "AMANDA INOCENCIO": {
+            "elimination_round": 2,
             "highest_round": 2,
             "highest_vote": 725.0
         },
         "ANDREW N. MAJALYA": {
+            "elimination_round": 1,
             "highest_round": 1,
             "highest_vote": 312.0
         },
@@ -16,6 +18,7 @@
             "highest_vote": 17142.0
         },
         "DAVID E. LEE": {
+            "elimination_round": 5,
             "highest_round": 5,
             "highest_vote": 7212.0
         },
@@ -24,10 +27,12 @@
             "highest_vote": 17017.0
         },
         "SHERMAN R. D'SILVA": {
+            "elimination_round": 4,
             "highest_round": 4,
             "highest_vote": 1956.0
         },
         "VERONICA SHINZATO": {
+            "elimination_round": 3,
             "highest_round": 3,
             "highest_vote": 1501.0
         }

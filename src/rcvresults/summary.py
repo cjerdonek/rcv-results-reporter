@@ -41,12 +41,15 @@ def add_summary(results):
             candidate_rounds, name=name,
         )
 
-    results['candidate_summaries'] = candidate_summaries
-
     highest_round = max(
         summary['highest_round'] for summary in candidate_summaries.values()
     )
-    results['highest_round'] = highest_round
+    # Set the elimination_round for each candidate.
+    for name, candidate_summary in candidate_summaries.items():
+        highest_candidate_round = candidate_summary['highest_round']
+        if highest_candidate_round != highest_round:
+            # Then the candidate was eliminated in their highest round.
+            candidate_summary['elimination_round'] = highest_candidate_round
 
     vote_totals = {
         name: summary['highest_vote'] for name, summary in
@@ -57,11 +60,15 @@ def add_summary(results):
 
     # Sort candidates from highest to lowest vote total.
     candidates = sorted(candidates, key=sort_key, reverse=True)
-    results['candidates'] = candidates
 
     highest_vote = max(vote_totals.values())
     # Use a list in case more than one candidate is tied.
     leading_candidates = [
         name for name, total in vote_totals.items() if total == highest_vote
     ]
-    results['leading_candidates'] = leading_candidates
+    results.update({
+        'candidate_summaries': candidate_summaries,
+        'candidates': candidates,
+        'highest_round': highest_round,
+        'leading_candidates': leading_candidates,
+    })

@@ -8,6 +8,7 @@
             "highest_vote": 142412.0
         },
         "JOE ALIOTO VERONESE": {
+            "elimination_round": 2,
             "highest_round": 2,
             "highest_vote": 37332.0
         },
@@ -16,6 +17,7 @@
             "highest_vote": 122906.0
         },
         "MAURICE CHENIER": {
+            "elimination_round": 1,
             "highest_round": 1,
             "highest_vote": 12211.0
         }

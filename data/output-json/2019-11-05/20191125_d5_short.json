@@ -8,10 +8,12 @@
             "highest_vote": 11723.0
         },
         "NOMVULA O'MEARA": {
+            "elimination_round": 1,
             "highest_round": 1,
             "highest_vote": 278.0
         },
         "RYAN LAM": {
+            "elimination_round": 2,
             "highest_round": 2,
             "highest_vote": 1035.0
         },

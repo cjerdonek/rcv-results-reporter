@@ -4,10 +4,12 @@
     },
     "candidate_summaries": {
         "BEN MATRANGA": {
+            "elimination_round": 2,
             "highest_round": 2,
             "highest_vote": 3581.0
         },
         "EMILY MURASE": {
+            "elimination_round": 3,
             "highest_round": 3,
             "highest_vote": 5500.0
         },
@@ -16,6 +18,7 @@
             "highest_vote": 16370.0
         },
         "KEN PIPER": {
+            "elimination_round": 1,
             "highest_round": 1,
             "highest_vote": 969.0
         },
@@ -24,10 +27,12 @@
             "highest_vote": 18561.0
         },
         "STEPHEN W. MARTIN-PINTO": {
+            "elimination_round": 4,
             "highest_round": 4,
             "highest_vote": 6147.0
         },
         "VILASKA NGUYEN": {
+            "elimination_round": 5,
             "highest_round": 5,
             "highest_vote": 10855.0
         }

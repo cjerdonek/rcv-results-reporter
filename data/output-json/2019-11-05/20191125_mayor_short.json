@@ -8,6 +8,7 @@
             "highest_vote": 35706.0
         },
         "JOEL VENTRESCA": {
+            "elimination_round": 5,
             "highest_round": 5,
             "highest_vote": 17425.0
         },
@@ -16,18 +17,22 @@
             "highest_vote": 134345.0
         },
         "MARC ROTH": {
+            "elimination_round": 1,
             "highest_round": 1,
             "highest_vote": 7.0
         },
         "PAUL YBARRA ROBERTSON": {
+            "elimination_round": 4,
             "highest_round": 4,
             "highest_vote": 9312.0
         },
         "ROBERT L. JORDAN, JR.": {
+            "elimination_round": 2,
             "highest_round": 2,
             "highest_vote": 2459.0
         },
         "WILMA PANG": {
+            "elimination_round": 3,
             "highest_round": 3,
             "highest_vote": 5297.0
         }

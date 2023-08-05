@@ -4,6 +4,7 @@
     },
     "candidate_summaries": {
         "CHERELLE JACKSON": {
+            "elimination_round": 2,
             "highest_round": 2,
             "highest_vote": 615.0
         },
@@ -16,6 +17,7 @@
             "highest_vote": 8546.0
         },
         "MS BILLIE COOPER": {
+            "elimination_round": 1,
             "highest_round": 1,
             "highest_vote": 366.0
         }

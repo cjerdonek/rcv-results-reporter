@@ -8,6 +8,7 @@
             "highest_vote": 16367.0
         },
         "JASON CHUYUAN ZENG": {
+            "elimination_round": 1,
             "highest_round": 1,
             "highest_vote": 15.0
         },
@@ -16,6 +17,7 @@
             "highest_vote": 14470.0
         },
         "MARCELO COLUSSI": {
+            "elimination_round": 2,
             "highest_round": 2,
             "highest_vote": 2794.0
         }
