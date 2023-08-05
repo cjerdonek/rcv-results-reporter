@@ -16,6 +16,8 @@
   {#- Subtract 1 to get a 0-based index. #}
   {%- set round_last = rounds[candidate][highest_round - 1] %}
   {%- set candidate_class = 'leading-candidate' if candidate in leading_candidates else '' %}
+  {%- set candidate_summary = candidate_summaries[candidate] %}
+  {%- set elimination_round = candidate_summary['elimination_round'] %}
 <tr>
 <td id='candidate'><span class='{{ candidate_class }}'>{{ candidate }}</span></td>
 <td align='right'><span class='{{ candidate_class if highest_round == 1 else "" }}'>
@@ -23,8 +25,11 @@
 </span></td>
 {%- if multiple_rounds %}
 <td align='right'><span class='{{ candidate_class }}'>
-{%- if round_last['votes'] != 0 %}({{ round_last['percent']|format_percent }}) {% endif -%}
-{{ round_last['votes']|format_int -}}
+{%- if elimination_round -%}
+<em>eliminated in Round {{ elimination_round }}</em>
+{%- else -%}
+({{ round_last['percent']|format_percent }}) {{ round_last['votes']|format_int }}
+{%- endif -%}
 </span></td>
 {%- endif %}
 </tr>
@@ -38,10 +43,10 @@
   {%- set round_last = rounds[subtotal_name][highest_round - 1] -%}
 <tr>
 <td id='candidate'>{{ subtotal_name|TP }}</td>
-{%- if multiple_rounds %}
 <td align='right'>{{ round_1['votes']|format_int }}</td>
-{%- endif %}
+{%- if multiple_rounds %}
 <td align='right'>{{ round_last['votes']|format_int }}</td>
+{%- endif %}
 </tr>
 {%- endfor %}
 </tfoot>
