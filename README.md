@@ -149,6 +149,8 @@ BSD 3-Clause License, Copyright (c) 2023, Chris Jerdonek
 
 ## TODO
 
+* Add "Eliminated in Round ..."
+* Add tooltips of uncommon phrases?
 * Add translations of the following phrases used in Dominion's English
   RCV reports:
   * Continuing Ballots Total
