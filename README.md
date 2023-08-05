@@ -45,14 +45,23 @@ Some advantages of using this project:
   explanatory material can all be added.
 * Using HTML snippets lets the results of multiple RCV contests be
   viewed on a single page. This way members of the public don't need to
-  click to a different page to see the who the winner is and what the
-  final-round vote totals are for each RCV contest.
+  click to a different page for each contest to see who the winner is
+  and what the final-round vote totals are.
 * The tables in Dominion's PDF reports can also be inconveniently split
   by page breaks, which makes them harder to read. For example, this can
   be seen in the screenshot below of a PDF report from the November 2022
   election:
   ![Screenshot of Dominion PDF page
   break](docs/images/2022-11-DA-Dominion-PDF.png)
+
+## Demo
+
+To see a demo page, you can go
+[here](https://cjerdonek.com/rcv-results-reporter/).
+The demo shows RCV summary tables for the November 2019, November 2020,
+February 2022, and November 2022 elections.
+
+TODO: mention this page: https://civicdesign.org/topics/rcv/
 
 ## How it Works
 
