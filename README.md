@@ -145,7 +145,9 @@ $ tidy -output html/2020-11-03/index-tidied.html -utf8 html/2020-11-03/index-ori
 
 ## License
 
-BSD 3-Clause License, Copyright (c) 2023, Chris Jerdonek
+BSD 3-Clause License
+
+Copyright (c) 2023, Chris Jerdonek
 
 ## TODO
 
