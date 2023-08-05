@@ -57,7 +57,7 @@ Some advantages of using this project:
 ## Demo
 
 To see a demo page, you can go
-[here](https://cjerdonek.com/rcv-results-reporter/).
+[here](https://cjerdonek.github.io/rcv-results-reporter/).
 The demo shows RCV summary tables for the November 2019, November 2020,
 February 2022, and November 2022 elections.
 
@@ -153,14 +153,13 @@ Copyright (c) 2023, Chris Jerdonek
 
 * Add "Eliminated in Round ..."
 * Add tooltips of uncommon phrases?
+* Add a "production" script for use in a non-demo context.
+* Try adding intermediate rounds? (expand / collapse)
+* Add end-to-end tests of the html.
+* Make sure all elections are covered in the tests.
 * Add translations of the following phrases used in Dominion's English
   RCV reports:
   * Continuing Ballots Total
   * Blanks
   * Exhausted
   * Non Transferable Total
-* Make test HTML viewable on GitHub.
-* Add a "production" script for use in a non-demo context.
-* Try adding intermediate rounds? (expand / collapse)
-* Add end-to-end tests of the html.
-* Make sure all elections are covered in the tests.
