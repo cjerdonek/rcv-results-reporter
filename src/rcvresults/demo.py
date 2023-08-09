@@ -12,13 +12,12 @@ import logging
 from pathlib import Path
 
 import jinja2
-from jinja2 import Environment, FileSystemLoader
 from markupsafe import Markup
 
 import rcvresults.main as main_mod
 import rcvresults.rendering as rendering
 import rcvresults.utils as utils
-from rcvresults.utils import CURRENT_LANG_KEY, LANG_CODE_ENGLISH, LANGUAGES
+from rcvresults.utils import CURRENT_LANG_KEY, LANGUAGES
 
 
 _log = logging.getLogger(__name__)
@@ -83,48 +82,6 @@ def get_report_paths(parent_reports_dir, dir_name):
     return paths
 
 
-def load_label_translations():
-    data = utils.read_yaml(TRANSLATIONS_PATH)
-    labels = data['labels']
-    return labels
-
-
-def load_phrases():
-    data = utils.read_yaml(TRANSLATIONS_PATH)
-    labels = data['labels']
-    phrases = {}
-    for label, translations in labels.items():
-        phrase = translations[LANG_CODE_ENGLISH]
-        phrases[phrase] = label
-
-    return phrases
-
-
-def make_environment():
-    env = Environment(
-        loader=FileSystemLoader('templates'),
-        # TODO: pass the autoescape argument?
-    )
-
-    translated_labels = load_label_translations()
-    translate_label = functools.partial(
-        rendering.translate_label, translated_labels=translated_labels,
-    )
-    phrases = load_phrases()
-    translate_phrase = functools.partial(
-        rendering.translate_phrase, translated_labels=translated_labels,
-        phrases=phrases,
-    )
-
-    env.filters.update({
-        'format_int': rendering.format_int,
-        'format_percent': rendering.format_percent,
-        'TL': jinja2.pass_context(translate_label),
-        'TP': jinja2.pass_context(translate_phrase),
-    })
-    return env
-
-
 def make_rcv_json_files(dir_names, parent_reports_dir, parent_json_dir):
     _log.info('starting RCV json file creation')
     for dir_name in dir_names:
@@ -137,6 +94,7 @@ def make_rcv_json_files(dir_names, parent_reports_dir, parent_json_dir):
             main_mod.make_rcv_json(report_path, json_dir=json_dir)
 
 
+# TODO: DRY up with make_html_snippets() in main.py.
 def make_rcv_snippets(parent_json_dir, parent_snippets_dir, dir_name):
     json_dir, html_dir = (
         parent_dir / dir_name for parent_dir in
@@ -146,7 +104,7 @@ def make_rcv_snippets(parent_json_dir, parent_snippets_dir, dir_name):
     if not html_dir.exists():
         html_dir.mkdir(parents=True)
 
-    env = make_environment()
+    env = main_mod.make_environment(TRANSLATIONS_PATH)
     template = env.get_template('rcv-summary.html')
 
     json_paths = utils.get_paths(json_dir, suffix='json')
@@ -180,7 +138,7 @@ def _make_index_jinja_env(snippets_dir):
     Create and return a Jinja2 Environment object to use when rendering
     one of the index.html templates.
     """
-    env = make_environment()
+    env = main_mod.make_environment(TRANSLATIONS_PATH)
 
     def insert_html(rel_path):
         path = snippets_dir / rel_path

@@ -8,27 +8,42 @@ Usage:
 """
 
 import argparse
+import functools
 import logging
 from pathlib import Path
 
+import jinja2
+from jinja2 import Environment, FileSystemLoader
+
 import rcvresults.parsers.xml as xml_parsing
 import rcvresults.parsers.xslx as excel_parsing
+import rcvresults.rendering as rendering
 import rcvresults.summary as summary
 import rcvresults.utils as utils
+from rcvresults.utils import LANG_CODE_ENGLISH
 
 
 _log = logging.getLogger(__name__)
+
+DEFAULT_REPORT_FORMAT = 'xml'
 
 DESCRIPTION = """\
 Generate HTML result snippets for an election's RCV contests.
 """
 
 
+# TODO: add a translations_path argument.
 def make_arg_parser():
     parser = argparse.ArgumentParser(description=DESCRIPTION)
     parser.add_argument(
         'config_path', metavar='CONFIG_PATH', help=(
-            'path to the election.yml file configuring the election.'
+            'path to the election.yml file to configure the results '
+            'reporting for the election.'
+        )
+    )
+    parser.add_argument(
+        'translations_path', metavar='TRANSLATIONS_PATH', help=(
+            'path to the translations.yml file to use.'
         )
     )
     parser.add_argument(
@@ -37,9 +52,10 @@ def make_arg_parser():
         )
     )
     parser.add_argument(
-        '--report-format', default='xml', choices=('excel', 'xml'), help=(
-            'what report format to read and parse. Can be "xml" (for .xml) '
-            'or "excel" (for .xlsx). Defaults to: xml.'
+        '--report-format', default=DEFAULT_REPORT_FORMAT,
+        choices=('excel', 'xml'), help=(
+            'what report format to read and parse (can be "xml" for .xml '
+            f'or "excel" for .xlsx). Defaults to: {DEFAULT_REPORT_FORMAT}.'
         )
     )
     parser.add_argument(
@@ -77,11 +93,66 @@ def make_rcv_json(path, json_dir):
     return json_path
 
 
-def process_contest(contest_data, reports_dir, report_suffix, output_dir):
+def load_label_translations(translations_path):
+    data = utils.read_yaml(translations_path)
+    labels = data['labels']
+    return labels
+
+
+def load_phrases(translations_path):
+    data = utils.read_yaml(translations_path)
+    labels = data['labels']
+    phrases = {}
+    for label, translations in labels.items():
+        phrase = translations[LANG_CODE_ENGLISH]
+        phrases[phrase] = label
+
+    return phrases
+
+
+def make_environment(translations_path):
+    env = Environment(
+        loader=FileSystemLoader('templates'),
+        # TODO: pass the autoescape argument?
+    )
+
+    translated_labels = load_label_translations(translations_path)
+    translate_label = functools.partial(
+        rendering.translate_label, translated_labels=translated_labels,
+    )
+    phrases = load_phrases(translations_path)
+    translate_phrase = functools.partial(
+        rendering.translate_phrase, translated_labels=translated_labels,
+        phrases=phrases,
+    )
+
+    env.filters.update({
+        'format_int': rendering.format_int,
+        'format_percent': rendering.format_percent,
+        'TL': jinja2.pass_context(translate_label),
+        'TP': jinja2.pass_context(translate_phrase),
+    })
+    return env
+
+
+def make_html_snippets(json_path, template, output_dir):
+    _log.info(f'making RCV html from: {json_path}')
+    rcv_data = utils.read_json(json_path)
+    base_name = json_path.stem
+    rendering.make_rcv_contest_html(
+        rcv_data, template=template, html_dir=output_dir,
+        base_name=base_name,
+    )
+
+
+def process_contest(
+    contest_data, reports_dir, report_suffix, template, output_dir,
+):
     file_stem = contest_data['file']
     file_name = f'{file_stem}.{report_suffix}'
     report_path = reports_dir / file_name
-    make_rcv_json(report_path, json_dir=output_dir)
+    json_path = make_rcv_json(report_path, json_dir=output_dir)
+    make_html_snippets(json_path, template=template, output_dir=output_dir)
 
 
 def main():
@@ -92,6 +163,7 @@ def main():
     args = parser.parse_args()
 
     config_path = Path(args.config_path)
+    translations_path = Path(args.translations_path)
     reports_dir = Path(args.reports_dir)
     output_dir = Path(args.output_dir)
 
@@ -107,10 +179,14 @@ def main():
     config_data = utils.read_yaml(config_path)
     election_data = config_data['election']
     contests_data = election_data['contests']
+
+    env = make_environment(translations_path)
+    template = env.get_template('rcv-summary.html')
+
     for contest_data in contests_data:
         process_contest(
             contest_data, reports_dir=reports_dir, report_suffix=report_suffix,
-            output_dir=output_dir,
+            template=template, output_dir=output_dir,
         )
 
 

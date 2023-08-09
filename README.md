@@ -132,13 +132,36 @@ $ pip install -e .
 
 ## Usage
 
-To run the demo:
+To run the demo (includes four elections):
 
 ```
 $ python src/rcvresults/demo.py
 ```
 
-TODO: add a script that can be used in a more general, non-demo context.
+To generate HTML snippets for a single election:
+
+```
+$ python src/rcvresults/main.py --help
+usage: main.py [-h] [--report-format {excel,xml}] [--output-dir OUTPUT_DIR]
+               CONFIG_PATH TRANSLATIONS_PATH REPORTS_DIR
+
+Generate HTML result snippets for an election's RCV contests.
+
+positional arguments:
+  CONFIG_PATH           path to the election.yml file to configure the
+                        results reporting for the election.
+  TRANSLATIONS_PATH     path to the translations.yml file to use.
+  REPORTS_DIR           directory containing the input XML or Excel RCV
+                        reports.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --report-format {excel,xml}
+                        what report format to read and parse (can be "xml"
+                        for .xml or "excel" for .xlsx). Defaults to: xml.
+  --output-dir OUTPUT_DIR
+                        the directory to which to write the output files.
+```
 
 ## Developing
 
@@ -166,7 +189,6 @@ Copyright (c) 2023, Chris Jerdonek
 ## TODO
 
 * Add definitions of uncommon phrases on hover?
-* Add a "production" script for use in a non-demo context.
 * Try adding intermediate rounds? (expand / collapse)
 * Add end-to-end tests of the html.
 * Make sure all elections are covered in the tests.
