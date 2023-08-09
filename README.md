@@ -148,8 +148,8 @@ usage: main.py [-h] [--report-format {excel,xml}] [--output-dir OUTPUT_DIR]
 Generate HTML result snippets for an election's RCV contests.
 
 positional arguments:
-  CONFIG_PATH           path to the election.yml file to configure the
-                        results reporting for the election.
+  CONFIG_PATH           path to the election.yml file configuring results
+                        reporting for the election.
   TRANSLATIONS_PATH     path to the translations.yml file to use.
   REPORTS_DIR           directory containing the input XML or Excel RCV
                         reports.
@@ -161,6 +161,14 @@ optional arguments:
                         for .xml or "excel" for .xlsx). Defaults to: xml.
   --output-dir OUTPUT_DIR
                         the directory to which to write the output files.
+```
+
+For example (this should work from the repo root):
+
+```
+  $ python src/rcvresults/main.py config/election-2022-11-08.yml \
+      translations.yml data/input-reports/2022-11-08 --report-format excel
+      --output-dir final
 ```
 
 ## Developing
@@ -188,10 +196,7 @@ Copyright (c) 2023, Chris Jerdonek
 
 ## TODO
 
-* Add definitions of uncommon phrases on hover?
-* Try adding intermediate rounds? (expand / collapse)
-* Add end-to-end tests of the html.
-* Make sure all elections are covered in the tests.
+* Update the demo to use `main.py`.
 * Add translations of the following phrases used in Dominion's English
   RCV reports:
   * "Continuing Ballots Total"
@@ -199,3 +204,7 @@ Copyright (c) 2023, Chris Jerdonek
   * "Exhausted"
   * "Non Transferable Total"
   * "Eliminated in Round ..."
+* Try adding intermediate rounds? (expand / collapse)
+* Add definitions of uncommon phrases on hover?
+* Add end-to-end tests of the html.
+* Make sure all elections are covered in the tests.

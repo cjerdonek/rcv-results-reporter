@@ -5,6 +5,11 @@ Usage:
 
   $ python src/rcvresults/main.py --help
 
+For example:
+
+  $ python src/rcvresults/main.py config/election-2022-11-08.yml \
+      translations.yml data/input-reports/2022-11-08 --report-format excel
+      --output-dir final
 """
 
 import argparse
@@ -37,8 +42,8 @@ def make_arg_parser():
     parser = argparse.ArgumentParser(description=DESCRIPTION)
     parser.add_argument(
         'config_path', metavar='CONFIG_PATH', help=(
-            'path to the election.yml file to configure the results '
-            'reporting for the election.'
+            'path to the election.yml file configuring results reporting '
+            'for the election.'
         )
     )
     parser.add_argument(
