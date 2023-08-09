@@ -47,6 +47,11 @@ labels:
     zh: 切换语言
   total_blanks:
     en: Blanks
+    # These are from the translation of "Blank Ballot" here:
+    # https://www.eac.gov/election-officials/glossaries-election-terminology
+    es: Papeleta de votación en blanco
+    tl: Blangkong Balota
+    zh: 空白选票
   total_continuing:
     en: Continuing Ballots Total
   total_exhausted:
