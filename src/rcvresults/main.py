@@ -37,7 +37,7 @@ Generate HTML result snippets for an election's RCV contests.
 """
 
 
-# TODO: add a translations_path argument.
+# TODO: add an option to suppress intermediate json file creation?
 def make_arg_parser():
     parser = argparse.ArgumentParser(description=DESCRIPTION)
     parser.add_argument(
@@ -69,6 +69,13 @@ def make_arg_parser():
         )
     )
     return parser
+
+
+def read_election_config(config_path):
+    config_data = utils.read_yaml(config_path)
+    election_data = config_data['election']
+
+    return election_data
 
 
 def make_rcv_json(path, json_dir):
@@ -141,7 +148,7 @@ def make_environment(translations_path):
 
 
 def make_html_snippets(json_path, template, output_dir):
-    _log.info(f'making RCV html from: {json_path}')
+    _log.info(f'making RCV html snippets from: {json_path}')
     rcv_data = utils.read_json(json_path)
     base_name = json_path.stem
     rendering.make_rcv_contest_html(
@@ -151,13 +158,50 @@ def make_html_snippets(json_path, template, output_dir):
 
 
 def process_contest(
-    contest_data, reports_dir, report_suffix, template, output_dir,
+    contest_data, reports_dir, report_suffix, template, json_dir, output_dir,
 ):
+    """
+    Args:
+      json_dir: the json output directory.
+      output_dir: the html output directory.
+    """
     file_stem = contest_data['file']
     file_name = f'{file_stem}.{report_suffix}'
     report_path = reports_dir / file_name
-    json_path = make_rcv_json(report_path, json_dir=output_dir)
+    json_path = make_rcv_json(report_path, json_dir=json_dir)
     make_html_snippets(json_path, template=template, output_dir=output_dir)
+
+
+def process_election(
+    config_path, reports_dir, report_suffix, translations_path, output_dir,
+    json_dir=None,
+):
+    """
+    Args:
+      report_suffix: one of the file extensions "xml" or "xlsx",
+        specifying which RCV reports to read and parse.
+      json_dir: the directory to which to write the intermediate json
+        files. Defaults to a subdirectory of the given output directory.
+    """
+    if json_dir is None:
+        json_dir = output_dir / 'json'
+
+    if not output_dir.exists():
+        output_dir.mkdir(parents=True, exist_ok=True)
+    if not json_dir.exists():
+        json_dir.mkdir(parents=True, exist_ok=True)
+
+    election_data = read_election_config(config_path)
+    contests_data = election_data['contests']
+
+    env = make_environment(translations_path)
+    template = env.get_template('rcv-summary.html')
+
+    for contest_data in contests_data:
+        process_contest(
+            contest_data, reports_dir=reports_dir, report_suffix=report_suffix,
+            template=template, output_dir=output_dir, json_dir=json_dir,
+        )
 
 
 def main():
@@ -178,21 +222,11 @@ def main():
         assert args.report_format == 'excel'
         report_suffix = 'xlsx'
 
-    if not output_dir.exists():
-        output_dir.mkdir(parents=True, exist_ok=True)
-
-    config_data = utils.read_yaml(config_path)
-    election_data = config_data['election']
-    contests_data = election_data['contests']
-
-    env = make_environment(translations_path)
-    template = env.get_template('rcv-summary.html')
-
-    for contest_data in contests_data:
-        process_contest(
-            contest_data, reports_dir=reports_dir, report_suffix=report_suffix,
-            template=template, output_dir=output_dir,
-        )
+    process_election(
+        config_path=config_path, reports_dir=reports_dir,
+        report_suffix=report_suffix, translations_path=translations_path,
+        output_dir=output_dir,
+    )
 
 
 if __name__ == '__main__':

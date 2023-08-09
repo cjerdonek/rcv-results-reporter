@@ -24,7 +24,7 @@ _log = logging.getLogger(__name__)
 
 TEMPLATE_NAME_RCV_DEMO = 'index-all-rcv.html'
 
-CONFIG_PATH = Path('config.yml')
+CONFIG_DIR = Path('config')
 TRANSLATIONS_PATH = Path('translations.yml')
 
 DATA_DIR = Path('data')
@@ -40,8 +40,8 @@ DIR_NAME_2020_NOV = '2020-11-03'
 DIR_NAME_2022_FEB = '2022-02-15'
 DIR_NAME_2022_NOV = '2022-11-08'
 
-# Mapping saying what kinds of results reports (file extension) are stored
-# in each election directory.
+# Mapping saying what kind of results reports (file extension) should
+# be read and parsed from each election directory.
 REPORT_DIR_EXTENSIONS = {
     DIR_NAME_2019_NOV: 'xml',
     DIR_NAME_2020_NOV: 'xml',
@@ -49,6 +49,10 @@ REPORT_DIR_EXTENSIONS = {
     # The November 2022 election doesn't have XML files posted -- only Excel.
     DIR_NAME_2022_NOV: 'xlsx',
 }
+
+
+def get_config_path(dir_name):
+    return CONFIG_DIR / f'election-{dir_name}.yml'
 
 
 def get_xml_paths(dir_path):
@@ -68,6 +72,7 @@ def get_excel_paths(dir_path):
     return paths
 
 
+# TODO: remove this?
 def get_report_paths(parent_reports_dir, dir_name):
     data_dir = parent_reports_dir / dir_name
     extension = REPORT_DIR_EXTENSIONS[dir_name]
@@ -82,55 +87,29 @@ def get_report_paths(parent_reports_dir, dir_name):
     return paths
 
 
-def make_rcv_json_files(dir_names, parent_reports_dir, parent_json_dir):
-    _log.info('starting RCV json file creation')
+def make_all_rcv_snippets(
+    parent_snippets_dir, dir_names, parent_json_dir, translations_path,
+):
+    """
+    Args:
+      parent_snippets_dir: the parent directory to which to write the
+        intermediate RCV HTML snippets.
+    """
     for dir_name in dir_names:
-        json_dir = parent_json_dir / dir_name
-        if not json_dir.exists():
-            json_dir.mkdir(parents=True)
+        _log.info(f'starting election: {dir_name}')
+        config_path = get_config_path(dir_name)
+        reports_dir = DATA_DIR_REPORTS / dir_name
+        report_suffix = REPORT_DIR_EXTENSIONS[dir_name]
 
-        report_paths = get_report_paths(parent_reports_dir, dir_name=dir_name)
-        for report_path in report_paths:
-            main_mod.make_rcv_json(report_path, json_dir=json_dir)
-
-
-# TODO: DRY up with make_html_snippets() in main.py.
-def make_rcv_snippets(parent_json_dir, parent_snippets_dir, dir_name):
-    json_dir, html_dir = (
-        parent_dir / dir_name for parent_dir in
-        (parent_json_dir, parent_snippets_dir)
-    )
-    # Make sure the html output directory exists.
-    if not html_dir.exists():
-        html_dir.mkdir(parents=True)
-
-    env = main_mod.make_environment(TRANSLATIONS_PATH)
-    template = env.get_template('rcv-summary.html')
-
-    json_paths = utils.get_paths(json_dir, suffix='json')
-    for json_path in json_paths:
-        _log.info(f'making RCV html from: {json_path}')
-        rcv_data = utils.read_json(json_path)
-        base_name = json_path.stem
-        rendering.make_rcv_contest_html(
-            rcv_data, template=template, html_dir=html_dir,
-            base_name=base_name,
+        json_dir, html_dir = (
+            parent_dir / dir_name for parent_dir in
+            (parent_json_dir, parent_snippets_dir)
         )
-
-
-def make_all_rcv_snippets(output_dir, dir_names, parent_json_dir):
-    _log.info('starting RCV html snippet creation')
-    # This is the parent directory to which to write the intermediate
-    # HTML snippets.
-    snippets_dir = output_dir / 'rcv-snippets'
-
-    for dir_name in dir_names:
-        make_rcv_snippets(
-            parent_json_dir=parent_json_dir,
-            parent_snippets_dir=snippets_dir, dir_name=dir_name,
+        main_mod.process_election(
+            config_path=config_path, reports_dir=reports_dir,
+            report_suffix=report_suffix, translations_path=translations_path,
+            json_dir=json_dir, output_dir=html_dir,
         )
-
-    return snippets_dir
 
 
 def _make_index_jinja_env(snippets_dir):
@@ -151,8 +130,7 @@ def _make_index_jinja_env(snippets_dir):
 
 
 def make_index_html(
-    output_dir, template, snippets_dir, js_dir, env, output_name=None,
-    lang_code=None,
+    output_dir, template, js_dir, env, output_name=None, lang_code=None,
 ):
     """
     Args:
@@ -175,11 +153,7 @@ def make_test_index_html(output_dir, snippets_dir, js_dir):
     _log.info(f'creating: test index html')
     env = _make_index_jinja_env(snippets_dir=snippets_dir)
     template = env.get_template('index-test.html')
-
-    make_index_html(
-        output_dir, template=template, snippets_dir=snippets_dir,
-        js_dir=js_dir, env=env,
-    )
+    make_index_html(output_dir, template=template, js_dir=js_dir, env=env)
 
 
 def _iter_contests(context, election, parent_json_dir):
@@ -199,13 +173,31 @@ def _iter_contests(context, election, parent_json_dir):
         yield (html_path, contest_data, contest_url)
 
 
-def make_rcv_demo(output_dir, snippets_dir, js_dir, parent_json_dir):
-    _log.info(f'creating: RCV demo index html')
+def _build_elections_list(dir_names):
+    elections = []
+    for dir_name in dir_names:
+        _log.info(f'starting election: {dir_name}')
+        config_path = get_config_path(dir_name)
+        election_config = main_mod.read_election_config(config_path)
 
+        # TODO: should dir_name be stored here?
+        election_config['dir_name'] = dir_name
+        elections.append(election_config)
+
+    return elections
+
+
+def make_rcv_demo(
+    output_dir, snippets_dir, js_dir, parent_json_dir, elections,
+):
+    """
+    Args:
+      elections: the elections to include in the demo page, as a list of
+        election configs
+    """
+    _log.info(f'creating: RCV demo index html')
     env = _make_index_jinja_env(snippets_dir=snippets_dir)
 
-    config = utils.read_yaml(CONFIG_PATH)
-    elections = config['elections']
     iter_contests = functools.partial(
         _iter_contests, parent_json_dir=parent_json_dir,
     )
@@ -221,9 +213,8 @@ def make_rcv_demo(output_dir, snippets_dir, js_dir, parent_json_dir):
     for lang_code in LANGUAGES:
         output_name = rendering.get_index_name(lang_code)
         make_index_html(
-            output_dir, template=template, snippets_dir=snippets_dir,
-            js_dir=js_dir, env=env, output_name=output_name,
-            lang_code=lang_code,
+            output_dir, template=template, js_dir=js_dir, env=env,
+            output_name=output_name, lang_code=lang_code,
         )
 
 
@@ -231,33 +222,40 @@ def main():
     log_format = '[{levelname}] {name}: {message}'
     logging.basicConfig(format=log_format, style='{', level=logging.INFO)
 
+    parent_json_dir = DATA_DIR_JSON
+
     output_dir = DEFAULT_HTML_OUTPUT_DIR
+    # This is the parent directory to which to write the intermediate
+    # RCV HTML snippets.
+    snippets_dir = output_dir / 'rcv-snippets'
+
     # We have a symlink at "data/output-html/js" that points to
     # "sample-html/2022-11-08/js" (as a relative path).
     js_dir = Path('js')
-    parent_json_dir = DATA_DIR_JSON
 
+    # The order of this list controls the order the elections should be
+    # listed on the demo page.
     dir_names = [
-        DIR_NAME_2019_NOV,
-        DIR_NAME_2020_NOV,
-        DIR_NAME_2022_FEB,
         DIR_NAME_2022_NOV,
+        DIR_NAME_2022_FEB,
+        DIR_NAME_2020_NOV,
+        DIR_NAME_2019_NOV,
     ]
-    # First generate the RCV json files.
-    make_rcv_json_files(
-        dir_names=dir_names, parent_reports_dir=DATA_DIR_REPORTS,
-        parent_json_dir=parent_json_dir,
-    )
-    # Next, generate the RCV summary html snippets.
-    snippets_dir = make_all_rcv_snippets(
-        output_dir, dir_names=dir_names, parent_json_dir=parent_json_dir,
+    # First generate the RCV summary html snippets for all the elections.
+    make_all_rcv_snippets(
+        snippets_dir, dir_names=dir_names, parent_json_dir=parent_json_dir,
+        translations_path=TRANSLATIONS_PATH,
     )
 
-    # Finally, generate the index pages.
+    # Next, generate the index html pages.
+    # TODO: check that this still works.
     make_test_index_html(output_dir, snippets_dir=snippets_dir, js_dir=js_dir)
+
+    # Create a single "elections" list for use from the template.
+    elections = _build_elections_list(dir_names)
     make_rcv_demo(
         output_dir, snippets_dir=snippets_dir, js_dir=js_dir,
-        parent_json_dir=parent_json_dir,
+        parent_json_dir=parent_json_dir, elections=elections,
     )
 
 

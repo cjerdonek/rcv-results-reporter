@@ -1,0 +1,13 @@
+election:
+  name: November 5, 2019 Consolidated Municipal Election
+  url: https://sfelections.sfgov.org/november-5-2019-election-results-summary
+  contests:
+  -
+    file: 20191125_mayor_short
+    url: https://www.sfelections.org/results/20191105/data/20191125/mayor/20191125_mayor_short.pdf
+  -
+    file: 20191125_da_short
+    url: https://www.sfelections.org/results/20191105/data/20191125/da/20191125_da_short.pdf
+  -
+    file: 20191125_d5_short
+    url: https://www.sfelections.org/results/20191105/data/20191125/d5/20191125_d5_short.pdf

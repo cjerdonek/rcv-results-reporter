@@ -196,7 +196,6 @@ Copyright (c) 2023, Chris Jerdonek
 
 ## TODO
 
-* Update the demo to use `main.py`.
 * Add translations of the following phrases used in Dominion's English
   RCV reports:
   * "Continuing Ballots Total"
