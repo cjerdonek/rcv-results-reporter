@@ -1,0 +1,22 @@
+election:
+  name: November 8, 2022 Consolidated General Election
+  url: https://sfelections.sfgov.org/november-8-2022-election-results-summary
+  contests:
+  -
+    file: da_short
+    url: https://www.sfelections.org/results/20221108/data/20221201/da/da_short.pdf
+  -
+    file: defender_short
+    url: https://www.sfelections.org/results/20221108/data/20221201/defender/defender_short.pdf
+  -
+    file: d4_short
+    url: https://www.sfelections.org/results/20221108/data/20221201/d4/d4_short.pdf
+  -
+    file: d6_short
+    url: https://www.sfelections.org/results/20221108/data/20221201/d6/d6_short.pdf
+  -
+    file: d8_short
+    url: https://www.sfelections.org/results/20221108/data/20221201/d8/d8_short.pdf
+  -
+    file: d10_short
+    url: https://www.sfelections.org/results/20221108/data/20221201/d10/d10_short.pdf
