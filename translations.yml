@@ -56,6 +56,11 @@ labels:
     en: Continuing Ballots Total
   total_exhausted:
     en: Exhausted
+    # These are from the translation of "Exhausted Ballot" here:
+    # https://www.eac.gov/election-officials/glossaries-election-terminology
+    es: Papeleta de votación agotada
+    tl: Nasaid na Balota
+    zh: 用尽的选票
   total_non_transferable:
     en: Non Transferable Total
   total_overvotes:
