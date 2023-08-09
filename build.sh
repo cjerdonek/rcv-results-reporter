@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python src/rcvresults/main.py
+python src/rcvresults/demo.py
 mkdir tmp
 cp data/output-html/*.html tmp
 rm tmp/index-test.html

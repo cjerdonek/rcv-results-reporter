@@ -135,7 +135,7 @@ $ pip install -e .
 To run the demo:
 
 ```
-$ python src/rcvresults/main.py
+$ python src/rcvresults/demo.py
 ```
 
 TODO: add a script that can be used in a more general, non-demo context.

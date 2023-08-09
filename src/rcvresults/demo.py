@@ -1,7 +1,7 @@
 """
 Usage:
 
-$ python src/rcvresults/main.py
+$ python src/rcvresults/demo.py
 
 """
 
