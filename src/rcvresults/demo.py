@@ -15,10 +15,8 @@ import jinja2
 from jinja2 import Environment, FileSystemLoader
 from markupsafe import Markup
 
-import rcvresults.parsers.xml as xml_parsing
-import rcvresults.parsers.xslx as excel_parsing
+import rcvresults.main as main_mod
 import rcvresults.rendering as rendering
-import rcvresults.summary as summary
 import rcvresults.utils as utils
 from rcvresults.utils import CURRENT_LANG_KEY, LANG_CODE_ENGLISH, LANGUAGES
 
@@ -127,33 +125,6 @@ def make_environment():
     return env
 
 
-def make_rcv_json(path, json_dir):
-    _log.info(f'parsing: {path}')
-    suffix = path.suffix
-    if suffix == '.xlsx':
-        parse_report_file = excel_parsing.parse_excel_file
-    else:
-        assert suffix == '.xml'
-        parse_report_file = xml_parsing.parse_xml_file
-
-    try:
-        results = parse_report_file(path)
-    except Exception:
-        raise RuntimeError(f'error parsing report file: {path}')
-
-    metadata = results['_metadata']
-    contest_name = metadata['contest_name']
-    candidates = results['candidates']
-    _log.info(f'parsed contest: {contest_name!r} ({len(candidates)} candidates)')
-    summary.add_summary(results)
-
-    json_path = json_dir / f'{path.stem}.json'
-    _log.info(f'writing: {json_path}')
-    utils.write_json(results, path=json_path)
-
-    return json_path
-
-
 def make_rcv_json_files(dir_names, parent_reports_dir, parent_json_dir):
     _log.info('starting RCV json file creation')
     for dir_name in dir_names:
@@ -163,7 +134,7 @@ def make_rcv_json_files(dir_names, parent_reports_dir, parent_json_dir):
 
         report_paths = get_report_paths(parent_reports_dir, dir_name=dir_name)
         for report_path in report_paths:
-            make_rcv_json(report_path, json_dir=json_dir)
+            main_mod.make_rcv_json(report_path, json_dir=json_dir)
 
 
 def make_rcv_snippets(parent_json_dir, parent_snippets_dir, dir_name):
