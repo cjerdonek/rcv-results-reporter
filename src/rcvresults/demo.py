@@ -1,7 +1,9 @@
 """
+Recreate the demo page.
+
 Usage:
 
-$ python src/rcvresults/demo.py
+  $ python src/rcvresults/demo.py
 
 """
 
