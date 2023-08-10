@@ -88,22 +88,20 @@ def get_report_paths(parent_reports_dir, dir_name):
 
 
 def make_all_rcv_snippets(
-    parent_snippets_dir, dir_names, parent_json_dir, translations_path,
+    config_paths, parent_snippets_dir, parent_json_dir, translations_path,
 ):
     """
     Args:
+      config_paths: a dict mapping dir_name to config_path.
       parent_snippets_dir: the parent directory to which to write the
         intermediate RCV HTML snippets.
     """
-    for dir_name in dir_names:
+    for dir_name, config_path in config_paths.items():
         _log.info(f'starting election: {dir_name}')
-        config_path = get_config_path(dir_name)
-        reports_dir = DATA_DIR_REPORTS / dir_name
         report_suffix = REPORT_DIR_EXTENSIONS[dir_name]
-
-        json_dir, html_dir = (
+        reports_dir, json_dir, html_dir = (
             parent_dir / dir_name for parent_dir in
-            (parent_json_dir, parent_snippets_dir)
+            (DATA_DIR_REPORTS, parent_json_dir, parent_snippets_dir)
         )
         main_mod.process_election(
             config_path=config_path, reports_dir=reports_dir,
@@ -173,11 +171,17 @@ def _iter_contests(context, election, parent_json_dir):
         yield (html_path, contest_data, contest_url)
 
 
-def _build_elections_list(dir_names):
+def _build_elections_list(config_paths):
+    """
+    Return the elections to include in the demo page, as a list of election
+    configs.
+
+    Args:
+      config_paths: a dict mapping dir_name to config_path.
+    """
     elections = []
-    for dir_name in dir_names:
+    for dir_name, config_path in config_paths.items():
         _log.info(f'starting election: {dir_name}')
-        config_path = get_config_path(dir_name)
         election_config = main_mod.read_election_config(config_path)
 
         # TODO: should dir_name be stored here?
@@ -188,15 +192,17 @@ def _build_elections_list(dir_names):
 
 
 def make_rcv_demo(
-    output_dir, snippets_dir, js_dir, parent_json_dir, elections,
+    config_paths, snippets_dir, js_dir, parent_json_dir, output_dir,
 ):
     """
     Args:
-      elections: the elections to include in the demo page, as a list of
-        election configs
+      config_paths: a dict mapping dir_name to config_path.
     """
     _log.info(f'creating: RCV demo index html')
     env = _make_index_jinja_env(snippets_dir=snippets_dir)
+
+    # Create a single "elections" list for use from the template.
+    elections = _build_elections_list(config_paths)
 
     iter_contests = functools.partial(
         _iter_contests, parent_json_dir=parent_json_dir,
@@ -241,21 +247,23 @@ def main():
         DIR_NAME_2020_NOV,
         DIR_NAME_2019_NOV,
     ]
+    config_paths = {
+        dir_name: get_config_path(dir_name) for dir_name in dir_names
+    }
+
     # First generate the RCV summary html snippets for all the elections.
     make_all_rcv_snippets(
-        snippets_dir, dir_names=dir_names, parent_json_dir=parent_json_dir,
-        translations_path=TRANSLATIONS_PATH,
+        config_paths, parent_snippets_dir=snippets_dir,
+        parent_json_dir=parent_json_dir, translations_path=TRANSLATIONS_PATH,
     )
 
     # Next, generate the index html pages.
     # TODO: check that this still works.
     make_test_index_html(output_dir, snippets_dir=snippets_dir, js_dir=js_dir)
 
-    # Create a single "elections" list for use from the template.
-    elections = _build_elections_list(dir_names)
     make_rcv_demo(
-        output_dir, snippets_dir=snippets_dir, js_dir=js_dir,
-        parent_json_dir=parent_json_dir, elections=elections,
+        config_paths, snippets_dir=snippets_dir, js_dir=js_dir,
+        parent_json_dir=parent_json_dir, output_dir=output_dir,
     )
 
 
