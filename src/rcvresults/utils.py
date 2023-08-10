@@ -62,6 +62,13 @@ def write_json(data, path):
         json.dump(data, f, indent='    ', sort_keys=True)
 
 
+def make_rcv_snippet_name(base_name, lang_code):
+    """
+    Construct and return an RCV html snippet file name.
+    """
+    return f'{base_name}-{lang_code}.html'
+
+
 def get_paths(dir_path, suffix):
     """
     Return the paths in the given directory, as a sorted list of Path objects.

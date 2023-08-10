@@ -166,7 +166,8 @@ def _iter_contests(context, election, parent_json_dir):
         file_stem = contest['file']
         contest_url = contest['url']
         json_path = json_dir / f'{file_stem}.json'
-        html_path = f'{dir_name}/{file_stem}-{lang_code}.html'
+        html_name = utils.make_rcv_snippet_name(file_stem, lang_code=lang_code)
+        html_path = str(Path(dir_name) / html_name)
         contest_data = utils.read_json(json_path)
         yield (html_path, contest_data, contest_url)
 

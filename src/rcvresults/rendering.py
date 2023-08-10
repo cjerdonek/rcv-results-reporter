@@ -4,6 +4,7 @@ Supports rendering Jinja2 templates.
 
 import logging
 
+import rcvresults.utils as utils
 from rcvresults.utils import CURRENT_LANG_KEY, LANG_CODE_ENGLISH, LANGUAGES
 
 
@@ -140,8 +141,8 @@ def make_rcv_contest_html(data, template, html_dir, base_name):
       html_dir: the directory to which to write the rendered html files.
     """
     for lang_code in LANGUAGES:
-        file_name = f'{base_name}-{lang_code}.html'
-        output_path = html_dir / file_name
+        html_name = utils.make_rcv_snippet_name(base_name, lang_code=lang_code)
+        output_path = html_dir / html_name
         render_template(
             template, output_path=output_path, context=data,
             lang_code=lang_code,
