@@ -20,6 +20,7 @@ _log = logging.getLogger(__name__)
 
 # Mapping from template name to html base name suffix.
 HTML_SUFFIXES = {
+    'rcv-complete.html': 'rounds',
     'rcv-summary.html': 'summary',
 }
 
@@ -161,9 +162,8 @@ def process_election(
     contests_data = election_data['contests']
 
     env = make_environment(translations_path)
-    # TODO: add rcv-complete.html to this.
     templates = [
-        env.get_template(name) for name in ('rcv-summary.html',)
+        env.get_template(name) for name in ('rcv-summary.html', 'rcv-complete.html')
     ]
     for contest_data in contests_data:
         process_contest(
