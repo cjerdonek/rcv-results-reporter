@@ -14,7 +14,7 @@ from pathlib import Path
 import jinja2
 from markupsafe import Markup
 
-import rcvresults.main as main_mod
+import rcvresults.election as election_mod
 import rcvresults.rendering as rendering
 import rcvresults.utils as utils
 from rcvresults.utils import CURRENT_LANG_KEY, LANGUAGES
@@ -103,7 +103,7 @@ def make_all_rcv_snippets(
             parent_dir / dir_name for parent_dir in
             (DATA_DIR_REPORTS, parent_json_dir, parent_snippets_dir)
         )
-        main_mod.process_election(
+        election_mod.process_election(
             config_path=config_path, reports_dir=reports_dir,
             report_suffix=report_suffix, translations_path=translations_path,
             json_dir=json_dir, output_dir=html_dir,
@@ -115,7 +115,7 @@ def _make_index_jinja_env(snippets_dir):
     Create and return a Jinja2 Environment object to use when rendering
     one of the index.html templates.
     """
-    env = main_mod.make_environment(TRANSLATIONS_PATH)
+    env = election_mod.make_environment(TRANSLATIONS_PATH)
 
     def insert_html(rel_path):
         path = snippets_dir / rel_path
@@ -183,7 +183,7 @@ def _build_elections_list(config_paths):
     elections = []
     for dir_name, config_path in config_paths.items():
         _log.info(f'starting election: {dir_name}')
-        election_config = main_mod.read_election_config(config_path)
+        election_config = election_mod.read_election_config(config_path)
 
         # TODO: should dir_name be stored here?
         election_config['dir_name'] = dir_name
