@@ -1,0 +1,224 @@
+/* Default tag override styles */
+/* All uncontained text in the html body */
+body{
+	font-family: Helvetica, Verdana, Arial, sans-serif;
+	font-size: 12pt;
+	color: #000000;
+}
+
+/* All text contained in a table cell, which has no explicit class value */
+td{
+	font-family: Helvetica, Verdana, Arial, sans-serif;
+	font-size: 8pt;
+	color: #000000;
+}
+
+/* Style for body header text */
+.BodyTitle{
+	text-align: center;
+	font-size: 24pt;
+	font-weight: bold;
+	margin: 25px;
+}
+
+/* Classes for contest header div and value span */
+.ContestHeader{
+
+}
+
+.ContestHeaderValue{
+	font-weight: bold;
+}
+
+/* Classes for load type header div and value span */
+.LoadTypeHeader{
+
+}
+
+.LoadTypeHeaderValue{
+	font-weight: bold;
+}
+
+
+/* styles for the results table */
+.ResultsTable{
+	padding: 3px;
+}
+
+/* Style for candidate column header - empty for now, so no style data either */
+.CandidateCellHeader{
+
+}
+
+/* Style for 'round' column group headers*/
+th.RoundCellHeader{
+	background-color: #CCFFCC;
+}
+
+/* styles for round group individual column headers */
+.VotesCellSubHeader{
+	text-align: center;
+	font-size: 10pt;
+}
+.PercentageCellSubHeader{
+	text-align: center;
+	font-size: 10pt;
+}
+.TransferCellSubHeader{
+	text-align: center;
+	font-size: 10pt;
+}
+
+/* Table row styles used for the candidates, alternating row colors, and non candidate row shading */
+tr.CandidateRow{
+
+}
+tr.AlternateCandidateRow{
+	background-color: #CCFFCC;
+}
+tr.NonCandidateRow{
+	background-color: #CCCCCC;
+}
+
+
+/* Styles used for cells in the 'candidate' column */
+td.CandidateCell{
+	padding: 3px;
+	padding-left: 10px;
+}
+
+/* Styles used in the results cells - default entries/values */
+td.VotesCell{
+	text-align: center;
+}
+td.PercentageCell{
+	text-align: center;
+}
+td.VotesTransferredCell{
+	text-align: center;
+}
+
+/* Styles used in the results cells - eliminated candidates entries/values */
+.EliminatedVotesCell{
+	text-align: center;
+	color: red;
+}
+.EliminatedPercentageCell{
+	text-align: center;
+	color: red;
+}
+.EliminatedVotesTransferredCell{
+	text-align: center;
+	color: red;
+}
+
+/* Styles used in the results cells - eliminated but tied leader entries/values */
+.EliminatedLeaderVotesCell{
+	text-align: center;
+	color: red;
+}
+.EliminatedLeaderPercentageCell{
+	text-align: center;
+	color: red;
+}
+.EliminatedLeaderVotesTransferredCell{
+	text-align: center;
+	color: red;
+}
+
+.LeaderEliminatedVotesCell{
+	text-align: center;
+	color: red;
+}
+.LeaderEliminatedPercentageCell{
+	text-align: center;
+	color: red;
+}
+.LeaderEliminatedVotesTransferredCell{
+	text-align: center;
+	color: red;
+}
+
+/* Styles used in the results cells - round leader entries/values */
+.LeaderVotesCell{
+	text-align: center;
+	color: blue;
+}
+.LeaderPercentageCell{
+	text-align: center;
+	color: blue;
+}
+.LeaderVotesTransferredCell{
+	text-align: center;
+	color: blue;
+}
+
+/* Styles used in the results cells - contest/rcv process winner entries/values */
+.WinnerVotesCell{
+	text-align: center;
+	color: #FFCC33;
+	font-weight: bold;
+	background-color: blue;
+}
+.WinnerPercentageCell{
+	text-align: center;
+	color: #FFCC33;
+	font-weight: bold;
+	background-color: blue;
+}
+.WinnerVotesTransferredCell{
+	text-align: center;
+	color: #FFCC33;
+	font-weight: bold;
+	background-color: blue;
+}
+
+/* Styles for 'continuing ballots' row */
+.ContinuingBallotsTitleCell{
+	padding: 3px;
+	padding-left: 10px;
+}
+.ContinuingVotesCell{
+	text-align: center;	
+}
+.ContinuingPercentageCell{
+	text-align: center;
+}
+.ContinuingVotesTransferredCell{
+	text-align: center;
+}
+
+/* Styles for 'totals' row */
+.TotalHeaderCell{
+	font-weight: bold;
+	text-align: center;
+	padding: 5px;
+}
+
+.PassTotalVotesCell{
+	font-weight: bold;
+	text-align: center;
+	padding: 5px;
+}
+.PassTotalPercentageCell{
+	font-weight: bold;
+	text-align: center;
+	padding: 5px;
+}
+.PassTotalVotesTransferredCell{
+	font-weight: bold;
+	text-align: center;
+	padding: 5px;
+}
+
+/* Styles for 'remarks' row */
+.RemarksTitleCell{
+	font-weight: bold;
+	text-align: center;
+	padding: 5px;
+}
+
+.RemarksCell{
+	font-weight: bold;
+	padding: 5px;
+}
