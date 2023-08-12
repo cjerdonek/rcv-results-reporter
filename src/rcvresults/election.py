@@ -18,6 +18,12 @@ from rcvresults.utils import LANG_CODE_ENGLISH
 _log = logging.getLogger(__name__)
 
 
+# Mapping from template name to html base name suffix.
+HTML_SUFFIXES = {
+    'rcv-summary.html': 'summary',
+}
+
+
 def read_election_config(config_path):
     config_data = utils.read_yaml(config_path)
     election_data = config_data['election']
@@ -94,29 +100,40 @@ def make_environment(translations_path):
     return env
 
 
-def make_html_snippets(json_path, template, output_dir):
-    _log.info(f'making RCV html snippets from: {json_path}')
-    rcv_data = utils.read_json(json_path)
-    base_name = json_path.stem
-    rendering.make_rcv_contest_html(
-        rcv_data, template=template, html_dir=output_dir,
-        base_name=base_name,
-    )
-
-
-def process_contest(
-    contest_data, reports_dir, report_suffix, template, json_dir, output_dir,
-):
+def make_html_snippets(json_path, templates, output_dir, base_name):
     """
     Args:
+      templates: a list of jinja2 Template objects.
       json_dir: the json output directory.
       output_dir: the html output directory.
     """
-    file_stem = contest_data['file']
-    file_name = f'{file_stem}.{report_suffix}'
+    _log.info(f'making RCV html snippets from: {json_path}')
+    rcv_data = utils.read_json(json_path)
+    for template in templates:
+        base_name_suffix = HTML_SUFFIXES[template.name]
+        html_base_name = f'{base_name}-{base_name_suffix}'
+        rendering.make_rcv_contest_html(
+            rcv_data, template=template, html_dir=output_dir,
+            base_name=html_base_name,
+        )
+
+
+def process_contest(
+    contest_data, reports_dir, report_suffix, templates, json_dir, output_dir,
+):
+    """
+    Args:
+      templates: a list of jinja2 Template objects.
+      json_dir: the json output directory.
+      output_dir: the html output directory.
+    """
+    base_name = contest_data['file']
+    file_name = f'{base_name}.{report_suffix}'
     report_path = reports_dir / file_name
     json_path = make_rcv_json(report_path, json_dir=json_dir)
-    make_html_snippets(json_path, template=template, output_dir=output_dir)
+    make_html_snippets(
+        json_path, templates=templates, output_dir=output_dir, base_name=base_name,
+    )
 
 
 def process_election(
@@ -144,10 +161,12 @@ def process_election(
     contests_data = election_data['contests']
 
     env = make_environment(translations_path)
-    template = env.get_template('rcv-summary.html')
-
+    # TODO: add rcv-complete.html to this.
+    templates = [
+        env.get_template(name) for name in ('rcv-summary.html',)
+    ]
     for contest_data in contests_data:
         process_contest(
             contest_data, reports_dir=reports_dir, report_suffix=report_suffix,
-            template=template, output_dir=output_dir, json_dir=json_dir,
+            templates=templates, output_dir=output_dir, json_dir=json_dir,
         )
