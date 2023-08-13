@@ -110,6 +110,9 @@ def _make_globals(css_dir=None):
         'get_candidate_class_prefix': (
             jinja2.pass_context(rendering.get_candidate_class_prefix)
         ),
+        'candidate_was_eliminated': (
+            jinja2.pass_context(rendering.candidate_was_eliminated)
+        ),
     }
     if css_dir is not None:
         global_vars.update({

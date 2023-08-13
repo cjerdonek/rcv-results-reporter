@@ -47,16 +47,20 @@ def is_contest_leader(context, candidate):
     return candidate in context['leading_candidates']
 
 
-def is_candidate_eliminated(context, candidate, round_number):
+def candidate_was_eliminated(context, candidate, round_number):
     """
-    Return whether the candidate is getting eliminated **in this round**.
+    Return whether the candidate was eliminated in a **previous** round.
 
     Args:
       context: the template context.
     """
     summaries = context['candidate_summaries']
     summary = summaries[candidate]
-    return round_number == summary.get('elimination_round')
+    elimination_round = summary.get('elimination_round')
+    if elimination_round is None:
+        return False
+
+    return elimination_round < round_number
 
 
 def get_candidate_class_prefix(context, candidate, round_number):
