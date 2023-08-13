@@ -26,6 +26,12 @@
 {%- for candidate in candidates %}
 <tr class="{{ loop.cycle('CandidateRow', 'AlternateCandidateRow') }}">
   <td class="CandidateCell">{{ candidate }}</td>
+{%- for i in range(highest_round) %}
+{%- set round_data = rounds[candidate][i] %}
+  <td class="VotesCell">{{ round_data['votes']|format_int }}</td>
+  <td class="PercentageCell">{{ round_data['percent']|format_percent }}</td>
+  <td class="VotesTransferredCell">0</td>
+{%- endfor %}
 </tr>
 {%- endfor %}
 {#- TODO: finish this template. #}
