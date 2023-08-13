@@ -37,7 +37,7 @@
 {%- set class_prefix = get_candidate_class_prefix(candidate=candidate, round_number=round_number) %}
   <td class="{{ class_prefix }}VotesCell">{{ round_data['votes']|format_int }}</td>
   <td class="{{ class_prefix }}PercentageCell">{{ round_data['percent']|format_percent }}</td>
-  <td class="{{ class_prefix }}VotesTransferredCell">0</td>
+  <td class="{{ class_prefix }}VotesTransferredCell">{{ round_data['transfer']|format_int }}</td>
 {%- endif %}
 {%- endfor %}
 </tr>
