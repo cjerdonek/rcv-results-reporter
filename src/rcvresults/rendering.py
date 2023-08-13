@@ -12,6 +12,10 @@ _log = logging.getLogger(__name__)
 
 
 def render_template(template, output_path, context=None, lang_code=None):
+    """
+    Args:
+      context: the context to pass to template.render().
+    """
     if context is None:
         context = {}
     if lang_code is not None:
@@ -33,6 +37,14 @@ def format_percent(value):
     # Show 2 decimal places.
     percent = 100 * value
     return f'{percent:.2f}%'
+
+
+def is_contest_leader(context, candidate):
+    """
+    Args:
+      context: the template context.
+    """
+    return candidate in context['leading_candidates']
 
 
 def _get_language(context):
@@ -131,19 +143,20 @@ def translate_phrase(
     return translation
 
 
-def make_rcv_contest_html(data, template, html_dir, base_name):
+def make_rcv_contest_html(context, template, html_dir, base_name):
     """
     Create the html snippets for an RCV contest, one for each language.
 
     Args:
-      data: the contest data parsed from the xml or Excel results report
-        for the contest.
+      context: the context to pass to template.render(). This should
+        include the contest data parsed from the xml or Excel results
+        report for the contest.
       html_dir: the directory to which to write the rendered html files.
     """
     for lang_code in LANGUAGES:
         html_name = utils.make_rcv_snippet_name(base_name, lang_code=lang_code)
         output_path = html_dir / html_name
         render_template(
-            template, output_path=output_path, context=data,
+            template, output_path=output_path, context=context,
             lang_code=lang_code,
         )

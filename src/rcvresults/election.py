@@ -101,6 +101,21 @@ def make_environment(translations_path):
     return env
 
 
+def _make_globals(css_dir=None):
+    """
+    Return the globals to pass to env.get_template().
+    """
+    global_vars = {
+        'is_contest_leader': jinja2.pass_context(rendering.is_contest_leader),
+    }
+    if css_dir is not None:
+        global_vars.update({
+            'css_dir': str(css_dir),
+        })
+
+    return global_vars
+
+
 def make_html_snippets(json_path, templates, output_dir, base_name):
     """
     Args:
@@ -165,12 +180,7 @@ def process_election(
     contests_data = election_data['contests']
 
     env = make_environment(translations_path)
-
-    global_vars = {}
-    if css_dir is not None:
-        global_vars.update({
-            'css_dir': str(css_dir),
-        })
+    global_vars = _make_globals(css_dir=css_dir)
 
     templates = [
         env.get_template(name, globals=global_vars) for name in

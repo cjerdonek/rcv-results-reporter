@@ -15,7 +15,7 @@
   {%- set round_1 = rounds[candidate][0] %}
   {#- Subtract 1 to get a 0-based index. #}
   {%- set round_last = rounds[candidate][highest_round - 1] %}
-  {%- set candidate_class = 'leading-candidate' if candidate in leading_candidates else '' %}
+  {%- set candidate_class = 'leading-candidate' if is_contest_leader(candidate) else '' %}
   {%- set candidate_summary = candidate_summaries[candidate] %}
   {%- set elimination_round = candidate_summary['elimination_round'] %}
 <tr>
