@@ -47,6 +47,36 @@ def is_contest_leader(context, candidate):
     return candidate in context['leading_candidates']
 
 
+def is_candidate_eliminated(context, candidate, round_number):
+    """
+    Return whether the candidate is getting eliminated **in this round**.
+
+    Args:
+      context: the template context.
+    """
+    summaries = context['candidate_summaries']
+    summary = summaries[candidate]
+    return round_number == summary.get('elimination_round')
+
+
+def get_candidate_class_prefix(context, candidate, round_number):
+    """
+    Returns one of: "Leader", "Winner", "Eliminated", or "", per the
+    pre-2019 RCV tables.
+    """
+    if is_contest_leader(context, candidate=candidate):
+        if round_number == context['highest_round']:
+            return 'Winner'
+        return 'Leader'
+
+    summaries = context['candidate_summaries']
+    candidate_summary = summaries[candidate]
+    if round_number == candidate_summary.get('elimination_round'):
+        return 'Eliminated'
+
+    return ''
+
+
 def _get_language(context):
     """
     Return the language set in the context, as a 2-letter language code
