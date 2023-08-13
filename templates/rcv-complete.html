@@ -23,6 +23,11 @@
   <td class="TransferCellSubHeader">Transfer</td>
 {%- endfor %}
 </tr>
+{%- for candidate in candidates %}
+<tr class="{{ loop.cycle('CandidateRow', 'AlternateCandidateRow') }}">
+  <td class="CandidateCell">{{ candidate }}</td>
+</tr>
+{%- endfor %}
 {#- TODO: finish this template. #}
 <tr>
 <td class="RemarksTitleCell">REMARKS</td>
