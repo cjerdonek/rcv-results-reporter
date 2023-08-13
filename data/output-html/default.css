@@ -52,7 +52,7 @@ td{
 
 /* Style for 'round' column group headers*/
 th.RoundCellHeader{
-	background-color: #CCFFCC;
+	background-color: #DBE9FA;
 }
 
 /* styles for round group individual column headers */
@@ -74,7 +74,7 @@ tr.CandidateRow{
 
 }
 tr.AlternateCandidateRow{
-	background-color: #CCFFCC;
+	background-color: #F5F5F5;
 }
 tr.NonCandidateRow{
 	background-color: #CCCCCC;
@@ -101,15 +101,18 @@ td.VotesTransferredCell{
 /* Styles used in the results cells - eliminated candidates entries/values */
 .EliminatedVotesCell{
 	text-align: center;
-	color: red;
+	font-weight: bold;
+	background-color: #FFC0CB; /* pink */
 }
 .EliminatedPercentageCell{
 	text-align: center;
-	color: red;
+	font-weight: bold;
+	background-color: #FFC0CB; /* pink */
 }
 .EliminatedVotesTransferredCell{
 	text-align: center;
-	color: red;
+	font-weight: bold;
+	background-color: #FFC0CB; /* pink */
 }
 
 /* Styles used in the results cells - eliminated but tied leader entries/values */
@@ -142,35 +145,32 @@ td.VotesTransferredCell{
 /* Styles used in the results cells - round leader entries/values */
 .LeaderVotesCell{
 	text-align: center;
-	color: blue;
+	color: #006400; /* dark green */
 }
 .LeaderPercentageCell{
 	text-align: center;
-	color: blue;
+	color: #006400; /* dark green */
 }
 .LeaderVotesTransferredCell{
 	text-align: center;
-	color: blue;
+	color: #006400; /* dark green */
 }
 
 /* Styles used in the results cells - contest/rcv process winner entries/values */
 .WinnerVotesCell{
 	text-align: center;
-	color: #FFCC33;
 	font-weight: bold;
-	background-color: blue;
+	background-color: #B5EAAA; /* light green */
 }
 .WinnerPercentageCell{
 	text-align: center;
-	color: #FFCC33;
 	font-weight: bold;
-	background-color: blue;
+	background-color: #B5EAAA; /* light green */
 }
 .WinnerVotesTransferredCell{
 	text-align: center;
-	color: #FFCC33;
 	font-weight: bold;
-	background-color: blue;
+	background-color: #B5EAAA; /* light green */
 }
 
 /* Styles for 'continuing ballots' row */
@@ -179,7 +179,7 @@ td.VotesTransferredCell{
 	padding-left: 10px;
 }
 .ContinuingVotesCell{
-	text-align: center;	
+	text-align: center;
 }
 .ContinuingPercentageCell{
 	text-align: center;
