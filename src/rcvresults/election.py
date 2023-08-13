@@ -139,7 +139,7 @@ def process_contest(
 
 def process_election(
     config_path, reports_dir, report_suffix, translations_path, output_dir,
-    json_dir=None,
+    json_dir=None, css_dir=None,
 ):
     """
     Args:
@@ -149,6 +149,9 @@ def process_election(
       json_dir: the directory to which to write the intermediate json
         files, as a Path object. Defaults to a subdirectory of the given
         output directory.
+      css_dir: the path to the directory containing the default.css file,
+        as a Path object, for use in the rcv-complete.html template.
+        This can be a relative path.
     """
     if json_dir is None:
         json_dir = output_dir / 'json'
@@ -162,8 +165,16 @@ def process_election(
     contests_data = election_data['contests']
 
     env = make_environment(translations_path)
+
+    global_vars = {}
+    if css_dir is not None:
+        global_vars.update({
+            'css_dir': str(css_dir),
+        })
+
     templates = [
-        env.get_template(name) for name in ('rcv-summary.html', 'rcv-complete.html')
+        env.get_template(name, globals=global_vars) for name in
+        ('rcv-summary.html', 'rcv-complete.html')
     ]
     for contest_data in contests_data:
         process_contest(

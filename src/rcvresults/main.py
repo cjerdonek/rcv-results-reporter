@@ -79,6 +79,7 @@ def main():
         assert args.report_format == 'excel'
         report_suffix = 'xlsx'
 
+    # TODO: pass css_dir.
     election_mod.process_election(
         config_path=config_path, reports_dir=reports_dir,
         report_suffix=report_suffix, translations_path=translations_path,

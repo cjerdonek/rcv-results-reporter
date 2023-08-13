@@ -96,6 +96,7 @@ def make_all_rcv_snippets(
       parent_snippets_dir: the parent directory to which to write the
         intermediate RCV HTML snippets.
     """
+    css_dir = '../..'
     for dir_name, config_path in config_paths.items():
         _log.info(f'starting election: {dir_name}')
         report_suffix = REPORT_DIR_EXTENSIONS[dir_name]
@@ -106,7 +107,7 @@ def make_all_rcv_snippets(
         election_mod.process_election(
             config_path=config_path, reports_dir=reports_dir,
             report_suffix=report_suffix, translations_path=translations_path,
-            json_dir=json_dir, output_dir=html_dir,
+            json_dir=json_dir, css_dir=css_dir, output_dir=html_dir,
         )
 
 
@@ -212,13 +213,13 @@ def make_rcv_demo(
         _iter_contests, parent_json_dir=parent_json_dir,
     )
 
-    env.globals.update({
+    global_vars = {
         'elections': elections,
         'iter_contests': jinja2.pass_context(iter_contests),
         'iter_languages': jinja2.pass_context(rendering.iter_languages),
-    })
+    }
 
-    template = env.get_template(TEMPLATE_NAME_RCV_DEMO)
+    template = env.get_template(TEMPLATE_NAME_RCV_DEMO, globals=global_vars)
 
     for lang_code in LANGUAGES:
         output_name = rendering.get_index_name(lang_code)
