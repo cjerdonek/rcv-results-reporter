@@ -136,8 +136,7 @@ def make_subtotal_translations(label_translations):
 
 def make_environment(translations_path):
     env = Environment(
-        loader=FileSystemLoader('templates'),
-        # TODO: pass the autoescape argument?
+        loader=FileSystemLoader('templates'), autoescape=True,
     )
 
     label_translations = read_label_translations(translations_path)
