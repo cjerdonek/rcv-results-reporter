@@ -38,7 +38,10 @@ import logging
 import xml.etree.ElementTree as ET
 
 import rcvresults.utils as utils
-from rcvresults.utils import NonCandidateNames
+from rcvresults.parsers.common import (
+    NonCandidateName, NON_CANDIDATE_SUBTOTAL_LABELS,
+)
+from rcvresults.utils import NonCandidateLabel
 
 
 _log = logging.getLogger(__name__)
@@ -46,10 +49,10 @@ _log = logging.getLogger(__name__)
 NAMESPACE = '{RcvShortReport}'
 
 NON_CANDIDATE_CHOICE_NAMES = [
-    NonCandidateNames.BLANK,
-    NonCandidateNames.EXHAUSTED,
-    NonCandidateNames.OVERVOTE,
-    NonCandidateNames.REMAINDER,
+    NonCandidateName.BLANK,
+    NonCandidateName.EXHAUSTED,
+    NonCandidateName.OVERVOTE,
+    NonCandidateName.REMAINDER,
 ]
 
 
@@ -120,16 +123,30 @@ def _iter_choice_groups(tablix_5):
         yield (name, choice_group)
 
 
-def _get_candidate_names(tablix_5):
-    choice_names = [
-        name for name, _choice_group in _iter_choice_groups(tablix_5)
+def _get_choice_groups(tablix_5):
+    """
+    Return a list of (name, choice_group) pairs, where name is either
+    a candidate name or non-candidate label and choice_group is a
+    choiceGroup element.
+    """
+    choice_groups = [
+        (name, group) for name, group in _iter_choice_groups(tablix_5)
     ]
+    candidate_groups = choice_groups[:-4]
+    non_candidate_groups = choice_groups[-4:]
+    choice_names = [name for name, group in choice_groups]
     if choice_names[-4:] != NON_CANDIDATE_CHOICE_NAMES:
         raise RuntimeError(
             f'last four choice names not as expected: {choice_names}'
         )
-    # Remove the non-candidate choices before returning.
-    return choice_names[:-4]
+
+    # Remove "Remainder Points", and transform the non-candidate names
+    # to non-candidate labels.
+    non_candidate_groups = [
+        (NON_CANDIDATE_SUBTOTAL_LABELS[name], group) for name, group
+        in non_candidate_groups[:-1]
+    ]
+    return (candidate_groups, non_candidate_groups)
 
 
 def _make_round_dict(votes, percent=None, transfer=None):
@@ -191,25 +208,25 @@ def _iter_non_tranferable_totals(tablix_5):
         yield _make_round_dict(votes)
 
 
-def _get_rounds(tablix_5):
+def _get_rounds(tablix_5, choice_groups):
     """
-    Create a return the "rounds" dict.
+    Create and return the "rounds" dict.
     """
     rounds = {}
-    for name, choice_group in _iter_choice_groups(tablix_5):
+    for name, choice_group in choice_groups:
         _log.info(f'processing choice: {name}')
         # The "Remainder Points" subtotal isn't applicable.
-        if name == NonCandidateNames.REMAINDER:
+        if name == NonCandidateName.REMAINDER:
             continue
 
         choice_rounds = list(_iter_choice_rounds(choice_group))
         rounds[name] = choice_rounds
 
     continuing_rounds = list(_iter_continuing_totals(tablix_5))
-    rounds[NonCandidateNames.CONTINUING] = continuing_rounds
+    rounds[NonCandidateLabel.CONTINUING] = continuing_rounds
 
     non_tranferable_rounds = list(_iter_non_tranferable_totals(tablix_5))
-    rounds[NonCandidateNames.NON_TRANSFERABLE] = non_tranferable_rounds
+    rounds[NonCandidateLabel.NON_TRANSFERABLE] = non_tranferable_rounds
 
     return rounds
 
@@ -221,10 +238,12 @@ def _get_results(root, get_descendant):
     tablix_5 = get_descendant(root, [
         'Tablix1', 'precinctGroup_Collection', 'precinctGroup', 'Tablix5',
     ])
-    candidates = _get_candidate_names(tablix_5)
-    results = utils.initialize_results(candidates)
+    candidate_groups, non_candidate_groups = _get_choice_groups(tablix_5)
+    candidate_names = [name for name, group in candidate_groups]
+    results = utils.initialize_results(candidate_names)
 
-    rounds = _get_rounds(tablix_5)
+    choice_groups = candidate_groups + non_candidate_groups
+    rounds = _get_rounds(tablix_5, choice_groups)
     results['rounds'] = rounds
 
     return results

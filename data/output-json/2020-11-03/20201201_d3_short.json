@@ -33,11 +33,11 @@
         "AARON PESKIN"
     ],
     "non_candidate_subtotals": [
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ],
     "rounds": {
         "AARON PESKIN": [
@@ -57,40 +57,6 @@
                 "votes": 16199.0
             }
         ],
-        "Blanks": [
-            {
-                "percent": 0.13511923303222234,
-                "transfer": 0.0,
-                "votes": 3904.0
-            },
-            {
-                "percent": 0.13545208521268476,
-                "transfer": 0.0,
-                "votes": 3904.0
-            },
-            {
-                "percent": 0.1361844629713608,
-                "transfer": 0.0,
-                "votes": 3904.0
-            }
-        ],
-        "Continuing Ballots Total": [
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 28893.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 28822.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 28667.0
-            }
-        ],
         "DANNY SAUTER": [
             {
                 "percent": 0.365244176790226,
@@ -106,57 +72,6 @@
                 "percent": 0.4349251752886594,
                 "transfer": 0.0,
                 "votes": 12468.0
-            }
-        ],
-        "Exhausted": [
-            {
-                "percent": 0.0,
-                "transfer": 68.0,
-                "votes": 0.0
-            },
-            {
-                "percent": 0.0023593088612865174,
-                "transfer": 144.0,
-                "votes": 68.0
-            },
-            {
-                "percent": 0.007395262845780863,
-                "transfer": 0.0,
-                "votes": 212.0
-            }
-        ],
-        "Non Transferable Total": [
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 3996.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 4067.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 4222.0
-            }
-        ],
-        "Overvotes": [
-            {
-                "percent": 0.0031841622538331085,
-                "transfer": 3.0,
-                "votes": 92.0
-            },
-            {
-                "percent": 0.003296093262091458,
-                "transfer": 11.0,
-                "votes": 95.0
-            },
-            {
-                "percent": 0.0036976314228904317,
-                "transfer": 0.0,
-                "votes": 106.0
             }
         ],
         "SPENCER SIMONSEN": [
@@ -192,6 +107,91 @@
                 "transfer": 0.0,
                 "votes": 0.0
             }
+        ],
+        "blanks": [
+            {
+                "percent": 0.13511923303222234,
+                "transfer": 0.0,
+                "votes": 3904.0
+            },
+            {
+                "percent": 0.13545208521268476,
+                "transfer": 0.0,
+                "votes": 3904.0
+            },
+            {
+                "percent": 0.1361844629713608,
+                "transfer": 0.0,
+                "votes": 3904.0
+            }
+        ],
+        "continuing": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 28893.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 28822.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 28667.0
+            }
+        ],
+        "exhausted": [
+            {
+                "percent": 0.0,
+                "transfer": 68.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0023593088612865174,
+                "transfer": 144.0,
+                "votes": 68.0
+            },
+            {
+                "percent": 0.007395262845780863,
+                "transfer": 0.0,
+                "votes": 212.0
+            }
+        ],
+        "non_transferable": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 3996.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4067.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4222.0
+            }
+        ],
+        "overvotes": [
+            {
+                "percent": 0.0031841622538331085,
+                "transfer": 3.0,
+                "votes": 92.0
+            },
+            {
+                "percent": 0.003296093262091458,
+                "transfer": 11.0,
+                "votes": 95.0
+            },
+            {
+                "percent": 0.0036976314228904317,
+                "transfer": 0.0,
+                "votes": 106.0
+            }
         ]
     },
     "subtotals": [
@@ -199,10 +199,10 @@
         "DANNY SAUTER",
         "SPENCER SIMONSEN",
         "STEPHEN (LULU) SCHWARTZ",
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ]
 }

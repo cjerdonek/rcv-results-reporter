@@ -21,34 +21,13 @@
         "JOAQU\u00cdN TORRES"
     ],
     "non_candidate_subtotals": [
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ],
     "rounds": {
-        "Blanks": [
-            {
-                "percent": 0.4425547966644462,
-                "transfer": 0.0,
-                "votes": 55141.0
-            }
-        ],
-        "Continuing Ballots Total": [
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 124597.0
-            }
-        ],
-        "Exhausted": [
-            {
-                "percent": 0.0,
-                "transfer": 0.0,
-                "votes": 0.0
-            }
-        ],
         "JOAQU\u00cdN TORRES": [
             {
                 "percent": 0.9991091278281179,
@@ -63,14 +42,35 @@
                 "votes": 111.0
             }
         ],
-        "Non Transferable Total": [
+        "blanks": [
+            {
+                "percent": 0.4425547966644462,
+                "transfer": 0.0,
+                "votes": 55141.0
+            }
+        ],
+        "continuing": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 124597.0
+            }
+        ],
+        "exhausted": [
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            }
+        ],
+        "non_transferable": [
             {
                 "percent": null,
                 "transfer": null,
                 "votes": 55142.0
             }
         ],
-        "Overvotes": [
+        "overvotes": [
             {
                 "percent": 8.025875422361694e-06,
                 "transfer": 0.0,
@@ -81,10 +81,10 @@
     "subtotals": [
         "JOAQU\u00cdN TORRES",
         "MICHAEL PETRELIS",
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ]
 }

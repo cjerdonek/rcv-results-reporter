@@ -51,11 +51,11 @@
         "MYRNA MELGAR"
     ],
     "non_candidate_subtotals": [
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ],
     "rounds": {
         "BEN MATRANGA": [
@@ -90,70 +90,6 @@
                 "votes": 0.0
             }
         ],
-        "Blanks": [
-            {
-                "percent": 0.10093562493643853,
-                "transfer": 0.0,
-                "votes": 3970.0
-            },
-            {
-                "percent": 0.10116196106411171,
-                "transfer": 0.0,
-                "votes": 3970.0
-            },
-            {
-                "percent": 0.10206967476539401,
-                "transfer": 0.0,
-                "votes": 3970.0
-            },
-            {
-                "percent": 0.10407382163267447,
-                "transfer": 0.0,
-                "votes": 3970.0
-            },
-            {
-                "percent": 0.10839294490252827,
-                "transfer": 0.0,
-                "votes": 3970.0
-            },
-            {
-                "percent": 0.11365262946952563,
-                "transfer": 0.0,
-                "votes": 3970.0
-            }
-        ],
-        "Continuing Ballots Total": [
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 39332.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 39244.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 38895.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 38146.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 36626.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 34931.0
-            }
-        ],
         "EMILY MURASE": [
             {
                 "percent": 0.12544493033662157,
@@ -184,38 +120,6 @@
                 "percent": 0.0,
                 "transfer": 0.0,
                 "votes": 0.0
-            }
-        ],
-        "Exhausted": [
-            {
-                "percent": 0.0,
-                "transfer": 87.0,
-                "votes": 0.0
-            },
-            {
-                "percent": 0.002216899398634186,
-                "transfer": 347.0,
-                "votes": 87.0
-            },
-            {
-                "percent": 0.01115824656125466,
-                "transfer": 743.0,
-                "votes": 434.0
-            },
-            {
-                "percent": 0.03085513553190374,
-                "transfer": 1507.0,
-                "votes": 1177.0
-            },
-            {
-                "percent": 0.07328127559657074,
-                "transfer": 1682.0,
-                "votes": 2684.0
-            },
-            {
-                "percent": 0.12498926455011308,
-                "transfer": 0.0,
-                "votes": 4366.0
             }
         ],
         "JOEL ENGARDIO": [
@@ -314,70 +218,6 @@
                 "votes": 18561.0
             }
         ],
-        "Non Transferable Total": [
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 4094.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 4182.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 4531.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 5280.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 6800.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 8495.0
-            }
-        ],
-        "Overvotes": [
-            {
-                "percent": 0.0031526492423471983,
-                "transfer": 1.0,
-                "votes": 124.0
-            },
-            {
-                "percent": 0.0031852002853939455,
-                "transfer": 2.0,
-                "votes": 125.0
-            },
-            {
-                "percent": 0.0032652011826712945,
-                "transfer": 6.0,
-                "votes": 127.0
-            },
-            {
-                "percent": 0.003486604100036701,
-                "transfer": 13.0,
-                "votes": 133.0
-            },
-            {
-                "percent": 0.003986239283569049,
-                "transfer": 13.0,
-                "votes": 146.0
-            },
-            {
-                "percent": 0.004551830752054049,
-                "transfer": 0.0,
-                "votes": 159.0
-            }
-        ],
         "STEPHEN W. MARTIN-PINTO": [
             {
                 "percent": 0.11692769246415133,
@@ -441,6 +281,166 @@
                 "transfer": 0.0,
                 "votes": 0.0
             }
+        ],
+        "blanks": [
+            {
+                "percent": 0.10093562493643853,
+                "transfer": 0.0,
+                "votes": 3970.0
+            },
+            {
+                "percent": 0.10116196106411171,
+                "transfer": 0.0,
+                "votes": 3970.0
+            },
+            {
+                "percent": 0.10206967476539401,
+                "transfer": 0.0,
+                "votes": 3970.0
+            },
+            {
+                "percent": 0.10407382163267447,
+                "transfer": 0.0,
+                "votes": 3970.0
+            },
+            {
+                "percent": 0.10839294490252827,
+                "transfer": 0.0,
+                "votes": 3970.0
+            },
+            {
+                "percent": 0.11365262946952563,
+                "transfer": 0.0,
+                "votes": 3970.0
+            }
+        ],
+        "continuing": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 39332.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 39244.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 38895.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 38146.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 36626.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 34931.0
+            }
+        ],
+        "exhausted": [
+            {
+                "percent": 0.0,
+                "transfer": 87.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.002216899398634186,
+                "transfer": 347.0,
+                "votes": 87.0
+            },
+            {
+                "percent": 0.01115824656125466,
+                "transfer": 743.0,
+                "votes": 434.0
+            },
+            {
+                "percent": 0.03085513553190374,
+                "transfer": 1507.0,
+                "votes": 1177.0
+            },
+            {
+                "percent": 0.07328127559657074,
+                "transfer": 1682.0,
+                "votes": 2684.0
+            },
+            {
+                "percent": 0.12498926455011308,
+                "transfer": 0.0,
+                "votes": 4366.0
+            }
+        ],
+        "non_transferable": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4094.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4182.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4531.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 5280.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 6800.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 8495.0
+            }
+        ],
+        "overvotes": [
+            {
+                "percent": 0.0031526492423471983,
+                "transfer": 1.0,
+                "votes": 124.0
+            },
+            {
+                "percent": 0.0031852002853939455,
+                "transfer": 2.0,
+                "votes": 125.0
+            },
+            {
+                "percent": 0.0032652011826712945,
+                "transfer": 6.0,
+                "votes": 127.0
+            },
+            {
+                "percent": 0.003486604100036701,
+                "transfer": 13.0,
+                "votes": 133.0
+            },
+            {
+                "percent": 0.003986239283569049,
+                "transfer": 13.0,
+                "votes": 146.0
+            },
+            {
+                "percent": 0.004551830752054049,
+                "transfer": 0.0,
+                "votes": 159.0
+            }
         ]
     },
     "subtotals": [
@@ -451,10 +451,10 @@
         "STEPHEN W. MARTIN-PINTO",
         "MYRNA MELGAR",
         "EMILY MURASE",
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ]
 }

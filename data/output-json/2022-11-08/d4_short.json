@@ -21,49 +21,13 @@
         "JOEL ENGARDIO"
     ],
     "non_candidate_subtotals": [
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ],
     "rounds": {
-        "Blanks": [
-            {
-                "percent": "",
-                "transfer": 0,
-                "votes": 3003.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": null
-            }
-        ],
-        "Continuing Ballots Total": [
-            {
-                "percent": "",
-                "transfer": "",
-                "votes": 27029.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": null
-            }
-        ],
-        "Exhausted": [
-            {
-                "percent": "",
-                "transfer": 0,
-                "votes": 0.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": null
-            }
-        ],
         "GORDON MAR": [
             {
                 "percent": 0.4913241333382663,
@@ -88,7 +52,43 @@
                 "votes": null
             }
         ],
-        "Non Transferable Total": [
+        "blanks": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 3003.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "continuing": [
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 27029.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "exhausted": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 0.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": null
+            }
+        ],
+        "non_transferable": [
             {
                 "percent": "",
                 "transfer": "",
@@ -100,7 +100,7 @@
                 "votes": null
             }
         ],
-        "Overvotes": [
+        "overvotes": [
             {
                 "percent": "",
                 "transfer": 0,
@@ -116,10 +116,10 @@
     "subtotals": [
         "JOEL ENGARDIO",
         "GORDON MAR",
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ]
 }

@@ -32,5 +32,5 @@ class ModuleTestCase(TestCase):
         label_translations = self.get_label_translations()
         actual = election.make_subtotal_translations(label_translations)
         self.assertEqual(sorted(actual), [
-            'blanks', 'continuing', 'exhausted', 'non-transferable', 'overvotes',
+            'blanks', 'continuing', 'exhausted', 'non_transferable', 'overvotes',
         ])

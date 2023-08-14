@@ -51,11 +51,11 @@
         "CONNIE CHAN"
     ],
     "non_candidate_subtotals": [
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ],
     "rounds": {
         "AMANDA INOCENCIO": [
@@ -122,38 +122,6 @@
                 "votes": 0.0
             }
         ],
-        "Blanks": [
-            {
-                "percent": 0.10328196030602062,
-                "transfer": 0.0,
-                "votes": 3726.0
-            },
-            {
-                "percent": 0.10337078651685393,
-                "transfer": 0.0,
-                "votes": 3726.0
-            },
-            {
-                "percent": 0.10352300511224717,
-                "transfer": 0.0,
-                "votes": 3726.0
-            },
-            {
-                "percent": 0.1041189291901861,
-                "transfer": 0.0,
-                "votes": 3726.0
-            },
-            {
-                "percent": 0.10544785623319655,
-                "transfer": 0.0,
-                "votes": 3726.0
-            },
-            {
-                "percent": 0.10907813460581399,
-                "transfer": 0.0,
-                "votes": 3726.0
-            }
-        ],
         "CONNIE CHAN": [
             {
                 "percent": 0.3744317551835015,
@@ -184,38 +152,6 @@
                 "percent": 0.5018296788547674,
                 "transfer": 0.0,
                 "votes": 17142.0
-            }
-        ],
-        "Continuing Ballots Total": [
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 36076.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 36045.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 35992.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 35786.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 35335.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 34159.0
             }
         ],
         "DAVID E. LEE": [
@@ -250,38 +186,6 @@
                 "votes": 0.0
             }
         ],
-        "Exhausted": [
-            {
-                "percent": 0.0,
-                "transfer": 30.0,
-                "votes": 0.0
-            },
-            {
-                "percent": 0.0008322929671244278,
-                "transfer": 51.0,
-                "votes": 30.0
-            },
-            {
-                "percent": 0.002250500111135808,
-                "transfer": 202.0,
-                "votes": 81.0
-            },
-            {
-                "percent": 0.007908120494047951,
-                "transfer": 448.0,
-                "votes": 283.0
-            },
-            {
-                "percent": 0.020687703410216498,
-                "transfer": 1142.0,
-                "votes": 731.0
-            },
-            {
-                "percent": 0.05483181591966978,
-                "transfer": 0.0,
-                "votes": 1873.0
-            }
-        ],
         "MARJAN PHILHOUR": [
             {
                 "percent": 0.3432475884244373,
@@ -312,70 +216,6 @@
                 "percent": 0.4981703211452326,
                 "transfer": 0.0,
                 "votes": 17017.0
-            }
-        ],
-        "Non Transferable Total": [
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 3833.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 3864.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 3917.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 4123.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 4574.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 5750.0
-            }
-        ],
-        "Overvotes": [
-            {
-                "percent": 0.0029659607495287725,
-                "transfer": 1.0,
-                "votes": 107.0
-            },
-            {
-                "percent": 0.00299625468164794,
-                "transfer": 2.0,
-                "votes": 108.0
-            },
-            {
-                "percent": 0.003056234718826406,
-                "transfer": 4.0,
-                "votes": 110.0
-            },
-            {
-                "percent": 0.0031856033085564187,
-                "transfer": 3.0,
-                "votes": 114.0
-            },
-            {
-                "percent": 0.0033111645677090704,
-                "transfer": 34.0,
-                "votes": 117.0
-            },
-            {
-                "percent": 0.004420504113118066,
-                "transfer": 0.0,
-                "votes": 151.0
             }
         ],
         "SHERMAN R. D'SILVA": [
@@ -441,6 +281,166 @@
                 "transfer": 0.0,
                 "votes": 0.0
             }
+        ],
+        "blanks": [
+            {
+                "percent": 0.10328196030602062,
+                "transfer": 0.0,
+                "votes": 3726.0
+            },
+            {
+                "percent": 0.10337078651685393,
+                "transfer": 0.0,
+                "votes": 3726.0
+            },
+            {
+                "percent": 0.10352300511224717,
+                "transfer": 0.0,
+                "votes": 3726.0
+            },
+            {
+                "percent": 0.1041189291901861,
+                "transfer": 0.0,
+                "votes": 3726.0
+            },
+            {
+                "percent": 0.10544785623319655,
+                "transfer": 0.0,
+                "votes": 3726.0
+            },
+            {
+                "percent": 0.10907813460581399,
+                "transfer": 0.0,
+                "votes": 3726.0
+            }
+        ],
+        "continuing": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 36076.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 36045.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 35992.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 35786.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 35335.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 34159.0
+            }
+        ],
+        "exhausted": [
+            {
+                "percent": 0.0,
+                "transfer": 30.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0008322929671244278,
+                "transfer": 51.0,
+                "votes": 30.0
+            },
+            {
+                "percent": 0.002250500111135808,
+                "transfer": 202.0,
+                "votes": 81.0
+            },
+            {
+                "percent": 0.007908120494047951,
+                "transfer": 448.0,
+                "votes": 283.0
+            },
+            {
+                "percent": 0.020687703410216498,
+                "transfer": 1142.0,
+                "votes": 731.0
+            },
+            {
+                "percent": 0.05483181591966978,
+                "transfer": 0.0,
+                "votes": 1873.0
+            }
+        ],
+        "non_transferable": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 3833.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 3864.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 3917.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4123.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 4574.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 5750.0
+            }
+        ],
+        "overvotes": [
+            {
+                "percent": 0.0029659607495287725,
+                "transfer": 1.0,
+                "votes": 107.0
+            },
+            {
+                "percent": 0.00299625468164794,
+                "transfer": 2.0,
+                "votes": 108.0
+            },
+            {
+                "percent": 0.003056234718826406,
+                "transfer": 4.0,
+                "votes": 110.0
+            },
+            {
+                "percent": 0.0031856033085564187,
+                "transfer": 3.0,
+                "votes": 114.0
+            },
+            {
+                "percent": 0.0033111645677090704,
+                "transfer": 34.0,
+                "votes": 117.0
+            },
+            {
+                "percent": 0.004420504113118066,
+                "transfer": 0.0,
+                "votes": 151.0
+            }
         ]
     },
     "subtotals": [
@@ -451,10 +451,10 @@
         "SHERMAN R. D'SILVA",
         "AMANDA INOCENCIO",
         "CONNIE CHAN",
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ]
 }

@@ -13,23 +13,22 @@ import rcvresults.parsers.xslx as excel_parsing
 import rcvresults.rendering as rendering
 import rcvresults.summary as summary
 import rcvresults.utils as utils
-from rcvresults.utils import LANG_CODE_ENGLISH, LANGUAGES
+from rcvresults.utils import NonCandidateLabel, LANG_CODE_ENGLISH, LANGUAGES
 
 
 _log = logging.getLogger(__name__)
 
 
-SUBTOTAL_BLANKS = 'blanks'
-
 # Mapping from subtotal key-name to translations.yml label, for the
 # key-names that are simple one-to-one translations. The only subtotal
-# key-name not included below is SUBTOTAL_BLANKS ("blanks").
+# key-name not included below is NonCandidateLabel.BLANK ("blanks").
 SUBTOTAL_KEYS = {
-    'continuing': 'total_continuing',
-    'exhausted': 'total_exhausted',
-    'overvotes': 'total_overvotes',
-    'non-transferable': 'total_non_transferable',
+    NonCandidateLabel.CONTINUING: 'total_continuing',
+    NonCandidateLabel.EXHAUSTED: 'total_exhausted',
+    NonCandidateLabel.OVERVOTE: 'total_overvotes',
+    NonCandidateLabel.NON_TRANSFERABLE: 'total_non_transferable',
 }
+
 
 # Mapping from template name to html base name suffix.
 HTML_SUFFIXES = {
@@ -121,14 +120,14 @@ def make_subtotal_translations(label_translations):
      * "blanks"
      * "exhausted"
      * "overvotes"
-     * "non-transferable"
+     * "non_transferable"
     """
     subtotal_translations = {}
     for key_name, label in SUBTOTAL_KEYS.items():
         translations = label_translations[label]
         subtotal_translations[key_name] = translations
 
-    subtotal_translations[SUBTOTAL_BLANKS] = (
+    subtotal_translations[NonCandidateLabel.BLANK] = (
         _make_blanks_translations(label_translations)
     )
     return subtotal_translations

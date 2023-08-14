@@ -21,11 +21,11 @@
         "HILLARY RONEN"
     ],
     "non_candidate_subtotals": [
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ],
     "rounds": {
         "BUD RYERSON": [
@@ -35,27 +35,6 @@
                 "votes": 63.0
             }
         ],
-        "Blanks": [
-            {
-                "percent": 0.2627497865072588,
-                "transfer": 0.0,
-                "votes": 7692.0
-            }
-        ],
-        "Continuing Ballots Total": [
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 29275.0
-            }
-        ],
-        "Exhausted": [
-            {
-                "percent": 0.0,
-                "transfer": 0.0,
-                "votes": 0.0
-            }
-        ],
         "HILLARY RONEN": [
             {
                 "percent": 0.9978479931682323,
@@ -63,14 +42,35 @@
                 "votes": 29212.0
             }
         ],
-        "Non Transferable Total": [
+        "blanks": [
+            {
+                "percent": 0.2627497865072588,
+                "transfer": 0.0,
+                "votes": 7692.0
+            }
+        ],
+        "continuing": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 29275.0
+            }
+        ],
+        "exhausted": [
+            {
+                "percent": 0.0,
+                "transfer": 0.0,
+                "votes": 0.0
+            }
+        ],
+        "non_transferable": [
             {
                 "percent": null,
                 "transfer": null,
                 "votes": 7694.0
             }
         ],
-        "Overvotes": [
+        "overvotes": [
             {
                 "percent": 6.831767719897523e-05,
                 "transfer": 0.0,
@@ -81,10 +81,10 @@
     "subtotals": [
         "HILLARY RONEN",
         "BUD RYERSON",
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ]
 }

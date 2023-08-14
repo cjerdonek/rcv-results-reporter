@@ -33,11 +33,11 @@
         "AHSHA SAFAI"
     ],
     "non_candidate_subtotals": [
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ],
     "rounds": {
         "AHSHA SAFAI": [
@@ -55,57 +55,6 @@
                 "percent": 0.530758504394072,
                 "transfer": 0.0,
                 "votes": 16367.0
-            }
-        ],
-        "Blanks": [
-            {
-                "percent": 0.08915470494417863,
-                "transfer": 0.0,
-                "votes": 2795.0
-            },
-            {
-                "percent": 0.0891575488851319,
-                "transfer": 0.0,
-                "votes": 2795.0
-            },
-            {
-                "percent": 0.0906378700911243,
-                "transfer": 0.0,
-                "votes": 2795.0
-            }
-        ],
-        "Continuing Ballots Total": [
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 31350.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 31349.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 30837.0
-            }
-        ],
-        "Exhausted": [
-            {
-                "percent": 0.0,
-                "transfer": 1.0,
-                "votes": 0.0
-            },
-            {
-                "percent": 3.1898944144948805e-05,
-                "transfer": 502.0,
-                "votes": 1.0
-            },
-            {
-                "percent": 0.01631157375879625,
-                "transfer": 0.0,
-                "votes": 503.0
             }
         ],
         "JASON CHUYUAN ZENG": [
@@ -159,7 +108,58 @@
                 "votes": 0.0
             }
         ],
-        "Non Transferable Total": [
+        "blanks": [
+            {
+                "percent": 0.08915470494417863,
+                "transfer": 0.0,
+                "votes": 2795.0
+            },
+            {
+                "percent": 0.0891575488851319,
+                "transfer": 0.0,
+                "votes": 2795.0
+            },
+            {
+                "percent": 0.0906378700911243,
+                "transfer": 0.0,
+                "votes": 2795.0
+            }
+        ],
+        "continuing": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 31350.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 31349.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 30837.0
+            }
+        ],
+        "exhausted": [
+            {
+                "percent": 0.0,
+                "transfer": 1.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 3.1898944144948805e-05,
+                "transfer": 502.0,
+                "votes": 1.0
+            },
+            {
+                "percent": 0.01631157375879625,
+                "transfer": 0.0,
+                "votes": 503.0
+            }
+        ],
+        "non_transferable": [
             {
                 "percent": null,
                 "transfer": null,
@@ -176,7 +176,7 @@
                 "votes": 3425.0
             }
         ],
-        "Overvotes": [
+        "overvotes": [
             {
                 "percent": 0.0037320574162679424,
                 "transfer": 0.0,
@@ -199,10 +199,10 @@
         "AHSHA SAFAI",
         "MARCELO COLUSSI",
         "JASON CHUYUAN ZENG",
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ]
 }

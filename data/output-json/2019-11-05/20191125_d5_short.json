@@ -33,47 +33,13 @@
         "DEAN PRESTON"
     ],
     "non_candidate_subtotals": [
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ],
     "rounds": {
-        "Blanks": [
-            {
-                "percent": 0.044350580781414996,
-                "transfer": 0.0,
-                "votes": 1050.0
-            },
-            {
-                "percent": 0.04448587044019828,
-                "transfer": 0.0,
-                "votes": 1050.0
-            },
-            {
-                "percent": 0.04513993379476377,
-                "transfer": 0.0,
-                "votes": 1050.0
-            }
-        ],
-        "Continuing Ballots Total": [
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 23675.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 23603.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 23261.0
-            }
-        ],
         "DEAN PRESTON": [
             {
                 "percent": 0.47472016895459346,
@@ -91,23 +57,6 @@
                 "votes": 11723.0
             }
         ],
-        "Exhausted": [
-            {
-                "percent": 0.0,
-                "transfer": 71.0,
-                "votes": 0.0
-            },
-            {
-                "percent": 0.0030080921916705505,
-                "transfer": 335.0,
-                "votes": 71.0
-            },
-            {
-                "percent": 0.017454107733975325,
-                "transfer": 0.0,
-                "votes": 406.0
-            }
-        ],
         "NOMVULA O'MEARA": [
             {
                 "percent": 0.01174234424498416,
@@ -123,40 +72,6 @@
                 "percent": 0.0,
                 "transfer": 0.0,
                 "votes": 0.0
-            }
-        ],
-        "Non Transferable Total": [
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 1090.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 1162.0
-            },
-            {
-                "percent": null,
-                "transfer": null,
-                "votes": 1504.0
-            }
-        ],
-        "Overvotes": [
-            {
-                "percent": 0.001689545934530095,
-                "transfer": 1.0,
-                "votes": 40.0
-            },
-            {
-                "percent": 0.0017370673219505996,
-                "transfer": 7.0,
-                "votes": 41.0
-            },
-            {
-                "percent": 0.002063539830617772,
-                "transfer": 0.0,
-                "votes": 48.0
             }
         ],
         "RYAN LAM": [
@@ -192,6 +107,91 @@
                 "transfer": 0.0,
                 "votes": 11538.0
             }
+        ],
+        "blanks": [
+            {
+                "percent": 0.044350580781414996,
+                "transfer": 0.0,
+                "votes": 1050.0
+            },
+            {
+                "percent": 0.04448587044019828,
+                "transfer": 0.0,
+                "votes": 1050.0
+            },
+            {
+                "percent": 0.04513993379476377,
+                "transfer": 0.0,
+                "votes": 1050.0
+            }
+        ],
+        "continuing": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 23675.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 23603.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 23261.0
+            }
+        ],
+        "exhausted": [
+            {
+                "percent": 0.0,
+                "transfer": 71.0,
+                "votes": 0.0
+            },
+            {
+                "percent": 0.0030080921916705505,
+                "transfer": 335.0,
+                "votes": 71.0
+            },
+            {
+                "percent": 0.017454107733975325,
+                "transfer": 0.0,
+                "votes": 406.0
+            }
+        ],
+        "non_transferable": [
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 1090.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 1162.0
+            },
+            {
+                "percent": null,
+                "transfer": null,
+                "votes": 1504.0
+            }
+        ],
+        "overvotes": [
+            {
+                "percent": 0.001689545934530095,
+                "transfer": 1.0,
+                "votes": 40.0
+            },
+            {
+                "percent": 0.0017370673219505996,
+                "transfer": 7.0,
+                "votes": 41.0
+            },
+            {
+                "percent": 0.002063539830617772,
+                "transfer": 0.0,
+                "votes": 48.0
+            }
         ]
     },
     "subtotals": [
@@ -199,10 +199,10 @@
         "DEAN PRESTON",
         "NOMVULA O'MEARA",
         "VALLIE BROWN",
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ]
 }

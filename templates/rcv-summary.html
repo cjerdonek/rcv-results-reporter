@@ -42,7 +42,7 @@
   {#- Subtract 1 to get a 0-based index. #}
   {%- set round_last = rounds[subtotal_name][highest_round - 1] -%}
 <tr>
-<td id='candidate'>{{ subtotal_name|TP }}{% if subtotal_name == 'Blanks' %} ({{ 'total_undervotes'|TL }}){% endif %}</td>
+<td id='candidate'>{{ subtotal_name|TS }}</td>
 <td align='right'>{{ round_1['votes']|format_int }}</td>
 {%- if multiple_rounds %}
 <td align='right'>{{ round_last['votes']|format_int }}</td>

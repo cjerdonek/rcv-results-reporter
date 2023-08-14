@@ -33,30 +33,13 @@
         "MATT DORSEY"
     ],
     "non_candidate_subtotals": [
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ],
     "rounds": {
-        "Blanks": [
-            {
-                "percent": "",
-                "transfer": 0,
-                "votes": 2299.0
-            },
-            {
-                "percent": "",
-                "transfer": 0,
-                "votes": 2299.0
-            },
-            {
-                "percent": "",
-                "transfer": 0,
-                "votes": 2299.0
-            }
-        ],
         "CHERELLE JACKSON": [
             {
                 "percent": 0.03318176232026546,
@@ -72,40 +55,6 @@
                 "percent": 0,
                 "transfer": 0,
                 "votes": 0.0
-            }
-        ],
-        "Continuing Ballots Total": [
-            {
-                "percent": "",
-                "transfer": "",
-                "votes": 16274.0
-            },
-            {
-                "percent": "",
-                "transfer": "",
-                "votes": 16227.0
-            },
-            {
-                "percent": "",
-                "transfer": "",
-                "votes": 16094.0
-            }
-        ],
-        "Exhausted": [
-            {
-                "percent": "",
-                "transfer": 45.0,
-                "votes": 0.0
-            },
-            {
-                "percent": "",
-                "transfer": 127.0,
-                "votes": 45.0
-            },
-            {
-                "percent": "",
-                "transfer": 0,
-                "votes": 172.0
             }
         ],
         "HONEY MAHOGANY": [
@@ -159,7 +108,58 @@
                 "votes": 0.0
             }
         ],
-        "Non Transferable Total": [
+        "blanks": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 2299.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 2299.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 2299.0
+            }
+        ],
+        "continuing": [
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 16274.0
+            },
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 16227.0
+            },
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 16094.0
+            }
+        ],
+        "exhausted": [
+            {
+                "percent": "",
+                "transfer": 45.0,
+                "votes": 0.0
+            },
+            {
+                "percent": "",
+                "transfer": 127.0,
+                "votes": 45.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 172.0
+            }
+        ],
+        "non_transferable": [
             {
                 "percent": "",
                 "transfer": "",
@@ -176,7 +176,7 @@
                 "votes": 2569.0
             }
         ],
-        "Overvotes": [
+        "overvotes": [
             {
                 "percent": "",
                 "transfer": 2.0,
@@ -199,10 +199,10 @@
         "MS BILLIE COOPER",
         "HONEY MAHOGANY",
         "CHERELLE JACKSON",
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ]
 }

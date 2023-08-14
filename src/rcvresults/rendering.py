@@ -29,8 +29,16 @@ def render_template(template, output_path, context=None, lang_code=None):
 
 
 def format_int(value):
-    # Add comma separators, and don't show a decimal point.
-    return f'{value:,.0f}'
+    if value is None:
+        return 'None'
+
+    if value == '':
+        return 'XXX'
+    try:
+        # Add comma separators, and don't show a decimal point.
+        return f'{value:,.0f}'
+    except Exception:
+        raise RuntimeError(f'error with value: {value!r}')
 
 
 def format_percent(value):

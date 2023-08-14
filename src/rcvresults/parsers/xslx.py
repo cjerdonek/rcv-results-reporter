@@ -8,6 +8,9 @@ import logging
 import openpyxl
 from openpyxl.cell.cell import MergedCell
 
+import rcvresults.parsers.common as common
+
+
 _log = logging.getLogger(__name__)
 
 
@@ -120,7 +123,7 @@ def iter_row_rounds(row):
     yield from iter_triples(values)
 
 
-def parse_sheet2_row(row, name, is_candidate):
+def parse_sheet2_row(row, is_candidate):
     rounds = []
     for data in iter_row_rounds(row):
         votes, percent, transfer = data
@@ -145,11 +148,13 @@ def parse_sheet2(wb, sheet_name):
         if is_candidate:
             candidates.append(name)
         else:
+            name = common.get_subtotal_label(name)
             non_candidate_subtotals.append(name)
         subtotals.append(name)
-        row_rounds = parse_sheet2_row(row, name=name, is_candidate=is_candidate)
+        row_rounds = parse_sheet2_row(row, is_candidate=is_candidate)
         rounds[name] = row_rounds
 
+    # TODO: assert the contents of non_candidate_subtotals?
     results = {
         'candidates': candidates,
         'non_candidate_subtotals': non_candidate_subtotals,

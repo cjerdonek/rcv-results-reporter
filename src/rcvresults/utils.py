@@ -25,23 +25,22 @@ LANGUAGES = {
     'zh': 'language_chinese',
 }
 
-class NonCandidateNames:
 
-    CONTINUING = 'Continuing Ballots Total'
-    BLANK = 'Blanks'
-    EXHAUSTED = 'Exhausted'
-    OVERVOTE = 'Overvotes'
-    NON_TRANSFERABLE = 'Non Transferable Total'
-    # This one isn't applicable to IRV.
-    REMAINDER = 'Remainder Points'
+class NonCandidateLabel:
+
+    CONTINUING = 'continuing'
+    BLANK = 'blanks'
+    EXHAUSTED = 'exhausted'
+    OVERVOTE = 'overvotes'
+    NON_TRANSFERABLE = 'non_transferable'
 
 
-NON_CANDIDATE_SUBTOTALS = [
-    NonCandidateNames.CONTINUING,
-    NonCandidateNames.BLANK,
-    NonCandidateNames.EXHAUSTED,
-    NonCandidateNames.OVERVOTE,
-    NonCandidateNames.NON_TRANSFERABLE,
+NON_CANDIDATE_SUBTOTAL_LABELS = [
+    NonCandidateLabel.CONTINUING,
+    NonCandidateLabel.BLANK,
+    NonCandidateLabel.EXHAUSTED,
+    NonCandidateLabel.OVERVOTE,
+    NonCandidateLabel.NON_TRANSFERABLE,
 ]
 
 
@@ -81,7 +80,7 @@ def get_paths(dir_path, suffix):
 
 # TODO: also use this for parsing Excel.
 def initialize_results(candidates):
-    non_candidate_subtotals = NON_CANDIDATE_SUBTOTALS.copy()
+    non_candidate_subtotals = NON_CANDIDATE_SUBTOTAL_LABELS.copy()
     subtotals = list(candidates) + non_candidate_subtotals
     return {
         'candidates': candidates,

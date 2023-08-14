@@ -33,11 +33,11 @@
         "BROOKE JENKINS"
     ],
     "non_candidate_subtotals": [
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ],
     "rounds": {
         "BROOKE JENKINS": [
@@ -55,57 +55,6 @@
                 "percent": 0.5367596619905171,
                 "transfer": 0,
                 "votes": 142412.0
-            }
-        ],
-        "Blanks": [
-            {
-                "percent": "",
-                "transfer": 0,
-                "votes": 31130.0
-            },
-            {
-                "percent": "",
-                "transfer": 0,
-                "votes": 31130.0
-            },
-            {
-                "percent": "",
-                "transfer": 0,
-                "votes": 31130.0
-            }
-        ],
-        "Continuing Ballots Total": [
-            {
-                "percent": "",
-                "transfer": "",
-                "votes": 275931.0
-            },
-            {
-                "percent": "",
-                "transfer": "",
-                "votes": 273317.0
-            },
-            {
-                "percent": "",
-                "transfer": "",
-                "votes": 265318.0
-            }
-        ],
-        "Exhausted": [
-            {
-                "percent": "",
-                "transfer": 2524.0,
-                "votes": 0.0
-            },
-            {
-                "percent": "",
-                "transfer": 7805.0,
-                "votes": 2524.0
-            },
-            {
-                "percent": "",
-                "transfer": 0,
-                "votes": 10329.0
             }
         ],
         "JOE ALIOTO VERONESE": [
@@ -159,7 +108,58 @@
                 "votes": 0.0
             }
         ],
-        "Non Transferable Total": [
+        "blanks": [
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 31130.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 31130.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 31130.0
+            }
+        ],
+        "continuing": [
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 275931.0
+            },
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 273317.0
+            },
+            {
+                "percent": "",
+                "transfer": "",
+                "votes": 265318.0
+            }
+        ],
+        "exhausted": [
+            {
+                "percent": "",
+                "transfer": 2524.0,
+                "votes": 0.0
+            },
+            {
+                "percent": "",
+                "transfer": 7805.0,
+                "votes": 2524.0
+            },
+            {
+                "percent": "",
+                "transfer": 0,
+                "votes": 10329.0
+            }
+        ],
+        "non_transferable": [
             {
                 "percent": "",
                 "transfer": "",
@@ -176,7 +176,7 @@
                 "votes": 43022.0
             }
         ],
-        "Overvotes": [
+        "overvotes": [
             {
                 "percent": "",
                 "transfer": 90.0,
@@ -199,10 +199,10 @@
         "MAURICE CHENIER",
         "JOHN HAMASAKI",
         "BROOKE JENKINS",
-        "Continuing Ballots Total",
-        "Blanks",
-        "Exhausted",
-        "Overvotes",
-        "Non Transferable Total"
+        "continuing",
+        "blanks",
+        "exhausted",
+        "overvotes",
+        "non_transferable"
     ]
 }
