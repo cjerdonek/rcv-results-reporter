@@ -114,7 +114,7 @@ def iter_languages(context):
 
 
 # We apply jinja2.pass_context() to this function elsewhere in our code.
-def translate_label(context, label, lang=None, translated_labels=None):
+def translate_label(context, label, lang=None, label_translations=None):
     """
     Translate the given label into the language set in the given Jinja2
     context.
@@ -122,7 +122,7 @@ def translate_label(context, label, lang=None, translated_labels=None):
     Args:
       lang: an optional 2-letter language code.  Defaults to the context's
         current language.
-      translated_labels: the dict of translations, where the keys are the
+      label_translations: the dict of translations, where the keys are the
         labels.
     """
     if lang is None:
@@ -134,30 +134,15 @@ def translate_label(context, label, lang=None, translated_labels=None):
             'Make sure to pass a string as the label.'
         )
 
-    translations = translated_labels[label]
-    try:
-        translation = translations[lang]
-    except KeyError:
-        if lang == LANG_CODE_ENGLISH:
-            raise RuntimeError(
-                f'label {label!r} is missing an english '
-                f'({LANG_CODE_ENGLISH!r}) translation'
-            ) from None
-
-        try:
-            translation = translations[LANG_CODE_ENGLISH]
-        except KeyError:
-            raise RuntimeError(
-                f'label {label!r} is missing a default english '
-                f'({LANG_CODE_ENGLISH!r}) translation for {lang!r}'
-            )
-
+    translation = utils.get_translation(
+        label_translations, label=label, lang=lang,
+    )
     return translation
 
 
 # We apply jinja2.pass_context() to this function elsewhere in our code.
 def translate_phrase(
-    context, phrase, lang=None, translated_labels=None, phrases=None,
+    context, phrase, lang=None, label_translations=None, phrases=None,
 ):
     """
     Translate the given phrase into the language set in the given Jinja2
@@ -166,13 +151,13 @@ def translate_phrase(
     Args:
       lang: an optional 2-letter language code.  Defaults to the context's
         current language.
-      translated_labels: the dict of translations, where the keys are the
+      label_translations: the dict of translations, where the keys are the
         labels.
       phrases: a dict of all phrases, mapping phrase to label.
     """
     label = phrases[phrase]
     translation = translate_label(
-        context, label=label, lang=lang, translated_labels=translated_labels,
+        context, label=label, lang=lang, label_translations=label_translations,
     )
     return translation
 

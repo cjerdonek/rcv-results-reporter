@@ -16,6 +16,7 @@ from markupsafe import Markup
 
 import rcvresults.election as election_mod
 import rcvresults.rendering as rendering
+from rcvresults.testing import TRANSLATIONS_PATH
 import rcvresults.utils as utils
 from rcvresults.utils import CURRENT_LANG_KEY, LANGUAGES
 
@@ -25,7 +26,6 @@ _log = logging.getLogger(__name__)
 TEMPLATE_NAME_RCV_DEMO = 'index-all-rcv.html'
 
 CONFIG_DIR = Path('config')
-TRANSLATIONS_PATH = Path('translations.yml')
 
 DATA_DIR = Path('data')
 DATA_DIR_REPORTS = DATA_DIR / 'input-reports'

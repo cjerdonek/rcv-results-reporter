@@ -88,3 +88,28 @@ def initialize_results(candidates):
         'non_candidate_subtotals': non_candidate_subtotals,
         'subtotals': subtotals,
     }
+
+
+def get_translation(label_translations, label, lang):
+    """
+    Return the translation for a label in translations.yml.
+    """
+    translations = label_translations[label]
+    try:
+        translation = translations[lang]
+    except KeyError:
+        if lang == LANG_CODE_ENGLISH:
+            raise RuntimeError(
+                f'label {label!r} is missing an english '
+                f'({LANG_CODE_ENGLISH!r}) translation'
+            ) from None
+
+        try:
+            translation = translations[LANG_CODE_ENGLISH]
+        except KeyError:
+            raise RuntimeError(
+                f'label {label!r} is missing a default english '
+                f'({LANG_CODE_ENGLISH!r}) translation for {lang!r}'
+            )
+
+    return translation

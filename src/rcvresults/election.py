@@ -13,10 +13,23 @@ import rcvresults.parsers.xslx as excel_parsing
 import rcvresults.rendering as rendering
 import rcvresults.summary as summary
 import rcvresults.utils as utils
-from rcvresults.utils import LANG_CODE_ENGLISH
+from rcvresults.utils import LANG_CODE_ENGLISH, LANGUAGES
+
 
 _log = logging.getLogger(__name__)
 
+
+SUBTOTAL_BLANKS = 'blanks'
+
+# Mapping from subtotal key-name to translations.yml label, for the
+# key-names that are simple one-to-one translations. The only subtotal
+# key-name not included below is SUBTOTAL_BLANKS ("blanks").
+SUBTOTAL_KEYS = {
+    'continuing': 'total_continuing',
+    'exhausted': 'total_exhausted',
+    'overvotes': 'total_overvotes',
+    'non-transferable': 'total_non_transferable',
+}
 
 # Mapping from template name to html base name suffix.
 HTML_SUFFIXES = {
@@ -59,21 +72,66 @@ def make_rcv_json(path, json_dir):
     return json_path
 
 
-def load_label_translations(translations_path):
+def read_label_translations(translations_path):
     data = utils.read_yaml(translations_path)
     labels = data['labels']
     return labels
 
 
-def load_phrases(translations_path):
-    data = utils.read_yaml(translations_path)
-    labels = data['labels']
+def make_phrase_translations(label_translations):
     phrases = {}
-    for label, translations in labels.items():
+    for label, translations in label_translations.items():
         phrase = translations[LANG_CODE_ENGLISH]
         phrases[phrase] = label
 
     return phrases
+
+
+def _translate_blanks(label_translations, lang_code):
+    """
+    Return the translation to use for the "Blanks" subtotal category.
+    """
+    blanks = utils.get_translation(
+        label_translations, label='total_blanks', lang=lang_code,
+    )
+    undervotes = utils.get_translation(
+        label_translations, label='total_undervotes', lang=lang_code,
+    )
+    return f'{blanks} ({undervotes})'
+
+
+def _make_blanks_translations(label_translations):
+    """
+    Return a dict of all translations to use for the "Blanks" subtotal
+    category.
+    """
+    return {
+        lang_code: _translate_blanks(label_translations, lang_code=lang_code)
+        for lang_code in LANGUAGES
+    }
+
+
+def make_subtotal_translations(label_translations):
+    """
+    Return a dict mapping subtotal key-name to dict of translations.
+
+    The subtotal key-names (in the json file) are--
+
+     * "continuing"
+     * "blanks"
+     * "exhausted"
+     * "overvotes"
+     * "non-transferable"
+    """
+    subtotal_translations = {}
+    for key_name, label in SUBTOTAL_KEYS.items():
+        translations = label_translations[label]
+        subtotal_translations[key_name] = translations
+
+    subtotal_translations[SUBTOTAL_BLANKS] = (
+        _make_blanks_translations(label_translations)
+    )
+    return subtotal_translations
 
 
 def make_environment(translations_path):
@@ -82,13 +140,13 @@ def make_environment(translations_path):
         # TODO: pass the autoescape argument?
     )
 
-    translated_labels = load_label_translations(translations_path)
+    label_translations = read_label_translations(translations_path)
     translate_label = functools.partial(
-        rendering.translate_label, translated_labels=translated_labels,
+        rendering.translate_label, label_translations=label_translations,
     )
-    phrases = load_phrases(translations_path)
+    phrases = make_phrase_translations(label_translations)
     translate_phrase = functools.partial(
-        rendering.translate_phrase, translated_labels=translated_labels,
+        rendering.translate_phrase, label_translations=label_translations,
         phrases=phrases,
     )
 
