@@ -1,10 +1,12 @@
 version: 2.1
 orbs:
   python: circleci/python@2.1.1
+# TODO: add a job or steps to deploy the demo page.
 jobs:
   test:
     executor:
       name: python/default
+      # TODO: test on all versions 3.9+?
       tag: "3.9"
     steps:
       - checkout
