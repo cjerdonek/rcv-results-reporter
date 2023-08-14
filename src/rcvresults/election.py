@@ -143,6 +143,12 @@ def make_environment(translations_path):
     translate_label = functools.partial(
         rendering.translate_label, label_translations=label_translations,
     )
+
+    subtotal_translations = make_subtotal_translations(label_translations)
+    translate_subtotal_name = functools.partial(
+        rendering.translate_label, label_translations=subtotal_translations,
+    )
+
     phrases = make_phrase_translations(label_translations)
     translate_phrase = functools.partial(
         rendering.translate_phrase, label_translations=label_translations,
@@ -154,6 +160,7 @@ def make_environment(translations_path):
         'format_percent': rendering.format_percent,
         'TL': jinja2.pass_context(translate_label),
         'TP': jinja2.pass_context(translate_phrase),
+        'TS': jinja2.pass_context(translate_subtotal_name),
     })
     return env
 
