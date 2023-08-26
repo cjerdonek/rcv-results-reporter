@@ -68,6 +68,7 @@ def add_summary(results):
     ]
     results.update({
         'candidate_summaries': candidate_summaries,
+        # TODO: rename this to candidate_names.
         'candidates': candidates,
         'highest_round': highest_round,
         'leading_candidates': leading_candidates,

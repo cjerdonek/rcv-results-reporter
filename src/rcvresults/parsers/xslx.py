@@ -141,7 +141,7 @@ def parse_sheet2(wb, sheet_name):
     ws = wb[sheet_name]
 
     candidates = []
-    subtotals = []
+    row_names = []
     non_candidate_names = []
     rounds = {}
     for i, name, row, is_candidate in iter_sheet2_rows(ws):
@@ -150,15 +150,16 @@ def parse_sheet2(wb, sheet_name):
         else:
             name = common.get_subtotal_label(name)
             non_candidate_names.append(name)
-        subtotals.append(name)
+        row_names.append(name)
         row_rounds = parse_sheet2_row(row, is_candidate=is_candidate)
         rounds[name] = row_rounds
 
     # TODO: assert the contents of non_candidate_names?
     results = {
+        # TODO: rename this to candidate_names.
         'candidates': candidates,
         'non_candidate_names': non_candidate_names,
-        'subtotals': subtotals,
+        'row_names': row_names,
         'rounds': rounds,
     }
     return results

@@ -83,11 +83,12 @@ def get_paths(dir_path, suffix):
 # TODO: also use this for parsing Excel.
 def initialize_results(candidates):
     non_candidate_names = NON_CANDIDATE_SUBTOTAL_LABELS.copy()
-    subtotals = list(candidates) + non_candidate_names
+    row_names = list(candidates) + non_candidate_names
     return {
+        # TODO: rename this to candidate_names.
         'candidates': candidates,
         'non_candidate_names': non_candidate_names,
-        'subtotals': subtotals,
+        'row_names': row_names,
     }
 
 
