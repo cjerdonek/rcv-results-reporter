@@ -11,7 +11,7 @@
 </tr>
 </thead>
 <tbody>
-{%- for candidate in candidates %}
+{%- for candidate in candidate_names %}
   {%- set round_1 = rounds[candidate][0] %}
   {#- Subtract 1 to get a 0-based index. #}
   {%- set round_last = rounds[candidate][highest_round - 1] %}

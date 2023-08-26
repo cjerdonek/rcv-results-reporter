@@ -85,8 +85,7 @@ def initialize_results(candidates):
     non_candidate_names = NON_CANDIDATE_SUBTOTAL_LABELS.copy()
     row_names = list(candidates) + non_candidate_names
     return {
-        # TODO: rename this to candidate_names.
-        'candidates': candidates,
+        'candidate_names': candidates,
         'non_candidate_names': non_candidate_names,
         'row_names': row_names,
     }

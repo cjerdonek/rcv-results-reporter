@@ -60,7 +60,7 @@ def make_rcv_json(path, json_dir):
 
     metadata = results['_metadata']
     contest_name = metadata['contest_name']
-    candidates = results['candidates']
+    candidates = results['candidate_names']
     _log.info(f'parsed contest: {contest_name!r} ({len(candidates)} candidates)')
     summary.add_summary(results)
 

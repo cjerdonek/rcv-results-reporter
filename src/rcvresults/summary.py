@@ -32,7 +32,7 @@ def add_summary(results):
     """
     Add summary data to the parsed data dict.
     """
-    candidates = results['candidates']
+    candidates = results['candidate_names']
     rounds = results['rounds']
     candidate_summaries = {}
     for name in candidates:
@@ -68,8 +68,7 @@ def add_summary(results):
     ]
     results.update({
         'candidate_summaries': candidate_summaries,
-        # TODO: rename this to candidate_names.
-        'candidates': candidates,
+        'candidate_names': candidates,
         'highest_round': highest_round,
         'leading_candidates': leading_candidates,
     })

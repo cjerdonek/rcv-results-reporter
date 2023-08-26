@@ -156,8 +156,7 @@ def parse_sheet2(wb, sheet_name):
 
     # TODO: assert the contents of non_candidate_names?
     results = {
-        # TODO: rename this to candidate_names.
-        'candidates': candidates,
+        'candidate_names': candidates,
         'non_candidate_names': non_candidate_names,
         'row_names': row_names,
         'rounds': rounds,

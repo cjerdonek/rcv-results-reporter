@@ -1,6 +1,6 @@
 # TODO
 
-* Rename "candidates" to "candidate_names"
+* Add links to the round-by-round reports in the demo
 * Style the non-candidate subtotals bold
 * Suppress the last transfer column
 * Generate the demo in CI
