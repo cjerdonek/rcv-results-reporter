@@ -33,6 +33,7 @@ def format_int(value):
         return 'None'
 
     if value == '':
+        # TODO: replace this with something else.
         return 'XXX'
     try:
         # Add comma separators, and don't show a decimal point.

@@ -54,7 +54,11 @@
 {%- else %}
   <td class="PercentageCell">&nbsp;</td>
 {%- endif %}
+{%- if non_candidate_name in ('continuing', 'non_transferable') %}
+  <td class="VotesTransferredCell">&nbsp;</td>
+{%- else %}
   <td class="VotesTransferredCell">{{ round_data['transfer']|format_int }}</td>
+{%- endif %}
 {%- endfor %}
 </tr>
 {%- endfor %}
