@@ -49,7 +49,11 @@
 {#- Subtract 1 to get a 0-based index. -#}
 {%- set round_data = rounds[non_candidate_name][round_number - 1] %}
   <td class="VotesCell">{{ round_data['votes']|format_int }}</td>
+{%- if non_candidate_name == 'continuing' %}
+  <td class="PercentageCell">100%</td>
+{%- else %}
   <td class="PercentageCell">&nbsp;</td>
+{%- endif %}
   <td class="VotesTransferredCell">{{ round_data['transfer']|format_int }}</td>
 {%- endfor %}
 </tr>
