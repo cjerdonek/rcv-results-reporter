@@ -2,6 +2,15 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 7"
     },
+    "candidate_names": [
+        "MYRNA MELGAR",
+        "JOEL ENGARDIO",
+        "VILASKA NGUYEN",
+        "STEPHEN W. MARTIN-PINTO",
+        "EMILY MURASE",
+        "BEN MATRANGA",
+        "KEN PIPER"
+    ],
     "candidate_summaries": {
         "BEN MATRANGA": {
             "elimination_round": 2,
@@ -37,15 +46,6 @@
             "highest_vote": 10855.0
         }
     },
-    "candidates": [
-        "MYRNA MELGAR",
-        "JOEL ENGARDIO",
-        "VILASKA NGUYEN",
-        "STEPHEN W. MARTIN-PINTO",
-        "EMILY MURASE",
-        "BEN MATRANGA",
-        "KEN PIPER"
-    ],
     "highest_round": 6,
     "leading_candidates": [
         "MYRNA MELGAR"

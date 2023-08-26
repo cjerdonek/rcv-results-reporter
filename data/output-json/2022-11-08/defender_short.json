@@ -2,6 +2,10 @@
     "_metadata": {
         "contest_name": "PUBLIC DEFENDER"
     },
+    "candidate_names": [
+        "MANO RAJU",
+        "REBECCA SUSAN FENG YOUNG"
+    ],
     "candidate_summaries": {
         "MANO RAJU": {
             "highest_round": 1,
@@ -12,10 +16,6 @@
             "highest_vote": 71922.0
         }
     },
-    "candidates": [
-        "MANO RAJU",
-        "REBECCA SUSAN FENG YOUNG"
-    ],
     "highest_round": 1,
     "leading_candidates": [
         "MANO RAJU"

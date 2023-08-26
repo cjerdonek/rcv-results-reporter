@@ -2,6 +2,15 @@
     "_metadata": {
         "contest_name": "MAYOR"
     },
+    "candidate_names": [
+        "LONDON N. BREED",
+        "ELLEN LEE ZHOU",
+        "JOEL VENTRESCA",
+        "PAUL YBARRA ROBERTSON",
+        "WILMA PANG",
+        "ROBERT L. JORDAN, JR.",
+        "MARC ROTH"
+    ],
     "candidate_summaries": {
         "ELLEN LEE ZHOU": {
             "highest_round": 6,
@@ -37,15 +46,6 @@
             "highest_vote": 5297.0
         }
     },
-    "candidates": [
-        "LONDON N. BREED",
-        "ELLEN LEE ZHOU",
-        "JOEL VENTRESCA",
-        "PAUL YBARRA ROBERTSON",
-        "WILMA PANG",
-        "ROBERT L. JORDAN, JR.",
-        "MARC ROTH"
-    ],
     "highest_round": 6,
     "leading_candidates": [
         "LONDON N. BREED"

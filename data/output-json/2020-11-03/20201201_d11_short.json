@@ -2,6 +2,12 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 11"
     },
+    "candidate_names": [
+        "AHSHA SAFAI",
+        "JOHN AVALOS",
+        "MARCELO COLUSSI",
+        "JASON CHUYUAN ZENG"
+    ],
     "candidate_summaries": {
         "AHSHA SAFAI": {
             "highest_round": 3,
@@ -22,12 +28,6 @@
             "highest_vote": 2794.0
         }
     },
-    "candidates": [
-        "AHSHA SAFAI",
-        "JOHN AVALOS",
-        "MARCELO COLUSSI",
-        "JASON CHUYUAN ZENG"
-    ],
     "highest_round": 3,
     "leading_candidates": [
         "AHSHA SAFAI"

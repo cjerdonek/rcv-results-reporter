@@ -2,6 +2,10 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 10"
     },
+    "candidate_names": [
+        "SHAMANN WALTON",
+        "BRIAN SAM ADAM"
+    ],
     "candidate_summaries": {
         "BRIAN SAM ADAM": {
             "highest_round": 1,
@@ -12,10 +16,6 @@
             "highest_vote": 12220.0
         }
     },
-    "candidates": [
-        "SHAMANN WALTON",
-        "BRIAN SAM ADAM"
-    ],
     "highest_round": 1,
     "leading_candidates": [
         "SHAMANN WALTON"

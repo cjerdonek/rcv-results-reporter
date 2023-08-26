@@ -2,6 +2,12 @@
     "_metadata": {
         "contest_name": "DISTRICT ATTORNEY"
     },
+    "candidate_names": [
+        "BROOKE JENKINS",
+        "JOHN HAMASAKI",
+        "JOE ALIOTO VERONESE",
+        "MAURICE CHENIER"
+    ],
     "candidate_summaries": {
         "BROOKE JENKINS": {
             "highest_round": 3,
@@ -22,12 +28,6 @@
             "highest_vote": 12211.0
         }
     },
-    "candidates": [
-        "BROOKE JENKINS",
-        "JOHN HAMASAKI",
-        "JOE ALIOTO VERONESE",
-        "MAURICE CHENIER"
-    ],
     "highest_round": 3,
     "leading_candidates": [
         "BROOKE JENKINS"

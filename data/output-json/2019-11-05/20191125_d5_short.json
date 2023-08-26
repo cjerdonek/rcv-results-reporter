@@ -2,6 +2,12 @@
     "_metadata": {
         "contest_name": "MEMBER, BOARD OF SUPERVISORS, DISTRICT 5"
     },
+    "candidate_names": [
+        "DEAN PRESTON",
+        "VALLIE BROWN",
+        "RYAN LAM",
+        "NOMVULA O'MEARA"
+    ],
     "candidate_summaries": {
         "DEAN PRESTON": {
             "highest_round": 3,
@@ -22,12 +28,6 @@
             "highest_vote": 11538.0
         }
     },
-    "candidates": [
-        "DEAN PRESTON",
-        "VALLIE BROWN",
-        "RYAN LAM",
-        "NOMVULA O'MEARA"
-    ],
     "highest_round": 3,
     "leading_candidates": [
         "DEAN PRESTON"

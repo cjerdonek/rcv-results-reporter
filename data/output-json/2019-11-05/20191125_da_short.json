@@ -2,6 +2,12 @@
     "_metadata": {
         "contest_name": "DISTRICT ATTORNEY"
     },
+    "candidate_names": [
+        "CHESA BOUDIN",
+        "SUZY LOFTUS",
+        "NANCY TUNG",
+        "LEIF DAUTCH"
+    ],
     "candidate_summaries": {
         "CHESA BOUDIN": {
             "highest_round": 3,
@@ -22,12 +28,6 @@
             "highest_vote": 83872.0
         }
     },
-    "candidates": [
-        "CHESA BOUDIN",
-        "SUZY LOFTUS",
-        "NANCY TUNG",
-        "LEIF DAUTCH"
-    ],
     "highest_round": 3,
     "leading_candidates": [
         "CHESA BOUDIN"

@@ -2,6 +2,10 @@
     "_metadata": {
         "contest_name": "ASSESSOR-RECORDER"
     },
+    "candidate_names": [
+        "JOAQU\u00cdN TORRES",
+        "MICHAEL PETRELIS"
+    ],
     "candidate_summaries": {
         "JOAQU\u00cdN TORRES": {
             "highest_round": 1,
@@ -12,10 +16,6 @@
             "highest_vote": 111.0
         }
     },
-    "candidates": [
-        "JOAQU\u00cdN TORRES",
-        "MICHAEL PETRELIS"
-    ],
     "highest_round": 1,
     "leading_candidates": [
         "JOAQU\u00cdN TORRES"

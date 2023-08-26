@@ -2,6 +2,10 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 4"
     },
+    "candidate_names": [
+        "JOEL ENGARDIO",
+        "GORDON MAR"
+    ],
     "candidate_summaries": {
         "GORDON MAR": {
             "highest_round": 1,
@@ -12,10 +16,6 @@
             "highest_vote": 13749.0
         }
     },
-    "candidates": [
-        "JOEL ENGARDIO",
-        "GORDON MAR"
-    ],
     "highest_round": 1,
     "leading_candidates": [
         "JOEL ENGARDIO"

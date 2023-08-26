@@ -2,6 +2,12 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 6"
     },
+    "candidate_names": [
+        "MATT DORSEY",
+        "HONEY MAHOGANY",
+        "CHERELLE JACKSON",
+        "MS BILLIE COOPER"
+    ],
     "candidate_summaries": {
         "CHERELLE JACKSON": {
             "elimination_round": 2,
@@ -22,12 +28,6 @@
             "highest_vote": 366.0
         }
     },
-    "candidates": [
-        "MATT DORSEY",
-        "HONEY MAHOGANY",
-        "CHERELLE JACKSON",
-        "MS BILLIE COOPER"
-    ],
     "highest_round": 3,
     "leading_candidates": [
         "MATT DORSEY"

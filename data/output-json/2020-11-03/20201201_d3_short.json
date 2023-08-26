@@ -2,6 +2,12 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 3"
     },
+    "candidate_names": [
+        "AARON PESKIN",
+        "DANNY SAUTER",
+        "SPENCER SIMONSEN",
+        "STEPHEN (LULU) SCHWARTZ"
+    ],
     "candidate_summaries": {
         "AARON PESKIN": {
             "highest_round": 3,
@@ -22,12 +28,6 @@
             "highest_vote": 1438.0
         }
     },
-    "candidates": [
-        "AARON PESKIN",
-        "DANNY SAUTER",
-        "SPENCER SIMONSEN",
-        "STEPHEN (LULU) SCHWARTZ"
-    ],
     "highest_round": 3,
     "leading_candidates": [
         "AARON PESKIN"

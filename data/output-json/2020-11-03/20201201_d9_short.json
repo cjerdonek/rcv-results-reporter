@@ -2,6 +2,10 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 9"
     },
+    "candidate_names": [
+        "HILLARY RONEN",
+        "BUD RYERSON"
+    ],
     "candidate_summaries": {
         "BUD RYERSON": {
             "highest_round": 1,
@@ -12,10 +16,6 @@
             "highest_vote": 29212.0
         }
     },
-    "candidates": [
-        "HILLARY RONEN",
-        "BUD RYERSON"
-    ],
     "highest_round": 1,
     "leading_candidates": [
         "HILLARY RONEN"

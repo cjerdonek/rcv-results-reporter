@@ -2,6 +2,15 @@
     "_metadata": {
         "contest_name": "BOARD OF SUPERVISORS DISTRICT 1"
     },
+    "candidate_names": [
+        "CONNIE CHAN",
+        "MARJAN PHILHOUR",
+        "DAVID E. LEE",
+        "SHERMAN R. D'SILVA",
+        "VERONICA SHINZATO",
+        "AMANDA INOCENCIO",
+        "ANDREW N. MAJALYA"
+    ],
     "candidate_summaries": {
         "AMANDA INOCENCIO": {
             "elimination_round": 2,
@@ -37,15 +46,6 @@
             "highest_vote": 1501.0
         }
     },
-    "candidates": [
-        "CONNIE CHAN",
-        "MARJAN PHILHOUR",
-        "DAVID E. LEE",
-        "SHERMAN R. D'SILVA",
-        "VERONICA SHINZATO",
-        "AMANDA INOCENCIO",
-        "ANDREW N. MAJALYA"
-    ],
     "highest_round": 6,
     "leading_candidates": [
         "CONNIE CHAN"
