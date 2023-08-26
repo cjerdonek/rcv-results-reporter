@@ -142,22 +142,22 @@ def parse_sheet2(wb, sheet_name):
 
     candidates = []
     subtotals = []
-    non_candidate_subtotals = []
+    non_candidate_names = []
     rounds = {}
     for i, name, row, is_candidate in iter_sheet2_rows(ws):
         if is_candidate:
             candidates.append(name)
         else:
             name = common.get_subtotal_label(name)
-            non_candidate_subtotals.append(name)
+            non_candidate_names.append(name)
         subtotals.append(name)
         row_rounds = parse_sheet2_row(row, is_candidate=is_candidate)
         rounds[name] = row_rounds
 
-    # TODO: assert the contents of non_candidate_subtotals?
+    # TODO: assert the contents of non_candidate_names?
     results = {
         'candidates': candidates,
-        'non_candidate_subtotals': non_candidate_subtotals,
+        'non_candidate_names': non_candidate_names,
         'subtotals': subtotals,
         'rounds': rounds,
     }

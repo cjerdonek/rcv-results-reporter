@@ -26,6 +26,7 @@ LANGUAGES = {
 }
 
 
+# TODO: rename this to use Name?
 class NonCandidateLabel:
 
     CONTINUING = 'continuing'
@@ -35,6 +36,7 @@ class NonCandidateLabel:
     NON_TRANSFERABLE = 'non_transferable'
 
 
+# TODO: rename this to NAME?
 NON_CANDIDATE_SUBTOTAL_LABELS = [
     NonCandidateLabel.CONTINUING,
     NonCandidateLabel.BLANK,
@@ -80,11 +82,11 @@ def get_paths(dir_path, suffix):
 
 # TODO: also use this for parsing Excel.
 def initialize_results(candidates):
-    non_candidate_subtotals = NON_CANDIDATE_SUBTOTAL_LABELS.copy()
-    subtotals = list(candidates) + non_candidate_subtotals
+    non_candidate_names = NON_CANDIDATE_SUBTOTAL_LABELS.copy()
+    subtotals = list(candidates) + non_candidate_names
     return {
         'candidates': candidates,
-        'non_candidate_subtotals': non_candidate_subtotals,
+        'non_candidate_names': non_candidate_names,
         'subtotals': subtotals,
     }
 

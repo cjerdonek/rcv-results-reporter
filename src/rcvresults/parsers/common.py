@@ -6,6 +6,7 @@ from rcvresults.utils import NonCandidateLabel
 
 
 # The non-candidate names that appear in both the XML and Excel reports.
+# TODO: call this something other than Name?
 class NonCandidateName:
 
     CONTINUING = 'Continuing Ballots Total'

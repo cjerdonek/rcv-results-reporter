@@ -37,12 +37,12 @@
 </tbody>
 {#- Display the non-candidate totals after the candidate totals. #}
 <tfoot>
-{% for subtotal_name in non_candidate_subtotals %}
-  {%- set round_1 = rounds[subtotal_name][0] %}
+{% for non_candidate_name in non_candidate_names %}
+  {%- set round_1 = rounds[non_candidate_name][0] %}
   {#- Subtract 1 to get a 0-based index. #}
-  {%- set round_last = rounds[subtotal_name][highest_round - 1] -%}
+  {%- set round_last = rounds[non_candidate_name][highest_round - 1] -%}
 <tr>
-<td id='candidate'>{{ subtotal_name|TS }}</td>
+<td id='candidate'>{{ non_candidate_name|TS }}</td>
 <td align='right'>{{ round_1['votes']|format_int }}</td>
 {%- if multiple_rounds %}
 <td align='right'>{{ round_last['votes']|format_int }}</td>
