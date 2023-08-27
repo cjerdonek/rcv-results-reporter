@@ -155,25 +155,40 @@ def make_test_index_html(output_dir, snippets_dir, js_dir):
     make_index_html(output_dir, template=template, js_dir=js_dir, env=env)
 
 
-def _iter_contests(context, election, parent_json_dir):
+def _get_contest_summary_path(context, election, base_name):
+    """
+    Return the path to an html summary file for a contest, as a relative
+    string path. For example, "2022-11-08/da_short-summary-en.html".
+
+    Args:
+      election_dir_name: for example, "2022-11-08".
+      base_name: for example, "da_short".
+    """
+    lang_code = context[CURRENT_LANG_KEY]
+    dir_name = election['dir_name']
+    # TODO: eliminate the need to repeat the string "summary"?
+    #  See also: HTML_SUFFIXES.
+    base_name = f'{base_name}-summary'
+    file_name = utils.make_rcv_snippet_name(base_name, lang_code=lang_code)
+    rel_path = str(Path(dir_name) / file_name)
+
+    return rel_path
+
+
+def _iter_contests(election, parent_json_dir):
     """
     Yield information about each contest in an election.
     """
-    lang_code = context[CURRENT_LANG_KEY]
     dir_name = election['dir_name']
     json_dir = parent_json_dir / dir_name
     contests = election['contests']
     for contest in contests:
-        file_stem = contest['file_stem']
+        base_name = contest['file_stem']
         pdf_url = contest['pdf_url']
-        json_path = json_dir / f'{file_stem}.json'
-        # TODO: eliminate the need to repeat the string "summary"?
-        #  See also: HTML_SUFFIXES.
-        base_name = f'{file_stem}-summary'
-        html_name = utils.make_rcv_snippet_name(base_name, lang_code=lang_code)
-        html_path = str(Path(dir_name) / html_name)
+        json_path = json_dir / f'{base_name}.json'
         contest_data = utils.read_json(json_path)
-        yield (html_path, contest_data, pdf_url)
+
+        yield (base_name, contest_data, pdf_url)
 
 
 def _build_elections_list(config_paths):
@@ -215,7 +230,8 @@ def make_rcv_demo(
 
     global_vars = {
         'elections': elections,
-        'iter_contests': jinja2.pass_context(iter_contests),
+        'get_summary_path': jinja2.pass_context(_get_contest_summary_path),
+        'iter_contests': iter_contests,
         'iter_languages': jinja2.pass_context(rendering.iter_languages),
     }
 
