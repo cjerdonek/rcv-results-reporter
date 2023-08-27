@@ -250,6 +250,7 @@ def process_election(
 
     env = make_environment(translations_path)
     global_vars = _make_globals(css_dir=css_dir)
+    global_vars['election'] = election_data
 
     templates = [
         env.get_template(name, globals=global_vars) for name in
