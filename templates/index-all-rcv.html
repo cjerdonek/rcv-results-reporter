@@ -103,16 +103,18 @@ The text outside of the tables is more for context.
 <h3>{{ election['name'] }} <a id="{{ election['dir_name'] }}" href="#{{ election['dir_name'] }}">&para;</a></h3>
 <a href="{{ election['url'] }}" target="_blank">[Original results page]</a>
   {% for base_name, contest, pdf_url in iter_contests(election) %}
-    {%- set summary_path = get_summary_path(election, base_name=base_name) %}
     {%- set contest_name = contest['_metadata']['contest_name'] %}
+    {%- set summary_path = get_summary_path(election, base_name=base_name) %}
+    {%- set rounds_url = get_rounds_url(election, base_name=base_name) %}
     <h4>{{ contest_name }} ({{ 'ranked_choice_voting_contest'|TL }})</h4>
     <p>A candidate must receive 50%+1 votes to be elected.
     The candidate shaded in green has the most votes based on the total
     ballots counted.
     The table below shows only the <em>first and last rounds,</em>
     if there is more than one round.
-    The <a href="{{ pdf_url }}" target="_blank">RCV Results Report
-    for {{ contest_name }}</a> shows all rounds.
+    The <a href="{{ pdf_url }}" target="_blank">PDF results report</a>
+    and <a href="{{ rounds_url }}" target="_blank">new HTML results page</a>
+    for {{ contest_name }} show all rounds.
     <a href="https://youtu.be/EF7BomAGch4" target="_blank">Learn how
     RCV works.</a></p>
     {{- insert_html(summary_path) }}
