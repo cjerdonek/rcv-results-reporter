@@ -1,9 +1,8 @@
 # TODO
 
-* Add links to the round-by-round reports in the demo
+* Generate the demo in CI
 * Style the non-candidate subtotals bold
 * Suppress the last transfer column
-* Generate the demo in CI
 * Add translations of the following phrases used in Dominion's English
   RCV reports:
   * "Continuing Ballots Total"
