@@ -3,20 +3,20 @@ election:
   url: https://sfelections.sfgov.org/november-3-2020-election-results-summary
   contests:
   -
-    file: 20201201_d1_short
-    url: https://www.sfelections.org/results/20201103/data/20201201/d1/20201201_d1_short.pdf
+    file_stem: 20201201_d1_short
+    pdf_url: https://www.sfelections.org/results/20201103/data/20201201/d1/20201201_d1_short.pdf
   -
-    file: 20201201_d3_short
-    url: https://www.sfelections.org/results/20201103/data/20201201/d3/20201201_d3_short.pdf
+    file_stem: 20201201_d3_short
+    pdf_url: https://www.sfelections.org/results/20201103/data/20201201/d3/20201201_d3_short.pdf
   -
-    file: 20201201_d5_short
-    url: https://www.sfelections.org/results/20201103/data/20201201/d5/20201201_d5_short.pdf
+    file_stem: 20201201_d5_short
+    pdf_url: https://www.sfelections.org/results/20201103/data/20201201/d5/20201201_d5_short.pdf
   -
-    file: 20201201_d7_short
-    url: https://www.sfelections.org/results/20201103/data/20201201/d7/20201201_d7_short.pdf
+    file_stem: 20201201_d7_short
+    pdf_url: https://www.sfelections.org/results/20201103/data/20201201/d7/20201201_d7_short.pdf
   -
-    file: 20201201_d9_short
-    url: https://www.sfelections.org/results/20201103/data/20201201/d9/20201201_d9_short.pdf
+    file_stem: 20201201_d9_short
+    pdf_url: https://www.sfelections.org/results/20201103/data/20201201/d9/20201201_d9_short.pdf
   -
-    file: 20201201_d11_short
-    url: https://www.sfelections.org/results/20201103/data/20201201/d11/20201201_d11_short.pdf
+    file_stem: 20201201_d11_short
+    pdf_url: https://www.sfelections.org/results/20201103/data/20201201/d11/20201201_d11_short.pdf

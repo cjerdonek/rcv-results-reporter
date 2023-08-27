@@ -3,5 +3,5 @@ election:
   url: https://sfelections.sfgov.org/february-15-2022-election-results-summary
   contests:
   -
-    file: 20220223_ar
-    url: https://www.sfelections.org/results/20220215/data/20220223/ar/20220223_ar.pdf
+    file_stem: 20220223_ar
+    pdf_url: https://www.sfelections.org/results/20220215/data/20220223/ar/20220223_ar.pdf

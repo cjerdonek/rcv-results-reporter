@@ -164,8 +164,8 @@ def _iter_contests(context, election, parent_json_dir):
     json_dir = parent_json_dir / dir_name
     contests = election['contests']
     for contest in contests:
-        file_stem = contest['file']
-        contest_url = contest['url']
+        file_stem = contest['file_stem']
+        pdf_url = contest['pdf_url']
         json_path = json_dir / f'{file_stem}.json'
         # TODO: eliminate the need to repeat the string "summary"?
         #  See also: HTML_SUFFIXES.
@@ -173,7 +173,7 @@ def _iter_contests(context, election, parent_json_dir):
         html_name = utils.make_rcv_snippet_name(base_name, lang_code=lang_code)
         html_path = str(Path(dir_name) / html_name)
         contest_data = utils.read_json(json_path)
-        yield (html_path, contest_data, contest_url)
+        yield (html_path, contest_data, pdf_url)
 
 
 def _build_elections_list(config_paths):

@@ -212,12 +212,12 @@ def process_contest(
       json_dir: the json output directory.
       output_dir: the html output directory.
     """
-    base_name = contest_data['file']
-    file_name = f'{base_name}.{report_suffix}'
+    file_stem = contest_data['file_stem']
+    file_name = f'{file_stem}.{report_suffix}'
     report_path = reports_dir / file_name
     json_path = make_rcv_json(report_path, json_dir=json_dir)
     make_html_snippets(
-        json_path, templates=templates, output_dir=output_dir, base_name=base_name,
+        json_path, templates=templates, output_dir=output_dir, base_name=file_stem,
     )
 
 
