@@ -1,8 +1,8 @@
 # TODO
 
-* Allow passing the output directory into demo.py
-* Make the horizontal lines thicker above and below "Continuing ballots"
 * Suppress the last transfer column
+* Make the horizontal lines thicker above and below "Continuing ballots"
+* Allow passing the output directory into demo.py
 * Add translations of the following phrases used in Dominion's English
   RCV reports:
   * "Continuing Ballots Total"
