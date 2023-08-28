@@ -18,10 +18,10 @@
 </tr>
 <tr>
   <td class="CandidateCellSubHeader">&nbsp;</td>
-{%- for i in range(highest_round) %}
+{%- for round_number in range(1, highest_round + 1) %}
   <td class="VotesCellSubHeader">Votes</td>
   <td class="PercentageCellSubHeader">%</td>
-  <td class="TransferCellSubHeader">Transfer</td>
+  <td class="TransferCellSubHeader">{%- if loop.last %}N/A{%- else %}Transfer{%- endif %}</td>
 {%- endfor %}
 </tr>
 {%- for candidate in candidate_names %}
@@ -30,14 +30,18 @@
 {%- for round_number in range(1, highest_round + 1) %}
 {#- Subtract 1 to get a 0-based index. -#}
 {%- set round_data = rounds[candidate][round_number - 1] %}
-{%- if candidate_was_eliminated(candidate=candidate, round_number=round_number) %}
+{%- set was_eliminated = candidate_was_eliminated(candidate=candidate, round_number=round_number) %}
+{%- set class_prefix = get_candidate_class_prefix(candidate=candidate, round_number=round_number) %}
+{%- if was_eliminated %}
   <td class="VotesCell">&nbsp;</td>
   <td class="PercentageCell">&nbsp;</td>
-  <td class="VotesTransferredCell">&nbsp;</td>
-{%- else -%}
-{%- set class_prefix = get_candidate_class_prefix(candidate=candidate, round_number=round_number) %}
+{%- else %}
   <td class="{{ class_prefix }}VotesCell">{{ round_data['votes']|format_int }}</td>
   <td class="{{ class_prefix }}PercentageCell">{{ round_data['percent']|format_percent }}</td>
+{%- endif %}
+{%- if loop.last or was_eliminated %}
+  <td class="VotesTransferredCell">&nbsp;</td>
+{%- else %}
   <td class="{{ class_prefix }}VotesTransferredCell">{{ round_data['transfer']|format_int }}</td>
 {%- endif %}
 {%- endfor %}
@@ -55,7 +59,7 @@
 {%- else %}
   <td class="PercentageCell">&nbsp;</td>
 {%- endif %}
-{%- if non_candidate_name in ('continuing', 'non_transferable') %}
+{%- if loop.last or non_candidate_name in ('continuing', 'non_transferable') %}
   <td class="VotesTransferredCell">&nbsp;</td>
 {%- else %}
   <td class="VotesTransferredCell">{{ round_data['transfer']|format_int }}</td>
