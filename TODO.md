@@ -1,6 +1,6 @@
 # TODO
 
-* Make the horizontal lines thicker above and below "Continuing ballots"
+* Change ContinuingRow to LastCandidateRow.
 * Allow passing the output directory into demo.py
 * Add translations of the following phrases used in Dominion's English
   RCV reports:
