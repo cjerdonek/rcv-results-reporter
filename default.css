@@ -79,7 +79,10 @@ tr.AlternateCandidateRow{
 tr.NonCandidateRow{
 	background-color: #F5F5F5;
 }
-
+/* Separate the candidate and non-candidate rows by a thicker line. */
+tr.ContinuingRow > td {
+	border-top: 2px solid;
+}
 
 /* Styles used for cells in the 'candidate' column */
 td.CandidateCell{
