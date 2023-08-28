@@ -1,7 +1,9 @@
 # TODO
 
+* Rename build.sh to build-demo.sh and make the target directory
+  variable
 * Generate the demo in CI
-* Style the non-candidate subtotals bold
+* Make the horizontal lines thicker above and below "Continuing ballots"
 * Suppress the last transfer column
 * Add translations of the following phrases used in Dominion's English
   RCV reports:
