@@ -35,10 +35,12 @@ jobs:
       - attach_workspace:
           at: tmp
       - run:
-          name: "Commit the new demo build"
+          name: "Stage the new demo files"
           command: |
             # Remove all the checked-in files.
             git rm -r .
+            # Restore the no-op Circle CI config file.
+            git restore --staged --worktree .circleci/config.yml
             # We need to use the -T option to prevent cp from copying the
             # files into a "build" subfolder of the current directory.
             cp -RT tmp/build/ .
@@ -46,6 +48,9 @@ jobs:
             git add -A .
             echo "running: git status"
             git status
+      - run:
+          name: "Commit the new demo"
+          command: |
             git config --global user.email "chris.jerdonek@gmail.com"
             git config --global user.name "Chris Jerdonek"
             # TODO: include the commit sha in the commit message?
