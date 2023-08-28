@@ -1,9 +1,8 @@
 version: 2.1
 orbs:
   python: circleci/python@2.1.1
-# TODO: add a job or steps to deploy the demo page.
 jobs:
-  test:
+  run-tests-and-build-demo:
     executor:
       name: python/default
       # TODO: test on all versions 3.9+?
@@ -18,7 +17,39 @@ jobs:
       - run:
           name: "Run tests"
           command: python -m unittest discover rcvresults
+      - run:
+          name: "Build demo"
+          command: ./build-demo.sh tmp/build
+      - persist_to_workspace:
+          root: tmp
+          paths:
+            - build
+  deploy-demo:
+    # TODO: choose a better executor.
+    executor:
+      name: python/default
+      tag: "3.9"
+    steps:
+      - checkout
+      - run: git checkout gh-pages
+      - attach_workspace:
+          at: tmp
+      # We need to use the -T option to prevent cp from copying the
+      # files into a "build" subfolder of the current directory.
+      - run: cp -RT tmp/build/ .
+      # TODO: finish this.
+      - run: git add -u
+      - run: git config --global user.email "chris.jerdonek@gmail.com"
+      - run: git config --global user.name "Chris Jerdonek"
+      - run: git commit -m "Regenerate files from CI."
+      - run: git push
 workflows:
-  run-tests:
+  run-tests-and-deploy-demo:
     jobs:
-      - test
+      - run-tests-and-build-demo
+      - deploy-demo:
+          requires:
+            - run-tests-and-build-demo
+          filters:
+            branches:
+              only: main
