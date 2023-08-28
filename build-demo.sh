@@ -19,6 +19,3 @@ cp -R data/output-html/rcv-snippets "${BUILD_DIR}/rcv-snippets"
 cp data/output-html/default.css "${BUILD_DIR}"
 # The -L flag resolves resolves symlinks.
 cp -RL data/output-html/js "${BUILD_DIR}"
-
-ls -al "${BUILD_DIR}"
-ls -al "${BUILD_DIR}/js"
