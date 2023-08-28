@@ -1,0 +1,19 @@
+# CircleCI configuration file
+#
+# This is a no-op config file to prevent the red build failure "X"
+# from showing up in the GitHub UI.
+version: 2.1
+jobs:
+  hello-world:
+    docker:
+     - image: cimg/base:2022.05
+    steps:
+      - run: echo "hello world"
+workflows:
+  no-op:
+    jobs:
+      - hello-world:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
