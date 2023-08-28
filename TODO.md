@@ -1,6 +1,5 @@
 # TODO
 
-* Update the demo page in CI
 * Allow passing the output directory into demo.py
 * Make the horizontal lines thicker above and below "Continuing ballots"
 * Suppress the last transfer column

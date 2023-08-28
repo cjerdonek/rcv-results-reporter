@@ -25,24 +25,34 @@ jobs:
           paths:
             - build
   deploy-demo:
-    # TODO: choose a better executor.
-    executor:
-      name: python/default
-      tag: "3.9"
+    docker:
+      - image: cimg/base:2023.08
     steps:
       - checkout
-      - run: git checkout gh-pages
+      - run:
+          name: "Checkout gh-pages branch"
+          command: git checkout gh-pages
       - attach_workspace:
           at: tmp
-      # We need to use the -T option to prevent cp from copying the
-      # files into a "build" subfolder of the current directory.
-      - run: cp -RT tmp/build/ .
-      # TODO: finish this.
-      - run: git add -u
-      - run: git config --global user.email "chris.jerdonek@gmail.com"
-      - run: git config --global user.name "Chris Jerdonek"
-      - run: git commit -m "Regenerate files from CI."
-      - run: git push
+      - run:
+          name: "Commit the new demo build"
+          command: |
+            # Remove all the checked-in files.
+            git rm -r .
+            # We need to use the -T option to prevent cp from copying the
+            # files into a "build" subfolder of the current directory.
+            cp -RT tmp/build/ .
+            rm -r tmp/build
+            git add -A .
+            echo "running: git status"
+            git status
+            git config --global user.email "chris.jerdonek@gmail.com"
+            git config --global user.name "Chris Jerdonek"
+            # TODO: include the commit sha in the commit message?
+            git commit --allow-empty -m "[CI] Rebuild the demo."
+      - run:
+          name: "Push demo"
+          command: git push
 workflows:
   run-tests-and-deploy-demo:
     jobs:
