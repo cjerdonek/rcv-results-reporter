@@ -10,6 +10,18 @@ class ModuleTestCase(TestCase):
     Tests of functions in the module.
     """
 
+    def test_make_html_base_name(self):
+        cases = [
+            ('rcv-complete.html', 'da_short-rounds'),
+            ('rcv-summary.html', 'da_short-summary'),
+        ]
+        for template_name, expected in cases:
+            with self.subTest(template_name=template_name):
+                actual = election.make_html_base_name(
+                    template_name, contest_base='da_short',
+                )
+                self.assertEqual(actual, expected)
+
     def get_label_translations(self):
         return election.read_label_translations(TRANSLATIONS_PATH)
 

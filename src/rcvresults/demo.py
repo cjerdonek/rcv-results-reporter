@@ -16,6 +16,7 @@ import jinja2
 from markupsafe import Markup
 
 import rcvresults.election as election_mod
+from rcvresults.election import HTML_OUTPUT_DIR_NAMES
 import rcvresults.rendering as rendering
 from rcvresults.testing import TRANSLATIONS_PATH
 import rcvresults.utils as utils
@@ -161,42 +162,50 @@ def make_test_index_html(output_dir, snippets_dir, js_dir):
     make_index_html(output_dir, template=template, js_dir=js_dir, env=env)
 
 
-def _get_rounds_report_url(context, election, base_name):
+def _get_rounds_report_url(context, election, contest_base):
     """
     Return the URL to an html round-by-round report for a contest, as a
     relative URL. For example, "rcv-snippets/2022-11-08/da_short-rounds-en.html".
 
     Args:
       election_dir_name: for example, "2022-11-08".
-      base_name: for example, "da_short".
+      contest_base: the contest base name (e.g. "da_short").
     """
+    # TODO: stop hard-coding this template name.
+    template_name = 'rcv-complete.html'
     lang_code = context[CURRENT_LANG_KEY]
     dir_name = election['dir_name']
-    # TODO: eliminate the need to repeat the string "rounds"?
-    #  See also: HTML_SUFFIXES.
-    base_name = f'{base_name}-rounds'
-    file_name = utils.make_rcv_snippet_name(base_name, lang_code=lang_code)
+    subdir_name = HTML_OUTPUT_DIR_NAMES[template_name]
+    # This is the output file stem without the language code suffix.
+    html_base_name = election_mod.make_html_base_name(
+        template_name, contest_base=contest_base,
+    )
+    file_name = utils.make_rcv_snippet_name(html_base_name, lang_code=lang_code)
     rel_path = Path(RCV_SNIPPETS_DIR_NAME) / dir_name / file_name
 
     return str(rel_path)
 
 
-def _get_contest_summary_path(context, election, base_name):
+def _get_contest_summary_path(context, election, contest_base):
     """
     Return the path to an html summary file for a contest, as a relative
     string path. For example, "2022-11-08/da_short-summary-en.html".
 
     Args:
       election_dir_name: for example, "2022-11-08".
-      base_name: for example, "da_short".
+      contest_base: the contest base name (e.g. "da_short").
     """
+    # TODO: stop hard-coding this template name.
+    template_name = 'rcv-summary.html'
     lang_code = context[CURRENT_LANG_KEY]
     dir_name = election['dir_name']
-    # TODO: eliminate the need to repeat the string "summary"?
-    #  See also: HTML_SUFFIXES.
-    base_name = f'{base_name}-summary'
-    file_name = utils.make_rcv_snippet_name(base_name, lang_code=lang_code)
-    rel_path = str(Path(dir_name) / file_name)
+    subdir_name = HTML_OUTPUT_DIR_NAMES[template_name]
+    # This is the output file stem without the language code suffix.
+    html_base_name = election_mod.make_html_base_name(
+        template_name, contest_base=contest_base,
+    )
+    file_name = utils.make_rcv_snippet_name(html_base_name, lang_code=lang_code)
+    rel_path = str(Path(dir_name) / subdir_name / file_name)
 
     return rel_path
 

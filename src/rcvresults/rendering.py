@@ -171,7 +171,7 @@ def translate_phrase(
     return translation
 
 
-def make_rcv_contest_html(context, template, html_dir, base_name):
+def make_rcv_contest_html(context, template, output_dir, base_name):
     """
     Create the html snippets for an RCV contest, one for each language.
 
@@ -179,11 +179,12 @@ def make_rcv_contest_html(context, template, html_dir, base_name):
       context: the context to pass to template.render(). This should
         include the contest data parsed from the xml or Excel results
         report for the contest.
-      html_dir: the directory to which to write the rendered html files.
+      output_dir: the directory to which to write the rendered html files.
+      base_name: the output file stem without the language code suffix.
     """
     for lang_code in LANGUAGES:
         html_name = utils.make_rcv_snippet_name(base_name, lang_code=lang_code)
-        output_path = html_dir / html_name
+        output_path = output_dir / html_name
         render_template(
             template, output_path=output_path, context=context,
             lang_code=lang_code,

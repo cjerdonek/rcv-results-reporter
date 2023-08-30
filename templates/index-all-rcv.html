@@ -102,10 +102,10 @@ The text outside of the tables is more for context.
 {% for election in elections %}
 <h3>{{ election['name'] }} <a id="{{ election['dir_name'] }}" href="#{{ election['dir_name'] }}">&para;</a></h3>
 <a href="{{ election['url'] }}" target="_blank">[Original results page]</a>
-  {% for base_name, contest, pdf_url in iter_contests(election) %}
+  {% for contest_base, contest, pdf_url in iter_contests(election) %}
     {%- set contest_name = contest['_metadata']['contest_name'] %}
-    {%- set summary_path = get_summary_path(election, base_name=base_name) %}
-    {%- set rounds_url = get_rounds_url(election, base_name=base_name) %}
+    {%- set summary_path = get_summary_path(election, contest_base=contest_base) %}
+    {%- set rounds_url = get_rounds_url(election, contest_base=contest_base) %}
     <h4>{{ contest_name }} ({{ 'ranked_choice_voting_contest'|TL }})</h4>
     <p>A candidate must receive 50%+1 votes to be elected.
     The candidate shaded in green has the most votes based on the total

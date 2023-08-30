@@ -66,6 +66,9 @@ def write_json(data, path):
 def make_rcv_snippet_name(base_name, lang_code):
     """
     Construct and return an RCV html snippet file name.
+
+    Args:
+      base_name: the file stem without the language code suffix.
     """
     return f'{base_name}-{lang_code}.html'
 

@@ -12,6 +12,12 @@ BUILD_DIR=$1
 # Exit if a command fails.
 set -e
 
+if [ -z "${BUILD_DIR}" ]
+then
+    echo "error: BUILD_DIR not provided" >&2
+    exit 1
+fi
+
 python src/rcvresults/demo.py --html-output-dir "${BUILD_DIR}"
 rm "${BUILD_DIR}/index-test.html"
 # Copy the non-html files.

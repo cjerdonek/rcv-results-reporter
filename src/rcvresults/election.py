@@ -30,11 +30,30 @@ SUBTOTAL_KEYS = {
 }
 
 
+# Mapping from template name to the name of the subdirectory of the output
+# directory to which instances of that template should be rendered.
+HTML_OUTPUT_DIR_NAMES = {
+    'rcv-complete.html': 'round-pages',
+    'rcv-summary.html': 'summary-tables',
+}
 # Mapping from template name to html base name suffix.
-HTML_SUFFIXES = {
+HTML_FILE_SUFFIXES = {
     'rcv-complete.html': 'rounds',
     'rcv-summary.html': 'summary',
 }
+
+
+def make_html_base_name(template_name, contest_base):
+    """
+    Return the output file stem to use for the given template and contest,
+    but without the language code suffix.
+
+    Args:
+      contest_base: the contest base name (e.g. "da_short").
+    """
+    base_name_suffix = HTML_FILE_SUFFIXES[template_name]
+    html_base_name = f'{contest_base}-{base_name_suffix}'
+    return html_base_name
 
 
 def read_election_config(config_path):
@@ -185,44 +204,52 @@ def _make_globals(css_dir=None):
     return global_vars
 
 
-# TODO: allow specifying a different output directory for each template?
-def make_html_snippets(json_path, templates, output_dir, base_name):
+# TODO: pass in HTML_FILE_SUFFIXES similar to output_dirs?
+def make_html_snippets(json_path, templates, output_dirs, base_name):
     """
+    Render the html snippets for a single contest.
+
     Args:
       templates: a list of jinja2 Template objects.
       json_dir: the json output directory.
-      output_dir: the html output directory.
+      output_dirs: a dict mapping string template name to the output
+        directory for the template.
+      base_name: the contest base name (e.g. "da_short").
     """
     _log.info(f'making RCV html snippets from: {json_path}')
     rcv_data = utils.read_json(json_path)
     for template in templates:
-        base_name_suffix = HTML_SUFFIXES[template.name]
-        html_base_name = f'{base_name}-{base_name_suffix}'
+        template_name = template.name
+        output_dir = output_dirs[template_name]
+        html_base_name = make_html_base_name(template_name, contest_base=base_name)
         rendering.make_rcv_contest_html(
-            rcv_data, template=template, html_dir=output_dir,
+            rcv_data, template=template, output_dir=output_dir,
             base_name=html_base_name,
         )
 
 
-# TODO: allow specifying a different output directory for each template?
 def process_contest(
-    contest_data, reports_dir, report_suffix, templates, json_dir, output_dir,
+    contest_data, reports_dir, report_suffix, templates, json_dir, output_dirs,
 ):
     """
     Args:
       templates: a list of jinja2 Template objects.
       json_dir: the json output directory.
-      output_dir: the html output directory.
+      output_dirs: a dict mapping string template name to the output
+        directory for the template.
     """
     file_stem = contest_data['file_stem']
     file_name = f'{file_stem}.{report_suffix}'
     report_path = reports_dir / file_name
     json_path = make_rcv_json(report_path, json_dir=json_dir)
     make_html_snippets(
-        json_path, templates=templates, output_dir=output_dir, base_name=file_stem,
+        json_path, templates=templates, output_dirs=output_dirs,
+        base_name=file_stem,
     )
 
 
+# TODO: pass in dict mapping template name to output_dir?
+# TODO: make json_dir required?
 def process_election(
     config_path, reports_dir, report_suffix, translations_path, output_dir,
     json_dir=None, css_dir=None,
@@ -247,10 +274,14 @@ def process_election(
     if json_dir is None:
         json_dir = output_dir / 'json'
 
-    if not output_dir.exists():
-        output_dir.mkdir(parents=True, exist_ok=True)
     if not json_dir.exists():
         json_dir.mkdir(parents=True, exist_ok=True)
+
+    output_dirs = {}
+    for template_name, output_dir_name in HTML_OUTPUT_DIR_NAMES.items():
+        template_output_dir = output_dir / output_dir_name
+        template_output_dir.mkdir(parents=True, exist_ok=True)
+        output_dirs[template_name] = template_output_dir
 
     election_data = read_election_config(config_path)
     contests_data = election_data['contests']
@@ -259,7 +290,6 @@ def process_election(
     global_vars = _make_globals(css_dir=css_dir)
     global_vars['election'] = election_data
 
-    # TODO: allow specifying a different output directory for each template?
     templates = [
         env.get_template(name, globals=global_vars) for name in
         ('rcv-summary.html', 'rcv-complete.html')
@@ -267,5 +297,5 @@ def process_election(
     for contest_data in contests_data:
         process_contest(
             contest_data, reports_dir=reports_dir, report_suffix=report_suffix,
-            templates=templates, output_dir=output_dir, json_dir=json_dir,
+            templates=templates, output_dirs=output_dirs, json_dir=json_dir,
         )
