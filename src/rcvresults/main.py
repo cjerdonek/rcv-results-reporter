@@ -8,7 +8,7 @@ Usage:
 For example:
 
   $ python src/rcvresults/main.py config/election-2022-11-08.yml \
-      translations.yml data/input-reports/2022-11-08 --report-format excel
+      translations.yml data/input-reports/2022-11-08 --report-format excel \
       --output-dir final
 """
 
