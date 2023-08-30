@@ -106,20 +106,20 @@ The code works like this:
    contest from the screenshots above).
 2. Second, the code takes the candidate names and vote subtotals
    from the previous step and generates one or more HTML snippets for
-   the contest (e.g. one for each language).
+   the contest (e.g. one for each template and language).
    These snippets are then saved to individual files. These HTML snippets
    can then be included in a larger HTML summary page, like they are in
    the sample demo page.
 
-   To generate the HTML snippets, the code uses a single
-   [Jinja](https://jinja.palletsprojects.com/) template located
-   [here](templates/rcv-summary.html), and a YAML file located
+   To generate the HTML snippets, the code uses two
+   [Jinja](https://jinja.palletsprojects.com/) templates located
+   [in this directory](templates), and a YAML file located
    [here](translations.yml) of translations of words used in the
    Dominion's original reports (words like "Overvotes," "Exhausted," and
-   "Continuing Ballots"). The template can be customized as needed to
+   "Continuing Ballots"). The templates can be customized as needed to
    control exactly how the HTML snippets look, and the YAML file can be
    expanded to support more languages and cover more words.
-   [Here](data/output-html/rcv-snippets/2022-11-08/da_short-en.html) is
+   [Here](data/output-html/rcv-snippets/2022-11-08/summary-tables/da_short-summary-en.html) is
    an example of what such an HTML snippet might look like
    (again for the same contest as above), and
    [here](data/output-html/rcv-snippets/2022-11-08) is the directory
