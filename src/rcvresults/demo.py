@@ -282,6 +282,8 @@ def make_arg_parser():
     return parser
 
 
+# TODO: allow specifying the json directory, or make it a subdirectory
+#  of the given output directory if one is provided.
 def main():
     parser = make_arg_parser()
     args = parser.parse_args()
