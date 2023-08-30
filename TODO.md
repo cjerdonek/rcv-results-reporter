@@ -1,6 +1,6 @@
 # TODO
 
-* Allow passing the output directory into demo.py
+* Add the language toggle to the round-by-round tables?
 * Add translations of the following phrases used in Dominion's English
   RCV reports:
   * "Continuing Ballots Total"

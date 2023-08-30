@@ -7,6 +7,7 @@ Usage:
 
 """
 
+import argparse
 import functools
 import logging
 from pathlib import Path
@@ -22,6 +23,10 @@ from rcvresults.utils import CURRENT_LANG_KEY, LANGUAGES
 
 
 _log = logging.getLogger(__name__)
+
+DESCRIPTION = """\
+Build the demo.
+"""
 
 TEMPLATE_NAME_RCV_DEMO = 'index-all-rcv.html'
 RCV_SNIPPETS_DIR_NAME = 'rcv-snippets'
@@ -101,14 +106,14 @@ def make_all_rcv_snippets(
     for dir_name, config_path in config_paths.items():
         _log.info(f'starting election: {dir_name}')
         report_suffix = REPORT_DIR_EXTENSIONS[dir_name]
-        reports_dir, json_dir, html_dir = (
+        reports_dir, json_dir, html_snippets_dir = (
             parent_dir / dir_name for parent_dir in
             (DATA_DIR_REPORTS, parent_json_dir, parent_snippets_dir)
         )
         election_mod.process_election(
             config_path=config_path, reports_dir=reports_dir,
             report_suffix=report_suffix, translations_path=translations_path,
-            json_dir=json_dir, css_dir=css_dir, output_dir=html_dir,
+            output_dir=html_snippets_dir, json_dir=json_dir, css_dir=css_dir,
         )
 
 
@@ -267,16 +272,28 @@ def make_rcv_demo(
         )
 
 
+def make_arg_parser():
+    parser = argparse.ArgumentParser(description=DESCRIPTION)
+    parser.add_argument(
+        '--html-output-dir', metavar='OUTPUT_DIR', help=(
+            'path to the html output directory.'
+        ), default=DEFAULT_HTML_OUTPUT_DIR,
+    )
+    return parser
+
+
 def main():
+    parser = make_arg_parser()
+    args = parser.parse_args()
+
     log_format = '[{levelname}] {name}: {message}'
     logging.basicConfig(format=log_format, style='{', level=logging.INFO)
 
     parent_json_dir = DATA_DIR_JSON
-
-    output_dir = DEFAULT_HTML_OUTPUT_DIR
+    html_output_dir = Path(args.html_output_dir)
     # This is the parent directory to which to write the intermediate
     # RCV HTML snippets.
-    snippets_dir = output_dir / RCV_SNIPPETS_DIR_NAME
+    snippets_dir = html_output_dir / RCV_SNIPPETS_DIR_NAME
 
     # We have a symlink at "data/output-html/js" that points to
     # "sample-html/2022-11-08/js" (as a relative path).
@@ -302,11 +319,13 @@ def main():
 
     # Next, generate the index html pages.
     # TODO: check that this still works.
-    make_test_index_html(output_dir, snippets_dir=snippets_dir, js_dir=js_dir)
+    make_test_index_html(
+        html_output_dir, snippets_dir=snippets_dir, js_dir=js_dir,
+    )
 
     make_rcv_demo(
         config_paths, snippets_dir=snippets_dir, js_dir=js_dir,
-        parent_json_dir=parent_json_dir, output_dir=output_dir,
+        parent_json_dir=parent_json_dir, output_dir=html_output_dir,
     )
 
 

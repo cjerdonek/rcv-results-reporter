@@ -185,6 +185,7 @@ def _make_globals(css_dir=None):
     return global_vars
 
 
+# TODO: allow specifying a different output directory for each template?
 def make_html_snippets(json_path, templates, output_dir, base_name):
     """
     Args:
@@ -203,6 +204,7 @@ def make_html_snippets(json_path, templates, output_dir, base_name):
         )
 
 
+# TODO: allow specifying a different output directory for each template?
 def process_contest(
     contest_data, reports_dir, report_suffix, templates, json_dir, output_dir,
 ):
@@ -226,10 +228,15 @@ def process_election(
     json_dir=None, css_dir=None,
 ):
     """
+    This function creates the json_dir and output_dir directories if they
+    don't already exist.
+
     Args:
       config_path: path to an election.yml config, as a Path object.
       report_suffix: a file extension specifying which RCV reports to
         read and parse. Can be one of: "xml" or "xlsx".
+      output_dir: the directory to which to write the RCV html snippets,
+        as a Path object.
       json_dir: the directory to which to write the intermediate json
         files, as a Path object. Defaults to a subdirectory of the given
         output directory.
@@ -252,6 +259,7 @@ def process_election(
     global_vars = _make_globals(css_dir=css_dir)
     global_vars['election'] = election_data
 
+    # TODO: allow specifying a different output directory for each template?
     templates = [
         env.get_template(name, globals=global_vars) for name in
         ('rcv-summary.html', 'rcv-complete.html')
