@@ -53,8 +53,8 @@ jobs:
           command: |
             git config --global user.email "chris.jerdonek@gmail.com"
             git config --global user.name "Chris Jerdonek"
-            # TODO: include the commit sha in the commit message?
-            git commit --allow-empty -m "[CI] Rebuild the demo."
+            # Include the commit sha in the commit message for reference.
+            git commit --allow-empty -m "[CI] Rebuild the demo: ${CIRCLE_SHA1}"
       - run:
           name: "Push demo"
           command: git push
