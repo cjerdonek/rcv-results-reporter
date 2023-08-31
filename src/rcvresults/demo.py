@@ -103,7 +103,7 @@ def make_all_rcv_snippets(
       parent_snippets_dir: the parent directory to which to write the
         intermediate RCV HTML snippets.
     """
-    css_dir = '../..'
+    css_dir = '../../..'
     for dir_name, config_path in config_paths.items():
         _log.info(f'starting election: {dir_name}')
         report_suffix = REPORT_DIR_EXTENSIONS[dir_name]
@@ -181,7 +181,7 @@ def _get_rounds_report_url(context, election, contest_base):
         template_name, contest_base=contest_base,
     )
     file_name = utils.make_rcv_snippet_name(html_base_name, lang_code=lang_code)
-    rel_path = Path(RCV_SNIPPETS_DIR_NAME) / dir_name / file_name
+    rel_path = Path(RCV_SNIPPETS_DIR_NAME) / dir_name / subdir_name / file_name
 
     return str(rel_path)
 
@@ -205,9 +205,9 @@ def _get_contest_summary_path(context, election, contest_base):
         template_name, contest_base=contest_base,
     )
     file_name = utils.make_rcv_snippet_name(html_base_name, lang_code=lang_code)
-    rel_path = str(Path(dir_name) / subdir_name / file_name)
+    rel_path = Path(dir_name) / subdir_name / file_name
 
-    return rel_path
+    return str(rel_path)
 
 
 def _iter_contests(election, parent_json_dir):
