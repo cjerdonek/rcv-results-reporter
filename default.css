@@ -5,7 +5,12 @@ body{
 	font-size: 12pt;
 	color: #000000;
 }
-
+h2{
+	font-size: 16pt;
+}
+h3{
+	font-size: 14pt;
+}
 /* All text contained in a table cell, which has no explicit class value */
 td{
 	color: #000000;
@@ -18,25 +23,6 @@ td{
 	font-weight: bold;
 	margin: 25px;
 }
-
-/* Classes for contest header div and value span */
-.ContestHeader{
-
-}
-
-.ContestHeaderValue{
-	font-weight: bold;
-}
-
-/* Classes for load type header div and value span */
-.LoadTypeHeader{
-
-}
-
-.LoadTypeHeaderValue{
-	font-weight: bold;
-}
-
 
 /* styles for the results table */
 .ResultsTable{
