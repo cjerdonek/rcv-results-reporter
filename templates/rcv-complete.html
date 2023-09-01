@@ -2,12 +2,14 @@
 <head>
 {%- set contest_name = _metadata.contest_name %}
 <title>RCV Results Summary Report for {{ contest_name }}</title>
+<link type="text/css" rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik' />
 <link type='text/css' rel='stylesheet' href='{{ css_dir }}/default.css' />
 </head>
 <body>
 <div class="BodyTitle">Ranked Choice Voting Round-by-Round Results</div>
 <div class="ContestHeader">Contest: <span class="ContestHeaderValue">{{ contest_name }}</span></div>
 <div class="ContestHeader">Election: <span class="ContestHeaderValue">{{ election.name }}</span></div>
+<p>
 <div id="ResultsContainer">
 <table class="ResultsTable" cellPadding="0" cellSpacing="0" border="1" width="100%">
 <tr>

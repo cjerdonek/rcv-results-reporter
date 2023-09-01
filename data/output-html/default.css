@@ -1,15 +1,13 @@
 /* Default tag override styles */
 /* All uncontained text in the html body */
 body{
-	font-family: Helvetica, Verdana, Arial, sans-serif;
+	font-family: "Rubik", Helvetica, Verdana, Arial, sans-serif;
 	font-size: 12pt;
 	color: #000000;
 }
 
 /* All text contained in a table cell, which has no explicit class value */
 td{
-	font-family: Helvetica, Verdana, Arial, sans-serif;
-	font-size: 8pt;
 	color: #000000;
 }
 
@@ -42,7 +40,7 @@ td{
 
 /* styles for the results table */
 .ResultsTable{
-	padding: 3px;
+
 }
 
 /* Style for candidate column header - empty for now, so no style data either */
@@ -58,15 +56,12 @@ th.RoundCellHeader{
 /* styles for round group individual column headers */
 .VotesCellSubHeader{
 	text-align: center;
-	font-size: 10pt;
 }
 .PercentageCellSubHeader{
 	text-align: center;
-	font-size: 10pt;
 }
 .TransferCellSubHeader{
 	text-align: center;
-	font-size: 10pt;
 }
 
 /* Table row styles used for the candidates, alternating row colors, and non candidate row shading */
