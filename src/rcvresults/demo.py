@@ -285,7 +285,8 @@ def make_arg_parser():
     parser = argparse.ArgumentParser(description=DESCRIPTION)
     parser.add_argument(
         '--html-output-dir', metavar='OUTPUT_DIR', help=(
-            'path to the html output directory.'
+            'path to the html output directory. '
+            f'Defaults to: {DEFAULT_HTML_OUTPUT_DIR}.'
         ), default=DEFAULT_HTML_OUTPUT_DIR,
     )
     return parser
