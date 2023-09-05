@@ -5,9 +5,6 @@ from pathlib import Path
 import yaml
 
 
-# The key to use in the template context for the current language.
-CURRENT_LANG_KEY = 'current_lang'
-
 LANG_CODE_ENGLISH = 'en'
 
 # A dict of the languages that should appear in the language toggle

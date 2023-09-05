@@ -18,9 +18,10 @@ from markupsafe import Markup
 import rcvresults.election as election_mod
 from rcvresults.election import HTML_OUTPUT_DIR_NAMES
 import rcvresults.rendering as rendering
+from rcvresults.rendering import CONTEXT_KEY_CURRENT_LANG
 from rcvresults.testing import TRANSLATIONS_PATH
 import rcvresults.utils as utils
-from rcvresults.utils import CURRENT_LANG_KEY, LANGUAGES
+from rcvresults.utils import LANGUAGES
 
 
 _log = logging.getLogger(__name__)
@@ -173,7 +174,7 @@ def _get_rounds_report_url(context, election, contest_base):
     """
     # TODO: stop hard-coding this template name.
     template_name = 'rcv-complete.html'
-    lang_code = context[CURRENT_LANG_KEY]
+    lang_code = context[CONTEXT_KEY_CURRENT_LANG]
     dir_name = election['dir_name']
     subdir_name = HTML_OUTPUT_DIR_NAMES[template_name]
     # This is the output file stem without the language code suffix.
@@ -197,7 +198,7 @@ def _get_contest_summary_path(context, election, contest_base):
     """
     # TODO: stop hard-coding this template name.
     template_name = 'rcv-summary.html'
-    lang_code = context[CURRENT_LANG_KEY]
+    lang_code = context[CONTEXT_KEY_CURRENT_LANG]
     dir_name = election['dir_name']
     subdir_name = HTML_OUTPUT_DIR_NAMES[template_name]
     # This is the output file stem without the language code suffix.

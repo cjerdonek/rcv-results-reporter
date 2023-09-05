@@ -5,10 +5,13 @@ Supports rendering Jinja2 templates.
 import logging
 
 import rcvresults.utils as utils
-from rcvresults.utils import CURRENT_LANG_KEY, LANG_CODE_ENGLISH, LANGUAGES
+from rcvresults.utils import LANG_CODE_ENGLISH, LANGUAGES
 
 
 _log = logging.getLogger(__name__)
+
+# The key to use in the template context for the current language.
+CONTEXT_KEY_CURRENT_LANG = 'current_lang'
 
 
 def render_template(template, output_path, context=None, lang_code=None):
@@ -21,7 +24,7 @@ def render_template(template, output_path, context=None, lang_code=None):
     if lang_code is not None:
         # Copy the context since we are modifying it.
         context = context.copy()
-        context[CURRENT_LANG_KEY] = lang_code
+        context[CONTEXT_KEY_CURRENT_LANG] = lang_code
 
     _log.info(f'rendering template to (lang={lang_code!r}): {output_path}')
     html = template.render(context)
@@ -95,7 +98,7 @@ def _get_language(context):
     Return the language set in the context, as a 2-letter language code
     (e.g. "en").
     """
-    return context.get(CURRENT_LANG_KEY, LANG_CODE_ENGLISH)
+    return context.get(CONTEXT_KEY_CURRENT_LANG, LANG_CODE_ENGLISH)
 
 
 def get_index_name(lang_code):
