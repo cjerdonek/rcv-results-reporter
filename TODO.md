@@ -1,5 +1,6 @@
 # TODO
 
+* Make the cell borders lighter in the round-by-round report.
 * Add translations of the following phrases used in Dominion's English
   RCV reports:
   * "Continuing Ballots Total"
