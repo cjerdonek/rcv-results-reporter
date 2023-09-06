@@ -60,14 +60,32 @@ def write_json(data, path):
         json.dump(data, f, indent='    ', sort_keys=True)
 
 
-def make_rcv_snippet_name(base_name, lang_code):
+def make_html_page_name(base_name, lang_code):
     """
     Construct and return an RCV html snippet file name.
 
     Args:
-      base_name: the file stem without the language code suffix.
+      base_name: the output file stem without the language code suffix,
+        e.g. "da_short-rounds" or "d6_short-rounds".
+      lang_code: a 2-letter language code (e.g. "en" for English or "es"
+        for Spanish).
     """
     return f'{base_name}-{lang_code}.html'
+
+
+def make_page_names(base_name):
+    """
+    Create the CONTEXT_KEY_PAGE_NAMES ("page_names") dict for the
+    template context of an RCV contest template.
+
+    Args:
+      base_name: the output file stem without the language code suffix,
+        e.g. "da_short-rounds" or "d6_short-rounds".
+    """
+    return {
+        lang_code: make_html_page_name(base_name, lang_code=lang_code)
+        for lang_code in LANGUAGES
+    }
 
 
 def get_paths(dir_path, suffix):

@@ -11,6 +11,7 @@ from jinja2 import Environment, FileSystemLoader
 import rcvresults.parsers.xml as xml_parsing
 import rcvresults.parsers.xslx as excel_parsing
 import rcvresults.rendering as rendering
+from rcvresults.rendering import CONTEXT_KEY_PAGE_NAMES
 import rcvresults.summary as summary
 import rcvresults.utils as utils
 from rcvresults.utils import NonCandidateLabel, LANG_CODE_ENGLISH, LANGUAGES
@@ -188,6 +189,7 @@ def _make_globals(css_dir=None):
     Return the globals to pass to env.get_template().
     """
     global_vars = {
+        'iter_languages': jinja2.pass_context(rendering.iter_languages),
         'is_contest_leader': jinja2.pass_context(rendering.is_contest_leader),
         'get_candidate_class_prefix': (
             jinja2.pass_context(rendering.get_candidate_class_prefix)
@@ -202,6 +204,37 @@ def _make_globals(css_dir=None):
         })
 
     return global_vars
+
+
+def make_rcv_contest_html(template, rcv_data, output_dir, contest_base):
+    """
+    Create the html snippets for an RCV contest, one for each language.
+
+    Args:
+      template: a jinja2 Template object for the contest html (e.g.
+        constructed from "rcv-complete.html" or "rcv-summary.html").
+      rcv_data: the contest data parsed from the xml or Excel results
+        report for the contest. This can also be read from a contest
+        json file.
+      output_dir: the directory to which to write the rendered html files.
+      contest_base: the contest base name (e.g. "da_short").
+    """
+    # This is the output file stem without the language code suffix.
+    html_base_name = make_html_base_name(template.name, contest_base=contest_base)
+
+    # Make the initial template context. We start by copying the rcv_data
+    # dict so we can add to it without affecting the original.
+    context = rcv_data.copy()
+    page_names = utils.make_page_names(html_base_name)
+    context[CONTEXT_KEY_PAGE_NAMES] = page_names
+
+    for lang_code in LANGUAGES:
+        html_name = page_names[lang_code]
+        output_path = output_dir / html_name
+        rendering.render_template(
+            template, output_path=output_path, context=context,
+            lang_code=lang_code,
+        )
 
 
 # TODO: pass in HTML_FILE_SUFFIXES similar to output_dirs?
@@ -219,12 +252,10 @@ def make_html_snippets(json_path, templates, output_dirs, base_name):
     _log.info(f'making RCV html snippets from: {json_path}')
     rcv_data = utils.read_json(json_path)
     for template in templates:
-        template_name = template.name
-        output_dir = output_dirs[template_name]
-        html_base_name = make_html_base_name(template_name, contest_base=base_name)
-        rendering.make_rcv_contest_html(
-            rcv_data, template=template, output_dir=output_dir,
-            base_name=html_base_name,
+        output_dir = output_dirs[template.name]
+        make_rcv_contest_html(
+            template, rcv_data=rcv_data, output_dir=output_dir,
+            contest_base=base_name,
         )
 
 

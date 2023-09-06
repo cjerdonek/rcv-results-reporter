@@ -198,7 +198,7 @@ def _get_rounds_report_url(context, election, contest_base):
     html_base_name = election_mod.make_html_base_name(
         template_name, contest_base=contest_base,
     )
-    file_name = utils.make_rcv_snippet_name(html_base_name, lang_code=lang_code)
+    file_name = utils.make_html_page_name(html_base_name, lang_code=lang_code)
     rel_path = Path(RCV_SNIPPETS_DIR_NAME) / dir_name / subdir_name / file_name
 
     return str(rel_path)
@@ -222,7 +222,7 @@ def _get_contest_summary_path(context, election, contest_base):
     html_base_name = election_mod.make_html_base_name(
         template_name, contest_base=contest_base,
     )
-    file_name = utils.make_rcv_snippet_name(html_base_name, lang_code=lang_code)
+    file_name = utils.make_html_page_name(html_base_name, lang_code=lang_code)
     rel_path = Path(dir_name) / subdir_name / file_name
 
     return str(rel_path)
