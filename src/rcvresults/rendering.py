@@ -10,14 +10,23 @@ from rcvresults.utils import LANG_CODE_ENGLISH, LANGUAGES
 
 _log = logging.getLogger(__name__)
 
-# The key to use in the template context for the current language.
+# Below are some of the template context keys we use.
+# TODO: put these keys in a class?
+#
+# The key for the language being rendered. The value is the 2-letter
+# language code (e.g. "en" for English or "es" for Spanish).
 CONTEXT_KEY_CURRENT_LANG = 'current_lang'
+# The value is a dict mapping 2-letter language code to the name in that
+# language of the page being rendered.
+CONTEXT_KEY_PAGE_NAMES = 'page_names'
 
 
 def render_template(template, output_path, context=None, lang_code=None):
     """
     Args:
       context: the context to pass to template.render().
+      lang_code: optional 2-letter language code (e.g. "en" for English
+        or "es" for Spanish).
     """
     if context is None:
         context = {}
@@ -101,26 +110,18 @@ def _get_language(context):
     return context.get(CONTEXT_KEY_CURRENT_LANG, LANG_CODE_ENGLISH)
 
 
-def get_index_name(lang_code):
-    """
-    Return the name of the index.html page, for the given language.
-    """
-    if lang_code == LANG_CODE_ENGLISH:
-        return 'index.html'
-
-    return f'index-{lang_code}.html'
-
-
 def iter_languages(context):
     """
-    Yield information about each language, in the order we would like the
-    languages to appear in the toggle at the top of the html page.
+    Yield a dict of information about each language, in the order the
+    languages should appear in the language toggle at the top of the html page.
     """
+    page_names = context[CONTEXT_KEY_PAGE_NAMES]
     for lang_code, lang_label in LANGUAGES.items():
+        page_name = page_names[lang_code]
         lang = {
             'code': lang_code,
             'label': lang_label,
-            'page_name': get_index_name(lang_code),
+            'page_name': page_name,
         }
         yield lang
 

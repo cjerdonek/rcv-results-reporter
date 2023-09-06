@@ -18,10 +18,12 @@ from markupsafe import Markup
 import rcvresults.election as election_mod
 from rcvresults.election import HTML_OUTPUT_DIR_NAMES
 import rcvresults.rendering as rendering
-from rcvresults.rendering import CONTEXT_KEY_CURRENT_LANG
+from rcvresults.rendering import (
+    CONTEXT_KEY_CURRENT_LANG, CONTEXT_KEY_PAGE_NAMES,
+)
 from rcvresults.testing import TRANSLATIONS_PATH
 import rcvresults.utils as utils
-from rcvresults.utils import LANGUAGES
+from rcvresults.utils import LANG_CODE_ENGLISH, LANGUAGES
 
 
 _log = logging.getLogger(__name__)
@@ -136,6 +138,22 @@ def _make_index_jinja_env(snippets_dir):
     return env
 
 
+def get_index_name(lang_code):
+    """
+    Return the name of the index.html page, for the given language.
+    """
+    if lang_code == LANG_CODE_ENGLISH:
+        return 'index.html'
+
+    return f'index-{lang_code}.html'
+
+
+def make_index_page_names():
+    return {
+        lang_code: get_index_name(lang_code) for lang_code in LANGUAGES
+    }
+
+
 def make_index_html(
     output_dir, template, js_dir, env, output_name=None, lang_code=None,
 ):
@@ -147,9 +165,8 @@ def make_index_html(
     if output_name is None:
         output_name = template.name
 
-    output_path = output_dir / output_name
-
     context = {'js_dir': str(js_dir)}
+    output_path = output_dir / output_name
     rendering.render_template(
         template, output_path=output_path, context=context,
         lang_code=lang_code,
@@ -257,6 +274,7 @@ def make_rcv_demo(
     _log.info(f'creating: RCV demo index html')
     env = _make_index_jinja_env(snippets_dir=snippets_dir)
 
+    page_names = make_index_page_names()
     # Create a single "elections" list for use from the template.
     elections = _build_elections_list(config_paths)
 
@@ -266,6 +284,7 @@ def make_rcv_demo(
 
     global_vars = {
         'elections': elections,
+        CONTEXT_KEY_PAGE_NAMES: page_names,
         'get_rounds_url': jinja2.pass_context(_get_rounds_report_url),
         'get_summary_path': jinja2.pass_context(_get_contest_summary_path),
         'iter_contests': iter_contests,
@@ -275,7 +294,7 @@ def make_rcv_demo(
     template = env.get_template(TEMPLATE_NAME_RCV_DEMO, globals=global_vars)
 
     for lang_code in LANGUAGES:
-        output_name = rendering.get_index_name(lang_code)
+        output_name = get_index_name(lang_code)
         make_index_html(
             output_dir, template=template, js_dir=js_dir, env=env,
             output_name=output_name, lang_code=lang_code,
