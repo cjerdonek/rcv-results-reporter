@@ -16,6 +16,11 @@ in the elections from 2019 to 2022, go here:
 
 * https://cjerdonek.github.io/rcv-results-reporter
 
+Also see a [memo](https://sf.gov/sites/default/files/2023-09/Multilanguage_Open_Source_RCV_Results_Reporter.pdf)
+about this project that was included in the agenda packet of the
+San Francisco Elections Commission's
+[September 20, 2023 Regular Meeting](https://sf.gov/meeting/september-20-2023/elections-commission-regular-meeting) under agenda item #5.
+
 ## Overview
 
 This project enables the round-by-round results of Dominion RCV contests
