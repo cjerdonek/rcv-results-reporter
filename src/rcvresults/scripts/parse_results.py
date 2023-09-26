@@ -12,8 +12,10 @@ from argparse import RawDescriptionHelpFormatter
 import logging
 from pathlib import Path
 
+import rcvresults.election as election_mod
 
-_log = logging.getLogger(__name__)
+
+_log = logging.getLogger('parse-results')
 
 DEFAULT_OUTPUT_DIR = 'output-json'
 
@@ -51,8 +53,20 @@ def main():
     logging.basicConfig(format=log_format, style='{', level=logging.INFO)
 
     report_paths = args.report_paths
-    _log.info(f'paths: {report_paths}')
-    raise NotImplementedError('TODO')
+    output_dir = Path(args.output_dir)
+
+    count = len(report_paths)
+    _log.info(f'processing {count} input paths...')
+    if not output_dir.exists():
+        _log.info(f'creating directory: {output_dir}')
+        output_dir.mkdir(parents=True)
+
+    for i, input_path in enumerate(report_paths, start=1):
+        input_path = Path(input_path)
+        _log.info(f'parsing file {i} (of {count}): {input_path}')
+        election_mod.make_rcv_json(input_path, output_dir=output_dir)
+
+    _log.info(f'wrote {count} files to directory: {output_dir}')
 
 
 if __name__ == '__main__':

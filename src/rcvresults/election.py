@@ -64,7 +64,8 @@ def read_election_config(config_path):
     return election_data
 
 
-def make_rcv_json(path, json_dir):
+# TODO: move this to a different module?
+def make_rcv_json(path, output_dir):
     _log.info(f'parsing: {path}')
     suffix = path.suffix
     if suffix == '.xlsx':
@@ -84,7 +85,7 @@ def make_rcv_json(path, json_dir):
     _log.info(f'parsed contest: {contest_name!r} ({len(candidates)} candidates)')
     summary.add_summary(results)
 
-    json_path = json_dir / f'{path.stem}.json'
+    json_path = output_dir / f'{path.stem}.json'
     _log.info(f'writing: {json_path}')
     utils.write_json(results, path=json_path)
 
@@ -272,7 +273,7 @@ def process_contest(
     file_stem = contest_data['file_stem']
     file_name = f'{file_stem}.{report_suffix}'
     report_path = reports_dir / file_name
-    json_path = make_rcv_json(report_path, json_dir=json_dir)
+    json_path = make_rcv_json(report_path, output_dir=json_dir)
     make_html_snippets(
         json_path, templates=templates, output_dirs=output_dirs,
         base_name=file_stem,

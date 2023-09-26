@@ -1,7 +1,6 @@
 # TODO
 
 * Add to the scripts directory:
-  - parse_results.py
   - make_reports.py
 * Add definitions / context-sensitive help of uncommon phrases
   (e.g. on hover)
