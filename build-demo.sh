@@ -18,7 +18,14 @@ then
     exit 1
 fi
 
-python src/rcvresults/scripts/build_demo.py --html-output-dir "${BUILD_DIR}"
+# We want the datetime that's displayed to be in the Pacific timezone.
+export TZ=America/Los_Angeles
+BUILD_TIME="$(date +"%Y-%m-%dT%H:%M:%S")"
+
+python src/rcvresults/scripts/build_demo.py \
+  --html-output-dir "${BUILD_DIR}" \
+  --build-time "${BUILD_TIME}"
+
 rm "${BUILD_DIR}/index-test.html"
 # Copy the non-html files.
 cp data/output-html/default.css "${BUILD_DIR}"
