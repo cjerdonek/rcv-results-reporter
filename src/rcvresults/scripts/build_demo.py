@@ -3,7 +3,7 @@ Recreate the demo page.
 
 Usage:
 
-  $ python src/rcvresults/scripts/build_demo.py
+  $ python src/rcvresults/scripts/build_demo.py --help
 
 """
 
