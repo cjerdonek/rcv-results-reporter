@@ -18,7 +18,7 @@ then
     exit 1
 fi
 
-python src/rcvresults/demo.py --html-output-dir "${BUILD_DIR}"
+python src/rcvresults/scripts/build_demo.py --html-output-dir "${BUILD_DIR}"
 rm "${BUILD_DIR}/index-test.html"
 # Copy the non-html files.
 cp data/output-html/default.css "${BUILD_DIR}"

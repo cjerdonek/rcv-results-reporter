@@ -1,8 +1,7 @@
 # TODO
 
 * Include the commit hash in the demo page
-* Add a scripts directory with scripts:
-  - make_demo.py
+* Add to the scripts directory:
   - parse_results.py
   - make_reports.py
 * Add definitions / context-sensitive help of uncommon phrases

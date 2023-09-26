@@ -163,7 +163,7 @@ $ pip install -e .
 To run the demo (includes four elections):
 
 ```
-$ python src/rcvresults/demo.py
+$ python src/rcvresults/scripts/build_demo.py
 ```
 
 To generate HTML snippets for a single election:

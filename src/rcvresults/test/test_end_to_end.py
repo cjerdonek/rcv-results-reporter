@@ -6,10 +6,10 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest import TestCase
 
-import rcvresults.demo as demo
 import rcvresults.election as election
 import rcvresults.main as main
-from rcvresults.demo import (
+import rcvresults.scripts.build_demo as demo
+from rcvresults.scripts.build_demo import (
     DATA_DIR_JSON, DATA_DIR_REPORTS, DIR_NAME_2020_NOV, DIR_NAME_2022_NOV,
 )
 
