@@ -6,8 +6,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest import TestCase
 
-import rcvresults.election as election
 import rcvresults.main as main
+import rcvresults.parsing as parsing
 import rcvresults.scripts.build_demo as demo
 from rcvresults.scripts.build_demo import (
     DATA_DIR_JSON, DATA_DIR_REPORTS, DIR_NAME_2020_NOV, DIR_NAME_2022_NOV,
@@ -30,7 +30,7 @@ class EndToEndTestCase(TestCase):
             with self.subTest(path=path):
                 with TemporaryDirectory() as temp_dir:
                     temp_dir = Path(temp_dir)
-                    output_path = election.make_rcv_json(
+                    output_path = parsing.make_rcv_json(
                         path, output_dir=temp_dir,
                     )
                     reference_path = reference_dir / f'{path.stem}.json'

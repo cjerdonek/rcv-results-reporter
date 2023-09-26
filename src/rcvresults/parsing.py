@@ -1,3 +1,15 @@
+"""
+Support for parsing XML and Excel result reports and writing the data to JSON.
+"""
+
+import logging
+
+import rcvresults.parsers.xml as xml_parsing
+import rcvresults.parsers.xslx as excel_parsing
+import rcvresults.utils as utils
+
+
+_log = logging.getLogger('parse-results')
 
 
 def make_candidate_summary(rounds, name):
@@ -72,3 +84,30 @@ def add_summary(results):
         'highest_round': highest_round,
         'leading_candidates': leading_candidates,
     })
+
+
+def make_rcv_json(path, output_dir):
+    _log.info(f'parsing: {path}')
+    suffix = path.suffix
+    if suffix == '.xlsx':
+        parse_report_file = excel_parsing.parse_excel_file
+    else:
+        assert suffix == '.xml'
+        parse_report_file = xml_parsing.parse_xml_file
+
+    try:
+        results = parse_report_file(path)
+    except Exception:
+        raise RuntimeError(f'error parsing report file: {path}')
+
+    metadata = results['_metadata']
+    contest_name = metadata['contest_name']
+    candidates = results['candidate_names']
+    _log.info(f'parsed contest: {contest_name!r} ({len(candidates)} candidates)')
+    add_summary(results)
+
+    json_path = output_dir / f'{path.stem}.json'
+    _log.info(f'writing: {json_path}')
+    utils.write_json(results, path=json_path)
+
+    return json_path

@@ -8,11 +8,9 @@ import logging
 import jinja2
 from jinja2 import Environment, FileSystemLoader
 
-import rcvresults.parsers.xml as xml_parsing
-import rcvresults.parsers.xslx as excel_parsing
 import rcvresults.rendering as rendering
 from rcvresults.rendering import CONTEXT_KEY_PAGE_NAMES
-import rcvresults.summary as summary
+import rcvresults.parsing as parsing
 import rcvresults.utils as utils
 from rcvresults.utils import NonCandidateLabel, LANG_CODE_ENGLISH, LANGUAGES
 
@@ -62,34 +60,6 @@ def read_election_config(config_path):
     election_data = config_data['election']
 
     return election_data
-
-
-# TODO: move this to a different module?
-def make_rcv_json(path, output_dir):
-    _log.info(f'parsing: {path}')
-    suffix = path.suffix
-    if suffix == '.xlsx':
-        parse_report_file = excel_parsing.parse_excel_file
-    else:
-        assert suffix == '.xml'
-        parse_report_file = xml_parsing.parse_xml_file
-
-    try:
-        results = parse_report_file(path)
-    except Exception:
-        raise RuntimeError(f'error parsing report file: {path}')
-
-    metadata = results['_metadata']
-    contest_name = metadata['contest_name']
-    candidates = results['candidate_names']
-    _log.info(f'parsed contest: {contest_name!r} ({len(candidates)} candidates)')
-    summary.add_summary(results)
-
-    json_path = output_dir / f'{path.stem}.json'
-    _log.info(f'writing: {json_path}')
-    utils.write_json(results, path=json_path)
-
-    return json_path
 
 
 def read_label_translations(translations_path):
@@ -273,7 +243,7 @@ def process_contest(
     file_stem = contest_data['file_stem']
     file_name = f'{file_stem}.{report_suffix}'
     report_path = reports_dir / file_name
-    json_path = make_rcv_json(report_path, output_dir=json_dir)
+    json_path = parsing.make_rcv_json(report_path, output_dir=json_dir)
     make_html_snippets(
         json_path, templates=templates, output_dirs=output_dirs,
         base_name=file_stem,
