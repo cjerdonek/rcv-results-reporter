@@ -3,10 +3,12 @@ orbs:
   python: circleci/python@2.1.1
 jobs:
   run-tests:
+    parameters:
+      python-version:
+        type: string
     executor:
       name: python/default
-      # TODO: test on all versions 3.9+?
-      tag: "3.9"
+      tag: << parameters.python-version >>
     steps:
       - checkout
       - python/install-packages:
@@ -75,7 +77,10 @@ workflows:
     # The "requires" keys below force sequential execution of jobs:
     # https://circleci.com/docs/workflows/#sequential-job-execution
     jobs:
-      - run-tests
+      - run-tests:
+          matrix:
+            parameters:
+              python-version: ["3.9"]
       # Only build and deploy the demo from "main".
       - build-demo:
           requires:
