@@ -17,6 +17,9 @@ jobs:
           # Also install the project in editable mode.
           args: "-e ."
       - run:
+          name: "Show Python version"
+          command: python -V
+      - run:
           name: "Run tests"
           command: python -m unittest discover rcvresults
   build-demo:
@@ -80,7 +83,7 @@ workflows:
       - run-tests:
           matrix:
             parameters:
-              python-version: ["3.9"]
+              python-version: ["3.9", "3.10", "3.11"]
       # Only build and deploy the demo from "main".
       - build-demo:
           requires:

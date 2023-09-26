@@ -141,7 +141,14 @@ in July 2020 (with approvals of subsequent modifications in 2021 and later).
 
 ## Setup
 
-Install Python. Any recent version should work, e.g. Python 3.8 or newer.
+Install Python. The project is tested with the following versions of Python:
+
+* Python 3.9
+* Python 3.10
+* Python 3.11
+
+(See [here](https://devguide.python.org/versions/) for which Python versions
+are still current.)
 
 Install Python requirements and the project itself (preferably within
 a Python virtual environment):

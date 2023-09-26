@@ -1,6 +1,5 @@
 # TODO
 
-* Test on more versions of Python
 * Include the commit hash in the demo page
 * Add a scripts directory with scripts:
   - make_demo.py
