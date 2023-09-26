@@ -160,7 +160,6 @@ def _make_index_jinja_env(snippets_dir, build_dt=None, commit_hash=None):
         'commit_hash': commit_hash,
         'insert_html': insert_html,
     })
-    # TODO: add the commit hash.
     return env
 
 
@@ -338,11 +337,16 @@ def make_arg_parser():
             f'Defaults to: {DEFAULT_HTML_OUTPUT_DIR}.'
         ), default=DEFAULT_HTML_OUTPUT_DIR,
     )
-    # TODO: add --commit-hash.
     parser.add_argument(
         '--build-time', metavar='DATETIME', help=(
             'a datetime in ISO format (e.g. "2023-09-25 21:17:49"). '
             f'Defaults to the current datetime.'
+        ),
+    )
+    parser.add_argument(
+        '--commit-hash', metavar='SHA', help=(
+            'the SHA of the commit used to build the demo. '
+            f'Defaults to a placeholder (e.g. "0000...").'
         ),
     )
     return parser
@@ -354,12 +358,18 @@ def main():
     parser = make_arg_parser()
     args = parser.parse_args()
 
+    log_format = '[{levelname}] {name}: {message}'
+    logging.basicConfig(format=log_format, style='{', level=logging.INFO)
+
+    commit_hash = args.commit_hash
     build_dt = args.build_time
     if build_dt is not None:
         build_dt = datetime.fromisoformat(build_dt)
-
-    log_format = '[{levelname}] {name}: {message}'
-    logging.basicConfig(format=log_format, style='{', level=logging.INFO)
+    _log.info(
+        'using:\n'
+        f'   build_time: {build_dt}\n'
+        f'  commit_hash: {commit_hash}'
+    )
 
     parent_json_dir = DATA_DIR_JSON
     html_output_dir = Path(args.html_output_dir)
@@ -395,11 +405,10 @@ def main():
         html_output_dir, snippets_dir=snippets_dir, js_dir=js_dir,
     )
 
-    # TODO: pass in commit_hash.
     make_rcv_demo(
         config_paths, snippets_dir=snippets_dir, js_dir=js_dir,
         parent_json_dir=parent_json_dir, output_dir=html_output_dir,
-        build_dt=build_dt,
+        build_dt=build_dt, commit_hash=commit_hash,
     )
 
 

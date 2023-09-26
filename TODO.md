@@ -1,6 +1,5 @@
 # TODO
 
-* Include the commit hash in the demo page
 * Add to the scripts directory:
   - parse_results.py
   - make_reports.py

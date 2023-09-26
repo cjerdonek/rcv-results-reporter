@@ -22,9 +22,12 @@ fi
 export TZ=America/Los_Angeles
 BUILD_TIME="$(date +"%Y-%m-%dT%H:%M:%S")"
 
+# See here for CircleCI's built-in environment variables:
+# https://circleci.com/docs/variables/#built-in-environment-variables
 python src/rcvresults/scripts/build_demo.py \
   --html-output-dir "${BUILD_DIR}" \
-  --build-time "${BUILD_TIME}"
+  --build-time "${BUILD_TIME}" \
+  --commit-hash "${CIRCLE_SHA1}"
 
 rm "${BUILD_DIR}/index-test.html"
 # Copy the non-html files.
