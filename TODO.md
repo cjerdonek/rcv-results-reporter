@@ -1,5 +1,10 @@
 # TODO
 
+* Test on more versions of Python
+* Add a scripts directory with scripts:
+  - make_demo.py
+  - parse_results.py
+  - make_reports.py
 * Add definitions / context-sensitive help of uncommon phrases
   (e.g. on hover)
 * Review the "production" command-line usage / workflow
