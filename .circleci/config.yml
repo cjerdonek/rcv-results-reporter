@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   python: circleci/python@2.1.1
 jobs:
-  run-tests-and-build-demo:
+  run-tests:
     executor:
       name: python/default
       # TODO: test on all versions 3.9+?
@@ -17,6 +17,18 @@ jobs:
       - run:
           name: "Run tests"
           command: python -m unittest discover rcvresults
+  build-demo:
+    executor:
+      name: python/default
+      # TODO: run on a newer version of Python?
+      tag: "3.9"
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          pip-dependency-file: requirements/requirements.txt
+          # Also install the project in editable mode.
+          args: "-e ."
       - run:
           name: "Build demo"
           command: ./build-demo.sh tmp/build
@@ -60,11 +72,17 @@ jobs:
           command: git push
 workflows:
   run-tests-and-deploy-demo:
+    # The "requires" keys below force sequential execution of jobs:
+    # https://circleci.com/docs/workflows/#sequential-job-execution
     jobs:
-      - run-tests-and-build-demo
-      - deploy-demo:
+      - run-tests
+      # Only build and deploy the demo from "main".
+      - build-demo:
           requires:
-            - run-tests-and-build-demo
+            - run-tests
           filters:
             branches:
               only: main
+      - deploy-demo:
+          requires:
+            - build-demo
