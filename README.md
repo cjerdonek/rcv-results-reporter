@@ -163,7 +163,8 @@ $ pip install -e .
 To run the demo (includes four elections):
 
 ```
-$ python src/rcvresults/scripts/build_demo.py
+$ python src/rcvresults/scripts/build_demo.py \
+    --build-time 2023-09-01T09:00:00
 ```
 
 To generate HTML snippets for a single election:

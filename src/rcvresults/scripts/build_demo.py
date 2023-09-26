@@ -8,6 +8,7 @@ Usage:
 """
 
 import argparse
+from datetime import datetime
 import functools
 import logging
 from pathlib import Path
@@ -121,11 +122,29 @@ def make_all_rcv_snippets(
         )
 
 
-def _make_index_jinja_env(snippets_dir):
+# TODO: test this?
+def _format_datetime(dt):
+    """
+    Format a datetime in the form, "September 9, 2023 9:25:38 PM".
+    """
+    # Format the day and hour separately since strftime() only supports
+    # displaying numbers zero-padded.
+    hour = int(dt.strftime('%I'))
+    format_str = f'%B {dt.day}, %Y {hour}:%M:%S %p'
+    formatted = dt.strftime(format_str)
+    return formatted
+
+
+def _make_index_jinja_env(snippets_dir, build_dt=None, commit_hash=None):
     """
     Create and return a Jinja2 Environment object to use when rendering
     one of the index.html templates.
     """
+    if build_dt is None:
+        build_dt = datetime.now()
+    if commit_hash is None:
+        commit_hash = 40 * '0'
+
     env = election_mod.make_environment(TRANSLATIONS_PATH)
 
     def insert_html(rel_path):
@@ -133,8 +152,15 @@ def _make_index_jinja_env(snippets_dir):
         html = path.read_text()
         return Markup(html)
 
-    env.globals['insert_html'] = insert_html
-
+    env.filters.update({
+        'format_datetime': _format_datetime,
+    })
+    env.globals.update({
+        'build_time': build_dt,
+        'commit_hash': commit_hash,
+        'insert_html': insert_html,
+    })
+    # TODO: add the commit hash.
     return env
 
 
@@ -266,13 +292,16 @@ def _build_elections_list(config_paths):
 
 def make_rcv_demo(
     config_paths, snippets_dir, js_dir, parent_json_dir, output_dir,
+    build_dt=None, commit_hash=None,
 ):
     """
     Args:
       config_paths: a dict mapping dir_name to config_path.
     """
     _log.info(f'creating: RCV demo index html')
-    env = _make_index_jinja_env(snippets_dir=snippets_dir)
+    env = _make_index_jinja_env(
+        snippets_dir=snippets_dir, build_dt=build_dt, commit_hash=commit_hash,
+    )
 
     page_names = make_index_page_names()
     # Create a single "elections" list for use from the template.
@@ -309,6 +338,13 @@ def make_arg_parser():
             f'Defaults to: {DEFAULT_HTML_OUTPUT_DIR}.'
         ), default=DEFAULT_HTML_OUTPUT_DIR,
     )
+    # TODO: add --commit-hash.
+    parser.add_argument(
+        '--build-time', metavar='DATETIME', help=(
+            'a datetime in ISO format (e.g. "2023-09-25 21:17:49"). '
+            f'Defaults to the current datetime.'
+        ),
+    )
     return parser
 
 
@@ -317,6 +353,10 @@ def make_arg_parser():
 def main():
     parser = make_arg_parser()
     args = parser.parse_args()
+
+    build_dt = args.build_time
+    if build_dt is not None:
+        build_dt = datetime.fromisoformat(build_dt)
 
     log_format = '[{levelname}] {name}: {message}'
     logging.basicConfig(format=log_format, style='{', level=logging.INFO)
@@ -355,9 +395,11 @@ def main():
         html_output_dir, snippets_dir=snippets_dir, js_dir=js_dir,
     )
 
+    # TODO: pass in commit_hash.
     make_rcv_demo(
         config_paths, snippets_dir=snippets_dir, js_dir=js_dir,
         parent_json_dir=parent_json_dir, output_dir=html_output_dir,
+        build_dt=build_dt,
     )
 
 
