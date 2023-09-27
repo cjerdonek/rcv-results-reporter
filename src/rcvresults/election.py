@@ -243,7 +243,7 @@ def process_contest(
     file_stem = contest_data['file_stem']
     file_name = f'{file_stem}.{report_suffix}'
     report_path = reports_dir / file_name
-    json_path = parsing.make_rcv_json(report_path, output_dir=json_dir)
+    json_path = parsing.make_json_file(report_path, output_dir=json_dir)
     make_html_snippets(
         json_path, templates=templates, output_dirs=output_dirs,
         base_name=file_stem,

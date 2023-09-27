@@ -64,7 +64,7 @@ def main():
     for i, input_path in enumerate(report_paths, start=1):
         input_path = Path(input_path)
         _log.info(f'parsing file {i} (of {count}): {input_path}')
-        parsing.make_rcv_json(input_path, output_dir=output_dir)
+        parsing.make_json_file(input_path, output_dir=output_dir)
 
     _log.info(f'wrote {count} files to directory: {output_dir}')
 

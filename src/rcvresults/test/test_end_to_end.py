@@ -30,7 +30,7 @@ class EndToEndTestCase(TestCase):
             with self.subTest(path=path):
                 with TemporaryDirectory() as temp_dir:
                     temp_dir = Path(temp_dir)
-                    output_path = parsing.make_rcv_json(
+                    output_path = parsing.make_json_file(
                         path, output_dir=temp_dir,
                     )
                     reference_path = reference_dir / f'{path.stem}.json'

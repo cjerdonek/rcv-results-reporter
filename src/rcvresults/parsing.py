@@ -86,7 +86,7 @@ def add_summary(results):
     })
 
 
-def make_rcv_json(path, output_dir):
+def make_json_file(path, output_dir):
     _log.info(f'parsing: {path}')
     suffix = path.suffix
     if suffix == '.xlsx':
