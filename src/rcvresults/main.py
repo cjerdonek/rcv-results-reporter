@@ -93,6 +93,8 @@ def get_report_paths(reports_dir, extension):
     return paths
 
 
+# TODO: move / rename this module to scripts/make_reports.py, and change
+#  it to accept a list of json paths.
 def main():
     log_format = '[{levelname}] {name}: {message}'
     logging.basicConfig(format=log_format, style='{', level=logging.INFO)

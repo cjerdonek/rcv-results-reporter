@@ -214,8 +214,8 @@ def make_html_snippets(json_path, templates, output_dirs, base_name):
     Render the html snippets for a single contest.
 
     Args:
+      json_path: path to a json file of contest data, as a Path object.
       templates: a list of jinja2 Template objects.
-      json_dir: the json output directory.
       output_dirs: a dict mapping string template name to the output
         directory for the template.
       base_name: the contest base name (e.g. "da_short").
@@ -230,23 +230,8 @@ def make_html_snippets(json_path, templates, output_dirs, base_name):
         )
 
 
-# TODO: remove this function?
-def process_contest(json_path, templates, output_dirs):
-    """
-    Args:
-      json_path: path to the JSON file of contest data.
-      templates: a list of jinja2 Template objects.
-      output_dirs: a dict mapping string template name to the output
-        directory for the template.
-    """
-    file_stem = json_path.stem
-    make_html_snippets(
-        json_path, templates=templates, output_dirs=output_dirs,
-        base_name=file_stem,
-    )
-
-
 # TODO: pass in dict mapping template name to output_dir?
+# TODO: choose a better name for this function.
 def process_election(
     json_paths, config_path, translations_path, output_dir, css_dir=None,
 ):
@@ -255,8 +240,8 @@ def process_election(
     don't already exist.
 
     Args:
-      json_paths: iterable of json files to process (one per contest),
-        as Path objects.
+      json_paths: iterable of paths of json files of contest data (one
+        per contest), as Path objects.
       config_path: path to an election.yml config, as a Path object.
       output_dir: the directory to which to write the RCV html snippets,
         as a Path object.
@@ -282,4 +267,8 @@ def process_election(
         ('rcv-summary.html', 'rcv-complete.html')
     ]
     for json_path in json_paths:
-        process_contest(json_path, templates=templates, output_dirs=output_dirs)
+        base_name = json_path.stem
+        make_html_snippets(
+            json_path, templates=templates, output_dirs=output_dirs,
+            base_name=base_name,
+        )
