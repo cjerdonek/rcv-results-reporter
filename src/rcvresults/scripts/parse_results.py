@@ -55,18 +55,7 @@ def main():
     report_paths = args.report_paths
     output_dir = Path(args.output_dir)
 
-    count = len(report_paths)
-    _log.info(f'processing {count} input paths...')
-    if not output_dir.exists():
-        _log.info(f'creating directory: {output_dir}')
-        output_dir.mkdir(parents=True)
-
-    for i, input_path in enumerate(report_paths, start=1):
-        input_path = Path(input_path)
-        _log.info(f'parsing file {i} (of {count}): {input_path}')
-        parsing.make_json_file(input_path, output_dir=output_dir)
-
-    _log.info(f'wrote {count} files to directory: {output_dir}')
+    parsing.make_jsons(report_paths, output_dir=output_dir)
 
 
 if __name__ == '__main__':

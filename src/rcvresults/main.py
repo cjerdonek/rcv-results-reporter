@@ -17,6 +17,9 @@ import logging
 from pathlib import Path
 
 import rcvresults.election as election_mod
+import rcvresults.parsing as parsing
+import rcvresults.utils as utils
+
 
 _log = logging.getLogger(__name__)
 
@@ -61,6 +64,35 @@ def make_arg_parser():
     return parser
 
 
+def get_xml_paths(dir_path):
+    return utils.get_paths(dir_path, suffix='xml')
+
+
+def get_excel_paths(dir_path):
+    original_paths = utils.get_paths(dir_path, suffix='xlsx')
+    paths = []  # the return value
+    for path in original_paths:
+        file_name = path.name
+        if file_name.startswith('~'):
+            _log.warning(f'skipping temp file: {path}')
+            continue
+        paths.append(path)
+
+    return paths
+
+
+def get_report_paths(reports_dir, extension):
+    _log.info(f'gathering {extension} reports in: {reports_dir}')
+
+    if extension == 'xlsx':
+        paths = get_excel_paths(reports_dir)
+    else:
+        assert extension == 'xml'
+        paths = get_xml_paths(reports_dir)
+
+    return paths
+
+
 def main():
     log_format = '[{levelname}] {name}: {message}'
     logging.basicConfig(format=log_format, style='{', level=logging.INFO)
@@ -79,11 +111,15 @@ def main():
         assert args.report_format == 'excel'
         report_suffix = 'xlsx'
 
+    report_paths = get_report_paths(reports_dir, extension=report_suffix)
+
+    json_dir = output_dir / 'json'
+    json_paths = parsing.make_jsons(report_paths, output_dir=json_dir)
+
     # TODO: pass css_dir.
     election_mod.process_election(
-        config_path=config_path, reports_dir=reports_dir,
-        report_suffix=report_suffix, translations_path=translations_path,
-        output_dir=output_dir,
+        json_paths, config_path=config_path,
+        translations_path=translations_path, output_dir=output_dir,
     )
 
 

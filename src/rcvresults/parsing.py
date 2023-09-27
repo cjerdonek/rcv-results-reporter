@@ -111,3 +111,21 @@ def make_json_file(path, output_dir):
     utils.write_json(results, path=json_path)
 
     return json_path
+
+
+def make_jsons(report_paths, output_dir):
+    file_count = len(report_paths)
+    _log.info(f'processing {file_count} report paths...')
+    if not output_dir.exists():
+        _log.info(f'creating directory: {output_dir}')
+        output_dir.mkdir(parents=True)
+
+    json_paths = []
+    for i, input_path in enumerate(report_paths, start=1):
+        _log.info(f'parsing file {i} (of {file_count}): {input_path}')
+        json_path = make_json_file(input_path, output_dir=output_dir)
+        json_paths.append(json_path)
+
+    _log.info(f'wrote {file_count} files to directory: {output_dir}')
+
+    return json_paths

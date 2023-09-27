@@ -10,7 +10,6 @@ from jinja2 import Environment, FileSystemLoader
 
 import rcvresults.rendering as rendering
 from rcvresults.rendering import CONTEXT_KEY_PAGE_NAMES
-import rcvresults.parsing as parsing
 import rcvresults.utils as utils
 from rcvresults.utils import NonCandidateLabel, LANG_CODE_ENGLISH, LANGUAGES
 
@@ -209,6 +208,7 @@ def make_rcv_contest_html(template, rcv_data, output_dir, contest_base):
 
 
 # TODO: pass in HTML_FILE_SUFFIXES similar to output_dirs?
+# TODO: make base_name optional?
 def make_html_snippets(json_path, templates, output_dirs, base_name):
     """
     Render the html snippets for a single contest.
@@ -230,20 +230,16 @@ def make_html_snippets(json_path, templates, output_dirs, base_name):
         )
 
 
-def process_contest(
-    contest_data, reports_dir, report_suffix, templates, json_dir, output_dirs,
-):
+# TODO: remove this function?
+def process_contest(json_path, templates, output_dirs):
     """
     Args:
+      json_path: path to the JSON file of contest data.
       templates: a list of jinja2 Template objects.
-      json_dir: the json output directory.
       output_dirs: a dict mapping string template name to the output
         directory for the template.
     """
-    file_stem = contest_data['file_stem']
-    file_name = f'{file_stem}.{report_suffix}'
-    report_path = reports_dir / file_name
-    json_path = parsing.make_json_file(report_path, output_dir=json_dir)
+    file_stem = json_path.stem
     make_html_snippets(
         json_path, templates=templates, output_dirs=output_dirs,
         base_name=file_stem,
@@ -251,34 +247,23 @@ def process_contest(
 
 
 # TODO: pass in dict mapping template name to output_dir?
-# TODO: make json_dir required?
 def process_election(
-    config_path, reports_dir, report_suffix, translations_path, output_dir,
-    json_dir=None, css_dir=None,
+    json_paths, config_path, translations_path, output_dir, css_dir=None,
 ):
     """
     This function creates the json_dir and output_dir directories if they
     don't already exist.
 
     Args:
+      json_paths: iterable of json files to process (one per contest),
+        as Path objects.
       config_path: path to an election.yml config, as a Path object.
-      report_suffix: a file extension specifying which RCV reports to
-        read and parse. Can be one of: "xml" or "xlsx".
       output_dir: the directory to which to write the RCV html snippets,
         as a Path object.
-      json_dir: the directory to which to write the intermediate json
-        files, as a Path object. Defaults to a subdirectory of the given
-        output directory.
       css_dir: the path to the directory containing the default.css file,
         as a Path object, for use in the rcv-complete.html template.
         This can be a relative path.
     """
-    if json_dir is None:
-        json_dir = output_dir / 'json'
-
-    if not json_dir.exists():
-        json_dir.mkdir(parents=True, exist_ok=True)
-
     output_dirs = {}
     for template_name, output_dir_name in HTML_OUTPUT_DIR_NAMES.items():
         template_output_dir = output_dir / output_dir_name
@@ -296,8 +281,5 @@ def process_election(
         env.get_template(name, globals=global_vars) for name in
         ('rcv-summary.html', 'rcv-complete.html')
     ]
-    for contest_data in contests_data:
-        process_contest(
-            contest_data, reports_dir=reports_dir, report_suffix=report_suffix,
-            templates=templates, output_dirs=output_dirs, json_dir=json_dir,
-        )
+    for json_path in json_paths:
+        process_contest(json_path, templates=templates, output_dirs=output_dirs)

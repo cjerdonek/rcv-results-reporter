@@ -22,7 +22,7 @@ class EndToEndTestCase(TestCase):
 
     def _test_json_outputs(self, dir_name, expected_count):
         reference_dir = DATA_DIR_JSON / dir_name
-        paths = demo.get_report_paths(DATA_DIR_REPORTS, dir_name=dir_name)
+        paths = demo.get_demo_report_paths(DATA_DIR_REPORTS, dir_name=dir_name)
         # Make sure we got all the paths
         self.assertEqual(len(paths), expected_count)
 

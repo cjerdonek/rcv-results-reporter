@@ -18,6 +18,8 @@ from markupsafe import Markup
 
 import rcvresults.election as election_mod
 from rcvresults.election import HTML_OUTPUT_DIR_NAMES
+import rcvresults.main as main_mod
+import rcvresults.parsing as parsing
 import rcvresults.rendering as rendering
 from rcvresults.rendering import (
     CONTEXT_KEY_CURRENT_LANG, CONTEXT_KEY_PAGE_NAMES,
@@ -66,36 +68,20 @@ def get_config_path(dir_name):
     return CONFIG_DIR / f'election-{dir_name}.yml'
 
 
-def get_xml_paths(dir_path):
-    return utils.get_paths(dir_path, suffix='xml')
-
-
-def get_excel_paths(dir_path):
-    original_paths = utils.get_paths(dir_path, suffix='xlsx')
-    paths = []  # the return value
-    for path in original_paths:
-        file_name = path.name
-        if file_name.startswith('~'):
-            _log.warning(f'skipping temp file: {path}')
-            continue
-        paths.append(path)
-
-    return paths
-
-
-# TODO: remove this?
-def get_report_paths(parent_reports_dir, dir_name):
-    data_dir = parent_reports_dir / dir_name
+def get_demo_report_paths(parent_reports_dir, dir_name):
+    reports_dir = parent_reports_dir / dir_name
     extension = REPORT_DIR_EXTENSIONS[dir_name]
-    _log.info(f'gathering {extension} reports in: {data_dir}')
+    report_paths = main_mod.get_report_paths(reports_dir, extension=extension)
 
-    if extension == 'xlsx':
-        paths = get_excel_paths(data_dir)
-    else:
-        assert extension == 'xml'
-        paths = get_xml_paths(data_dir)
+    return report_paths
 
-    return paths
+
+def make_all_json_files(parent_reports_dir, parent_json_dir, dir_name):
+    json_dir = parent_json_dir / dir_name
+    report_paths = get_demo_report_paths(parent_reports_dir, dir_name=dir_name)
+    json_paths = parsing.make_jsons(report_paths, output_dir=json_dir)
+
+    return json_paths
 
 
 def make_all_rcv_snippets(
@@ -110,15 +96,13 @@ def make_all_rcv_snippets(
     css_dir = '../../..'
     for dir_name, config_path in config_paths.items():
         _log.info(f'starting election: {dir_name}')
-        report_suffix = REPORT_DIR_EXTENSIONS[dir_name]
-        reports_dir, json_dir, html_snippets_dir = (
-            parent_dir / dir_name for parent_dir in
-            (DATA_DIR_REPORTS, parent_json_dir, parent_snippets_dir)
+        json_paths = make_all_json_files(
+            DATA_DIR_REPORTS, parent_json_dir=parent_json_dir, dir_name=dir_name,
         )
+        html_snippets_dir = parent_snippets_dir / dir_name
         election_mod.process_election(
-            config_path=config_path, reports_dir=reports_dir,
-            report_suffix=report_suffix, translations_path=translations_path,
-            output_dir=html_snippets_dir, json_dir=json_dir, css_dir=css_dir,
+            json_paths, config_path=config_path, translations_path=translations_path,
+            output_dir=html_snippets_dir, css_dir=css_dir,
         )
 
 
