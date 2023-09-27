@@ -160,22 +160,11 @@ $ pip install -e .
 
 ## Usage
 
-The project contains three scripts:
+The project contains two scripts:
 
-1. `build_demo.py`: recreate the demo linked from the top of this file.
-2. `parse_results.py`: parse XML or Excel RCV result reports generated
+1. `parse_results.py`: parse XML or Excel RCV result reports generated
    by the Dominion system, and write the data to JSON files (one per contest).
-3. `main.py`: generate HTML snippets for a single election.
-
-
-### Rebuild the demo
-
-To run the demo (includes four elections):
-
-```
-$ python src/rcvresults/scripts/build_demo.py \
-    --build-time 2023-09-01T09:00:00
-```
+2. `main.py`: generate HTML snippets for a single election.
 
 ### Parse XML or Excel RCV result reports
 
@@ -234,6 +223,14 @@ To run tests:
 
 ```
 $ python -m unittest discover rcvresults
+```
+
+To rebuild the demo described in the "Demo" section above (includes four
+elections):
+
+```
+$ python src/rcvresults/scripts/build_demo.py \
+    --build-time 2023-09-01T09:00:00
 ```
 
 "Tidied" versions of the HTML files in the `html` directory were generated
