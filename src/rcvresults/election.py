@@ -256,7 +256,6 @@ def process_election(
         output_dirs[template_name] = template_output_dir
 
     election_data = read_election_config(config_path)
-    contests_data = election_data['contests']
 
     env = make_environment(translations_path)
     global_vars = _make_globals(css_dir=css_dir)
