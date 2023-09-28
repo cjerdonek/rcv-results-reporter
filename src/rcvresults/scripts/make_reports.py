@@ -13,12 +13,12 @@ For example:
 """
 
 import argparse
+import functools
 import logging
 from pathlib import Path
+import sys
 
 import rcvresults.election as election_mod
-import rcvresults.parsing as parsing
-import rcvresults.utils as utils
 
 
 _log = logging.getLogger(__name__)
@@ -30,91 +30,84 @@ Generate HTML result snippets for an election's RCV contests.
 """
 
 
+class ArgumentError(Exception):
+
+    def __init__(self, metavar, value, message):
+        self.metavar = metavar
+        self.message = message
+        self.value = value
+
+
+# This is used to create functions to pass as the "type" argument to
+# ArgumentParser.add_argument().
+def _file_with_suffix(path, suffix, metavar):
+    path = Path(path)
+    if path.suffix != suffix:
+        raise ArgumentError(
+            metavar, str(path), f'File path does not have suffix {suffix}',
+        )
+    if not path.exists():
+        raise ArgumentError(
+            metavar, str(path), f'File does not exist',
+        )
+    return path
+
+
+def _make_file_type(suffix, metavar):
+    """
+    Return a function that can be passed as a "type" argument to
+    ArgumentParser.add_argument().
+    """
+    return functools.partial(_file_with_suffix, suffix=suffix, metavar=metavar)
+
+
 def make_arg_parser():
     parser = argparse.ArgumentParser(description=DESCRIPTION)
+    # TODO: avoid having to pass the metavar twice.
     parser.add_argument(
         'config_path', metavar='CONFIG_PATH', help=(
-            'path to the election.yml file configuring results reporting '
+            'path to an election.yml file configuring results reporting '
             'for the election.'
-        )
+        ), type=_make_file_type('.yml', 'CONFIG_PATH'),
     )
     parser.add_argument(
         'translations_path', metavar='TRANSLATIONS_PATH', help=(
-            'path to the translations.yml file to use.'
-        )
+            'path to a translations.yml file to use.'
+        ), type=_make_file_type('.yml', 'TRANSLATIONS_PATH'),
     )
     parser.add_argument(
-        'reports_dir', metavar='REPORTS_DIR', help=(
-            'directory containing the input XML or Excel RCV reports.'
-        )
+        'json_paths', metavar='JSON_PATH', nargs='*', help=(
+            'path to one or more json files, one per contest.'
+        ), type=_make_file_type('.json', 'JSON_PATH'),
     )
     parser.add_argument(
-        '--report-format', default=DEFAULT_REPORT_FORMAT,
-        choices=('excel', 'xml'), help=(
-            'what report format to read and parse (can be "xml" for .xml '
-            f'or "excel" for .xlsx). Defaults to: {DEFAULT_REPORT_FORMAT}.'
-        )
-    )
-    parser.add_argument(
-        '--output-dir', default='output', help=(
+        '--output-dir', default='output', type=Path, help=(
             'the directory to which to write the output files.'
         )
     )
     return parser
 
 
-def get_xml_paths(dir_path):
-    return utils.get_paths(dir_path, suffix='xml')
-
-
-def get_excel_paths(dir_path):
-    original_paths = utils.get_paths(dir_path, suffix='xlsx')
-    paths = []  # the return value
-    for path in original_paths:
-        file_name = path.name
-        if file_name.startswith('~'):
-            _log.warning(f'skipping temp file: {path}')
-            continue
-        paths.append(path)
-
-    return paths
-
-
-def get_report_paths(reports_dir, extension):
-    _log.info(f'gathering {extension} reports in: {reports_dir}')
-
-    if extension == 'xlsx':
-        paths = get_excel_paths(reports_dir)
-    else:
-        assert extension == 'xml'
-        paths = get_xml_paths(reports_dir)
-
-    return paths
-
-
-# TODO: change this script to accept a list of json paths.
 def main():
     log_format = '[{levelname}] {name}: {message}'
     logging.basicConfig(format=log_format, style='{', level=logging.INFO)
 
     parser = make_arg_parser()
-    args = parser.parse_args()
+    try:
+        args = parser.parse_args()
+    except ArgumentError as exc:
+        file_name = Path(__file__).name
+        message = (
+            f'{file_name}: [ERROR] invalid {exc.metavar} argument:\n'
+            f' {exc.message}: {exc.value!r}'
+        )
+        print(message, file=sys.stderr)
+        sys.exit(1)
 
-    config_path = Path(args.config_path)
-    translations_path = Path(args.translations_path)
-    reports_dir = Path(args.reports_dir)
-    output_dir = Path(args.output_dir)
-
-    if args.report_format == 'xml':
-        report_suffix = 'xml'
-    else:
-        assert args.report_format == 'excel'
-        report_suffix = 'xlsx'
-
-    report_paths = get_report_paths(reports_dir, extension=report_suffix)
-
-    json_dir = output_dir / 'json'
-    json_paths = parsing.make_jsons(report_paths, output_dir=json_dir)
+    config_path = args.config_path
+    translations_path = args.translations_path
+    json_paths = args.json_paths
+    output_dir = args.output_dir
 
     # TODO: pass css_dir.
     election_mod.process_election(

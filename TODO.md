@@ -1,7 +1,5 @@
 # TODO
 
-* Add to the scripts directory:
-  - make_reports.py
 * Add definitions / context-sensitive help of uncommon phrases
   (e.g. on hover)
 * Review the "production" command-line usage / workflow

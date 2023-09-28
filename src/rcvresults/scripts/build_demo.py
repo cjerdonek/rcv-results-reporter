@@ -23,7 +23,6 @@ import rcvresults.rendering as rendering
 from rcvresults.rendering import (
     CONTEXT_KEY_CURRENT_LANG, CONTEXT_KEY_PAGE_NAMES,
 )
-import rcvresults.scripts.make_reports as reports_mod
 from rcvresults.testing import TRANSLATIONS_PATH
 import rcvresults.utils as utils
 from rcvresults.utils import LANG_CODE_ENGLISH, LANGUAGES
@@ -68,10 +67,39 @@ def get_config_path(dir_name):
     return CONFIG_DIR / f'election-{dir_name}.yml'
 
 
+def get_xml_paths(dir_path):
+    return utils.get_paths(dir_path, suffix='xml')
+
+
+def get_excel_paths(dir_path):
+    original_paths = utils.get_paths(dir_path, suffix='xlsx')
+    paths = []  # the return value
+    for path in original_paths:
+        file_name = path.name
+        if file_name.startswith('~'):
+            _log.warning(f'skipping temp file: {path}')
+            continue
+        paths.append(path)
+
+    return paths
+
+
+def get_report_paths(reports_dir, extension):
+    _log.info(f'gathering {extension} reports in: {reports_dir}')
+
+    if extension == 'xlsx':
+        paths = get_excel_paths(reports_dir)
+    else:
+        assert extension == 'xml'
+        paths = get_xml_paths(reports_dir)
+
+    return paths
+
+
 def get_demo_report_paths(parent_reports_dir, dir_name):
     reports_dir = parent_reports_dir / dir_name
     extension = REPORT_DIR_EXTENSIONS[dir_name]
-    report_paths = reports_mod.get_report_paths(reports_dir, extension=extension)
+    report_paths = get_report_paths(reports_dir, extension=extension)
 
     return report_paths
 

@@ -266,9 +266,14 @@ def process_election(
         env.get_template(name, globals=global_vars) for name in
         ('rcv-summary.html', 'rcv-complete.html')
     ]
-    for json_path in json_paths:
+
+    file_count = len(json_paths)
+    _log.info(f'processing {file_count} contests (json files)...')
+    for i, json_path in enumerate(json_paths, start=1):
+        _log.info(f'reading json file {i} (of {file_count}): {json_path}')
         base_name = json_path.stem
         make_html_snippets(
             json_path, templates=templates, output_dirs=output_dirs,
             base_name=base_name,
         )
+    _log.info(f'wrote output files for {file_count} contests to directory: {output_dir}')
