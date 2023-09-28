@@ -3,13 +3,13 @@ Script to generate HTML snippets for an election's RCV contests.
 
 Usage:
 
-  $ python src/rcvresults/scripts/main.py --help
+  $ python src/rcvresults/scripts/make_reports.py --help
 
 For example:
 
-  $ python src/rcvresults/scripts/main.py config/election-2022-11-08.yml \
-      translations.yml data/input-reports/2022-11-08 --report-format excel \
-      --output-dir final
+  $ python src/rcvresults/scripts/make_reports.py \
+      config/election-2022-11-08.yml translations.yml data/input-reports/2022-11-08 \
+      --report-format excel --output-dir final
 """
 
 import argparse
@@ -93,8 +93,7 @@ def get_report_paths(reports_dir, extension):
     return paths
 
 
-# TODO: move / rename this module to scripts/make_reports.py, and change
-#  it to accept a list of json paths.
+# TODO: change this script to accept a list of json paths.
 def main():
     log_format = '[{levelname}] {name}: {message}'
     logging.basicConfig(format=log_format, style='{', level=logging.INFO)

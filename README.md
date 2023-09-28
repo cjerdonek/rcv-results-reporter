@@ -164,7 +164,7 @@ The project contains two scripts:
 
 1. `parse_results.py`: parse XML or Excel RCV result reports generated
    by the Dominion system, and write the data to JSON files (one per contest).
-2. `main.py`: generate HTML snippets for a single election.
+2. `make_reports.py`: generate HTML snippets for a single election.
 
 ### Parse XML or Excel RCV result reports
 
@@ -187,8 +187,8 @@ $ python src/rcvresults/scripts/parse_results.py \
 To generate HTML snippets for a single election:
 
 ```
-$ python src/rcvresults/scripts/main.py --help
-usage: main.py [-h] [--report-format {excel,xml}] [--output-dir OUTPUT_DIR]
+$ python src/rcvresults/scripts/make_reports.py --help
+usage: make_reports.py [-h] [--report-format {excel,xml}] [--output-dir OUTPUT_DIR]
                CONFIG_PATH TRANSLATIONS_PATH REPORTS_DIR
 
 Generate HTML result snippets for an election's RCV contests.
@@ -212,7 +212,7 @@ optional arguments:
 For example (this should work from the repo root):
 
 ```
-  $ python src/rcvresults/scripts/main.py config/election-2022-11-08.yml \
+  $ python src/rcvresults/scripts/make_reports.py config/election-2022-11-08.yml \
       translations.yml data/input-reports/2022-11-08 --report-format excel \
       --output-dir final
 ```

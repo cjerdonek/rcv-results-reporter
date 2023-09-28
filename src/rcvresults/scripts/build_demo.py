@@ -23,7 +23,7 @@ import rcvresults.rendering as rendering
 from rcvresults.rendering import (
     CONTEXT_KEY_CURRENT_LANG, CONTEXT_KEY_PAGE_NAMES,
 )
-import rcvresults.scripts.main as main_mod
+import rcvresults.scripts.make_reports as reports_mod
 from rcvresults.testing import TRANSLATIONS_PATH
 import rcvresults.utils as utils
 from rcvresults.utils import LANG_CODE_ENGLISH, LANGUAGES
@@ -71,7 +71,7 @@ def get_config_path(dir_name):
 def get_demo_report_paths(parent_reports_dir, dir_name):
     reports_dir = parent_reports_dir / dir_name
     extension = REPORT_DIR_EXTENSIONS[dir_name]
-    report_paths = main_mod.get_report_paths(reports_dir, extension=extension)
+    report_paths = reports_mod.get_report_paths(reports_dir, extension=extension)
 
     return report_paths
 

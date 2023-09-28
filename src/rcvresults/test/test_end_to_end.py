@@ -7,11 +7,10 @@ from tempfile import TemporaryDirectory
 from unittest import TestCase
 
 import rcvresults.parsing as parsing
-import rcvresults.scripts.build_demo as demo
+import rcvresults.scripts.build_demo as demo_mod
 from rcvresults.scripts.build_demo import (
     DATA_DIR_JSON, DATA_DIR_REPORTS, DIR_NAME_2020_NOV, DIR_NAME_2022_NOV,
 )
-import rcvresults.scripts.main as main
 
 
 class EndToEndTestCase(TestCase):
@@ -22,7 +21,9 @@ class EndToEndTestCase(TestCase):
 
     def _test_json_outputs(self, dir_name, expected_count):
         reference_dir = DATA_DIR_JSON / dir_name
-        paths = demo.get_demo_report_paths(DATA_DIR_REPORTS, dir_name=dir_name)
+        paths = demo_mod.get_demo_report_paths(
+            DATA_DIR_REPORTS, dir_name=dir_name,
+        )
         # Make sure we got all the paths
         self.assertEqual(len(paths), expected_count)
 
