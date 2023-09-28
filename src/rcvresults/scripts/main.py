@@ -3,11 +3,11 @@ Script to generate HTML snippets for an election's RCV contests.
 
 Usage:
 
-  $ python src/rcvresults/main.py --help
+  $ python src/rcvresults/scripts/main.py --help
 
 For example:
 
-  $ python src/rcvresults/main.py config/election-2022-11-08.yml \
+  $ python src/rcvresults/scripts/main.py config/election-2022-11-08.yml \
       translations.yml data/input-reports/2022-11-08 --report-format excel \
       --output-dir final
 """

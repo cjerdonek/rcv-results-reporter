@@ -18,12 +18,12 @@ from markupsafe import Markup
 
 import rcvresults.election as election_mod
 from rcvresults.election import HTML_OUTPUT_DIR_NAMES
-import rcvresults.main as main_mod
 import rcvresults.parsing as parsing
 import rcvresults.rendering as rendering
 from rcvresults.rendering import (
     CONTEXT_KEY_CURRENT_LANG, CONTEXT_KEY_PAGE_NAMES,
 )
+import rcvresults.scripts.main as main_mod
 from rcvresults.testing import TRANSLATIONS_PATH
 import rcvresults.utils as utils
 from rcvresults.utils import LANG_CODE_ENGLISH, LANGUAGES

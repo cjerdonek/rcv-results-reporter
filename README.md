@@ -187,7 +187,7 @@ $ python src/rcvresults/scripts/parse_results.py \
 To generate HTML snippets for a single election:
 
 ```
-$ python src/rcvresults/main.py --help
+$ python src/rcvresults/scripts/main.py --help
 usage: main.py [-h] [--report-format {excel,xml}] [--output-dir OUTPUT_DIR]
                CONFIG_PATH TRANSLATIONS_PATH REPORTS_DIR
 
@@ -212,7 +212,7 @@ optional arguments:
 For example (this should work from the repo root):
 
 ```
-  $ python src/rcvresults/main.py config/election-2022-11-08.yml \
+  $ python src/rcvresults/scripts/main.py config/election-2022-11-08.yml \
       translations.yml data/input-reports/2022-11-08 --report-format excel \
       --output-dir final
 ```

@@ -6,12 +6,12 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest import TestCase
 
-import rcvresults.main as main
 import rcvresults.parsing as parsing
 import rcvresults.scripts.build_demo as demo
 from rcvresults.scripts.build_demo import (
     DATA_DIR_JSON, DATA_DIR_REPORTS, DIR_NAME_2020_NOV, DIR_NAME_2022_NOV,
 )
+import rcvresults.scripts.main as main
 
 
 class EndToEndTestCase(TestCase):
