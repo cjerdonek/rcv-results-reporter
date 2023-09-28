@@ -5,11 +5,12 @@ Usage:
 
   $ python src/rcvresults/scripts/make_reports.py --help
 
-For example:
+For example (this should work from the repo root):
 
   $ python src/rcvresults/scripts/make_reports.py \
-      config/election-2022-11-08.yml translations.yml data/input-reports/2022-11-08 \
-      --report-format excel --output-dir final
+      config/election-2022-11-08.yml translations.yml \
+      data/output-json/2022-11-08/*.json --output-dir final
+
 """
 
 import argparse
