@@ -30,7 +30,6 @@ Generate HTML result snippets for an election's RCV contests.
 """
 
 
-# TODO: add an option to suppress intermediate json file creation?
 def make_arg_parser():
     parser = argparse.ArgumentParser(description=DESCRIPTION)
     parser.add_argument(
