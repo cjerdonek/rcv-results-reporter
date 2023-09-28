@@ -212,9 +212,9 @@ optional arguments:
 For example (this should work from the repo root):
 
 ```
-  $ python src/rcvresults/scripts/make_reports.py config/election-2022-11-08.yml \
-      translations.yml data/input-reports/2022-11-08 --report-format excel \
-      --output-dir final
+  $ python src/rcvresults/scripts/make_reports.py \
+      config/election-2022-11-08.yml translations.yml \
+      data/input-reports/2022-11-08 --report-format excel --output-dir final
 ```
 
 ## Developing
