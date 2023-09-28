@@ -29,7 +29,7 @@ import rcvresults.utils as utils
 from rcvresults.utils import LANG_CODE_ENGLISH, LANGUAGES
 
 
-_log = logging.getLogger(__name__)
+_log = logging.getLogger('build-demo')
 
 DESCRIPTION = """\
 Build the demo.
@@ -76,16 +76,16 @@ def get_demo_report_paths(parent_reports_dir, dir_name):
     return report_paths
 
 
-def make_all_json_files(parent_reports_dir, parent_json_dir, dir_name):
-    json_dir = parent_json_dir / dir_name
-    report_paths = get_demo_report_paths(parent_reports_dir, dir_name=dir_name)
-    json_paths = parsing.make_jsons(report_paths, output_dir=json_dir)
-
-    return json_paths
+def make_all_json_files(parent_reports_dir, parent_output_dir, dir_names):
+    for dir_name in dir_names:
+        _log.info(f'making json for election: {dir_name}')
+        report_paths = get_demo_report_paths(parent_reports_dir, dir_name=dir_name)
+        output_dir = parent_output_dir / dir_name
+        parsing.make_jsons(report_paths, output_dir=output_dir)
 
 
 def make_all_rcv_snippets(
-    config_paths, parent_snippets_dir, parent_json_dir, translations_path,
+    parent_json_dir, config_paths, parent_snippets_dir, translations_path,
 ):
     """
     Args:
@@ -95,10 +95,9 @@ def make_all_rcv_snippets(
     """
     css_dir = '../../..'
     for dir_name, config_path in config_paths.items():
-        _log.info(f'starting election: {dir_name}')
-        json_paths = make_all_json_files(
-            DATA_DIR_REPORTS, parent_json_dir=parent_json_dir, dir_name=dir_name,
-        )
+        _log.info(f'generating html for election: {dir_name}')
+        json_dir = parent_json_dir / dir_name
+        json_paths = utils.get_paths(json_dir, suffix='json')
         html_snippets_dir = parent_snippets_dir / dir_name
         election_mod.process_election(
             json_paths, config_path=config_path, translations_path=translations_path,
@@ -365,30 +364,32 @@ def main():
     # "sample-html/2022-11-08/js" (as a relative path).
     js_dir = Path('js')
 
-    # The order of this list controls the order the elections should be
-    # listed on the demo page.
+    # The order of this list also controls the order in which the elections
+    # are listed on the demo page.
     dir_names = [
         DIR_NAME_2022_NOV,
         DIR_NAME_2022_FEB,
         DIR_NAME_2020_NOV,
         DIR_NAME_2019_NOV,
     ]
+    # First generate the json files for all the elections.
+    make_all_json_files(
+        DATA_DIR_REPORTS, parent_output_dir=parent_json_dir, dir_names=dir_names,
+    )
+
+    # Next generate the RCV summary html snippets for all the elections.
     config_paths = {
         dir_name: get_config_path(dir_name) for dir_name in dir_names
     }
-
-    # First generate the RCV summary html snippets for all the elections.
     make_all_rcv_snippets(
-        config_paths, parent_snippets_dir=snippets_dir,
-        parent_json_dir=parent_json_dir, translations_path=TRANSLATIONS_PATH,
+        parent_json_dir, config_paths=config_paths,
+        parent_snippets_dir=snippets_dir, translations_path=TRANSLATIONS_PATH,
     )
-
-    # Next, generate the index html pages.
+    # Finally, generate the index html pages.
     # TODO: check that this still works.
     make_test_index_html(
         html_output_dir, snippets_dir=snippets_dir, js_dir=js_dir,
     )
-
     make_rcv_demo(
         config_paths, snippets_dir=snippets_dir, js_dir=js_dir,
         parent_json_dir=parent_json_dir, output_dir=html_output_dir,

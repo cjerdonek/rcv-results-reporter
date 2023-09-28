@@ -35,7 +35,10 @@ def render_template(template, output_path, context=None, lang_code=None):
         context = context.copy()
         context[CONTEXT_KEY_CURRENT_LANG] = lang_code
 
-    _log.info(f'rendering template to (lang={lang_code!r}): {output_path}')
+    _log.info(
+        f'rendering template {template.name!r} (lang={lang_code!r}) to:\n'
+        f' {output_path}'
+    )
     html = template.render(context)
     output_path.write_text(html)
 

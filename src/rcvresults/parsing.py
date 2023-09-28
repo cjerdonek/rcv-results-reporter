@@ -9,7 +9,7 @@ import rcvresults.parsers.xslx as excel_parsing
 import rcvresults.utils as utils
 
 
-_log = logging.getLogger('parse-results')
+_log = logging.getLogger(__name__)
 
 
 def make_candidate_summary(rounds, name):
