@@ -154,11 +154,28 @@ def make_environment(translations_path):
     return env
 
 
-def _make_globals(css_dir=None):
+def _make_globals(css_url_dir=None):
     """
     Return the globals to pass to env.get_template().
+
+    Args:
+      css_url_dir: optionally, the URL to the directory containing the
+        default.css file, as a string, for use in the rcv-complete.html
+        template. This can be a string beginning with "https://",
+        an absolute path beginning with "/", or a relative path not
+        starting with a slash. If non-empty, the string should end in
+        a slash ("/"). Defaults to the empty string.
     """
+    if css_url_dir is None:
+        css_url_dir = ''
+    if css_url_dir and not css_url_dir.endswith('/'):
+        raise RuntimeError(
+            'css_url_dir must end in a slash ("/") if provided but got: '
+            f'{css_url_dir!r}'
+        )
+
     global_vars = {
+        'css_url_dir': css_url_dir,
         'iter_languages': jinja2.pass_context(rendering.iter_languages),
         'is_contest_leader': jinja2.pass_context(rendering.is_contest_leader),
         'get_candidate_class_prefix': (
@@ -168,11 +185,6 @@ def _make_globals(css_dir=None):
             jinja2.pass_context(rendering.candidate_was_eliminated)
         ),
     }
-    if css_dir is not None:
-        global_vars.update({
-            'css_dir': str(css_dir),
-        })
-
     return global_vars
 
 
@@ -233,7 +245,7 @@ def make_html_snippets(json_path, templates, output_dirs, base_name):
 # TODO: pass in dict mapping template name to output_dir?
 # TODO: choose a better name for this function.
 def process_election(
-    json_paths, config_path, translations_path, output_dir, css_dir=None,
+    json_paths, config_path, translations_path, output_dir, css_url_dir=None,
 ):
     """
     This function creates the json_dir and output_dir directories if they
@@ -245,9 +257,12 @@ def process_election(
       config_path: path to an election.yml config, as a Path object.
       output_dir: the directory to which to write the RCV html snippets,
         as a Path object.
-      css_dir: the path to the directory containing the default.css file,
-        as a Path object, for use in the rcv-complete.html template.
-        This can be a relative path.
+      css_url_dir: optionally, the URL to the directory containing the
+        default.css file, as a string, for use in the rcv-complete.html
+        template. This can be a string beginning with "https://",
+        an absolute path beginning with "/", or a relative path not
+        starting with a slash. If non-empty, the string should end in
+        a slash ("/"). Defaults to the empty string.
     """
     output_dirs = {}
     for template_name, output_dir_name in HTML_OUTPUT_DIR_NAMES.items():
@@ -258,7 +273,7 @@ def process_election(
     election_data = read_election_config(config_path)
 
     env = make_environment(translations_path)
-    global_vars = _make_globals(css_dir=css_dir)
+    global_vars = _make_globals(css_url_dir=css_url_dir)
     global_vars['election'] = election_data
 
     templates = [

@@ -110,10 +110,12 @@ def main():
     json_paths = args.json_paths
     output_dir = args.output_dir
 
-    # TODO: pass css_dir.
+    # TODO: allow configuring css_url_dir from the command-line.
+    css_url_dir = '../../data/output-html/'
     election_mod.process_election(
         json_paths, config_path=config_path,
         translations_path=translations_path, output_dir=output_dir,
+        css_url_dir=css_url_dir,
     )
 
 

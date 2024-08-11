@@ -114,14 +114,20 @@ def make_all_json_files(parent_reports_dir, parent_output_dir, dir_names):
 
 def make_all_rcv_snippets(
     parent_json_dir, config_paths, parent_snippets_dir, translations_path,
+    css_url_dir=None,
 ):
     """
     Args:
       config_paths: a dict mapping dir_name to config_path.
       parent_snippets_dir: the parent directory to which to write the
         intermediate RCV HTML snippets.
+      css_url_dir: optionally, the URL to the directory containing the
+        default.css file, as a string, for use in the rcv-complete.html
+        template. This can be a string beginning with "https://",
+        an absolute path beginning with "/", or a relative path not
+        starting with a slash. If non-empty, the string should end in
+        a slash ("/"). Defaults to the empty string.
     """
-    css_dir = '../../..'
     for dir_name, config_path in config_paths.items():
         _log.info(f'generating html for election: {dir_name}')
         json_dir = parent_json_dir / dir_name
@@ -129,7 +135,7 @@ def make_all_rcv_snippets(
         html_snippets_dir = parent_snippets_dir / dir_name
         election_mod.process_election(
             json_paths, config_path=config_path, translations_path=translations_path,
-            output_dir=html_snippets_dir, css_dir=css_dir,
+            output_dir=html_snippets_dir, css_url_dir=css_url_dir,
         )
 
 
@@ -382,6 +388,7 @@ def main():
         f'  commit_hash: {commit_hash}'
     )
 
+    css_url_dir = '../../../'
     parent_json_dir = DATA_DIR_JSON
     html_output_dir = Path(args.html_output_dir)
     # This is the parent directory to which to write the intermediate
@@ -412,6 +419,7 @@ def main():
     make_all_rcv_snippets(
         parent_json_dir, config_paths=config_paths,
         parent_snippets_dir=snippets_dir, translations_path=TRANSLATIONS_PATH,
+        css_url_dir=css_url_dir,
     )
     # Finally, generate the index html pages.
     # TODO: check that this still works.
