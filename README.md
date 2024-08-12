@@ -222,7 +222,8 @@ using HTML [Tidy](https://www.html-tidy.org/).
 For example:
 
 ```
-$ tidy -output html/2020-11-03/index-tidied.html -utf8 html/2020-11-03/index-original.html
+$ tidy -output sample-html/2024-03-05/index-tidied.html \
+    -utf8 sample-html/2024-03-05/index-original.html
 ```
 
 ## License
