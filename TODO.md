@@ -2,6 +2,8 @@
 
 * Add definitions / context-sensitive help of uncommon phrases
   (e.g. on hover)
+* Separate the js directory into js and styles.
+* Consider eliminating the need for a symlink in the repo.
 * Review the "production" command-line usage / workflow
 * Make the cell borders lighter in the round-by-round report
 * Start implementing some of the [Web Content Accessibility Guidelines

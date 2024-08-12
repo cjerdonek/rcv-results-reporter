@@ -148,6 +148,7 @@ def make_environment(translations_path):
         'format_int': rendering.format_int,
         'format_percent': rendering.format_percent,
         'TL': jinja2.pass_context(translate_label),
+        # TODO: can we remove this?
         'TP': jinja2.pass_context(translate_phrase),
         'TS': jinja2.pass_context(translate_subtotal_name),
     })

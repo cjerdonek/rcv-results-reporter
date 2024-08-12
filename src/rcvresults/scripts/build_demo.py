@@ -388,7 +388,7 @@ def main():
         f'  commit_hash: {commit_hash}'
     )
 
-    css_url_dir = '../../../'
+    css_url_dir = '../../../static-files-rcv/styles/'
     parent_json_dir = DATA_DIR_JSON
     html_output_dir = Path(args.html_output_dir)
     # This is the parent directory to which to write the intermediate
