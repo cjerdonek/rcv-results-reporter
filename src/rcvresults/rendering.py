@@ -157,6 +157,7 @@ def translate_label(context, label, lang=None, label_translations=None):
 
 
 # We apply jinja2.pass_context() to this function elsewhere in our code.
+# TODO: do we really need this function?
 def translate_phrase(
     context, phrase, lang=None, label_translations=None, phrases=None,
 ):
