@@ -111,7 +111,7 @@ def main():
     output_dir = args.output_dir
 
     # TODO: allow configuring css_url_dir from the command-line.
-    css_url_dir = '../../data/output-html/'
+    css_url_dir = '../../data/output-html/static-files-rcv/styles/'
     election_mod.process_election(
         json_paths, config_path=config_path,
         translations_path=translations_path, output_dir=output_dir,
