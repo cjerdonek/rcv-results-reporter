@@ -157,6 +157,24 @@ def translate_label(context, label, lang=None, label_translations=None):
 
 
 # We apply jinja2.pass_context() to this function elsewhere in our code.
+def translate_label_tooltip(context, label, lang=None, label_translations=None):
+    """
+    Translate the tooltip for the given label into the language set in the
+    given Jinja2 context.
+
+    Args:
+      lang: an optional 2-letter language code.  Defaults to the context's
+        current language.
+      label_translations: the dict of translations, where the keys are the
+        labels.
+    """
+    label = f'{label}_tooltip'
+    return translate_label(
+        context, label=label, lang=lang, label_translations=label_translations,
+    )
+
+
+# We apply jinja2.pass_context() to this function elsewhere in our code.
 # TODO: do we really need this function?
 def translate_phrase(
     context, phrase, lang=None, label_translations=None, phrases=None,

@@ -2,6 +2,7 @@
 <head>
 {%- set contest_name = _metadata.contest_name %}
 <title>RCV Results for {{ contest_name }}</title>
+<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN' crossorigin='anonymous'>
 <link type="text/css" rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik' />
 <link type='text/css' rel='stylesheet' href='{{ css_url_dir }}rcv-rounds.css' />
 </head>
@@ -30,7 +31,7 @@ certain phrases like "Continuing Ballots Total" still need to be translated.)</e
 <h3>{{ election.name }}</h3>
 <p>
 <div id="ResultsContainer">
-<table class="ResultsTable" cellPadding="0" cellSpacing="0" border="1" width="100%">
+<table class="ResultsTable table-bordered" cellPadding="0" cellSpacing="0" width="100%">
 <tr>
   <th class="CandidateCellHeader">&nbsp;</th>
 {%- for round_number in range(1, highest_round + 1) %}
@@ -71,7 +72,9 @@ certain phrases like "Continuing Ballots Total" still need to be translated.)</e
 {%- endfor %}
 {%- for non_candidate_name in non_candidate_names %}
 <tr class="NonCandidateRow">
-  <td class="CandidateCell">{{ non_candidate_name|TS }}</td>
+  <td class="CandidateCell">
+    <span class="election-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ non_candidate_name|TST }}">{{ non_candidate_name|TS }}</span>
+  </td>
 {%- for round_number in range(1, highest_round + 1) %}
 {#- Subtract 1 to get a 0-based index. -#}
 {%- set round_data = rounds[non_candidate_name][round_number - 1] %}
@@ -96,6 +99,12 @@ certain phrases like "Continuing Ballots Total" still need to be translated.)</e
 </tr>
 </table>
 </div>
+<script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js' integrity='sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r' crossorigin='anonymous'></script>
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js' integrity='sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+' crossorigin='anonymous'></script>
+<script>
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
 </body>
 
 </html>

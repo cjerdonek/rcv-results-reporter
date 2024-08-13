@@ -18,13 +18,14 @@ _log = logging.getLogger(__name__)
 
 
 # Mapping from subtotal key-name to translations.yml label, for the
-# key-names that are simple one-to-one translations. The only subtotal
-# key-name not included below is NonCandidateLabel.BLANK ("blanks").
+# key-names that are simple one-to-one translations.
 SUBTOTAL_KEYS = {
     NonCandidateLabel.CONTINUING: 'total_continuing',
     NonCandidateLabel.EXHAUSTED: 'total_exhausted',
     NonCandidateLabel.OVERVOTE: 'total_overvotes',
     NonCandidateLabel.NON_TRANSFERABLE: 'total_non_transferable',
+    # This key-value gets overwritten in make_subtotal_translations().
+    NonCandidateLabel.BLANK: 'total_blanks',
 }
 
 
@@ -123,6 +124,24 @@ def make_subtotal_translations(label_translations):
     return subtotal_translations
 
 
+# We apply jinja2.pass_context() to this function elsewhere in our code.
+def translate_subtotal_tooltip(context, subtotal_key, lang=None, label_translations=None):
+    """
+    Translate the tooltip for the given subtotal name into the language set
+    in the given Jinja2 context.
+
+    Args:
+      lang: an optional 2-letter language code.  Defaults to the context's
+        current language.
+      label_translations: the dict of translations, where the keys are the
+        labels.
+    """
+    label = SUBTOTAL_KEYS[subtotal_key]
+    return rendering.translate_label_tooltip(
+        context, label=label, lang=lang, label_translations=label_translations,
+    )
+
+
 def make_environment(translations_path):
     env = Environment(
         loader=FileSystemLoader('templates'), autoescape=True,
@@ -131,6 +150,12 @@ def make_environment(translations_path):
     label_translations = read_label_translations(translations_path)
     translate_label = functools.partial(
         rendering.translate_label, label_translations=label_translations,
+    )
+    translate_tooltip = functools.partial(
+        rendering.translate_label_tooltip, label_translations=label_translations,
+    )
+    translate_subtotal_tt = functools.partial(
+        translate_subtotal_tooltip, label_translations=label_translations,
     )
 
     subtotal_translations = make_subtotal_translations(label_translations)
@@ -148,9 +173,14 @@ def make_environment(translations_path):
         'format_int': rendering.format_int,
         'format_percent': rendering.format_percent,
         'TL': jinja2.pass_context(translate_label),
+        # "TLT" stands for "translate label tooltip."
+        'TLT': jinja2.pass_context(translate_tooltip),
+        # "TS" stands for "translate subtotal."
+        'TS': jinja2.pass_context(translate_subtotal_name),
+        # "TST" stands for "translate subtotal tooltip."
+        'TST': jinja2.pass_context(translate_subtotal_tt),
         # TODO: can we remove this?
         'TP': jinja2.pass_context(translate_phrase),
-        'TS': jinja2.pass_context(translate_subtotal_name),
     })
     return env
 
