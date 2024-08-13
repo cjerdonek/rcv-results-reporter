@@ -54,6 +54,9 @@ labels:
     zh: 空白选票
   total_continuing:
     en: Continuing Ballots Total
+  total_continuing_tooltip:
+    # TODO: fill this in.
+    en: Continuing Ballots Total tooltip
   total_exhausted:
     en: Exhausted
     # These are from the translation of "Exhausted Ballot" here:
