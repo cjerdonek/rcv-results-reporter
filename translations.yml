@@ -53,13 +53,11 @@ labels:
     tl: Blangkong Balota
     zh: 空白选票
   total_blanks_tooltip:
-    # TODO: fill this in.
-    en: Blanks tooltip.
+    en: The number of ballots with no candidates marked at any ranking.
   total_continuing:
     en: Continuing Ballots Total
   total_continuing_tooltip:
-    # TODO: fill this in.
-    en: Continuing ballots total tooltip.
+    en: The number of ballots in the round counting towards some candidate.
   total_exhausted:
     en: Exhausted
     # These are from the translation of "Exhausted Ballot" here:
@@ -68,21 +66,20 @@ labels:
     tl: Nasaid na Balota
     zh: 用尽的选票
   total_exhausted_tooltip:
-    # TODO: fill this in.
-    en: Exhausted tooltip.
+    en: The number of ballots in the round not counting towards any candidate
+      because the last candidate ranked on the ballot was eliminated.
   total_non_transferable:
     en: Non Transferable Total
   total_non_transferable_tooltip:
-    # TODO: fill this in.
-    en: Non-transferable total tooltip.
+    en: The total number of ballots in the round not counting towards any candidate.
   total_overvotes:
     en: Overvotes
     es: Sobrevotos
     tl: Mga sobrang boto
     zh: 過度投票
   total_overvotes_tooltip:
-    # TODO: fill this in.
-    en: Overvotes tooltip.
+    en: The number of ballots in the round not counting towards any candidate
+      because the next available ranking had more than one candidate marked.
   total_undervotes:
     en: Undervotes
     es: Votos por debajo del límite

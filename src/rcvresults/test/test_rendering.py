@@ -16,4 +16,4 @@ class FunctionTestCase(TestCase):
         actual = rendering.translate_label_tooltip(
             None, label='total_continuing', lang='en', label_translations=label_translations,
         )
-        self.assertEqual(actual, 'Continuing ballots total tooltip.')
+        self.assertEqual(actual, 'The number of ballots in the round counting towards some candidate.')
