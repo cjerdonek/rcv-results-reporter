@@ -1,6 +1,7 @@
 <html>
 <head>
 <title>RCV Results for BOARD OF SUPERVISORS DISTRICT 6</title>
+<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN' crossorigin='anonymous'>
 <link type="text/css" rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik' />
 <link type='text/css' rel='stylesheet' href='../../../static-files-rcv/styles/rcv-rounds.css' />
 </head>
@@ -25,7 +26,7 @@ certain phrases like "Continuing Ballots Total" still need to be translated.)</e
 <h3>November 8, 2022 Consolidated General Election</h3>
 <p>
 <div id="ResultsContainer">
-<table class="ResultsTable" cellPadding="0" cellSpacing="0" border="1" width="100%">
+<table class="ResultsTable table-bordered" cellPadding="0" cellSpacing="0" width="100%">
 <tr>
   <th class="CandidateCellHeader">&nbsp;</th>
   <th class="RoundCellHeader" colspan="3">輪 1</th>
@@ -93,7 +94,9 @@ certain phrases like "Continuing Ballots Total" still need to be translated.)</e
   <td class="VotesTransferredCell">&nbsp;</td>
 </tr>
 <tr class="NonCandidateRow">
-  <td class="CandidateCell">Continuing Ballots Total</td>
+  <td class="CandidateCell">
+    <span class="election-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Continuing ballots total tooltip.">Continuing Ballots Total</span>
+  </td>
   <td class="VotesCell">16,274</td>
   <td class="PercentageCell">100%</td>
   <td class="VotesTransferredCell">&nbsp;</td>
@@ -105,7 +108,9 @@ certain phrases like "Continuing Ballots Total" still need to be translated.)</e
   <td class="VotesTransferredCell">&nbsp;</td>
 </tr>
 <tr class="NonCandidateRow">
-  <td class="CandidateCell">空白选票 (投票不足)</td>
+  <td class="CandidateCell">
+    <span class="election-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Blanks tooltip.">空白选票 (投票不足)</span>
+  </td>
   <td class="VotesCell">2,299</td>
   <td class="PercentageCell">&nbsp;</td>
   <td class="VotesTransferredCell">0</td>
@@ -117,7 +122,9 @@ certain phrases like "Continuing Ballots Total" still need to be translated.)</e
   <td class="VotesTransferredCell">&nbsp;</td>
 </tr>
 <tr class="NonCandidateRow">
-  <td class="CandidateCell">用尽的选票</td>
+  <td class="CandidateCell">
+    <span class="election-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Exhausted tooltip.">用尽的选票</span>
+  </td>
   <td class="VotesCell">0</td>
   <td class="PercentageCell">&nbsp;</td>
   <td class="VotesTransferredCell">45</td>
@@ -129,7 +136,9 @@ certain phrases like "Continuing Ballots Total" still need to be translated.)</e
   <td class="VotesTransferredCell">&nbsp;</td>
 </tr>
 <tr class="NonCandidateRow">
-  <td class="CandidateCell">過度投票</td>
+  <td class="CandidateCell">
+    <span class="election-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Overvotes tooltip.">過度投票</span>
+  </td>
   <td class="VotesCell">90</td>
   <td class="PercentageCell">&nbsp;</td>
   <td class="VotesTransferredCell">2</td>
@@ -141,7 +150,9 @@ certain phrases like "Continuing Ballots Total" still need to be translated.)</e
   <td class="VotesTransferredCell">&nbsp;</td>
 </tr>
 <tr class="NonCandidateRow">
-  <td class="CandidateCell">Non Transferable Total</td>
+  <td class="CandidateCell">
+    <span class="election-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Non-transferable total tooltip.">Non Transferable Total</span>
+  </td>
   <td class="VotesCell">2,389</td>
   <td class="PercentageCell">&nbsp;</td>
   <td class="VotesTransferredCell">&nbsp;</td>
@@ -158,6 +169,12 @@ certain phrases like "Continuing Ballots Total" still need to be translated.)</e
 </tr>
 </table>
 </div>
+<script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js' integrity='sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r' crossorigin='anonymous'></script>
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js' integrity='sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+' crossorigin='anonymous'></script>
+<script>
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
 </body>
 
 </html>
