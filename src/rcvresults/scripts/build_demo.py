@@ -42,7 +42,7 @@ CONFIG_DIR = Path('config')
 DATA_DIR = Path('data')
 DATA_DIR_REPORTS = DATA_DIR / 'input-reports'
 DEMO_DIR_JSON = DATA_DIR / 'demo-json'
-DEFAULT_HTML_OUTPUT_DIR = DATA_DIR / 'output-html'
+DEMO_DIR_HTML = DATA_DIR / 'demo-pages'
 
 # Directory containing copies of real past html results summary pages.
 HTML_DIR = Path('sample-html')
@@ -351,8 +351,8 @@ def make_arg_parser():
     parser.add_argument(
         '--html-output-dir', metavar='OUTPUT_DIR', help=(
             'path to the html output directory. '
-            f'Defaults to: {DEFAULT_HTML_OUTPUT_DIR}.'
-        ), default=DEFAULT_HTML_OUTPUT_DIR,
+            f'Defaults to: {DEMO_DIR_HTML}.'
+        ), default=DEMO_DIR_HTML,
     )
     parser.add_argument(
         '--build-time', metavar='DATETIME', help=(
@@ -414,13 +414,13 @@ def main():
 
     # The repo has the following symlinks that point to the following
     # directories relative to the repo root:
-    #  * data/output-html/js               -> sample-html/2024-03-05/js
-    #  * data/output-html/static-files-rcv -> static-files
+    #  * data/demo-pages/js               -> sample-html/2024-03-05/js
+    #  * data/demo-pages/static-files-rcv -> static-files
     # TODO: make js_dir a string.
     js_dir = Path('js')
     # The RCV round-by-round pages are at the following location, so
     # we need to navigate up 3 levels to get to the root:
-    #  * data/output-html/rcv-snippets/2022-11-08/round-pages/
+    #  * data/demo-pages/rcv-snippets/2022-11-08/round-pages/
     #     da_short-rounds-en.html
     css_url_dir = '../../../static-files-rcv/styles/'
 

@@ -124,10 +124,10 @@ The code works like this:
    "Continuing Ballots"). The templates can be customized as needed to
    control exactly how the HTML snippets look, and the YAML file can be
    expanded to support more languages and cover more words.
-   [Here](data/output-html/rcv-snippets/2022-11-08/summary-tables/da_short-summary-en.html) is
+   [Here](data/demo-pages/rcv-snippets/2022-11-08/summary-tables/da_short-summary-en.html) is
    an example of what such an HTML snippet might look like
    (again for the same contest as above), and
-   [here](data/output-html/rcv-snippets/2022-11-08) is the directory
+   [here](data/demo-pages/rcv-snippets/2022-11-08) is the directory
    of all HTML snippets used in the demo for the November 2022 election.
 
 All of the above takes less than a second to run.
