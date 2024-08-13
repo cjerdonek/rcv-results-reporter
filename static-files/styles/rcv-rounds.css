@@ -4,6 +4,7 @@ body{
 	font-family: "Rubik", Helvetica, Verdana, Arial, sans-serif;
 	font-size: 12pt;
 	color: #000000;
+	margin: 8px;
 }
 h2{
 	font-size: 16pt;
@@ -14,6 +15,9 @@ h3{
 /* All text contained in a table cell, which has no explicit class value */
 td{
 	color: #000000;
+}
+span.election-tooltip {
+	text-decoration: underline;
 }
 
 /* Style for body header text */
@@ -37,6 +41,7 @@ td{
 /* Style for 'round' column group headers*/
 th.RoundCellHeader{
 	background-color: #DBE9FA;
+	text-align: center;
 }
 
 /* styles for round group individual column headers */
