@@ -106,7 +106,7 @@ The code works like this:
    from the Dominion system and extracts the candidate names and
    vote subtotals for each round. Optionally, this intermediate
    information can be saved to a JSON file before proceeding to the
-   next step. [Here](data/output-json/2022-11-08/da_short.json)
+   next step. [Here](data/demo-json/2022-11-08/da_short.json)
    is an example of what such a JSON file looks like (for the same
    contest from the screenshots above).
 2. Second, the code takes the candidate names and vote subtotals
@@ -197,7 +197,7 @@ For example (this should work from the repo root):
 ```
   $ python src/rcvresults/scripts/make_reports.py \
       config/election-2022-11-08.yml translations.yml \
-      data/output-json/2022-11-08/*.json --output-dir final
+      data/demo-json/2022-11-08/*.json --output-dir final
 ```
 
 ## Developing

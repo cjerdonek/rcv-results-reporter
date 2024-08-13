@@ -9,7 +9,7 @@ from unittest import TestCase
 import rcvresults.parsing as parsing
 import rcvresults.scripts.build_demo as demo_mod
 from rcvresults.scripts.build_demo import (
-    DATA_DIR_JSON, DATA_DIR_REPORTS, DIR_NAME_2020_NOV, DIR_NAME_2022_NOV,
+    DEMO_DIR_JSON, DATA_DIR_REPORTS, DIR_NAME_2020_NOV, DIR_NAME_2022_NOV,
 )
 
 
@@ -20,7 +20,7 @@ class EndToEndTestCase(TestCase):
     """
 
     def _test_json_outputs(self, dir_name, expected_count):
-        reference_dir = DATA_DIR_JSON / dir_name
+        reference_dir = DEMO_DIR_JSON / dir_name
         paths = demo_mod.get_demo_report_paths(
             DATA_DIR_REPORTS, dir_name=dir_name,
         )

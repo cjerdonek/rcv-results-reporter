@@ -17,7 +17,7 @@ import rcvresults.parsing as parsing
 
 _log = logging.getLogger('parse-results')
 
-DEFAULT_OUTPUT_DIR = 'output-json'
+DEFAULT_OUTPUT_DIR = 'demo-json'
 
 DESCRIPTION = """\
 Generate JSON files from RCV result reports.

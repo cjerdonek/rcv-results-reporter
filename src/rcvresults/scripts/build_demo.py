@@ -41,7 +41,7 @@ CONFIG_DIR = Path('config')
 
 DATA_DIR = Path('data')
 DATA_DIR_REPORTS = DATA_DIR / 'input-reports'
-DATA_DIR_JSON = DATA_DIR / 'output-json'
+DEMO_DIR_JSON = DATA_DIR / 'demo-json'
 DEFAULT_HTML_OUTPUT_DIR = DATA_DIR / 'output-html'
 
 # Directory containing copies of real past html results summary pages.
@@ -388,7 +388,7 @@ def main():
         f'  commit_hash: {commit_hash}'
     )
 
-    parent_json_dir = DATA_DIR_JSON
+    parent_json_dir = DEMO_DIR_JSON
     html_output_dir = Path(args.html_output_dir)
     # This is the parent directory to which to write the intermediate
     # RCV HTML snippets.
