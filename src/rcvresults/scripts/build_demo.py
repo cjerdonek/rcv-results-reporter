@@ -388,16 +388,11 @@ def main():
         f'  commit_hash: {commit_hash}'
     )
 
-    css_url_dir = '../../../static-files-rcv/styles/'
     parent_json_dir = DATA_DIR_JSON
     html_output_dir = Path(args.html_output_dir)
     # This is the parent directory to which to write the intermediate
     # RCV HTML snippets.
     snippets_dir = html_output_dir / RCV_SNIPPETS_DIR_NAME
-
-    # We have a symlink at "data/output-html/js" that points to
-    # "sample-html/2022-11-08/js" (as a relative path).
-    js_dir = Path('js')
 
     # The order of this list also controls the order in which the elections
     # are listed on the demo page.
@@ -416,6 +411,19 @@ def main():
     config_paths = {
         dir_name: get_config_path(dir_name) for dir_name in dir_names
     }
+
+    # The repo has the following symlinks that point to the following
+    # directories relative to the repo root:
+    #  * data/output-html/js               -> sample-html/2024-03-05/js
+    #  * data/output-html/static-files-rcv -> static-files
+    # TODO: make js_dir a string.
+    js_dir = Path('js')
+    # The RCV round-by-round pages are at the following location, so
+    # we need to navigate up 3 levels to get to the root:
+    #  * data/output-html/rcv-snippets/2022-11-08/round-pages/
+    #     da_short-rounds-en.html
+    css_url_dir = '../../../static-files-rcv/styles/'
+
     make_all_rcv_snippets(
         parent_json_dir, config_paths=config_paths,
         parent_snippets_dir=snippets_dir, translations_path=TRANSLATIONS_PATH,
