@@ -1,7 +1,5 @@
 # TODO
 
-* Add definitions / context-sensitive help of uncommon phrases
-  (e.g. on hover)
 * Separate the js directory into js and styles.
 * Consider eliminating the need for a symlink in the repo.
 * Review the "production" command-line usage / workflow
