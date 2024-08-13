@@ -112,6 +112,9 @@ def main():
 
     # TODO: allow configuring css_url_dir from the command-line.
     css_url_dir = '../../static-files/styles/'
+    # TODO: replace css_url_dir with a template_contexts argument:
+    #  * replace "css_url_dir" with css_url.
+    # TODO: add a --template-vars YAML_PATH option.
     election_mod.process_election(
         json_paths, config_path=config_path,
         translations_path=translations_path, output_dir=output_dir,
