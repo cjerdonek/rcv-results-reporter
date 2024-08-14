@@ -11,8 +11,9 @@ The project supports parsing both the XML and Excel (`.xlsx`) RCV reports
 from Dominion's system. (XML is the preferred report to parse
 since it's more structured and is an open data format.)
 
-For a demo page showing examples generated for the 16 RCV contests
-held in San Francisco in the four elections between 2019 and 2022, go here:
+For an interactive demo page showing examples generated for the
+16 RCV contests held in San Francisco in the four elections between
+2019 and 2022, go here:
 
 * https://cjerdonek.github.io/rcv-results-reporter
 
@@ -41,6 +42,14 @@ format that Dominion's voting system used to generate before 2019 but
 doesn't anymore. See
 [here](https://www.sfelections.org/results/20181106/data/20181127/d2/20181127_d2.html)
 for an example of that from a 2018 contest.)
+
+Hovering over an RCV-related term in the table shows a definition,
+as in the screenshot below. This helps people understand the results and
+what they are looking at.
+
+![Screenshot of an HTML page of the round-by-round results when hovering
+your mouse pointer over the phrase "Blanks
+(Undervotes)"](docs/images/2022-11-DA-Rounds-Tooltip.png)
 
 This project can also output RCV results in a short summary format
 for inclusion in a results summary page of several contests.
