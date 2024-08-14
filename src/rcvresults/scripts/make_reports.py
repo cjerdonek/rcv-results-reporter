@@ -88,15 +88,8 @@ def make_arg_parser():
             'the directory to which to write the output files.'
         )
     )
-    parser.add_argument(
-        '--template-vars', metavar='YAML_PATH', type=Path,
-        help=(
-            'optionally, a path to a yaml file of extra context variables '
-            'to pass to each template. For a sample such file, see the '
-            # TODO: add the sample file path.
-            'yaml file at: .'
-        )
-    )
+    utils.add_argument_template_vars(parser)
+
     return parser
 
 
