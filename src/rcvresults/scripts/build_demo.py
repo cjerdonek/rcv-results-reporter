@@ -354,6 +354,7 @@ def make_arg_parser():
             f'Defaults to: {DEMO_DIR_HTML}.'
         ), default=DEMO_DIR_HTML,
     )
+    utils.add_argument_template_vars(parser)
     parser.add_argument(
         '--build-time', metavar='DATETIME', help=(
             'a datetime in ISO format (e.g. "2023-09-25 21:17:49"). '
@@ -377,6 +378,9 @@ def main():
 
     log_format = '[{levelname}] {name}: {message}'
     logging.basicConfig(format=log_format, style='{', level=logging.INFO)
+
+    template_vars_path = args.template_vars
+    template_contexts = utils.read_template_contexts(template_vars_path)
 
     commit_hash = args.commit_hash
     build_dt = args.build_time
@@ -413,29 +417,19 @@ def main():
         dir_name: get_config_path(dir_name) for dir_name in dir_names
     }
 
-    # Both parent_static_dir and css_url_dir need to end in a slash ("/").
-    #   The repo has the following symlinks that point to the following
+    # The repo has the following symlinks that point to the following
     # directories relative to the repo root:
     #  * data/demo-pages/static-files     -> data/election-htmls/2024-03-05
     # The main index pages (where parent_static_dir is used) are at the
     # site root, and the site root should contain a "static-files"
     # subdirectory.
+    # Also, this needs to end in a slash ("/").
     parent_static_dir = 'static-files/'
 
-    rcv_template_contexts = {
-        'rcv-complete.html': {
-            # The RCV round-by-round pages for the demo are at the following
-            # location in the repo, so we need to navigate up 5 levels
-            # to get to the repo root:
-            #  * data/demo-pages/rcv-snippets/2022-11-08/round-pages/
-            #     da_short-rounds-en.html
-            'css_url': '../../../../../static-files/styles/rcv-rounds.css',
-        }
-    }
     make_all_rcv_snippets(
         parent_json_dir, config_paths=config_paths,
         parent_snippets_dir=snippets_dir, translations_path=TRANSLATIONS_PATH,
-        template_contexts=rcv_template_contexts,
+        template_contexts=template_contexts,
     )
     # Finally, generate the index html pages.
     # TODO: check that this still works.

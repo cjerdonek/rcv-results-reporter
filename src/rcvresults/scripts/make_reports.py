@@ -113,12 +113,9 @@ def main():
     translations_path = args.translations_path
     json_paths = args.json_paths
     output_dir = args.output_dir
+
     template_vars_path = args.template_vars
-    if template_vars_path is None:
-        template_contexts = None
-    else:
-        template_vars_data = utils.read_yaml(template_vars_path)
-        template_contexts = template_vars_data['contexts']
+    template_contexts = utils.read_template_contexts(template_vars_path)
 
     election_mod.process_election(
         json_paths, config_path=config_path,

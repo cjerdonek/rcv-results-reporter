@@ -76,6 +76,20 @@ def add_argument_template_vars(parser):
     )
 
 
+def read_template_contexts(template_vars_path):
+    """
+    Args:
+      template_vars_path: a value of the --template-vars argument (can
+        also be None).
+    """
+    if template_vars_path is None:
+        return None
+
+    template_vars_data = read_yaml(template_vars_path)
+    template_contexts = template_vars_data['contexts']
+    return template_contexts
+
+
 def make_html_page_name(base_name, lang_code):
     """
     Construct and return an RCV html snippet file name.

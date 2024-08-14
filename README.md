@@ -214,6 +214,7 @@ elections):
 
 ```
 $ python src/rcvresults/scripts/build_demo.py \
+    --template-vars config/template-contexts-demo-local.yml \
     --build-time 2023-09-01T09:00:00
 ```
 
