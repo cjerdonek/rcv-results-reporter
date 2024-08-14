@@ -196,7 +196,7 @@ For example (this should work from the repo root):
 
 ```
   $ python src/rcvresults/scripts/make_reports.py \
-      config/election-2022-11-08.yml translations.yml \
+      data/election-configs/election-2022-11-08.yml translations.yml \
       data/demo-json/2022-11-08/*.json --output-dir final
 ```
 

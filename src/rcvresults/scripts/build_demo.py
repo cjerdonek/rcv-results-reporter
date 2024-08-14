@@ -37,9 +37,8 @@ Build the demo.
 TEMPLATE_NAME_RCV_DEMO = 'index-all-rcv.html'
 RCV_SNIPPETS_DIR_NAME = 'rcv-snippets'
 
-ELECTION_CONFIG_DIR = Path('config')
-
 DATA_DIR = Path('data')
+ELECTION_CONFIG_DIR = DATA_DIR / 'election-configs'
 DATA_DIR_REPORTS = DATA_DIR / 'input-reports'
 DEMO_DIR_JSON = DATA_DIR / 'demo-json'
 DEMO_DIR_HTML = DATA_DIR / 'demo-pages'
