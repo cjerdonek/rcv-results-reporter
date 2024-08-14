@@ -193,17 +193,19 @@ def make_index_page_names():
 
 
 def make_index_html(
-    output_dir, template, js_dir, env, output_name=None, lang_code=None,
+    output_dir, template, parent_static_dir, env, output_name=None,
+    lang_code=None,
 ):
     """
     Args:
-      js_dir: the path to the directory containing the js files, relative
-        to the location of the output path.
+      parent_static_dir: the path to the directory containing the "js" and
+        "styles" subdirectories. The path should be a string ending in a
+        slash ("/") and be relative to the location of the output path.
     """
     if output_name is None:
         output_name = template.name
 
-    context = {'js_dir': str(js_dir)}
+    context = {'parent_static_dir': parent_static_dir}
     output_path = output_dir / output_name
     rendering.render_template(
         template, output_path=output_path, context=context,
@@ -211,11 +213,14 @@ def make_index_html(
     )
 
 
-def make_test_index_html(output_dir, snippets_dir, js_dir):
+def make_test_index_html(output_dir, snippets_dir, parent_static_dir):
     _log.info(f'creating: test index html')
     env = _make_index_jinja_env(snippets_dir=snippets_dir)
     template = env.get_template('index-test.html')
-    make_index_html(output_dir, template=template, js_dir=js_dir, env=env)
+    make_index_html(
+        output_dir, template=template, parent_static_dir=parent_static_dir,
+        env=env,
+    )
 
 
 def _get_rounds_report_url(context, election, contest_base):
@@ -303,7 +308,7 @@ def _build_elections_list(config_paths):
 
 
 def make_rcv_demo(
-    config_paths, snippets_dir, js_dir, parent_json_dir, output_dir,
+    config_paths, snippets_dir, parent_static_dir, parent_json_dir, output_dir,
     build_dt=None, commit_hash=None,
 ):
     """
@@ -337,8 +342,8 @@ def make_rcv_demo(
     for lang_code in LANGUAGES:
         output_name = get_index_name(lang_code)
         make_index_html(
-            output_dir, template=template, js_dir=js_dir, env=env,
-            output_name=output_name, lang_code=lang_code,
+            output_dir, template=template, parent_static_dir=parent_static_dir,
+            env=env, output_name=output_name, lang_code=lang_code,
         )
 
 
@@ -378,17 +383,18 @@ def main():
     build_dt = args.build_time
     if build_dt is not None:
         build_dt = datetime.fromisoformat(build_dt)
-    _log.info(
-        'using:\n'
-        f'   build_time: {build_dt}\n'
-        f'  commit_hash: {commit_hash}'
-    )
 
     parent_json_dir = DEMO_DIR_JSON
     html_output_dir = Path(args.html_output_dir)
     # This is the parent directory to which to write the intermediate
     # RCV HTML snippets.
     snippets_dir = html_output_dir / RCV_SNIPPETS_DIR_NAME
+    _log.info(
+        'using:\n'
+        f'       build_time: {build_dt}\n'
+        f'      commit_hash: {commit_hash}\n'
+        f'  html_output_dir: {html_output_dir}'
+    )
 
     # The order of this list also controls the order in which the elections
     # are listed on the demo page.
@@ -408,12 +414,16 @@ def main():
         dir_name: get_config_path(dir_name) for dir_name in dir_names
     }
 
-    # The repo has the following symlinks that point to the following
+    # Both parent_static_dir and css_url_dir need to end in a slash ("/").
+    #   The repo has the following symlinks that point to the following
     # directories relative to the repo root:
-    #  * data/demo-pages/js               -> data/election-htmls/2024-03-05/js
+    #  * data/demo-pages/static-files     -> data/election-htmls/2024-03-05
     #  * data/demo-pages/static-files-rcv -> static-files
-    # TODO: make js_dir a string.
-    js_dir = Path('js')
+
+    # The main index pages (where parent_static_dir is used) are at the
+    # site root, and the site root should contain a "static-files"
+    # subdirectory.
+    parent_static_dir = 'static-files/'
     # The RCV round-by-round pages are at the following location, so
     # we need to navigate up 3 levels to get to the root:
     #  * data/demo-pages/rcv-snippets/2022-11-08/round-pages/
@@ -428,10 +438,11 @@ def main():
     # Finally, generate the index html pages.
     # TODO: check that this still works.
     make_test_index_html(
-        html_output_dir, snippets_dir=snippets_dir, js_dir=js_dir,
+        html_output_dir, snippets_dir=snippets_dir,
+        parent_static_dir=parent_static_dir,
     )
     make_rcv_demo(
-        config_paths, snippets_dir=snippets_dir, js_dir=js_dir,
+        config_paths, snippets_dir=snippets_dir, parent_static_dir=parent_static_dir,
         parent_json_dir=parent_json_dir, output_dir=html_output_dir,
         build_dt=build_dt, commit_hash=commit_hash,
     )

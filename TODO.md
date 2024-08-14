@@ -1,6 +1,5 @@
 # TODO
 
-* Separate the js directory into js and styles.
 * Consider eliminating the need for a symlink in the repo.
 * Review the "production" command-line usage / workflow
 * Make the cell borders lighter in the round-by-round report

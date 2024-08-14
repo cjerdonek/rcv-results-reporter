@@ -32,13 +32,14 @@ python src/rcvresults/scripts/build_demo.py \
 rm "${BUILD_DIR}/index-test.html"
 # The repo has the following symlinks that point to the following
 # directories relative to the repo root:
-#  * data/demo-pages/js               -> data/election-htmls/2024-03-05/js
+#  * data/demo-pages/static-files     -> data/election-htmls/2024-03-05
 #  * data/demo-pages/static-files-rcv -> static-files
 # In the cp invocations below, the -L flag resolves symlinks.
 #   Here, leaving the slash off the end of the source directory causes
 # the directory **itself** to be created in and copied into the build
 # directory.
-cp -RL data/demo-pages/js "${BUILD_DIR}"
+cp -RL data/demo-pages/static-files/js "${BUILD_DIR}"
+cp -RL data/demo-pages/static-files/styles "${BUILD_DIR}"
 #   Here, leaving the slash off the end of the source directory causes
 # the directory **itself** to be created at the directory path specified
 # by the target directory argument (and its contents recursively copied).
