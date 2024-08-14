@@ -185,28 +185,11 @@ def make_environment(translations_path):
     return env
 
 
-def _make_globals(css_url_dir=None):
+def _make_globals():
     """
-    Return the globals to pass to env.get_template().
-
-    Args:
-      css_url_dir: optionally, the URL to the directory containing the
-        default.css file, as a string, for use in the rcv-complete.html
-        template. This can be a string beginning with "https://",
-        an absolute path beginning with "/", or a relative path not
-        starting with a slash. If non-empty, the string should end in
-        a slash ("/"). Defaults to the empty string.
+    Create the dict of globals to pass to env.get_template().
     """
-    if css_url_dir is None:
-        css_url_dir = ''
-    if css_url_dir and not css_url_dir.endswith('/'):
-        raise RuntimeError(
-            'css_url_dir must end in a slash ("/") if provided but got: '
-            f'{css_url_dir!r}'
-        )
-
     global_vars = {
-        'css_url_dir': css_url_dir,
         'iter_languages': jinja2.pass_context(rendering.iter_languages),
         'is_contest_leader': jinja2.pass_context(rendering.is_contest_leader),
         'get_candidate_class_prefix': (
@@ -276,7 +259,8 @@ def make_html_snippets(json_path, templates, output_dirs, base_name):
 # TODO: pass in dict mapping template name to output_dir?
 # TODO: choose a better name for this function.
 def process_election(
-    json_paths, config_path, translations_path, output_dir, css_url_dir=None,
+    json_paths, config_path, translations_path, output_dir,
+    template_contexts=None,
 ):
     """
     This function creates the json_dir and output_dir directories if they
@@ -288,13 +272,16 @@ def process_election(
       config_path: path to an election.yml config, as a Path object.
       output_dir: the directory to which to write the RCV html snippets,
         as a Path object.
-      css_url_dir: optionally, the URL to the directory containing the
-        default.css file, as a string, for use in the rcv-complete.html
-        template. This can be a string beginning with "https://",
-        an absolute path beginning with "/", or a relative path not
-        starting with a slash. If non-empty, the string should end in
-        a slash ("/"). Defaults to the empty string.
+      template_contexts: optionally, a dict of extra template context
+        variables, with one key-value for each template for which to
+        provide extra context. For example, to pass extra variables to the
+        template named "rcv-complete.html", the extra variables should be
+        stored as the value of template_contexts["rcv-complete.html"]
+        in the dict.
     """
+    if template_contexts is None:
+        template_contexts = {}
+
     output_dirs = {}
     for template_name, output_dir_name in HTML_OUTPUT_DIR_NAMES.items():
         template_output_dir = output_dir / output_dir_name
@@ -304,13 +291,17 @@ def process_election(
     election_data = read_election_config(config_path)
 
     env = make_environment(translations_path)
-    global_vars = _make_globals(css_url_dir=css_url_dir)
+    global_vars = _make_globals()
     global_vars['election'] = election_data
 
-    templates = [
-        env.get_template(name, globals=global_vars) for name in
-        ('rcv-summary.html', 'rcv-complete.html')
-    ]
+    templates = []
+    for template_name in ('rcv-summary.html', 'rcv-complete.html'):
+        # Add the extra template context variables.
+        template_globals = global_vars.copy()
+        extra_vars = template_contexts.get(template_name, {})
+        template_globals.update(extra_vars)
+        template = env.get_template(template_name, globals=template_globals)
+        templates.append(template)
 
     file_count = len(json_paths)
     _log.info(f'processing {file_count} contests (json files)...')

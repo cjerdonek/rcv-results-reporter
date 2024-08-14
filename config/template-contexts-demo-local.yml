@@ -1,0 +1,12 @@
+# This is the file of extra template context variables to pass as the
+# --template-vars option when running scripts/build_demo.py locally.
+contexts:
+  'rcv-complete.html':
+    # This is the URL for the CSS file to use in the html template for the
+    # RCV round-by-round report.
+    #   The RCV round-by-round pages for the demo are at the following
+    # location in the repo, so we need to navigate up 5 levels
+    # to get to the repo root:
+    #  * data/demo-pages/rcv-snippets/2022-11-08/round-pages/
+    #     da_short-rounds-en.html
+    css_url: ../../../../../static-files/styles/rcv-rounds.css

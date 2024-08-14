@@ -26,6 +26,7 @@ BUILD_TIME="$(date +"%Y-%m-%dT%H:%M:%S")"
 # https://circleci.com/docs/variables/#built-in-environment-variables
 python src/rcvresults/scripts/build_demo.py \
   --html-output-dir "${BUILD_DIR}" \
+  --template-vars config/template-contexts-demo-ci.yml \
   --build-time "${BUILD_TIME}" \
   --commit-hash "${CIRCLE_SHA1}"
 
@@ -33,7 +34,6 @@ rm "${BUILD_DIR}/index-test.html"
 # The repo has the following symlinks that point to the following
 # directories relative to the repo root:
 #  * data/demo-pages/static-files     -> data/election-htmls/2024-03-05
-#  * data/demo-pages/static-files-rcv -> static-files
 # In the cp invocations below, the -L flag resolves symlinks.
 #   Here, leaving the slash off the end of the source directory causes
 # the directory **itself** to be created in and copied into the build

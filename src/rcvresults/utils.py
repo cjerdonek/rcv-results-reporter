@@ -5,6 +5,8 @@ from pathlib import Path
 import yaml
 
 
+TEMPLATE_CONTEXTS_DIR = Path('config')
+
 LANG_CODE_ENGLISH = 'en'
 
 # A dict of the languages that should appear in the language toggle
@@ -58,6 +60,34 @@ def read_yaml(path):
 def write_json(data, path):
     with path.open('w') as f:
         json.dump(data, f, indent='    ', sort_keys=True)
+
+
+def add_argument_template_vars(parser):
+    """
+    Add the --template-vars option to the given ArgumentParser.
+    """
+    parser.add_argument(
+        '--template-vars', metavar='YAML_PATH', type=Path,
+        help=(
+            'optionally, a path to a yaml file of extra context variables '
+            'to pass to each template. For the file format, see the example '
+            f'files in the "{TEMPLATE_CONTEXTS_DIR}" directory, for example.'
+        )
+    )
+
+
+def read_template_contexts(template_vars_path):
+    """
+    Args:
+      template_vars_path: a value of the --template-vars argument (can
+        also be None).
+    """
+    if template_vars_path is None:
+        return None
+
+    template_vars_data = read_yaml(template_vars_path)
+    template_contexts = template_vars_data['contexts']
+    return template_contexts
 
 
 def make_html_page_name(base_name, lang_code):

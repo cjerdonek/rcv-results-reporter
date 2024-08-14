@@ -110,19 +110,18 @@ def make_all_json_files(parent_reports_dir, parent_output_dir, dir_names):
 
 def make_all_rcv_snippets(
     parent_json_dir, config_paths, parent_snippets_dir, translations_path,
-    css_url_dir=None,
+    template_contexts=None,
 ):
     """
     Args:
       config_paths: a dict mapping dir_name to config_path.
       parent_snippets_dir: the parent directory to which to write the
         intermediate RCV HTML snippets.
-      css_url_dir: optionally, the URL to the directory containing the
-        default.css file, as a string, for use in the rcv-complete.html
-        template. This can be a string beginning with "https://",
-        an absolute path beginning with "/", or a relative path not
-        starting with a slash. If non-empty, the string should end in
-        a slash ("/"). Defaults to the empty string.
+      template_contexts: optionally, a dict of extra template context
+        variables. For example, to pass extra variables to the
+        template named "rcv-complete.html", the extra variables should be
+        stored as the value of template_contexts["rcv-complete.html"]
+        in the dict.
     """
     for dir_name, config_path in config_paths.items():
         _log.info(f'generating html for election: {dir_name}')
@@ -131,7 +130,7 @@ def make_all_rcv_snippets(
         html_snippets_dir = parent_snippets_dir / dir_name
         election_mod.process_election(
             json_paths, config_path=config_path, translations_path=translations_path,
-            output_dir=html_snippets_dir, css_url_dir=css_url_dir,
+            output_dir=html_snippets_dir, template_contexts=template_contexts,
         )
 
 
@@ -355,6 +354,7 @@ def make_arg_parser():
             f'Defaults to: {DEMO_DIR_HTML}.'
         ), default=DEMO_DIR_HTML,
     )
+    utils.add_argument_template_vars(parser)
     parser.add_argument(
         '--build-time', metavar='DATETIME', help=(
             'a datetime in ISO format (e.g. "2023-09-25 21:17:49"). '
@@ -378,6 +378,9 @@ def main():
 
     log_format = '[{levelname}] {name}: {message}'
     logging.basicConfig(format=log_format, style='{', level=logging.INFO)
+
+    template_vars_path = args.template_vars
+    template_contexts = utils.read_template_contexts(template_vars_path)
 
     commit_hash = args.commit_hash
     build_dt = args.build_time
@@ -414,26 +417,19 @@ def main():
         dir_name: get_config_path(dir_name) for dir_name in dir_names
     }
 
-    # Both parent_static_dir and css_url_dir need to end in a slash ("/").
-    #   The repo has the following symlinks that point to the following
+    # The repo has the following symlinks that point to the following
     # directories relative to the repo root:
     #  * data/demo-pages/static-files     -> data/election-htmls/2024-03-05
-    #  * data/demo-pages/static-files-rcv -> static-files
-
     # The main index pages (where parent_static_dir is used) are at the
     # site root, and the site root should contain a "static-files"
     # subdirectory.
+    # Also, this needs to end in a slash ("/").
     parent_static_dir = 'static-files/'
-    # The RCV round-by-round pages are at the following location, so
-    # we need to navigate up 3 levels to get to the root:
-    #  * data/demo-pages/rcv-snippets/2022-11-08/round-pages/
-    #     da_short-rounds-en.html
-    css_url_dir = '../../../static-files-rcv/styles/'
 
     make_all_rcv_snippets(
         parent_json_dir, config_paths=config_paths,
         parent_snippets_dir=snippets_dir, translations_path=TRANSLATIONS_PATH,
-        css_url_dir=css_url_dir,
+        template_contexts=template_contexts,
     )
     # Finally, generate the index html pages.
     # TODO: check that this still works.

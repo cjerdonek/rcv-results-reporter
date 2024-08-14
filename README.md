@@ -195,9 +195,10 @@ $ python src/rcvresults/scripts/make_reports.py --help
 For example (this should work from the repo root):
 
 ```
-  $ python src/rcvresults/scripts/make_reports.py \
-      data/election-configs/election-2022-11-08.yml translations.yml \
-      data/demo-json/2022-11-08/*.json --output-dir final
+$ python src/rcvresults/scripts/make_reports.py \
+    --template-vars config/template-contexts.yml --output-dir final \
+    data/election-configs/election-2022-11-08.yml translations.yml \
+    data/demo-json/2022-11-08/*.json
 ```
 
 ## Developing
@@ -213,6 +214,7 @@ elections):
 
 ```
 $ python src/rcvresults/scripts/build_demo.py \
+    --template-vars config/template-contexts-demo-local.yml \
     --build-time 2023-09-01T09:00:00
 ```
 
