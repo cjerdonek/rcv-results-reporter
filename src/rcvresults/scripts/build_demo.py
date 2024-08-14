@@ -37,7 +37,7 @@ Build the demo.
 TEMPLATE_NAME_RCV_DEMO = 'index-all-rcv.html'
 RCV_SNIPPETS_DIR_NAME = 'rcv-snippets'
 
-CONFIG_DIR = Path('config')
+ELECTION_CONFIG_DIR = Path('config')
 
 DATA_DIR = Path('data')
 DATA_DIR_REPORTS = DATA_DIR / 'input-reports'
@@ -64,7 +64,7 @@ REPORT_DIR_EXTENSIONS = {
 
 
 def get_config_path(dir_name):
-    return CONFIG_DIR / f'election-{dir_name}.yml'
+    return ELECTION_CONFIG_DIR / f'election-{dir_name}.yml'
 
 
 def get_xml_paths(dir_path):
