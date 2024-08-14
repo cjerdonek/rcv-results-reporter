@@ -222,8 +222,8 @@ using HTML [Tidy](https://www.html-tidy.org/).
 For example:
 
 ```
-$ tidy -output sample-html/2024-03-05/index-tidied.html \
-    -utf8 sample-html/2024-03-05/index-original.html
+$ tidy -output data/election-htmls/2024-03-05/index-tidied.html \
+    -utf8 data/election-htmls/2024-03-05/index-original.html
 ```
 
 ## License

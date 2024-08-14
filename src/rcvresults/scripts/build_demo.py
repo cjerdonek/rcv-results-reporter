@@ -410,7 +410,7 @@ def main():
 
     # The repo has the following symlinks that point to the following
     # directories relative to the repo root:
-    #  * data/demo-pages/js               -> sample-html/2024-03-05/js
+    #  * data/demo-pages/js               -> data/election-htmls/2024-03-05/js
     #  * data/demo-pages/static-files-rcv -> static-files
     # TODO: make js_dir a string.
     js_dir = Path('js')
