@@ -8,8 +8,9 @@ Usage:
 For example (this should work from the repo root):
 
   $ python src/rcvresults/scripts/make_reports.py \
+      --template-vars config/template-contexts.yml --output-dir final \
       data/election-configs/election-2022-11-08.yml translations.yml \
-      data/demo-json/2022-11-08/*.json --output-dir final
+      data/demo-json/2022-11-08/*.json
 
 """
 
@@ -20,6 +21,7 @@ from pathlib import Path
 import sys
 
 import rcvresults.election as election_mod
+import rcvresults.utils as utils
 
 
 _log = logging.getLogger(__name__)
@@ -86,6 +88,15 @@ def make_arg_parser():
             'the directory to which to write the output files.'
         )
     )
+    parser.add_argument(
+        '--template-vars', metavar='YAML_PATH', type=Path,
+        help=(
+            'optionally, a path to a yaml file of extra context variables '
+            'to pass to each template. For a sample such file, see the '
+            # TODO: add the sample file path.
+            'yaml file at: .'
+        )
+    )
     return parser
 
 
@@ -109,16 +120,17 @@ def main():
     translations_path = args.translations_path
     json_paths = args.json_paths
     output_dir = args.output_dir
+    template_vars_path = args.template_vars
+    if template_vars_path is None:
+        template_contexts = None
+    else:
+        template_vars_data = utils.read_yaml(template_vars_path)
+        template_contexts = template_vars_data['contexts']
 
-    # TODO: allow configuring css_url_dir from the command-line.
-    css_url_dir = '../../static-files/styles/'
-    # TODO: replace css_url_dir with a template_contexts argument:
-    #  * replace "css_url_dir" with css_url.
-    # TODO: add a --template-vars YAML_PATH option.
     election_mod.process_election(
         json_paths, config_path=config_path,
         translations_path=translations_path, output_dir=output_dir,
-        css_url_dir=css_url_dir,
+        template_contexts=template_contexts,
     )
 
 
