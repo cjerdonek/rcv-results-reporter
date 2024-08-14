@@ -26,6 +26,7 @@ BUILD_TIME="$(date +"%Y-%m-%dT%H:%M:%S")"
 # https://circleci.com/docs/variables/#built-in-environment-variables
 python src/rcvresults/scripts/build_demo.py \
   --html-output-dir "${BUILD_DIR}" \
+  --template-vars config/template-contexts-demo-ci.yml \
   --build-time "${BUILD_TIME}" \
   --commit-hash "${CIRCLE_SHA1}"
 
