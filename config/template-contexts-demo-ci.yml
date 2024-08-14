@@ -8,7 +8,8 @@ contexts:
     #   The RCV round-by-round pages for the demo are at the following
     # location relative to the repo in CI (as controlled by the BUILD_DIR
     # argument passed to build-demo.sh in .circleci/config.yml), so we
-    # need to navigate up 5 levels to get to the repo root:
+    # need to navigate up 3 levels to get to the **site** root (not
+    # repo root):
     #  * tmp/build/rcv-snippets/2022-11-08/round-pages/
     #     da_short-rounds-en.html
-    css_url: ../../../../../static-files/styles/rcv-rounds.css
+    css_url: ../../../static-files-rcv/styles/rcv-rounds.css
