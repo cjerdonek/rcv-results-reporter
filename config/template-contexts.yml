@@ -1,0 +1,7 @@
+# This is a sample file of extra template context variables, to use
+# as the --template-vars option to scripts/make_reports.py.
+contexts:
+  'rcv-complete.html':
+    # This is the URL for the CSS file to use in the html template for the
+    # RCV round-by-round report.
+    css_url: ../../static-files/styles/rcv-rounds.css
