@@ -43,9 +43,6 @@ DATA_DIR_REPORTS = DATA_DIR / 'input-reports'
 DEMO_DIR_JSON = DATA_DIR / 'demo-json'
 DEMO_DIR_HTML = DATA_DIR / 'demo-pages'
 
-# Directory containing copies of real past html results summary pages.
-HTML_DIR = Path('sample-html')
-
 DIR_NAME_2019_NOV = '2019-11-05'
 DIR_NAME_2020_NOV = '2020-11-03'
 DIR_NAME_2022_FEB = '2022-02-15'
