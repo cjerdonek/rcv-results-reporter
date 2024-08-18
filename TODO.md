@@ -1,6 +1,5 @@
 # TODO
 
-* Consider eliminating the need for a symlink in the repo.
 * Address openpyxl warnings observed with Python 3.12 in CI.
 * Review the "production" command-line usage / workflow
 * Publish "main" **and** "dev" versions of the demo?

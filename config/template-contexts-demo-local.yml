@@ -1,7 +1,17 @@
 # This is the file of extra template context variables to pass as the
 # --template-vars option when running scripts/build_demo.py locally.
 contexts:
-  'rcv-complete.html':
+  "index-all-rcv.html":
+    # This is the URL to the directory containing the "js" and "styles"
+    # directories, for use in the main index pages. It can be an absolute
+    # url, or a relative url relative to the location of the index page
+    # in the url hierarchy. It must end in a slash ("/").
+    #   Since, when running build_demo.py locally, the output directory
+    # is data/demo-pages and the main index pages are in this directory,
+    # we need to go up two levels to get to the repo root.
+    parent_static_url_dir: ../../data/election-htmls/2024-03-05/
+
+  "rcv-complete.html":
     # This is the URL for the CSS file to use in the html template for the
     # RCV round-by-round report.
     #   The RCV round-by-round pages for the demo are at the following

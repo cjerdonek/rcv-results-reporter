@@ -191,35 +191,23 @@ def make_index_page_names():
     }
 
 
-def make_index_html(
-    output_dir, template, parent_static_dir, env, output_name=None,
-    lang_code=None,
-):
-    """
-    Args:
-      parent_static_dir: the path to the directory containing the "js" and
-        "styles" subdirectories. The path should be a string ending in a
-        slash ("/") and be relative to the location of the output path.
-    """
+def make_index_html(output_dir, template, output_name=None, lang_code=None):
     if output_name is None:
         output_name = template.name
 
-    context = {'parent_static_dir': parent_static_dir}
     output_path = output_dir / output_name
     rendering.render_template(
-        template, output_path=output_path, context=context,
-        lang_code=lang_code,
+        template, output_path=output_path, lang_code=lang_code,
     )
 
 
-def make_test_index_html(output_dir, snippets_dir, parent_static_dir):
+def make_test_index_html(output_dir, snippets_dir, template_contexts=None):
     _log.info(f'creating: test index html')
     env = _make_index_jinja_env(snippets_dir=snippets_dir)
-    template = env.get_template('index-test.html')
-    make_index_html(
-        output_dir, template=template, parent_static_dir=parent_static_dir,
-        env=env,
+    template = election_mod.load_template(
+        'index-test.html', env=env, template_contexts=template_contexts,
     )
+    make_index_html(output_dir, template=template)
 
 
 def _get_rounds_report_url(context, election, contest_base):
@@ -307,12 +295,16 @@ def _build_elections_list(config_paths):
 
 
 def make_rcv_demo(
-    config_paths, snippets_dir, parent_static_dir, parent_json_dir, output_dir,
+    config_paths, snippets_dir, template_contexts, parent_json_dir, output_dir,
     build_dt=None, commit_hash=None,
 ):
     """
     Args:
       config_paths: a dict mapping dir_name to config_path.
+      template_contexts: a dict of extra template context variables.
+        For example, to pass extra variables to the template named
+        "rcv-complete.html", the extra variables should be stored as the
+        value of template_contexts["rcv-complete.html"] in the dict.
     """
     _log.info(f'creating: RCV demo index html')
     env = _make_index_jinja_env(
@@ -335,14 +327,15 @@ def make_rcv_demo(
         'iter_contests': iter_contests,
         'iter_languages': jinja2.pass_context(rendering.iter_languages),
     }
-
-    template = env.get_template(TEMPLATE_NAME_RCV_DEMO, globals=global_vars)
-
+    template = election_mod.load_template(
+        TEMPLATE_NAME_RCV_DEMO, env=env, global_vars=global_vars,
+        template_contexts=template_contexts,
+    )
     for lang_code in LANGUAGES:
         output_name = get_index_name(lang_code)
         make_index_html(
-            output_dir, template=template, parent_static_dir=parent_static_dir,
-            env=env, output_name=output_name, lang_code=lang_code,
+            output_dir, template=template, output_name=output_name,
+            lang_code=lang_code,
         )
 
 
@@ -417,23 +410,6 @@ def main():
         dir_name: get_config_path(dir_name) for dir_name in dir_names
     }
 
-    # The "parent_static_dir" variable is an absolute or relative url
-    # that needs to end in a slash ("/"). It is the url used by the main
-    # index pages beneath the site root as the directory of static-file
-    # assets used by those pages. It must contain subdirectories named
-    # "css" and "js" containing the CSS and JS files, respectively.
-    #   In contrast, the location of the static assets needed by the
-    # **RCV-specific** templates are controlled by the template-context
-    # yaml files in the repo's "config" directory.
-    #   Note that, to simplify running build_demo.py locally into
-    # DEMO_DIR_HTML (data/demo-pages), the repo has the following symlink
-    # pointing to the following directory relative to the repo root:
-    #  * data/demo-pages/static-files -> data/election-htmls/2024-03-05
-    # This symlink isn't needed in CI since build-demo.sh simply copies
-    # the static files into the right location in the output directory
-    # used in CI.
-    parent_static_dir = 'static-files/'
-
     make_all_rcv_snippets(
         parent_json_dir, config_paths=config_paths,
         parent_snippets_dir=snippets_dir, translations_path=TRANSLATIONS_PATH,
@@ -443,12 +419,13 @@ def main():
     # TODO: check that this still works.
     make_test_index_html(
         html_output_dir, snippets_dir=snippets_dir,
-        parent_static_dir=parent_static_dir,
+        template_contexts=template_contexts,
     )
     make_rcv_demo(
-        config_paths, snippets_dir=snippets_dir, parent_static_dir=parent_static_dir,
-        parent_json_dir=parent_json_dir, output_dir=html_output_dir,
-        build_dt=build_dt, commit_hash=commit_hash,
+        config_paths, snippets_dir=snippets_dir,
+        template_contexts=template_contexts, parent_json_dir=parent_json_dir,
+        output_dir=html_output_dir, build_dt=build_dt,
+        commit_hash=commit_hash,
     )
 
 

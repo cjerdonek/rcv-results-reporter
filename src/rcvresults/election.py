@@ -202,6 +202,32 @@ def _make_globals():
     return global_vars
 
 
+def load_template(template_name, env, global_vars=None, template_contexts=None):
+    """
+    Load and return a Jinja2 Template object.
+
+    Args:
+      env: a Jinja2 Environment object.
+      template_contexts: optionally, a dict of extra template context
+        variables, with one key-value for each template for which to
+        provide extra context. For example, to pass extra variables to the
+        template named "rcv-complete.html", the extra variables should be
+        stored as the value of template_contexts["rcv-complete.html"]
+        in the dict.
+    """
+    if global_vars is None:
+        template_globals = {}
+    else:
+        # Make a copy before adding the extra template context variables.
+        template_globals = global_vars.copy()
+
+    extra_vars = template_contexts.get(template_name, {})
+    template_globals.update(extra_vars)
+    template = env.get_template(template_name, globals=template_globals)
+
+    return template
+
+
 def make_rcv_contest_html(template, rcv_data, output_dir, contest_base):
     """
     Create the html snippets for an RCV contest, one for each language.
@@ -296,11 +322,10 @@ def process_election(
 
     templates = []
     for template_name in ('rcv-summary.html', 'rcv-complete.html'):
-        # Add the extra template context variables.
-        template_globals = global_vars.copy()
-        extra_vars = template_contexts.get(template_name, {})
-        template_globals.update(extra_vars)
-        template = env.get_template(template_name, globals=template_globals)
+        template = load_template(
+            template_name, env=env, global_vars=global_vars,
+            template_contexts=template_contexts,
+        )
         templates.append(template)
 
     file_count = len(json_paths)
