@@ -2,6 +2,7 @@
 
 * Consider eliminating the need for a symlink in the repo.
 * Add tooltips for Votes and Transfers?
+* Address openpyxl warnings observed with Python 3.12 in CI.
 * Review the "production" command-line usage / workflow
 * Publish "main" **and** "dev" versions of the demo?
 * Make the cell borders lighter in the round-by-round report
