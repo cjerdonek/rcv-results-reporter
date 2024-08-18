@@ -45,6 +45,9 @@ labels:
     es: Cambiar de idioma
     tl: Lumipat wika
     zh: 切换语言
+  # This is used for the "Transfer" column of the RCV round-by-round report.
+  transfer:
+    en: Transfer
   total_blanks:
     en: Blanks
     # These are from the translation of "Blank Ballot" here:
@@ -85,3 +88,14 @@ labels:
     es: Votos por debajo del límite
     tl: Mga kulang na boto
     zh: 投票不足
+  # This is used for the "Votes" column of the RCV round-by-round report.
+  votes:
+    en: Votes
+    # The translations below are inferred from here:
+    # https://www.eac.gov/election-officials/glossaries-election-terminology
+    es: Votos
+    tl: Mga Boto
+    # TODO: this is currently the glossary's translation of "Vote Total,"
+    #  so change it to "Votes." ("Vote" (singular) in the EAC glossary
+    # is "投票".)
+    zh: 投票总数
