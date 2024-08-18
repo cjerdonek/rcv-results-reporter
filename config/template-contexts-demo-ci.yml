@@ -4,9 +4,13 @@
 contexts:
   "index-all-rcv.html":
     # This is the URL to the directory containing the "js" and "styles"
-    # directories for the main index pages. It can be an absolute url
-    # or else a relative url relative to the location of the index page
+    # directories, for use in the main index pages. It can be an absolute
+    # url, or a relative url relative to the location of the index page
     # in the url hierarchy. It must end in a slash ("/").
+    #   Since in CI we use build-demo.sh to run build_demo.py, we can
+    # use "static-files/" as is in this config file. This is because
+    # in build-demo.sh we copy the static files to the "static-files"
+    # subdirectory of the build output directory.
     parent_static_url_dir: static-files/
 
   'rcv-complete.html':
