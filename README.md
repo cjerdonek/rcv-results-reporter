@@ -155,6 +155,7 @@ Install Python. The project is tested with the following versions of Python:
 * Python 3.9
 * Python 3.10
 * Python 3.11
+* Python 3.12
 
 (See [here](https://devguide.python.org/versions/) for which Python versions
 are still current.)
