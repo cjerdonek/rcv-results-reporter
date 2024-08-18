@@ -48,6 +48,9 @@ labels:
   # This is used for the "Transfer" column of the RCV round-by-round report.
   transfer:
     en: Transfer
+  transfer_tooltip:
+    en: The change in vote totals from this round to the next after
+      eliminating the last-place candidate and retabulating all the ballots.
   total_blanks:
     en: Blanks
     # These are from the translation of "Blank Ballot" here:
@@ -99,3 +102,6 @@ labels:
     #  so change it to "Votes." ("Vote" (singular) in the EAC glossary
     # is "投票".)
     zh: 投票总数
+  votes_tooltip:
+    en: The number of ballots counting towards the listed candidate
+      or subtotal in this round.

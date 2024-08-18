@@ -41,9 +41,13 @@ certain phrases like "Continuing Ballots Total" still need to be translated.)</e
 <tr>
   <td class="CandidateCellSubHeader">&nbsp;</td>
 {%- for round_number in range(1, highest_round + 1) %}
-  <td class="VotesCellSubHeader">{{ 'votes'|TL }}</td>
+  <td class="VotesCellSubHeader">
+    <span class="election-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ 'votes'|TLT }}">{{ 'votes'|TL }}</span>
+  </td>
   <td class="PercentageCellSubHeader">%</td>
-  <td class="TransferCellSubHeader">{%- if loop.last %}N/A{%- else %}{{ 'transfer'|TL }}{%- endif %}</td>
+  <td class="TransferCellSubHeader">{%- if loop.last %}N/A{%- else -%}
+    <span class="election-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ 'transfer'|TLT }}">{{ 'transfer'|TL }}</span>
+  {%- endif %}</td>
 {%- endfor %}
 </tr>
 {%- for candidate in candidate_names %}
