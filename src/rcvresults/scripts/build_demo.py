@@ -417,13 +417,21 @@ def main():
         dir_name: get_config_path(dir_name) for dir_name in dir_names
     }
 
-    # The repo has the following symlinks that point to the following
-    # directories relative to the repo root:
-    #  * data/demo-pages/static-files     -> data/election-htmls/2024-03-05
-    # The main index pages (where parent_static_dir is used) are at the
-    # site root, and the site root should contain a "static-files"
-    # subdirectory.
-    # Also, this needs to end in a slash ("/").
+    # The "parent_static_dir" variable is an absolute or relative url
+    # that needs to end in a slash ("/"). It is the url used by the main
+    # index pages beneath the site root as the directory of static-file
+    # assets used by those pages. It must contain subdirectories named
+    # "css" and "js" containing the CSS and JS files, respectively.
+    #   In contrast, the location of the static assets needed by the
+    # **RCV-specific** templates are controlled by the template-context
+    # yaml files in the repo's "config" directory.
+    #   Note that, to simplify running build_demo.py locally into
+    # DEMO_DIR_HTML (data/demo-pages), the repo has the following symlink
+    # pointing to the following directory relative to the repo root:
+    #  * data/demo-pages/static-files -> data/election-htmls/2024-03-05
+    # This symlink isn't needed in CI since build-demo.sh simply copies
+    # the static files into the right location in the output directory
+    # used in CI.
     parent_static_dir = 'static-files/'
 
     make_all_rcv_snippets(
